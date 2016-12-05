@@ -1,0 +1,90 @@
+  - platform: yr
+
+  - platform: rest
+    name: 'Toilet Lux'
+    resource: !secret hue_sensor_toilet_lux
+    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+    unit_of_measurement: klx
+
+  - platform: rest
+    name: 'Toilet Temperature'
+    resource: !secret hue_sensor_toilet_temp
+    value_template: '{{ value_json.state.temperature | float / 100 }}'
+    unit_of_measurement: °C
+
+  - platform: rest
+    name: 'Toilet Presence'
+    resource: !secret hue_sensor_toilet_presence
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: rest
+    name: 'Floor Lux'
+    resource: !secret hue_sensor_floor_lux
+    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+    unit_of_measurement: klx
+
+  - platform: rest
+    name: 'Floor Temperature'
+    resource: !secret hue_sensor_toilet_temp
+    value_template: '{{ value_json.state.temperature | float / 100 }}'
+    unit_of_measurement: °C
+
+  - platform: rest
+    name: 'Floor Presence'
+    resource: !secret hue_sensor_floor_presence
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: zoneminder
+
+  - platform: transmission
+    host: nasteanas.lan
+    monitored_variables:
+      - 'download_speed'
+      # - 'current_status'
+      # - 'upload_speed'
+
+  - platform: rest
+    name: 'Z3C Battery'
+    resource: http://nasteanas.lan:8993/z3c/battery
+    unit_of_measurement: '%'
+
+  # - platform: speedtest
+  #   minute:
+  #      - 0
+  #      - 30
+  #   monitored_conditions:
+  #     - ping
+  #     - download
+  #     - upload
+
+  - platform: openweathermap
+    api_key: !secret openweathermap_api_key
+    monitored_conditions:
+      - temperature
+      - rain
+      # - wind_speed
+      # - humidity
+      # - pressure
+      # - clouds
+      # - snow
+
+  - platform: bitcoin
+    currency: EUR
+    display_options:
+      - exchangerate
+      # - market_price_usd
+
+  - platform: mqtt
+    state_topic: "owntracks/n5x/n5x"
+    name: "Nexus 5X Battery"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.batt }}'
+
+  - platform: google_travel_time
+    name: Travel Time to Home
+    api_key: !secret google_maps_api_key
+    origin: device_tracker.n5x_n5x
+    destination: zone.home
+
+
+# vim: set filetype=yaml et sw=2 ts=2 :

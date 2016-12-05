@@ -1,0 +1,2 @@
+  key: !secret ifttt_key
+# vim: set filetype=yaml et sw=2 ts=2 :

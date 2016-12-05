@@ -1,0 +1,11 @@
+  - platform: kodi
+    name: Kodi@Shield
+    host: http://shield.lan
+    port: 8080
+    username: !secret player_kodi_username
+    password: !secret player_kodi_password
+
+  - platform: gpmdp
+    host: popojitsu.lan
+
+# vim: set filetype=yaml et sw=2 ts=2 :

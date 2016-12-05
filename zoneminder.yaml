@@ -1,0 +1,6 @@
+  host: nasteanas.lan:10080
+  path: /zm/
+  ssl: false
+  # username: !secret zm_username
+  # password: !secret zm_password
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,50 @@
+  smoke_break:
+    alias: "Smoke break"
+    sequence:
+      # Cancel ev. old timers
+      - service: script.turn_off
+        data:
+          entity_id: script.smoke_break_timer_off
+      - service: light.turn_on
+        data:
+          entity_id: light.terrace
+      # Set new timer
+      - service: script.turn_on
+        data:
+          entity_id: script.smoke_break_timer_off
+
+  smoke_break_timer_off:
+    alias: "Smoke break: Turn off lamp after 5 minutes"
+    sequence:
+      - delay:
+          minutes: 5
+      - service: light.turn_off
+        data:
+          entity_id: light.terrace
+
+  mimine:
+    alias: "Tell my wife I love her"
+    sequence:
+      - service: notify.smsr
+        data:
+          message: "Je t'aime :)"
+          target: her
+
+  ha_restart:
+    alias: 'Restart HASS'
+    sequence:
+      - service: shell_command.ha_restart
+
+  ha_reload_config:
+    alias: 'Reload core config'
+    sequence:
+      - service: homeassistant.reload_core_config
+
+  notify_test:
+    alias: 'Test notification'
+    sequence:
+      - service: notify.speakcast
+        data:
+          message: Hello from hass
+
+# vim: set filetype=yaml et sw=2 ts=2 :

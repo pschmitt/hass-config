@@ -1,0 +1,58 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: metric
+  time_zone: Europe/Paris
+  customize: !include customize.yaml
+
+http:
+  server_port: 8123
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_crt_path
+  ssl_key: !secret ssl_key_path
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 10.7.0.0/24
+
+conversation:
+discovery:
+frontend:
+history:
+logbook:
+updater:
+
+logger:
+  # default: critical
+  # logs:
+  #   homeassistant.components: info
+  #   homeassistant.components.automation: debug
+
+automation: !include automation.yaml
+alarm_control_panel: !include alarm.yaml
+camera: !include camera.yaml
+device_sun_light_trigger: !include device_sun_light_trigger.yaml
+device_tracker: !include device_tracker.yaml
+group: !include group.yaml
+ifttt: !include ifttt.yaml
+light: !include light.yaml
+media_player: !include media_player.yaml
+mqtt: !include mqtt.yaml
+notify: !include notify.yaml
+pilight: !include pilight.yaml
+scene: !include scene.yaml
+script: !include script.yaml
+sensor: !include sensor.yaml
+shell_command: !include shell_command.yaml
+sun:
+switch: !include switch.yaml
+# weblink: !include weblink.yaml
+zone: !include zone.yaml
+zwave: !include zwave.yaml
+zoneminder: !include zoneminder.yaml
+
+# vim: set filetype=yaml et sw=2 ts=2 :

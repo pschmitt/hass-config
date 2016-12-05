@@ -1,0 +1,142 @@
+  default_view:
+    view: yes
+    entities:
+      - alarm_control_panel.ha_alarm
+      - device_tracker.n5x_n5x
+      - device_tracker.her_phone
+      - sensor.floor_temperature
+      - sensor.toilet_temperature
+      - sensor.floor_lux
+      - sensor.toilet_lux
+      - sensor.exchange_rate_1_btc
+      - sensor.yr_symbol
+      - sensor.transmission_down_speed
+      - sensor.travel_time_to_home
+      - camera.c1
+      - camera.c2
+      - camera.z3c
+      - camera.octopi
+      - group.shortcuts
+      - group.all_lights
+
+  shortcuts:
+    name: Shortcuts
+    view: no
+    entities:
+      - script.smoke_break
+
+  living_room:
+    name: Living Room
+    view: yes
+    entities:
+      - light.living_room_tv
+      - light.living_room_table
+      - scene.living_room_normal
+      - scene.living_room_dim
+      - switch.tv
+      - switch.livebox
+      - group.c1
+      - camera.octopi
+      - media_player.kodishield
+      - media_player.shield
+      - media_player.blindcast
+      - media_player.brightcast
+
+  terrace:
+    name: Terrace
+    view: yes
+    entities:
+      - sensor.yr_symbol
+      - sensor.owm_rain
+      - sensor.owm_temperature
+      - light.terrace
+      - group.c2
+      - script.smoke_break
+
+  guest_room:
+    name: Guest Room
+    view: yes
+    entities:
+      - light.guest_room
+      - sensor.z3c_battery
+      - group.z3c
+
+  cctv:
+    name: CCTV
+    view: yes
+    entities:
+      - group.c1
+      - group.c2
+      - group.z3c
+      - group.modect_cameras
+      - group.raspicam_octopi
+      - sensor.toilet_presence
+      - sensor.floor_presence
+
+  hass:
+    name: hass
+    view: yes
+    entities:
+      - group.all_scripts
+      - group.all
+      - group.all_lights
+      - group.all_switches
+      - group.all_devices
+      - group.all_automations
+
+  c1:
+    name: Foscam C1
+    entities:
+      - camera.c1
+      - switch.c1_ir
+      - switch.c1_modect
+      - switch.c1_sodect
+      - switch.c1_state
+      - sensor.c1_events
+      - sensor.c1_status
+
+  c2:
+    name: Foscam C2
+    entities:
+      - camera.c2
+      - switch.c2_ir
+      - switch.c2_modect
+      - switch.c2_sodect
+      - switch.c2_state
+      - sensor.c2_events
+      - sensor.c2_status
+
+  z3c:
+    name: Sony Z3C
+    entities:
+      - automation.z3c_battery_saver
+      - automation.z3c_camera_enabler
+      - sensor.z3c_battery
+      - camera.z3c
+      - switch.z3c_cam
+      - switch.z3c_cam_front
+      - switch.z3c_torch
+      - sensor.z3c_events
+      - switch.z3c_state
+      - sensor.z3c_status
+
+  modect_cameras:
+    name: Motion detection
+    entities:
+      - switch.z3c_cam
+      - switch.c1_state
+      - switch.c2_state
+      - switch.z3c_state
+      - switch.octopi_state
+      - switch.c1_modect
+      - switch.c2_modect
+      - switch.c1_sodect
+      - switch.c2_sodect
+
+  raspicam_octopi:
+    name: Raspberry Pi Camera (octopi)
+    entities:
+      - camera.octopi
+      - switch.octopi_state
+      - sensor.octopi_status
+# vim: set filetype=yaml et sw=2 ts=2 :

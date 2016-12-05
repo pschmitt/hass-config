@@ -1,0 +1,237 @@
+  - alias: Train reminder
+    trigger:
+      - platform: time
+        hours: 16
+        minutes: 23
+        seconds: 0
+    condition:
+      - condition: state
+        entity_id: device.n5x_n5x
+        state: Work
+    action:
+      service: notify.pushover
+      data:
+        message: 'Time to leave for your train'
+
+  - alias: 'Bruh your phone is dying'
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.nexus_5x_battery
+        below: 30
+    action:
+      service: notify.pushover
+      data:
+        message: 'Bruh your phone is dying. Charge it!'
+
+  - alias: 'Media player paused/stopped'
+    trigger:
+      - platform: state
+        entity_id: media_player.kodishield
+        from: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.living_room_normal
+
+  - alias: 'Media player playing'
+    trigger:
+      - platform: state
+        entity_id: media_player.kodishield
+        to: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.living_room_dim
+
+  - alias: Z3C Battery saver
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        below: 25
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.z3c_cam
+
+  - alias: Z3C Camera enabler
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        above: 80
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.z3c_cam
+
+  - alias: Notify when HA starts
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      service: notify.pushover
+      data:
+        message: "Home Assistant has (re)started"
+
+  - alias: Update notifications
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      service: notify.pushover
+      data:
+        message: "Home Assistant {{ states.updater.updater.state }} is now available."
+
+  # - alias: 'Trigger alarm while armed away'
+  #   trigger:
+  #     - platform: state
+  #       entity_id: sensor.floor_presence
+  #       state: "True"
+  #     - platform: state
+  #       entity_id: sensor.toilet_presence
+  #       state: "True"
+  #   condition:
+  #     - platform: state
+  #       entity_id: alarm_control_panel.ha_alarm
+  #       state: armed_away
+  #   action:
+  #     service: alarm_control_panel.alarm_trigger
+  #     entity_id: alarm_control_panel.ha_alarm
+
+  - alias: Arm alarm when erribody is away
+    trigger:
+      - platform: state
+        entity_id: group.all_devices
+        state: not_home
+    action:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Everybody left. Arming away."
+          target: me
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          code: !secret alarm_code
+
+  - alias: Floor Motion Detector
+    trigger:
+      - platform: state
+        entity_id: sensor.floor_presence
+        state: "True"
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    # condition:
+    #   - condition: state
+    #     entity_id: device_tracker.n5x_n5x
+    #     state: not_home
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.ha_alarm
+      - service: notify.pushover
+        data:
+          message: "Floor: Motion has been detected"
+
+  - alias: Toilet Motion Detector
+    trigger:
+      - platform: state
+        entity_id: sensor.toilet_presence
+        state: "True"
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    # condition:
+    #   - condition: state
+    #     entity_id: device_tracker.n5x_n5x
+    #     state: not_home
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.ha_alarm
+      - service: notify.pushover
+        data:
+          message: "Toilet: Motion has been detected"
+
+  - alias: Notify when a new platform has been discovered
+    trigger:
+      - platform: event
+        event_type: platform
+    action:
+      service: notify.smsr
+      data:
+        message: "Home Assistant has discovered a new device: {{ discovered }}"
+        target: me
+
+  - alias: Notify when new network device has been discovered
+    trigger:
+      - platform: event
+        event_type: device_tracker_new_device
+    action:
+      service: notify.smsr
+      data:
+        message: "A new device has connected to your LAN: {{ host_name }}"
+        target: me
+
+  - alias: Away armed
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    action:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm armed (away)"
+          target: me
+      - service: homeassistant.turn_on
+        data:
+          entity_id: group.modect_cameras
+
+  - alias: Alarm disarmed
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: disarmed
+    action:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm disarmed"
+          target: me
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.modect_cameras
+
+  - alias: Alarm has been triggered
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: triggered
+    # condition:
+    #     - condition: state
+    #       entity_id: alarm_control_panel.ha_alarm
+    #       state: not_disarmed
+    action:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: SECURITY BREACH DETECTED"
+          target: me
+      # - service: notify.smsr
+      #   data:
+      #     message: "Home Assistant: SECURITY BREACH DETECTED"
+      #     target: her
+
+  - alias: Message my wife when I get home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.n5x_n5x
+        from: away
+        to: home
+    action:
+      - service: notify.smsr
+        data:
+          message: "Je suis rentré, Mimine. Je t'aime :)"
+          target: me
+
+# vim: set filetype=yaml et sw=2 ts=2 :

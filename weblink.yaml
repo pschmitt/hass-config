@@ -1,0 +1,5 @@
+  entites:
+    - name: Kodi
+      url: shield.lan:8080
+      icon: mdi:kodi
+# vim: set filetype=yaml et sw=2 ts=2 :

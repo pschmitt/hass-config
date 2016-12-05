@@ -1,0 +1,6 @@
+  light_group: group.living_room
+  # light_profile: relax
+  device_group: group.all_devices
+  disable_turn_off: true
+
+# vim: set filetype=yaml et sw=2 ts=2 :

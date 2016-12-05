@@ -1,0 +1,13 @@
+  - platform: luci
+    host: 10.7.0.1
+    username: !secret owrt_username
+    password: !secret owrt_password
+    track_new_devices: false
+    consider_home: 180
+
+  - platform: owntracks
+    waypoints: True
+    waypoint_whitelist:
+      - n5x
+
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,5 @@
+  broker: m20.cloudmqtt.com
+  port: 29814
+  username: hass
+  password: !secret mqtt_password
+# vim: set filetype=yaml et sw=2 ts=2 :

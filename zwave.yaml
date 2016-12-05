@@ -1,0 +1,3 @@
+  usb_path: /dev/ttyACM0
+  config_path: /config/zwave
+# vim: set filetype=yaml et sw=2 ts=2 :

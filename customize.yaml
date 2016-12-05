@@ -1,0 +1,58 @@
+    script.smoke_break_timer_off:
+      hidden: true
+    # sensor.toilet_lux:
+    #   hidden: true
+    # sensor.toilet_lux:
+    #   hidden: true
+    sensor.z3c_battery:
+      icon: mdi:battery
+    sensor.own_rain:
+      icon: mdi:weather-rainy
+    switch.z3c_cam:
+      icon: mdi:camera
+    switch.z3c_cam_front:
+      icon: mdi:camera-front
+    switch.z3c_torch:
+      icon: mdi:flashlight
+    script.smoke_break:
+      icon: mdi:smoking
+    switch.pilight_tv:
+      hidden: true
+      icon: mdi:power-plug
+    switch.tv:
+      icon: mdi:power-plug
+      assumed_state: true
+    switch.livebox:
+      icon: mdi:television
+    switch.c1_ir:
+      icon: mdi:weather-night
+    switch.c2_ir:
+      icon: mdi:weather-night
+    switch.c1_modect:
+      icon: mdi:run
+    switch.c2_modect:
+      icon: mdi:run
+    switch.c1_sodect:
+      icon: mdi:surround-sound
+    switch.c2_sodect:
+      icon: mdi:surround-sound
+    scene.living_room_normal:
+      icon: mdi:brightness-1
+    scene.living_room_dim:
+      icon: mdi:brightness-2
+    group.all:
+      hidden: false
+    group.all_lights:
+      hidden: false
+      order: 2
+    group.all_automations:
+      hidden: false
+    group.all_scripts:
+      hidden: false
+    group.all_devices:
+      hidden: false
+    group.all_switches:
+      hidden: false
+    group.shortcuts:
+      order: 1
+# vim: set filetype=yaml et sw=2 ts=2 :
