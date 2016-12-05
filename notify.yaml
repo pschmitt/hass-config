@@ -41,4 +41,15 @@
     method: POST
     message_param_name: msg
     # target_param_name: to  # set chromecast name/ip?
+
+  - name: everybody
+    platform: group
+    services:
+      - service: smsr
+        data:
+          target: me
+      - service: smsr
+        data:
+          target: her
+
 # vim: set filetype=yaml et sw=2 ts=2 :
