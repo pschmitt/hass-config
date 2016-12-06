@@ -101,6 +101,23 @@
   #     service: alarm_control_panel.alarm_trigger
   #     entity_id: alarm_control_panel.ha_alarm
 
+  - alias: Arm alarm when erribody is away (and HASS starts)
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    condition:
+      - condition: state
+        entity_id: group.all_devices
+        state: not_home
+    action:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Everybody left. Arming away. (2)"
+          target: me
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          code: !secret alarm_code
+
   - alias: Arm alarm when erribody is away
     trigger:
       - platform: state
