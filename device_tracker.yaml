@@ -6,7 +6,8 @@
     consider_home: 180
 
   - platform: owntracks
-    waypoints: True
+    max_gps_accuracy: 200
+    waypoints: False
     waypoint_whitelist:
       - n5x
 
