@@ -47,4 +47,74 @@
         data:
           message: Hello from hass
 
+  im_home:
+    alias: 'I am home'
+    sequence:
+      - delay:
+          minutes: 1
+      - service: notify.smsr
+        data:
+          message: "Je suis rentré, Mimine. Je t'aime :)"
+          target: me
+      - service: notify.speakcast
+        data:
+          message: "Attention! Le roi arrive!"
+
+  she_is_home:
+    alias: 'She is home'
+    sequence:
+      - delay:
+          minutes: 1
+      - service: notify.pushover
+        data:
+          message: 'Mimine just came home'
+      - service: notify.speakcast
+        data:
+          message: 'Salut Mimine. Bienvenue à la maison'
+
+  alarm_arm_away:
+    alias: 'Activate away alarm'
+    sequence:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Everybody left. Arming away."
+          target: me
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          code: !secret alarm_code
+
+  alarm_armed_away:
+    alias: 'Away alarm activated'
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: group.modect_cameras
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm armed (away)"
+          target: me
+
+  alarm_disarmed:
+    alias: 'Alarm disarmed'
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.modect_cameras
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm disarmed"
+          target: me
+
+  alarm_triggered:
+    alias: 'Alarm triggered'
+    sequence:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: SECURITY BREACH DETECTED"
+          target: me
+      # - service: notify.smsr
+      #   data:
+      #     message: "Home Assistant: SECURITY BREACH DETECTED"
+      #     target: her
+
 # vim: set filetype=yaml et sw=2 ts=2 :

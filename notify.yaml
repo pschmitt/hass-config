@@ -42,6 +42,15 @@
     message_param_name: msg
     # target_param_name: to  # set chromecast name/ip?
 
+  - name: get_to_me
+    platform: group
+    services:
+      - service: pushover
+      - service: free_mobile
+      - service: smsr
+        data:
+          target: me
+
   - name: everybody
     platform: group
     services:

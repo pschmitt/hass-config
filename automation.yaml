@@ -6,7 +6,7 @@
         seconds: 0
     condition:
       - condition: state
-        entity_id: device.n5x_n5x
+        entity_id: device_tracker.n5x_n5x
         state: work
     action:
       service: notify.pushover
@@ -110,13 +110,7 @@
         entity_id: group.all_devices
         state: not_home
     action:
-      - service: notify.smsr
-        data:
-          message: "Home Assistant: Everybody left. Arming away. (2)"
-          target: me
-      - service: alarm_control_panel.alarm_arm_away
-        data:
-          code: !secret alarm_code
+      - service: script.alarm_arm_away
 
   - alias: Arm alarm when erribody is away
     trigger:
@@ -124,13 +118,7 @@
         entity_id: group.all_devices
         state: not_home
     action:
-      - service: notify.smsr
-        data:
-          message: "Home Assistant: Everybody left. Arming away."
-          target: me
-      - service: alarm_control_panel.alarm_arm_away
-        data:
-          code: !secret alarm_code
+      - service: script.alarm_arm_away
 
   - alias: Floor Motion Detector
     trigger:
@@ -198,13 +186,7 @@
         entity_id: alarm_control_panel.ha_alarm
         state: armed_away
     action:
-      - service: notify.smsr
-        data:
-          message: "Home Assistant: Alarm armed (away)"
-          target: me
-      - service: homeassistant.turn_on
-        data:
-          entity_id: group.modect_cameras
+      - service: script.alarm_armed_away
 
   - alias: Alarm disarmed
     trigger:
@@ -212,13 +194,7 @@
         entity_id: alarm_control_panel.ha_alarm
         state: disarmed
     action:
-      - service: notify.smsr
-        data:
-          message: "Home Assistant: Alarm disarmed"
-          target: me
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.modect_cameras
+      - service: script.alarm_disarmed
 
   - alias: Alarm has been triggered
     trigger:
@@ -230,14 +206,7 @@
     #       entity_id: alarm_control_panel.ha_alarm
     #       state: not_disarmed
     action:
-      - service: notify.smsr
-        data:
-          message: "Home Assistant: SECURITY BREACH DETECTED"
-          target: me
-      # - service: notify.smsr
-      #   data:
-      #     message: "Home Assistant: SECURITY BREACH DETECTED"
-      #     target: her
+      - service: script.alarm_triggered
 
   - alias: Message my wife when I get home
     trigger:
@@ -246,9 +215,15 @@
         from: away
         to: home
     action:
-      - service: notify.smsr
-        data:
-          message: "Je suis rentré, Mimine. Je t'aime :)"
-          target: me
+      - service: script.im_home
+
+  - alias: Message my wife when I get home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.her_phone
+        from: away
+        to: home
+    action:
+      - service: script.she_is_home
 
 # vim: set filetype=yaml et sw=2 ts=2 :
