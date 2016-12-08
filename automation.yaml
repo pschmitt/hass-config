@@ -160,6 +160,38 @@
         data:
           message: "Toilet: Motion has been detected"
 
+  - alias: Trigger an alert when zoneminder picks up a new event
+    trigger:
+      - platform: state
+        entity_id: sensor.c1_events
+      - platform: state
+        entity_id: sensor.c2_events
+      - platform: state
+        entity_id: sensor.octopi_events
+      - platform: state
+        entity_id: sensor.z3c_events
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.ha_alarm
+          state: armed_away
+        - condition: template
+          # value_template: '{{ trigger.from_state.state | int < trigger.to_state.state | int }}'
+          value_template: >
+            {% if trigger.from_state.state == 'unknown' %}
+              false
+            {% else %}
+              {{ trigger.from_state.state | int < trigger.to_state.state | int }}
+            {% endif %}
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.ha_alarm
+      - service: notify.pushover
+        data_template:
+          message: >
+            ALERT: {{ trigger.entity_id }} has detected motion ({{ trigger.from_state.state }} < {{ trigger.to_state.state }})
+
   - alias: Notify when a new platform has been discovered
     trigger:
       - platform: event
