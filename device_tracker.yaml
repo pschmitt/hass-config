@@ -5,10 +5,10 @@
     track_new_devices: false
     consider_home: 180
 
-  - platform: owntracks
-    max_gps_accuracy: 200
-    waypoints: False
-    waypoint_whitelist:
-      - n5x
+  # - platform: owntracks
+  #   max_gps_accuracy: 200
+  #   waypoints: False
+  #   waypoint_whitelist:
+  #     - n5x
 
 # vim: set filetype=yaml et sw=2 ts=2 :
