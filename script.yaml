@@ -117,4 +117,21 @@
       #     message: "Home Assistant: SECURITY BREACH DETECTED"
       #     target: her
 
+  dash_button_kleenex_pressed:
+    alias: 'Kleenex Dash button pressed'
+    sequence:
+      - service: notify.speakcast
+        data:
+          message: "Je t'aime Mimine."
+
+  dash_button_durex_pressed:
+    alias: 'Durex Dash button pressed'
+    sequence:
+      - service: script.smoke_break
+        data:
+          entity_id: light.terrace
+      - service: notify.pushover
+        data:
+          message: "Durex dash button pressed"
+
 # vim: set filetype=yaml et sw=2 ts=2 :
