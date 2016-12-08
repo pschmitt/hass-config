@@ -1,3 +1,7 @@
+    automation.z3c_battery_saver:
+      hidden: true
+    automation.z3c_camera_enabler:
+      hidden: true
     script.smoke_break_timer_off:
       hidden: true
     # sensor.toilet_lux:
