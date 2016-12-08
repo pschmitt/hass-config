@@ -40,13 +40,15 @@
       icon: mdi:brightness-1
     scene.living_room_dim:
       icon: mdi:brightness-2
+    scene.bedtime:
+      icon: mdi:weather-night
     group.all:
       hidden: false
     group.all_lights:
       hidden: false
       order: 2
     group.all_automations:
-      hidden: false
+      hidden: true
     group.all_scripts:
       hidden: false
     group.all_devices:
