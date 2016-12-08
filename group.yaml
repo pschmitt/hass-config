@@ -157,4 +157,5 @@
       - camera.octopi
       - switch.octopi_state
       - sensor.octopi_status
+      - sensor.octopi_events
 # vim: set filetype=yaml et sw=2 ts=2 :
