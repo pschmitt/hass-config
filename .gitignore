@@ -1,5 +1,5 @@
 secrets.yaml
-known_devices.yaml
+known_devices.yaml*
 phue.conf
 deps/
 www/
