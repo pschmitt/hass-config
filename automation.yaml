@@ -249,7 +249,7 @@
     action:
       - service: script.im_home
 
-  - alias: Message my wife when I get home
+  - alias: Talk to my wife when she gets home
     trigger:
       - platform: state
         entity_id: device_tracker.her_phone
@@ -258,6 +258,7 @@
     action:
       - service: script.she_is_home
 
+  # Amazon Dash section
   - alias: Amazon Dash Button (Kleenex) pressed
     trigger:
       - platform: event
@@ -271,6 +272,44 @@
         event_type: dash_button_durex_pressed
     action:
       - service: script.dash_button_durex_pressed
+  # End of Amazon Dash section
+
+  # Z-Wave stuff
+  - alias: Z-Wave network is complete
+    trigger:
+      platform: event
+      event_type: zwave.network_complete
+    action:
+      - service: notify.pushover
+        data:
+          message: "Z-Wave network is complete"
+
+  - alias: Z-Wave network is ready
+    trigger:
+      platform: event
+      event_type: zwave.network_ready
+    action:
+      - service: notify.pushover
+        data:
+          message: "Z-Wave network is ready"
+
+  - alias: Z-Wave network is starting
+    trigger:
+      platform: event
+      event_type: zwave.network_start
+    action:
+      - service: notify.pushover
+        data:
+          message: "Z-Wave network is starting"
+
+  - alias: Z-Wave network is stopping
+    trigger:
+      platform: event
+      event_type: zwave.network_stop
+    action:
+      - service: notify.pushover
+        data:
+          message: "Z-Wave network is stopping"
 
   - alias: Z-Wave soft reset at 02:30
     trigger:
@@ -285,5 +324,7 @@
       after: '02:35:00'
     action:
       service: zwave.heal_network
+
+  # End of Z-Wave section
 
 # vim: set filetype=yaml et sw=2 ts=2 :
