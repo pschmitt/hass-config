@@ -32,4 +32,16 @@
       light.kitchen:
         state: off
         transition: 1
+
+  - name: Bedtime
+    entities:
+      light.hallway:
+        state: off
+      light.toilet:
+        state: off
+      light.bathroom:
+        state: off
+      light.bedroom:
+        state: off
+
 # vim: set filetype=yaml et sw=2 ts=2 :
