@@ -37,7 +37,7 @@
 
   - name: speakcast
     platform: rest
-    resource: http://nasteanas.lan:8993/chromespeak
+    resource: http://nasteanas.lan:8993/speakcast
     method: POST
     message_param_name: msg
     # target_param_name: to  # set chromecast name/ip?
