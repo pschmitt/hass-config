@@ -14,6 +14,7 @@ ha_restart() {
 if ! systemctl is-active "$HASS_SERVICE" > /dev/null
 then
     echo -n "HASS is not running. Starting it..."
+    sudo systemctl daemon-reload
     sudo systemctl start "$HASS_SERVICE"
     echo 'Done!'
 elif ./check-config.sh > /dev/null
