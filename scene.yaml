@@ -35,6 +35,8 @@
 
   - name: Bedtime
     entities:
+      light.terrace:
+        state: off
       light.hallway:
         state: off
       light.toilet:
