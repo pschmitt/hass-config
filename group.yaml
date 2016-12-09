@@ -26,6 +26,7 @@
       - device_tracker.nexus7
       - device_tracker.milestone
       - device_tracker.her_phone
+      - device_tracker.popojitsu
       # - device_tracker.n5x_n5x
 
   shortcuts:
