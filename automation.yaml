@@ -85,22 +85,6 @@
       data:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
 
-  # - alias: 'Trigger alarm while armed away'
-  #   trigger:
-  #     - platform: state
-  #       entity_id: sensor.floor_presence
-  #       state: "True"
-  #     - platform: state
-  #       entity_id: sensor.toilet_presence
-  #       state: "True"
-  #   condition:
-  #     - platform: state
-  #       entity_id: alarm_control_panel.ha_alarm
-  #       state: armed_away
-  #   action:
-  #     service: alarm_control_panel.alarm_trigger
-  #     entity_id: alarm_control_panel.ha_alarm
-
   # Alarm section
 
   - alias: Arm alarm when erribody is away (and HASS starts)
@@ -122,8 +106,11 @@
     action:
       - service: script.alarm_arm_away
 
-  - alias: Floor Motion Detector
+  - alias: Hue Motion Detector triggered
     trigger:
+      - platform: state
+        entity_id: sensor.toilet_presence
+        state: "True"
       - platform: state
         entity_id: sensor.floor_presence
         state: "True"
@@ -131,36 +118,14 @@
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
         state: armed_away
-    # condition:
-    #   - condition: state
-    #     entity_id: device_tracker.n5x_n5x
-    #     state: not_home
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
       - service: notify.get_to_me
-        data:
-          message: "Floor: Motion has been detected"
-
-  - alias: Toilet Motion Detector
-    trigger:
-      - platform: state
-        entity_id: sensor.toilet_presence
-        state: "True"
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.ha_alarm
-        state: armed_away
-    # condition:
-    #   - condition: state
-    #     entity_id: device_tracker.n5x_n5x
-    #     state: not_home
-    action:
-      - service: alarm_control_panel.alarm_trigger
-        entity_id: alarm_control_panel.ha_alarm
-      - service: notify.get_to_me
-        data:
-          message: "Toilet: Motion has been detected"
+        data_template:
+          message: >
+            {{ trigger.to_state.attributes.friendly_name }}
+            Motion has been detected
 
   - alias: Trigger an alert when zoneminder picks up a new event
     trigger:
@@ -179,7 +144,6 @@
           entity_id: alarm_control_panel.ha_alarm
           state: armed_away
         - condition: template
-          # value_template: '{{ trigger.from_state.state | int < trigger.to_state.state | int }}'
           value_template: >
             {% if trigger.from_state.state == 'unknown' %}
               false
@@ -210,7 +174,7 @@
         event_type: device_tracker_new_device
     action:
       service: notify.smsr
-      data:
+      data_template:
         message: "A new device has connected to your LAN: {{ host_name }}"
         target: me
 
