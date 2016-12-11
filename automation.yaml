@@ -82,7 +82,7 @@
         entity_id: updater.updater
     action:
       service: notify.pushover
-      data:
+      data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
 
   # Alarm section
