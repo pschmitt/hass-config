@@ -164,7 +164,7 @@
         event_type: platform
     action:
       service: notify.smsr
-      data:
+      data_template:
         message: "Home Assistant has discovered a new device: {{ discovered }}"
         target: me
 
