@@ -6,22 +6,22 @@
         seconds: 0
     condition:
       - condition: state
-        entity_id: device_tracker.n5x_n5x
+        entity_id: device_tracker.moto_g4play
         state: work
     action:
       service: notify.pushover
       data:
         message: 'Time to leave for your train'
 
-  - alias: 'Bruh your phone is dying'
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.nexus_5x_battery
-        below: 30
-    action:
-      service: notify.pushover
-      data:
-        message: 'Bruh your phone is dying. Charge it!'
+  # - alias: 'Bruh your phone is dying'
+  #   trigger:
+  #     - platform: numeric_state
+  #       entity_id: sensor.nexus_5x_battery
+  #       below: 30
+  #   action:
+  #     service: notify.pushover
+  #     data:
+  #       message: 'Bruh your phone is dying. Charge it!'
 
   - alias: 'Media player paused/stopped'
     trigger:
@@ -208,11 +208,12 @@
 
   # End of Alarm section
 
-  - alias: Message my wife when I get home
+  - alias: React to my homecoming
     trigger:
       - platform: state
-        entity_id: device_tracker.n5x_n5x
-        from: away
+        entity_id: device_tracker.moto_g4play
+        from: not_home
+        # from: away
         to: home
     action:
       - service: script.im_home
