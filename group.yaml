@@ -2,7 +2,7 @@
     view: yes
     entities:
       - alarm_control_panel.ha_alarm
-      - group.mobile_devices
+      - group.tracked_devices
       - sensor.floor_temperature
       - sensor.toilet_temperature
       - sensor.floor_lux
@@ -19,14 +19,15 @@
       - group.shortcuts
       - group.all_lights
 
-  mobile_devices:
-    name: Mobile Devices
+  tracked_devices:
+    name: Devices
     view: no
     entities:
       - device_tracker.nexus7
       - device_tracker.milestone
       - device_tracker.her_phone
       - device_tracker.popojitsu
+      - device_tracker.moto_g4play
       # - device_tracker.n5x_n5x
 
   shortcuts:
