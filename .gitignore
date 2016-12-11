@@ -8,6 +8,7 @@ zwave/
 OZW_Log.txt
 home-assistant.log
 home-assistant_v2.db
+home-assistant_v2.db-journal
 pyozw.sqlite
 zwscene.xml
 zwcfg_0xc7dc57ce.xml
