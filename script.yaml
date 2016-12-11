@@ -1,3 +1,4 @@
+  # Misc section
   smoke_break:
     alias: "Smoke break"
     sequence:
@@ -5,7 +6,8 @@
       - service: script.turn_off
         data:
           entity_id: script.smoke_break_timer_off
-      - service: light.turn_on
+      - service_template: >
+          light.{% if is_state('light.terrace', 'on') %}turn_off{% else %}turn_on{% endif %}
         data:
           entity_id: light.terrace
       # Set new timer
@@ -21,6 +23,7 @@
       - service: light.turn_off
         data:
           entity_id: light.terrace
+  # End of Misc section
 
   mimine:
     alias: "Tell my wife I love her"
@@ -30,6 +33,7 @@
           message: "Je t'aime :)"
           target: her
 
+  # Hass section
   ha_restart:
     alias: 'Restart HASS'
     sequence:
@@ -39,14 +43,9 @@
     alias: 'Reload core config'
     sequence:
       - service: homeassistant.reload_core_config
+  # End of Hass section
 
-  notify_test:
-    alias: 'Test notification'
-    sequence:
-      - service: notify.speakcast
-        data:
-          message: Hello from hass
-
+  # Homecoming section
   im_home:
     alias: 'I am home'
     sequence:
@@ -71,7 +70,9 @@
       - service: notify.speakcast
         data:
           message: 'Salut Mimine. Bienvenue à la maison'
+  # End of Homecoming section
 
+  # Alarm section
   alarm_arm_away:
     alias: 'Activate away alarm'
     sequence:
@@ -108,7 +109,7 @@
   alarm_triggered:
     alias: 'Alarm triggered'
     sequence:
-      - service: notify.smsr
+      - service: notify.get_to_me
         data:
           message: "Home Assistant: SECURITY BREACH DETECTED"
           target: me
@@ -117,12 +118,15 @@
       #     message: "Home Assistant: SECURITY BREACH DETECTED"
       #     target: her
 
+  # End of Alarm section
+
+  # Amazon dash button section
   dash_button_kleenex_pressed:
     alias: 'Kleenex Dash button pressed'
     sequence:
       - service: notify.speakcast
         data:
-          message: "Je t'aime Mimine."
+          message: "Oh mimine, oh mimine. T'es la plus belle des futures mamans"
 
   dash_button_durex_pressed:
     alias: 'Durex Dash button pressed'
@@ -130,8 +134,7 @@
       - service: script.smoke_break
         data:
           entity_id: light.terrace
-      - service: notify.pushover
-        data:
-          message: "Durex dash button pressed"
+
+  # End of Amazon dash button section
 
 # vim: set filetype=yaml et sw=2 ts=2 :
