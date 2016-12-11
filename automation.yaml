@@ -156,7 +156,7 @@
       - service: notify.get_to_me
         data_template:
           message: >
-            ALERT: {{ trigger.entity_id }} has detected motion ({{ trigger.from_state.state }} < {{ trigger.to_state.state }})
+            ALERT: {{ trigger.to_state.attributes.friendly_name }} has detected motion
 
   - alias: Notify when a new platform has been discovered
     trigger:
