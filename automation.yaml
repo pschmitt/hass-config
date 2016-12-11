@@ -109,7 +109,7 @@
         event_type: homeassistant_start
     condition:
       - condition: state
-        entity_id: group.all_devices
+        entity_id: group.tracked_devices
         state: not_home
     action:
       - service: script.alarm_arm_away
@@ -117,7 +117,7 @@
   - alias: Arm alarm when erribody is away
     trigger:
       - platform: state
-        entity_id: group.all_devices
+        entity_id: group.tracked_devices
         state: not_home
     action:
       - service: script.alarm_arm_away
@@ -138,7 +138,7 @@
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
-      - service: notify.pushover
+      - service: notify.get_to_me
         data:
           message: "Floor: Motion has been detected"
 
@@ -158,7 +158,7 @@
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
-      - service: notify.pushover
+      - service: notify.get_to_me
         data:
           message: "Toilet: Motion has been detected"
 
@@ -189,7 +189,7 @@
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
-      - service: notify.pushover
+      - service: notify.get_to_me
         data_template:
           message: >
             ALERT: {{ trigger.entity_id }} has detected motion ({{ trigger.from_state.state }} < {{ trigger.to_state.state }})
