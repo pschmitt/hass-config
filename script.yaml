@@ -130,7 +130,7 @@
           message: kleenex
       - service: notify.speakcast
         data:
-          message: "Mimine. En cherchant à la ronde, dans tout le vaste monde, on ne trouve pas plus belle que toi. Je t'aime, Mimine."
+          message: !secret kleenex_message
 
   dash_button_durex_pressed:
     alias: 'Durex Dash button pressed'
