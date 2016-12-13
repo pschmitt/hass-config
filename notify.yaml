@@ -46,6 +46,11 @@
     platform: group
     services:
       - service: pushover
+        data:
+          data:
+            priority: 2
+            expire: 7200 # 2h
+            retry: 30
       - service: free_mobile
       - service: smsr
         data:
