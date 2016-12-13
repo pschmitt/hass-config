@@ -61,4 +61,10 @@
         data:
           target: her
 
+  - name: dash_pressed
+    platform: rest
+    resource: http://nasteanas.lan:8993/dash/pressed
+    method: POST
+    message_param_name: dash_id
+
 # vim: set filetype=yaml et sw=2 ts=2 :

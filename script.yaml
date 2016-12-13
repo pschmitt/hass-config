@@ -129,6 +129,9 @@
         event_data:
           name: Kleenex Dash button
           message: pressed
+      - service: notify.dash_pressed
+        data:
+          message: kleenex
       - service: notify.speakcast
         data:
           message: "Mimine. En cherchant à la ronde, dans tout le vaste monde, on ne trouve pas plus belle que toi. Je t'aime, Mimine."
@@ -140,6 +143,9 @@
         event_data:
           name: Durex Dash button
           message: pressed
+      - service: notify.dash_pressed
+        data:
+          message: durex
       - service: script.smoke_break
         data:
           entity_id: light.terrace
