@@ -208,6 +208,21 @@
     action:
       - service: script.alarm_triggered
 
+  - alias: She comes home and the alarm is on
+    trigger:
+      - platform: state
+        entity_id: device_tracker.her_phone
+        from: away
+        to: home
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    action:
+      - service: notify.pushover
+        data:
+          message: Your wife is home and the alarm is on.
+
   # End of Alarm section
 
   - alias: React to my homecoming
