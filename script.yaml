@@ -49,8 +49,6 @@
   im_home:
     alias: 'I am home'
     sequence:
-      - delay:
-          minutes: 1
       - service: notify.smsr
         data:
           message: "Je suis rentré, Mimine. Je t'aime :)"
@@ -62,8 +60,6 @@
   she_is_home:
     alias: 'She is home'
     sequence:
-      - delay:
-          minutes: 1
       - service: notify.pushover
         data:
           message: 'Mimine just came home'
