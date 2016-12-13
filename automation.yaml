@@ -75,6 +75,8 @@
       service: notify.pushover
       data:
         message: "Home Assistant has (re)started"
+        data:
+          priority: -1
 
   - alias: Update notifications
     trigger:
