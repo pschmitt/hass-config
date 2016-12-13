@@ -24,10 +24,11 @@ logbook:
 updater:
 
 logger:
-  # default: critical
-  # logs:
-  #   homeassistant.components: info
-  #   homeassistant.components.automation: debug
+  default: info
+  logs:
+    homeassistant.components: info
+    homeassistant.components.automation: debug
+    requests.packages.urllib3.connectionpool: critical
 
 automation: !include automation.yaml
 alarm_control_panel: !include alarm.yaml
