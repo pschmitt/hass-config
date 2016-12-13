@@ -61,6 +61,13 @@
         data:
           target: her
 
+  - name: twitter
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_token_secret
+
   - name: dash_pressed
     platform: rest
     resource: http://nasteanas.lan:8993/dash/pressed
