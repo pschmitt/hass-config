@@ -52,7 +52,7 @@
       - service: notify.smsr
         data:
           message: "Je suis rentré, Mimine. Je t'aime :)"
-          target: me
+          target: her
       - service: notify.speakcast
         data:
           message: "Attention! Le roi arrive!"
