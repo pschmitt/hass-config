@@ -12,12 +12,9 @@ http:
   api_password: !secret http_password
   ssl_certificate: !secret ssl_crt_path
   ssl_key: !secret ssl_key_path
-  ip_ban_enabled: True
+  ip_ban_enabled: False
   login_attempts_threshold: 5
-  trusted_networks:
-    - 127.0.0.1
-    - ::1
-    - 10.7.0.0/24
+  trusted_networks: !include trusted_networks.yaml
 
 conversation:
 discovery:
