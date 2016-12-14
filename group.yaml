@@ -39,7 +39,7 @@
       - switch.tv
       - switch.livebox
       - binary_sensor.livebox_play
-      - group.c1
+      - camera.c1
       - camera.octopi
       - media_player.kodishield
       - media_player.shield
@@ -178,5 +178,5 @@
       - sensor.owm_temperature
       - sensor.floor_lux
       - sensor.toilet_lux
-#
+
 # vim: set filetype=yaml et sw=2 ts=2 :
