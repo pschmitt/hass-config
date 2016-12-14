@@ -47,8 +47,6 @@
       icon: mdi:surround-sound
     switch.livebox:
       icon: mdi:television
-    switch.livebox:
-      icon: mdi:television
     switch.pilight_tv:
       hidden: true
       icon: mdi:power-plug
