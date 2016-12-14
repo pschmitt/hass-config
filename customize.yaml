@@ -25,6 +25,12 @@
       icon: mdi:pine-tree
     light.toilet:
       icon: mdi:human-male-female
+    sensor.floor_lux:
+      icon: mdi:white-balance-sunny
+    sensor.toilet_lux:
+      icon: mdi:white-balance-sunny
+    sensor.transmission_down_speed:
+      icon: mdi:download
     scene.living_room_normal:
       icon: mdi:brightness-1
     scene.living_room_dim:
