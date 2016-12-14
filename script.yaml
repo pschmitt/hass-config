@@ -25,7 +25,7 @@
           entity_id: light.terrace
   # End of Misc section
 
-  mimine:
+  tell_my_wife_i_love_her:
     alias: "Tell my wife I love her"
     sequence:
       - service: notify.smsr

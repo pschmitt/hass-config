@@ -17,6 +17,14 @@
       hidden: false
     group.shortcuts:
       order: 1
+    light.living_room_table:
+      icon: mdi:food
+    light.living_room_tv:
+      icon: mdi:television
+    light.terrace:
+      icon: mdi:pine-tree
+    light.toilet:
+      icon: mdi:human-male-female
     scene.living_room_normal:
       icon: mdi:brightness-1
     scene.living_room_dim:
@@ -27,10 +35,32 @@
       icon: mdi:weather-rainy
     sensor.z3c_battery:
       icon: mdi:battery
+    script.alarm_disarmed:
+      icon: mdi:lock-open
+    script.alarm_arm_away:
+      icon: mdi:lock
+    script.alarm_armed_away:
+      icon: mdi:lock-plus
+    script.alarm_triggered:
+      icon: mdi:alert-circle
+    script.ha_restart:
+      icon: mdi:power
+    script.ha_reload_config:
+      icon: mdi:refresh
+    script.im_home:
+      icon: mdi:home-map-marker
+    script.dash_button_kleenex_pressed:
+      icon: mdi:arrow-up-drop-circle
+    script.dash_button_durex_pressed:
+      icon: mdi:arrow-up-drop-circle-outline
+    script.she_is_home:
+      icon: mdi:home-map-marker
     script.smoke_break:
       icon: mdi:smoking
     script.smoke_break_timer_off:
       hidden: true
+    script.tell_my_wife_i_love_her:
+      icon: mdi:heart
     script.z3c_restart:
       icon: mdi:power
     switch.c1_ir:
