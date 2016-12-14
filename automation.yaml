@@ -189,7 +189,7 @@
     action:
       service: notify.smsr
       data_template:
-        message: "Home Assistant has discovered a new device (platform): {{ discovered }}"
+        message: "Home Assistant has discovered a new device (platform): {{ service }}.{{ discovered }}"
         target: me
 
   - alias: Notify when new network device has been discovered
