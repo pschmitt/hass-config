@@ -1,0 +1,6 @@
+  # - platform: rest
+  #   name: Livebox Play
+  #   resource: http://nasteanas.lan:8993/livebox/state
+  #   value_template: '{{ value }}'
+
+# vim: set filetype=yaml et sw=2 ts=2 :

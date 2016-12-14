@@ -116,6 +116,20 @@
 
   # End of Alarm section
 
+  # Shell command section
+
+  z3c_restart:
+    alias: Reboot Z3C
+    sequence:
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Sony Z3C
+          message: rebooted
+          domain: camera
+      - service: shell_command.z3c_restart
+
+  # End of Shell command section
+
   # Amazon dash button section
 
   dash_button_kleenex_pressed:

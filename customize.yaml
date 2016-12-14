@@ -4,6 +4,8 @@
       hidden: true
     script.smoke_break_timer_off:
       hidden: true
+    script.z3c_restart:
+      icon: mdi:power
     # sensor.toilet_lux:
     #   hidden: true
     # sensor.toilet_lux:

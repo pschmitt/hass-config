@@ -7,7 +7,8 @@
     condition:
       - condition: state
         entity_id: device_tracker.moto_g4play
-        state: work
+        # state: work
+        state: not_home
     action:
       service: notify.pushover
       data:
@@ -22,6 +23,8 @@
   #     service: notify.pushover
   #     data:
   #       message: 'Bruh your phone is dying. Charge it!'
+
+  # Media player section
 
   - alias: 'Media player paused/stopped'
     trigger:
@@ -49,6 +52,10 @@
       service: scene.turn_on
       entity_id: scene.living_room_dim
 
+  # End of Media player section
+
+  # Camera section
+
   - alias: Z3C Battery saver
     trigger:
       - platform: numeric_state
@@ -66,6 +73,19 @@
     action:
       service: homeassistant.turn_on
       entity_id: switch.z3c_cam
+
+  - alias: Daily reboot
+    trigger:
+      - platform: time
+        hours: 4
+        minutes: 0
+        seconds: 0
+    action:
+      service: script.z3c_restart
+
+  # End of Camera section
+
+  # Home Assistant notifications section
 
   - alias: Notify when HA starts
     trigger:
@@ -86,6 +106,8 @@
       service: notify.pushover
       data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
+
+  # End of Home Assistant notifications section
 
   # Alarm section
 
@@ -225,6 +247,8 @@
 
   # End of Alarm section
 
+  # Homecoming section
+
   - alias: React to my homecoming
     trigger:
       - platform: state
@@ -244,7 +268,10 @@
     action:
       - service: script.she_is_home
 
+  # End of Homecoming section
+
   # Amazon Dash section
+
   - alias: Amazon Dash Button (Kleenex) pressed
     trigger:
       - platform: event
@@ -258,6 +285,7 @@
         event_type: dash_button_durex_pressed
     action:
       - service: script.dash_button_durex_pressed
+
   # End of Amazon Dash section
 
   # Z-Wave section

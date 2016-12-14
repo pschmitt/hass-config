@@ -48,6 +48,7 @@
       - scene.living_room_dim
       - switch.tv
       - switch.livebox
+      - binary_sensor.livebox_play
       - group.c1
       - camera.octopi
       - media_player.kodishield
@@ -78,7 +79,6 @@
     view: yes
     entities:
       - light.guest_room
-      - sensor.z3c_battery
       - group.z3c
 
   cctv:
@@ -139,6 +139,7 @@
       - sensor.z3c_events
       - switch.z3c_state
       - sensor.z3c_status
+      - script.z3c_restart
 
   modect_cameras:
     name: Motion detection
