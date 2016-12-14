@@ -1,22 +1,11 @@
   default_view:
     view: yes
     entities:
-      - alarm_control_panel.ha_alarm
-      - group.tracked_devices
-      - sensor.floor_temperature
-      - sensor.toilet_temperature
-      - sensor.floor_lux
-      - sensor.toilet_lux
-      - sensor.exchange_rate_1_btc
-      - sensor.yr_symbol
-      - sensor.owm_temperature
-      - sensor.transmission_down_speed
-      - sensor.travel_time_to_home
-      - camera.c1
-      - camera.c2
-      - camera.z3c
-      - camera.octopi
       - group.shortcuts
+      - group.tracked_devices
+      - group.weather
+      - group.misc
+      - group.cameras
       - group.all_lights
 
   tracked_devices:
@@ -34,6 +23,7 @@
     name: Shortcuts
     view: no
     entities:
+      - alarm_control_panel.ha_alarm
       - script.smoke_break
       - scene.living_room_dim
       - scene.bedtime
@@ -85,13 +75,21 @@
     name: CCTV
     view: yes
     entities:
+      - sensor.toilet_presence
+      - sensor.floor_presence
       - group.c1
       - group.c2
       - group.z3c
-      - group.modect_cameras
       - group.raspicam_octopi
-      - sensor.toilet_presence
-      - sensor.floor_presence
+      - group.modect
+
+  cameras:
+    name: Cameras
+    entities:
+      - camera.c1
+      - camera.octopi
+      - camera.c2
+      - camera.z3c
 
   hass:
     name: hass
@@ -141,9 +139,11 @@
       - sensor.z3c_status
       - script.z3c_restart
 
-  modect_cameras:
+  modect:
     name: Motion detection
     entities:
+      - sensor.floor_presence
+      - sensor.toilet_presence
       - switch.z3c_cam
       - switch.c1_state
       - switch.c2_state
@@ -161,4 +161,22 @@
       - switch.octopi_state
       - sensor.octopi_status
       - sensor.octopi_events
+
+  misc:
+    name: Misc
+    entities:
+      - sensor.travel_time_to_home
+      - sensor.exchange_rate_1_btc
+      - sensor.transmission_down_speed
+
+  weather:
+    name: Weather
+    entities:
+      - sensor.floor_temperature
+      - sensor.toilet_temperature
+      - sensor.yr_symbol
+      - sensor.owm_temperature
+      - sensor.floor_lux
+      - sensor.toilet_lux
+#
 # vim: set filetype=yaml et sw=2 ts=2 :
