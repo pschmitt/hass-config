@@ -1,12 +1,12 @@
   - platform: foscam
     name: C1
-    ip: 10.7.0.169
+    ip: foscam_c1.lan
     username: !secret cam_c1_username
     password: !secret cam_c1_password
 
   - platform: foscam
     name: C2
-    ip: 10.7.0.164
+    ip: foscam_c2.lan
     username: !secret cam_c2_username
     password: !secret cam_c2_password
 
@@ -23,4 +23,5 @@
     authentication: basic
     username: !secret cam_octopi_username
     password: !secret cam_octopi_password
+
 # vim: set filetype=yaml et sw=2 ts=2 :
