@@ -85,7 +85,7 @@
     sequence:
       - service: homeassistant.turn_on
         data:
-          entity_id: group.modect_cameras
+          entity_id: group.modect
       - service: notify.smsr
         data:
           message: "Home Assistant: Alarm armed (away)"
