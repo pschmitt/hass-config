@@ -117,7 +117,7 @@
         event_type: homeassistant_start
     condition:
       - condition: state
-        entity_id: group.tracked_devices
+        entity_id: group.main_devices
         state: not_home
     action:
       - service: script.alarm_arm_away
@@ -125,7 +125,7 @@
   - alias: Arm alarm when erribody is away
     trigger:
       - platform: state
-        entity_id: group.tracked_devices
+        entity_id: group.main_devices
         state: not_home
     action:
       - service: script.alarm_arm_away

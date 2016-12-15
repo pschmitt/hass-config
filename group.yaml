@@ -17,7 +17,14 @@
       - device_tracker.her_phone
       - device_tracker.popojitsu
       - device_tracker.moto_g4play
-      # - device_tracker.n5x_n5x
+      - device_tracker.n5x
+
+  main_devices:
+    name: Main Devices
+    view: no
+    entities:
+      - device_tracker.her_phone
+      - device_tracker.n5x
 
   shortcuts:
     name: Shortcuts
