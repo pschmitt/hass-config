@@ -1,12 +1,12 @@
   - platform: foscam
     name: C1
-    ip: foscam_c1.lan
+    ip: foscam-c1.lan
     username: !secret cam_c1_username
     password: !secret cam_c1_password
 
   - platform: foscam
     name: C2
-    ip: foscam_c2.lan
+    ip: foscam-c2.lan
     username: !secret cam_c2_username
     password: !secret cam_c2_password
 
