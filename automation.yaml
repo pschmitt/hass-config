@@ -234,7 +234,7 @@
     trigger:
       - platform: state
         entity_id: device_tracker.her_phone
-        from: away
+        from: not_home
         to: home
     condition:
       - condition: state
@@ -263,7 +263,7 @@
     trigger:
       - platform: state
         entity_id: device_tracker.her_phone
-        from: away
+        from: not_home
         to: home
     action:
       - service: script.she_is_home
