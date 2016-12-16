@@ -74,7 +74,7 @@
       service: homeassistant.turn_on
       entity_id: switch.z3c_cam
 
-  - alias: Daily reboot
+  - alias: Daily reboot of the Z3C
     trigger:
       - platform: time
         hours: 4
