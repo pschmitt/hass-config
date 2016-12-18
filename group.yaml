@@ -28,6 +28,7 @@
 
   shortcuts:
     name: Shortcuts
+    control: hidden
     view: no
     entities:
       - alarm_control_panel.ha_alarm
@@ -111,6 +112,7 @@
 
   c1:
     name: Foscam C1
+    control: hidden
     entities:
       - camera.c1
       - switch.c1_ir
@@ -122,6 +124,7 @@
 
   c2:
     name: Foscam C2
+    control: hidden
     entities:
       - camera.c2
       - switch.c2_ir
@@ -133,6 +136,7 @@
 
   z3c:
     name: Sony Z3C
+    control: hidden
     entities:
       - automation.z3c_battery_saver
       - automation.z3c_camera_enabler
@@ -163,6 +167,7 @@
 
   raspicam_octopi:
     name: Raspberry Pi Camera (octopi)
+    control: hidden
     entities:
       - camera.octopi
       - switch.octopi_state
