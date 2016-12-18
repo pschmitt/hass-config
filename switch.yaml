@@ -29,19 +29,19 @@
         command_state: /scripts/livebox.sh state
         friendly_name: "Livebox play"
       z3c_cam:
-        command_on: curl nasteanas.lan:8993/z3c/cam/start
-        command_off: curl nasteanas.lan:8993/z3c/cam/stop
-        command_state: curl -qqs z3c.lan:8080
+        command_on: /scripts/z3c.sh cam on
+        command_off: /scripts/z3c.sh cam off
+        command_state: /scripts/z3c.sh cam state
         friendly_name: "Z3C Camera"
       z3c_cam_front:
-        command_on: curl -qqs nasteanas.lan:8993/z3c/cam/front
-        command_off: curl -qqs nasteanas.lan:8993/z3c/cam/back
-        command_state: curl -qqs nasteanas.lan:8993/z3c/cam/is_front | grep -q on
+        command_on: /scripts/z3c.sh ffc on
+        command_off: /scripts/z3c.sh ffc off
+        command_state: /scripts/z3c.sh ffc state
         friendly_name: "Z3C Front Facing Camera"
       z3c_torch:
-        command_on: curl -qqs nasteanas.lan:8993/z3c/cam/torch/on
-        command_off: curl -qqs nasteanas.lan:8993/z3c/cam/torch/off
-        command_state: curl -qqs nasteanas.lan:8993/z3c/cam/torch/status | grep -q on
+        command_on: /scripts/z3c.sh torch on
+        command_off: /scripts/z3c.sh torch off
+        command_state: /scripts/z3c.sh torch state
         friendly_name: "Z3C Torch"
       c1_ir:
         command_on: /scripts/foscam.sh c1 ir on

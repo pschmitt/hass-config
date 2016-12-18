@@ -97,9 +97,9 @@
       # - 'current_status'
       # - 'upload_speed'
 
-  - platform: rest
+  - platform: command_line
     name: 'Z3C Battery'
-    resource: http://nasteanas.lan:8993/z3c/battery
+    command: /scripts/z3c.sh battery
     unit_of_measurement: '%'
 
   # - platform: speedtest
