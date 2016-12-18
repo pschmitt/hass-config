@@ -252,9 +252,8 @@
   - alias: React to my homecoming
     trigger:
       - platform: state
-        entity_id: device_tracker.moto_g4play
+        entity_id: device_tracker.n5x
         from: not_home
-        # from: away
         to: home
     action:
       - service: script.im_home
