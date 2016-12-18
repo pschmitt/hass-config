@@ -49,6 +49,7 @@ sensor: !include sensor.yaml
 shell_command: !include shell_command.yaml
 sun:
 switch: !include switch.yaml
+tts: !include tts.yaml
 # weblink: !include weblink.yaml
 zone: !include zone.yaml
 zwave: !include zwave.yaml

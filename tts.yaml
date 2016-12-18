@@ -1,0 +1,3 @@
+  - platform: google
+    cache_dir: /tmp/tts.cache
+    time_memory: 900
