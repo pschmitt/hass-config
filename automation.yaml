@@ -297,6 +297,8 @@
   #     - service: notify.pushover
   #       data:
   #         message: "Z-Wave network is complete"
+  #         data:
+  #           priority: -1
   #
   # - alias: Z-Wave network is ready
   #   trigger:
@@ -306,6 +308,8 @@
   #     - service: notify.pushover
   #       data:
   #         message: "Z-Wave network is ready"
+  #         data:
+  #           priority: -1
   #
   # - alias: Z-Wave network is starting
   #   trigger:
@@ -315,6 +319,8 @@
   #     - service: notify.pushover
   #       data:
   #         message: "Z-Wave network is starting"
+  #         data:
+  #           priority: -1
   #
   # - alias: Z-Wave network is stopping
   #   trigger:
@@ -324,6 +330,8 @@
   #     - service: notify.pushover
   #       data:
   #         message: "Z-Wave network is stopping"
+  #         data:
+  #           priority: -1
 
   - alias: Z-Wave soft reset at 02:30
     trigger:
@@ -331,6 +339,8 @@
       after: '02:30:00'
     action:
       service: zwave.soft_reset
+          data:
+            priority: -1
 
   - alias: Z-Wave network heal at 02:35
     trigger:
