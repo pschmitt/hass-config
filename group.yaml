@@ -40,6 +40,8 @@
     name: Living Room
     view: yes
     entities:
+      - script.watch_tv
+      - script.shield_tv
       - light.living_room_tv
       - light.living_room_table
       - scene.living_room_normal
