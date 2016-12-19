@@ -162,4 +162,24 @@
 
   # End of Amazon dash button section
 
+  # Harmony section
+
+  watch_tv:
+    alias: Watch TV
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Watch TV
+
+  shield_tv:
+    alias: Shield TV
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Shield
+
+  # End of Harmony section
+
 # vim: set filetype=yaml et sw=2 ts=2 :
