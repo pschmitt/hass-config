@@ -1,3 +1,10 @@
   - platform: google
     cache_dir: /tmp/tts.cache
     time_memory: 900
+    language: 'fr'
+
+  - platform: voicerss
+    api_key: !secret voicerss_api_key
+    language: 'fr-fr'
+    codec: mp3
+    format: 8khz_8bit_mono
