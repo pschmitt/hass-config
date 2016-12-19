@@ -65,12 +65,16 @@
       icon: mdi:arrow-up-drop-circle-outline
     script.she_is_home:
       icon: mdi:home-map-marker
+    script.shield_tv:
+      icon: mdi:television-guide
     script.smoke_break:
       icon: mdi:smoking
     script.smoke_break_timer_off:
       hidden: true
     script.tell_my_wife_i_love_her:
       icon: mdi:heart
+    script.watch_tv:
+      icon: mdi:television
     script.z3c_restart:
       icon: mdi:power
     switch.c1_ir:
