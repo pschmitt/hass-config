@@ -8,6 +8,7 @@ homeassistant:
   customize: !include customize.yaml
 
 http:
+  base_url: !secret base_url
   server_port: 8123
   api_password: !secret http_password
   ssl_certificate: !secret ssl_crt_path
