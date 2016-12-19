@@ -339,8 +339,6 @@
       after: '02:30:00'
     action:
       service: zwave.soft_reset
-          data:
-            priority: -1
 
   - alias: Z-Wave network heal at 02:35
     trigger:
