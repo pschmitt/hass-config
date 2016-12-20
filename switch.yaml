@@ -1,16 +1,16 @@
-  - platform: pilight
-    switches:
-      pilight_tv:
-        on_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'off': 1
+  # - platform: pilight
+  #   switches:
+  #     pilight_tv:
+  #       on_code:
+  #         protocol: pollin
+  #         systemcode: 1
+  #         unitcode: 1
+  #         'on': 1
+  #       off_code:
+  #         protocol: pollin
+  #         systemcode: 1
+  #         unitcode: 1
+  #         'off': 1
 
   - platform: zoneminder
     command_on: Modect
@@ -18,11 +18,11 @@
 
   - platform: command_line
     switches:
-      tv:
-        command_on: /scripts/pilight_send.py tv on
-        command_off: /scripts/pilight_send.py tv off
-        # command_state: /scripts/pilight_send.py state
-        friendly_name: "TV"
+      # tv:
+      #   command_on: /scripts/pilight_send.py tv on
+      #   command_off: /scripts/pilight_send.py tv off
+      #   # command_state: /scripts/pilight_send.py state
+      #   friendly_name: "TV"
       livebox:
         command_on: /scripts/livebox.sh on
         command_off: /scripts/livebox.sh off
