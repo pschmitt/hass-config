@@ -53,6 +53,8 @@
       icon: mdi:lock-plus
     script.alarm_triggered:
       icon: mdi:alert-circle
+    script.all_off:
+      icon: mdi:power-plug-off
     script.ha_restart:
       icon: mdi:power
     script.ha_reload_config:

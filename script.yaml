@@ -1,3 +1,14 @@
+  all_off:
+    alias: All off
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.all_lights
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: PowerOff
+
   # Misc section
   smoke_break:
     alias: "Smoke break"

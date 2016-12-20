@@ -32,6 +32,7 @@
     view: no
     entities:
       - alarm_control_panel.ha_alarm
+      - script.all_off
       - script.smoke_break
       - scene.living_room_dim
       - scene.bedtime
