@@ -41,6 +41,7 @@
     name: Living Room
     view: yes
     entities:
+      - script.amp_toggle
       - script.watch_tv
       - script.shield_tv
       - light.living_room_tv

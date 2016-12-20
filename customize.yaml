@@ -55,6 +55,8 @@
       icon: mdi:alert-circle
     script.all_off:
       icon: mdi:power-plug-off
+    script.amp_toggle:
+      icon: mdi:amplifier
     script.ha_restart:
       icon: mdi:power
     script.ha_reload_config:
