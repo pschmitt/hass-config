@@ -3,4 +3,6 @@
   z3c_cam_front: 'curl nasteanas.lan:8993/z3c/cam/front'
   z3c_cam_back: 'curl nasteanas.lan:8993/z3c/cam/back'
   ha_restart: 'curl nasteanas.lan:8993/ha/restart'
+  shield_kodi: 'curl nasteanas.lan:8993/shield/kodi'
+
 # vim: set filetype=yaml et sw=2 ts=2 :

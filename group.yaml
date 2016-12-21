@@ -44,6 +44,8 @@
       - script.amp_toggle
       - script.watch_tv
       - script.shield_tv
+      - script.play_ps3
+      - script.start_kodi
       - light.living_room_tv
       - light.living_room_table
       - scene.living_room_normal

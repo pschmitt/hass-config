@@ -67,6 +67,8 @@
       icon: mdi:arrow-up-drop-circle
     script.dash_button_durex_pressed:
       icon: mdi:arrow-up-drop-circle-outline
+    script.play_ps3:
+      icon: mdi:gamepad-variant
     script.she_is_home:
       icon: mdi:home-map-marker
     script.shield_tv:
@@ -75,6 +77,8 @@
       icon: mdi:smoking
     script.smoke_break_timer_off:
       hidden: true
+    script.start_kodi:
+      icon: mdi:kodi
     script.tell_my_wife_i_love_her:
       icon: mdi:heart
     script.watch_tv:

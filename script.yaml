@@ -73,6 +73,9 @@
       #   data:
       #     message: "Je suis rentré, Mimine. Je t'aime :)"
       #     target: her
+      - service: script.turn_on
+        data:
+          entity_id: script.watch_tv
       - service: notify.speakcast
         data:
           message: "Attention! Le roi arrive!"
@@ -199,6 +202,22 @@
         data:
           entity_id: remote.harmony_hub
           activity: Shield
+
+  start_kodi:
+    alias: Kodi@Shield
+    sequence:
+      - service: script.turn_on
+        data:
+          entity_id: script.shield_tv
+      - service: shell_command.shield_kodi
+
+  play_ps3:
+    alias: PS3
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Play PS3
 
   # End of Harmony section
 
