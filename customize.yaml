@@ -57,6 +57,8 @@
       icon: mdi:power-plug-off
     script.amp_toggle:
       icon: mdi:amplifier
+    script.flash_living_room_lights:
+      icon: mdi:spotlight
     script.ha_restart:
       icon: mdi:power
     script.ha_reload_config:
