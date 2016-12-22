@@ -6,7 +6,7 @@
         seconds: 0
     condition:
       - condition: state
-        entity_id: device_tracker.moto_g4play
+        entity_id: device_tracker.n5x
         # state: work
         state: not_home
     action:
@@ -62,8 +62,11 @@
         entity_id: sensor.z3c_battery
         below: 25
     action:
-      service: homeassistant.turn_off
-      entity_id: switch.z3c_cam
+      - service: homeassistant.turn_off
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery below 25%. Let's stop the camera for a while."
 
   - alias: Z3C Camera enabler
     trigger:
@@ -71,8 +74,12 @@
         entity_id: sensor.z3c_battery
         above: 80
     action:
-      service: homeassistant.turn_on
-      entity_id: switch.z3c_cam
+      - service: homeassistant.turn_on
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery above 80%. Starting the camera app..!"
+
 
   - alias: Daily reboot of the Z3C
     trigger:
