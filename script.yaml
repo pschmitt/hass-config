@@ -221,4 +221,15 @@
 
   # End of Harmony section
 
+  # Test section
+  test_logbook:
+    alias: Test Logbooke entry creation
+    sequence:
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Test logbook
+          message: triggered
+
+  # End of Test section
+
 # vim: set filetype=yaml et sw=2 ts=2 :
