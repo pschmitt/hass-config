@@ -221,15 +221,13 @@
 
   # End of Harmony section
 
-  # Test section
-  test_logbook:
-    alias: Test Logbooke entry creation
+  flash_living_room_lights:
+    alias: Flash Living Room Lights
     sequence:
-      - event: LOGBOOK_ENTRY
-        event_data:
-          name: Test logbook
-          message: triggered
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights
 
+  # Test section
   # End of Test section
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -14,6 +14,34 @@
       data:
         message: 'Time to leave for your train'
 
+  - alias: Time to go to bed
+    trigger:
+      - platform: time
+        hours: 21
+        minutes: 50
+        seconds: 0
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.n5x
+          state: home
+        - condition: time
+          after: '21:00:00'
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - sun
+    action:
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights
+      - service: tts.google_say
+        entity_id: media_player.blindcast
+        data:
+          message: "C'est l'heure!"
+
   # - alias: 'Bruh your phone is dying'
   #   trigger:
   #     - platform: numeric_state

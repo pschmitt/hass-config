@@ -33,6 +33,15 @@
         state: off
         transition: 1
 
+  - name: Flash Living Room Lights
+    entities:
+      light.living_room_tv:
+        state: on
+        flash: long
+      light.living_room_table:
+        state: on
+        flash: long
+
   - name: Bedtime
     entities:
       light.terrace:
