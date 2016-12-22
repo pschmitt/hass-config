@@ -9,15 +9,6 @@
           entity_id: remote.harmony_hub
           activity: PowerOff
 
-  amp_toggle:
-    alias: Toggle the amp
-    sequence:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40566636
-          command: PowerToggle
-
   # Misc section
   smoke_break:
     alias: "Smoke break"
@@ -186,6 +177,16 @@
   # End of Amazon dash button section
 
   # Harmony section
+
+  amp_toggle:
+    alias: Toggle the amp
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40566636
+          command: PowerToggle
+
 
   watch_tv:
     alias: Watch TV
