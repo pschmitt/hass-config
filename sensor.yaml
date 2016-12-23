@@ -52,38 +52,72 @@
   # End of Finance section
 
   # Hue Sensor section
-  - platform: rest
+  - platform: command_line
     name: 'Toilet Lux'
-    resource: !secret hue_sensor_toilet_lux
+    command: /scripts/zhue.sh lux toilet
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
-  - platform: rest
+  - platform: command_line
     name: 'Toilet Temperature'
-    resource: !secret hue_sensor_toilet_temp
+    command: /scripts/zhue.sh temperature toilet
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
 
-  - platform: rest
+  - platform: command_line
     name: 'Toilet Presence'
-    resource: !secret hue_sensor_toilet_presence
+    command: /scripts/zhue.sh presence toilet
     value_template: '{{ value_json.state.presence }}'
 
-  - platform: rest
-    name: 'Floor Lux'
-    resource: !secret hue_sensor_floor_lux
+  - platform: command_line
+    name: 'Hallway Lux'
+    command: /scripts/zhue.sh lux hallway
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
-  - platform: rest
-    name: 'Floor Temperature'
-    resource: !secret hue_sensor_toilet_temp
+  - platform: command_line
+    name: 'Hallway Temperature'
+    command: /scripts/zhue.sh temperature hallway
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
 
-  - platform: rest
-    name: 'Floor Presence'
-    resource: !secret hue_sensor_floor_presence
+  - platform: command_line
+    name: 'Hallway Presence'
+    command: /scripts/zhue.sh presence hallway
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: command_line
+    name: 'Kitchen Lux'
+    command: /scripts/zhue.sh lux kitchen
+    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+    unit_of_measurement: klx
+
+  - platform: command_line
+    name: 'Kitchen Temperature'
+    command: /scripts/zhue.sh temperature kitchen
+    value_template: '{{ value_json.state.temperature | float / 100 }}'
+    unit_of_measurement: °C
+
+  - platform: command_line
+    name: 'Kitchen Presence'
+    command: /scripts/zhue.sh presence kitchen
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: command_line
+    name: 'Bathroom Lux'
+    command: /scripts/zhue.sh lux bathroom
+    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+    unit_of_measurement: klx
+
+  - platform: command_line
+    name: 'Bathroom Temperature'
+    command: /scripts/zhue.sh temperature bathroom
+    value_template: '{{ value_json.state.temperature | float / 100 }}'
+    unit_of_measurement: °C
+
+  - platform: command_line
+    name: 'Bathroom Presence'
+    command: /scripts/zhue.sh presence bathroom
     value_template: '{{ value_json.state.presence }}'
 
   # End of Hue Sensor section

@@ -89,8 +89,10 @@
     name: CCTV
     view: yes
     entities:
+      - sensor.bathroom_presence
+      - sensor.hallway_presence
+      - sensor.kitchen_presence
       - sensor.toilet_presence
-      - sensor.floor_presence
       - group.c1
       - group.c2
       - group.z3c
@@ -159,7 +161,9 @@
   modect:
     name: Motion detection
     entities:
-      - sensor.floor_presence
+      - sensor.bathroom_presence
+      - sensor.hallway_presence
+      - sensor.kitchen_presence
       - sensor.toilet_presence
       - switch.z3c_cam
       - switch.c1_state
@@ -190,11 +194,15 @@
   weather:
     name: Weather
     entities:
-      - sensor.floor_temperature
+      - sensor.bathroom_temperature
+      - sensor.hallway_temperature
+      - sensor.kitchen_temperature
       - sensor.toilet_temperature
+      - sensor.bathroom_lux
+      - sensor.hallway_lux
+      - sensor.kitchen_lux
+      - sensor.toilet_lux
       - sensor.yr_symbol
       - sensor.owm_temperature
-      - sensor.floor_lux
-      - sensor.toilet_lux
 
 # vim: set filetype=yaml et sw=2 ts=2 :

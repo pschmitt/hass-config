@@ -170,7 +170,13 @@
         entity_id: sensor.toilet_presence
         state: "True"
       - platform: state
-        entity_id: sensor.floor_presence
+        entity_id: sensor.hallway_presence
+        state: "True"
+      - platform: state
+        entity_id: sensor.kitchen_presence
+        state: "True"
+      - platform: state
+        entity_id: sensor.bathroom_presence
         state: "True"
     condition:
       - condition: state

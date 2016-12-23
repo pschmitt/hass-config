@@ -25,9 +25,13 @@
       icon: mdi:pine-tree
     light.toilet:
       icon: mdi:human-male-female
-    sensor.floor_lux:
+    sensor.hallway_lux:
       icon: mdi:white-balance-sunny
     sensor.toilet_lux:
+      icon: mdi:white-balance-sunny
+    sensor.kitchen_lux:
+      icon: mdi:white-balance-sunny
+    sensor.bathroom_lux:
       icon: mdi:white-balance-sunny
     sensor.transmission_down_speed:
       icon: mdi:download
@@ -43,7 +47,11 @@
       icon: mdi:battery
     sensor.toilet_presence:
       icon: mdi:run
-    sensor.floor_presence:
+    sensor.hallway_presence:
+      icon: mdi:run
+    sensor.kitchen_presence:
+      icon: mdi:run
+    sensor.bathroom_presence:
       icon: mdi:run
     script.alarm_disarmed:
       icon: mdi:lock-open
