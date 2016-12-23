@@ -220,7 +220,7 @@
       - service: notify.get_to_me
         data_template:
           message: >
-            ALERT: {{ trigger.to_state.attributes.friendly_name }} has detected motion
+            ALERT: Camera {{ trigger.to_state.attributes.friendly_name | replace("Events", "", 1) }} has detected motion
 
   - alias: Notify when a new platform has been discovered
     trigger:
