@@ -119,14 +119,19 @@
   alarm_triggered:
     alias: 'Alarm triggered'
     sequence:
-      - service: notify.get_to_me
-        data:
-          message: "Home Assistant: SECURITY BREACH DETECTED"
-          target: me
+      # - service: notify.get_to_me
+      #   data:
+      #     message: "Home Assistant: SECURITY BREACH DETECTED"
+      #     target: me
       # - service: notify.smsr
       #   data:
       #     message: "Home Assistant: SECURITY BREACH DETECTED"
       #     target: her
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Alarm
+          message: has been triggered
+          domain: alarm
 
   # End of Alarm section
 
