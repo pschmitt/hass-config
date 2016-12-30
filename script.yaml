@@ -181,6 +181,35 @@
 
   # End of Amazon dash button section
 
+  # Philips Hue section
+
+  flash_living_room_lights:
+    alias: Flash Living Room Lights
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights
+
+  # End of Philips Hue section
+
+  # Hue Dimmer Switch button section
+
+  hue_master_switch_on:
+    alias: 'Hue Master Dimmer Switch ON pressed'
+    sequence:
+      - service: script.turn_on
+        data:
+          entity_id: script.watch_tv
+
+  hue_master_switch_off:
+    alias: 'Hue Master Dimmer Switch OFF pressed'
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: PowerOff
+
+  # End of Hue Dimmer Switch button section
+
   # Harmony section
 
   amp_toggle:
@@ -191,7 +220,6 @@
           entity_id: remote.harmony_hub
           device: 40566636
           command: PowerToggle
-
 
   watch_tv:
     alias: Watch TV
@@ -226,12 +254,6 @@
           activity: Play PS3
 
   # End of Harmony section
-
-  flash_living_room_lights:
-    alias: Flash Living Room Lights
-    sequence:
-      - service: scene.turn_on
-        entity_id: scene.flash_living_room_lights
 
   # Test section
   # End of Test section

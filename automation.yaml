@@ -330,6 +330,26 @@
       - service: script.dash_button_durex_pressed
 
   # End of Amazon Dash section
+  - alias: Hue Master Switch ON pressed
+    trigger:
+      - platform: event
+        event_type: zhue_switch_master_button_INITIAL_PRESSED_4
+      - platform: event
+        event_type: zhue_switch_master_button_SHORT_RELEASED_4
+    action:
+      - service: script.hue_master_switch_off
+
+  - alias: Hue Master Switch OFF pressed
+    trigger:
+      - platform: event
+        event_type: zhue_switch_master_button_INITIAL_PRESSED_1
+      - platform: event
+        event_type: zhue_switch_master_button_SHORT_RELEASED_1
+    action:
+      - service: script.hue_master_switch_on
+  # Hue Switch section
+
+  # End of hue switch section
 
   # Z-Wave section
 
