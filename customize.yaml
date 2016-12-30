@@ -71,6 +71,10 @@
       icon: mdi:power
     script.ha_reload_config:
       icon: mdi:refresh
+    script.hue_master_switch_on:
+      icon: mdi:grid
+    script.hue_master_switch_off:
+      icon: mdi:grid-off
     script.im_home:
       icon: mdi:home-map-marker
     script.dash_button_kleenex_pressed:
