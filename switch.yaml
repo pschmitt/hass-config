@@ -29,19 +29,19 @@
         command_state: /scripts/livebox.sh state
         friendly_name: "Livebox play"
       z3c_cam:
-        command_on: /scripts/z3c.sh cam on
-        command_off: /scripts/z3c.sh cam off
-        command_state: /scripts/z3c.sh cam state
+        command_on: /scripts/android-cam.sh z3c cam on
+        command_off: /scripts/android-cam.sh z3c cam off
+        command_state: /scripts/android-cam.sh z3c cam state
         friendly_name: "Z3C Camera"
       z3c_cam_front:
-        command_on: /scripts/z3c.sh ffc on
-        command_off: /scripts/z3c.sh ffc off
-        command_state: /scripts/z3c.sh ffc state
+        command_on: /scripts/android-cam.sh z3c ffc on
+        command_off: /scripts/android-cam.sh z3c ffc off
+        command_state: /scripts/android-cam.sh z3c ffc state
         friendly_name: "Z3C Front Facing Camera"
       z3c_torch:
-        command_on: /scripts/z3c.sh torch on
-        command_off: /scripts/z3c.sh torch off
-        command_state: /scripts/z3c.sh torch state
+        command_on: /scripts/android-cam.sh z3c torch on
+        command_off: /scripts/android-cam.sh z3c torch off
+        command_state: /scripts/android-cam.sh z3c torch state
         friendly_name: "Z3C Torch"
       c1_ir:
         command_on: /scripts/foscam.sh c1 ir on

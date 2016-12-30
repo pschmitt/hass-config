@@ -133,7 +133,7 @@
 
   - platform: command_line
     name: 'Z3C Battery'
-    command: /scripts/z3c.sh battery
+    command: /scripts/android-cam.sh z3c battery
     unit_of_measurement: '%'
 
   # - platform: speedtest
