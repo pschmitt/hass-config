@@ -14,8 +14,8 @@
     name: z3c
     mjpeg_url: http://z3c.lan:8080/video
     authentication: basic
-    username: !secret cam_z3c_username
-    password: !secret cam_z3c_password
+    username: !secret android_cam_z3c_username
+    password: !secret android_cam_z3c_password
 
   - platform: mjpeg
     name: octopi
