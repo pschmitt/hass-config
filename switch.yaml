@@ -27,6 +27,7 @@
         command_on: /scripts/livebox-play.sh on
         command_off: /scripts/livebox-play.sh off
         command_state: /scripts/livebox-play.sh state
+        value_template: '{{ value == "on" }}'
         friendly_name: "Livebox play"
       z3c_cam:
         command_on: /scripts/android-cam.sh z3c cam on
