@@ -58,7 +58,6 @@
       - media_player.kodishield
       - media_player.shield
       - media_player.blindcast
-      - media_player.brightcast
 
   terrace:
     name: Terrace
