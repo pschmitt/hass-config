@@ -1,3 +1,4 @@
+  # Reminder section
   - alias: Train reminder
     trigger:
       - platform: time
@@ -51,6 +52,8 @@
   #     service: notify.pushover
   #     data:
   #       message: 'Bruh your phone is dying. Charge it!'
+
+  # End of Reminder section
 
   # Media player section
 
