@@ -5,8 +5,6 @@
     track_new_devices: false
     consider_home: 180
 
-  - platform: gpslogger
-
   # - platform: owntracks
   #   max_gps_accuracy: 200
   #   waypoints: False
