@@ -11,7 +11,7 @@
         # state: work
         state: not_home
     action:
-      service: notify.pushover
+      service: notify.html5
       data:
         message: 'Time to leave for your train'
 
