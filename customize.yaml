@@ -111,7 +111,7 @@
       icon: mdi:surround-sound
     switch.c2_sodect:
       icon: mdi:surround-sound
-    switch.livebox:
+    switch.livebox_play:
       icon: mdi:television
     switch.pilight_tv:
       hidden: true

@@ -51,7 +51,7 @@
       - scene.living_room_normal
       - scene.living_room_dim
       - switch.tv
-      - switch.livebox
+      - switch.livebox_play
       - binary_sensor.livebox_play
       - camera.c1
       - camera.octopi

@@ -23,7 +23,7 @@
       #   command_off: /scripts/pilight_send.py tv off
       #   # command_state: /scripts/pilight_send.py state
       #   friendly_name: "TV"
-      livebox:
+      livebox_play:
         command_on: /scripts/livebox-play.sh on
         command_off: /scripts/livebox-play.sh off
         command_state: /scripts/livebox-play.sh state
