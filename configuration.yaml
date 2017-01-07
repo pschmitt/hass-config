@@ -31,7 +31,7 @@ logger:
     homeassistant.components.automation: debug
     requests.packages.urllib3.connectionpool: critical
 
-automation: !include_dir_merge_list automation
+automation: !include_dir_merge_list automations
 alarm_control_panel: !include alarm.yaml
 # binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
