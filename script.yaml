@@ -8,6 +8,9 @@
         data:
           entity_id: remote.harmony_hub
           activity: PowerOff
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play
 
   # Misc section
   smoke_break:
