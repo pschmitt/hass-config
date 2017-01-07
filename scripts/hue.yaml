@@ -1,0 +1,19 @@
+  hue_master_switch_on:
+    alias: 'Hue Master Dimmer Switch ON pressed'
+    sequence:
+      - service: script.turn_on
+        data:
+          entity_id: script.watch_tv
+
+  hue_master_switch_off:
+    alias: 'Hue Master Dimmer Switch OFF pressed'
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: PowerOff
+  flash_living_room_lights:
+    alias: Flash Living Room Lights
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights

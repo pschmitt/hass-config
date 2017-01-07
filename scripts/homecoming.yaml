@@ -1,0 +1,23 @@
+  im_home:
+    alias: 'I am home'
+    sequence:
+      # - service: notify.smsr
+      #   data:
+      #     message: "Je suis rentré, Mimine. Je t'aime :)"
+      #     target: her
+      - service: script.turn_on
+        data:
+          entity_id: script.watch_tv
+      - service: notify.speakcast
+        data:
+          message: "Attention! Le roi arrive!"
+
+  she_is_home:
+    alias: 'She is home'
+    sequence:
+      - service: notify.pushover
+        data:
+          message: 'Mimine just came home'
+      - service: notify.speakcast
+        data:
+          message: 'Salut Mimine. Bienvenue à la maison'
