@@ -1,0 +1,17 @@
+  - alias: React to my homecoming
+    trigger:
+      - platform: state
+        entity_id: device_tracker.n5x
+        from: not_home
+        to: home
+    action:
+      - service: script.im_home
+
+  - alias: Talk to my wife when she gets home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.her_phone
+        from: not_home
+        to: home
+    action:
+      - service: script.she_is_home

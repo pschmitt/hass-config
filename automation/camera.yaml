@@ -1,0 +1,32 @@
+  - alias: Z3C Battery saver
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        below: 25
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery below 25%. Let's stop the camera for a while."
+
+  - alias: Z3C Camera enabler
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        above: 80
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery above 80%. Starting the camera app..!"
+
+  - alias: Daily reboot of the Z3C
+    trigger:
+      - platform: time
+        hours: 4
+        minutes: 0
+        seconds: 0
+    action:
+      service: script.z3c_restart

@@ -1,0 +1,19 @@
+  - alias: Notify when HA starts
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      service: notify.html5
+      data:
+        message: "Home Assistant has (re)started"
+        data:
+          priority: -1
+
+  - alias: Update notifications
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      service: notify.html5
+      data_template:
+        message: "Home Assistant {{ states.updater.updater.state }} is now available."
