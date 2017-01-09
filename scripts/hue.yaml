@@ -17,3 +17,5 @@
     sequence:
       - service: scene.turn_on
         entity_id: scene.flash_living_room_lights
+
+# vim: set filetype=yaml et sw=2 ts=2 :

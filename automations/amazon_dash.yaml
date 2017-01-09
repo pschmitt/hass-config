@@ -11,3 +11,5 @@
         event_type: dash_button_durex_pressed
     action:
       - service: script.dash_button_durex_pressed
+
+# vim: set filetype=yaml et sw=2 ts=2 :

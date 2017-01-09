@@ -25,3 +25,4 @@
       - service: script.smoke_break
         data:
           entity_id: light.terrace
+# vim: set filetype=yaml et sw=2 ts=2 :

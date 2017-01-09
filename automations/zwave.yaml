@@ -55,3 +55,5 @@
       after: '02:35:00'
     action:
       service: zwave.heal_network
+
+# vim: set filetype=yaml et sw=2 ts=2 :

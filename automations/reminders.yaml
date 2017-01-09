@@ -50,4 +50,5 @@
   #   action:
   #     service: notify.pushover
   #     data:
-  #       message: 'Bruh your phone is dying. Charge it!'
+
+# vim: set filetype=yaml et sw=2 ts=2 :

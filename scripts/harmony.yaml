@@ -41,3 +41,5 @@
         data:
           entity_id: remote.harmony_hub
           activity: Play PS3
+
+# vim: set filetype=yaml et sw=2 ts=2 :

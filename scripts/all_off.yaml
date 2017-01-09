@@ -11,3 +11,5 @@
       - service: homeassistant.turn_off
         data:
           entity_id: switch.livebox_play
+
+# vim: set filetype=yaml et sw=2 ts=2 :

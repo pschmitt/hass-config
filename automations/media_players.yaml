@@ -23,3 +23,5 @@
     action:
       service: scene.turn_on
       entity_id: scene.living_room_dim
+
+# vim: set filetype=yaml et sw=2 ts=2 :

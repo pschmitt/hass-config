@@ -30,3 +30,5 @@
         seconds: 0
     action:
       service: script.z3c_restart
+
+# vim: set filetype=yaml et sw=2 ts=2 :

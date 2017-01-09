@@ -15,3 +15,5 @@
         to: home
     action:
       - service: script.she_is_home
+
+# vim: set filetype=yaml et sw=2 ts=2 :

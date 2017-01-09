@@ -17,3 +17,5 @@
       service: notify.html5
       data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
+
+# vim: set filetype=yaml et sw=2 ts=2 :

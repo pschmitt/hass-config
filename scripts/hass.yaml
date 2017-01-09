@@ -7,3 +7,5 @@
     alias: 'Reload core config'
     sequence:
       - service: homeassistant.reload_core_config
+
+# vim: set filetype=yaml et sw=2 ts=2 :

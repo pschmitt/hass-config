@@ -47,3 +47,5 @@
           name: Alarm
           message: has been triggered
           domain: alarm
+
+# vim: set filetype=yaml et sw=2 ts=2 :

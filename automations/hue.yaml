@@ -15,3 +15,5 @@
         event_type: zhue_switch_master_button_SHORT_RELEASED_1
     action:
       - service: script.hue_master_switch_on
+
+# vim: set filetype=yaml et sw=2 ts=2 :

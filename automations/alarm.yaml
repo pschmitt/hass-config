@@ -141,3 +141,5 @@
       - service: notify.pushover
         data:
           message: Someone is home and the alarm is on.
+
+# vim: set filetype=yaml et sw=2 ts=2 :
