@@ -8,9 +8,8 @@
       - service: notify.dash_pressed
         data:
           message: kleenex
-      - service: notify.speakcast
-        data:
-          message: !secret kleenex_message
+      - service: light.toggle
+        entity_id: light.living
 
   dash_button_durex_pressed:
     alias: 'Durex Dash button pressed'
@@ -25,4 +24,5 @@
       - service: script.smoke_break
         data:
           entity_id: light.terrace
+
 # vim: set filetype=yaml et sw=2 ts=2 :
