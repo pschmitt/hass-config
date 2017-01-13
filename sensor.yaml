@@ -157,4 +157,10 @@
   #   origin: device_tracker.n5x_n5x
   #   destination: zone.home
 
+  - platform: template
+    sensors:
+      tv:
+        value_template: '{{ states.remote.harmony_hub.attributes.current_activity }}'
+        friendly_name: 'TV'
+
 # vim: set filetype=yaml et sw=2 ts=2 :

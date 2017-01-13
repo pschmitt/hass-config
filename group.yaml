@@ -50,6 +50,7 @@
       - light.living_room_table
       - scene.living_room_normal
       - scene.living_room_dim
+      - sensor.tv
       - switch.tv
       - switch.livebox_play
       - binary_sensor.livebox_play
