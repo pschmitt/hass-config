@@ -32,7 +32,7 @@
       - service: script.turn_on
         data:
           entity_id: script.shield_tv
-      - service: shell_command.shield_kodi
+      - service: rest_command.shield_kodi
 
   play_ps3:
     alias: PS3

@@ -5,6 +5,7 @@
         data:
           message: "Je t'aime :)"
           target: her
+
   z3c_restart:
     alias: Reboot Z3C
     sequence:

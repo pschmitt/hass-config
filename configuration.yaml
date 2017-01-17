@@ -45,6 +45,7 @@ mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 # pilight: !include pilight.yaml
 remote: !include remote.yaml
+rest_command: !include rest_command.yaml
 scene: !include scene.yaml
 script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml

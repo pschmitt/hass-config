@@ -1,0 +1,9 @@
+ha_restart:
+  method: get
+  url: http://nasteanas.lan:8993/ha/restart
+
+shield_kodi:
+  method: get
+  url: http://nasteanas.lan:8993/shield/kodi
+
+# vim: set filetype=yaml et sw=2 ts=2 :

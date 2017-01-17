@@ -1,7 +1,7 @@
   ha_restart:
     alias: 'Restart HASS'
     sequence:
-      - service: shell_command.ha_restart
+      - service: rest_command.ha_restart
 
   ha_reload_config:
     alias: 'Reload core config'
