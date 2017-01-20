@@ -1,3 +1,4 @@
+automation:
   - alias: Notify when HA starts
     trigger:
       - platform: event
@@ -18,4 +19,23 @@
       data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
 
+
+rest_command:
+  ha_restart:
+    method: get
+    url: http://nasteanas.lan:8993/ha/restart
+
+
+script:
+  ha_restart:
+    alias: 'Restart HASS'
+    sequence:
+      - service: rest_command.ha_restart
+
+  ha_reload_config:
+    alias: 'Reload core config'
+    sequence:
+      - service: homeassistant.reload_core_config
+
 # vim: set filetype=yaml et sw=2 ts=2 :
+

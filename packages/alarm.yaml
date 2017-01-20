@@ -1,3 +1,4 @@
+automation:
   - alias: Arm alarm when erribody is away (and HASS starts)
     trigger:
       - platform: event
@@ -141,5 +142,57 @@
       - service: notify.pushover
         data:
           message: Someone is home and the alarm is on.
+
+
+script:
+  alarm_arm_away:
+    alias: 'Activate away alarm'
+    sequence:
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Everybody left. Arming away."
+          target: me
+      - service: alarm_control_panel.alarm_arm_away
+        data:
+          code: !secret alarm_code
+
+  alarm_armed_away:
+    alias: 'Away alarm activated'
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: group.modect
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm armed (away)"
+          target: me
+
+  alarm_disarmed:
+    alias: 'Alarm disarmed'
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.modect
+      - service: notify.smsr
+        data:
+          message: "Home Assistant: Alarm disarmed"
+          target: me
+
+  alarm_triggered:
+    alias: 'Alarm triggered'
+    sequence:
+      # - service: notify.get_to_me
+      #   data:
+      #     message: "Home Assistant: SECURITY BREACH DETECTED"
+      #     target: me
+      # - service: notify.smsr
+      #   data:
+      #     message: "Home Assistant: SECURITY BREACH DETECTED"
+      #     target: her
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Alarm
+          message: has been triggered
+          domain: alarm
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,90 @@
+automation:
+  - alias: Ensure the livebox-play is turned off when stopping it using Harmony Hub
+    trigger:
+      - platform: state
+        entity_id: remote.harmony_hub
+    condition:
+      condition: template
+      value_template: '{{ trigger.to_state.attributes.current_activity == "PowerOff" and trigger.from_state.attributes.current_activity == "Watch TV" }}'
+    action:
+      - service: notify.html5
+        data:
+          message: "Watch TV: OFF"
+      - service: homeassistant.turn_off
+        entity_id: switch.livebox_play
+
+  - alias: Ensure the livebox-play is turned on when starting TV using Harmony Hub
+    trigger:
+      - platform: state
+        entity_id: remote.harmony_hub
+    condition:
+      condition: template
+      value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'
+    action:
+      - service: notify.html5
+        data:
+          message: "Watch TV: ON"
+      - service: homeassistant.turn_on
+        entity_id: switch.livebox_play
+
+
+rest_command:
+  shield_kodi:
+    method: get
+    url: http://nasteanas.lan:8993/shield/kodi
+
+
+sensor:
+  - platform: template
+    sensors:
+      tv:
+        value_template: '{{ states.remote.harmony_hub.attributes.current_activity }}'
+        friendly_name: 'TV'
+
+
+script:
+  amp_toggle:
+    alias: Toggle the amp
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40566636
+          command: PowerToggle
+
+  watch_tv:
+    alias: Watch TV
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Watch TV
+
+  shield_tv:
+    alias: Shield TV
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Shield
+
+  start_kodi:
+    alias: Kodi@Shield
+    sequence:
+      - service: script.turn_on
+        data:
+          entity_id: script.shield_tv
+      - service: rest_command.shield_kodi
+
+  play_ps3:
+    alias: PS3
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Play PS3
+
+# vim: set filetype=yaml et sw=2 ts=2 :
