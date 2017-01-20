@@ -1,6 +1,6 @@
   - platform: kodi
     name: Kodi@Shield
-    host: http://shield.lan
+    host: shield.lan
     port: 8080
     username: !secret player_kodi_username
     password: !secret player_kodi_password
