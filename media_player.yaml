@@ -5,9 +5,6 @@
     username: !secret player_kodi_username
     password: !secret player_kodi_password
 
-  - platform: gpmdp
-    host: popojitsu.lan
-
   - platform: webostv
     host: lgwebostv.lan
     mac: !secret lg_tv_mac_addr
