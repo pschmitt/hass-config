@@ -40,4 +40,35 @@ script:
       - service: scene.turn_on
         entity_id: scene.flash_living_room_lights
 
+  smoke_break:
+    alias: "Smoke break"
+    sequence:
+      # Cancel ev. old timers
+      - service: script.turn_off
+        data:
+          entity_id: script.smoke_break_timer_off
+      - service_template: >
+          light.{% if is_state('light.terrace', 'on') %}turn_off{% else %}turn_on{% endif %}
+        data:
+          entity_id: light.terrace
+          color_name: white
+          brightness: 217 # 85%
+          # {% if is_state('light.terrace', 'on') %}
+          # color_name: white
+          # brightness: 217 # 85%
+          # {% endif %}
+      # Set new timer
+      - service: script.turn_on
+        data:
+          entity_id: script.smoke_break_timer_off
+
+  smoke_break_timer_off:
+    alias: "Smoke break: Turn off lamp after 5 minutes"
+    sequence:
+      - delay:
+          minutes: 5
+      - service: light.turn_off
+        data:
+          entity_id: light.terrace
+
 # vim: set filetype=yaml et sw=2 ts=2 :
