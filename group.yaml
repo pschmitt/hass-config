@@ -85,6 +85,7 @@
     entities:
       - light.guest_room
       - group.z3c
+      - media_player.brightcast
 
   cctv:
     name: CCTV
