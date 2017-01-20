@@ -56,6 +56,7 @@
       - binary_sensor.livebox_play
       - camera.c1
       - camera.octopi
+      - media_player.living_room_tv
       - media_player.kodishield
       - media_player.shield
       - media_player.blindcast

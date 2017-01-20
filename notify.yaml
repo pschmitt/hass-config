@@ -79,4 +79,8 @@
     method: POST
     message_param_name: dash_id
 
+  - platform: webostv
+    host: lgwebostv.lan
+    name: livingroom_tv
+
 # vim: set filetype=yaml et sw=2 ts=2 :

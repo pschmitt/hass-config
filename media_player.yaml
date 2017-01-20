@@ -8,4 +8,9 @@
   - platform: gpmdp
     host: popojitsu.lan
 
+  - platform: webostv
+    host: lgwebostv.lan
+    mac: !secret lg_tv_mac_addr
+    name: Living Room TV
+
 # vim: set filetype=yaml et sw=2 ts=2 :
