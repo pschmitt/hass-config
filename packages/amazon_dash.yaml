@@ -22,10 +22,6 @@ script:
         data:
           name: Kleenex dash button
           message: pressed
-      # - event: LOGBOOK_ENTRY
-      #   event_data:
-      #     name: Kleenex Dash button
-      #     message: pressed
       - service: notify.dash_pressed
         data:
           message: kleenex
@@ -39,16 +35,9 @@ script:
         data:
           name: Durex dash button
           message: pressed
-      # - event: LOGBOOK_ENTRY
-      #   event_data:
-      #     name: Durex Dash button
-      #     message: pressed
       - service: notify.dash_pressed
         data:
           message: durex
       - service: script.smoke_break
-        data:
-          entity_id: light.terrace
-#
-# vim: set filetype=yaml et sw=2 ts=2 :
 
+# vim: set filetype=yaml et sw=2 ts=2 :
