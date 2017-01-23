@@ -87,4 +87,12 @@ script:
           entity_id: remote.harmony_hub
           activity: Play PS3
 
+  poweroff:
+    alias: Stop current activity
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: PowerOff
+
 # vim: set filetype=yaml et sw=2 ts=2 :
