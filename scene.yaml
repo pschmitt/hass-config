@@ -1,28 +1,18 @@
   - name: Living Room Normal
     entities:
-      light.living_room_tv:
+      light.living_room:
         state: on
         transition: 3
         brightness: 150
         xy_color: [ 0.4448, 0.4066 ]
-      light.living_room_table:
-        state: on
-        transition: 3
-        brightness: 215
-        xy_color: [ 0.4448, 0.4066 ]
 
   - name: Living Room Dim
     entities:
-      light.living_room_tv:
+      light.living_room:
         state: on
         transition: 3
         brightness: 75
         xy_color: [ 0.5926, 0.3814 ]
-      light.living_room_table:
-        state: on
-        transition: 3
-        brightness: 145
-        xy_color: [ 0.5529, 0.4107 ]
       light.entrance:
         state: off
         transition: 1
@@ -35,10 +25,7 @@
 
   - name: Flash Living Room Lights
     entities:
-      light.living_room_tv:
-        state: on
-        flash: long
-      light.living_room_table:
+      light.living_room:
         state: on
         flash: long
 
