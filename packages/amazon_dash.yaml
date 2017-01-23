@@ -38,6 +38,7 @@ script:
       - service: notify.dash_pressed
         data:
           message: durex
-      - service: script.smoke_break
+      - service: switch.toggle
+        entity_id: switch.guest_room_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :
