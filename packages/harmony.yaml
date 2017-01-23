@@ -5,7 +5,7 @@ automation:
         entity_id: remote.harmony_hub
     condition:
       condition: template
-      value_template: '{{ trigger.to_state.attributes.current_activity == "PowerOff" and trigger.from_state.attributes.current_activity == "Watch TV" }}'
+      value_template: '{{ trigger.from_state.attributes.current_activity == "Watch TV" }}'
     action:
       - service: notify.html5
         data:
