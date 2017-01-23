@@ -24,4 +24,11 @@
     username: !secret cam_octopi_username
     password: !secret cam_octopi_password
 
+  - platform: mjpeg
+    name: rfpi
+    mjpeg_url: http://rfpi.lan:8089/?action=stream
+    authentication: basic
+    username: !secret cam_rfpi_username
+    password: !secret cam_rfpi_password
+
 # vim: set filetype=yaml et sw=2 ts=2 :
