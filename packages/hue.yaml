@@ -18,6 +18,35 @@ automation:
       - service: script.hue_master_switch_on
 
 
+group:
+  light_groups:
+    name: Lights
+    view: no
+    entities:
+      - light.front_door
+      - light.living_room
+      - light.terrace
+      - light.guest_room
+      - light.bedroom
+      - light.toilet
+      - light.kitchen
+      - light.hallway
+
+  light_bulbs:
+    name: Light bulbs
+    view: no
+    entities:
+      - light.front_door_light
+      - light.living_room_light_tv
+      - light.living_room_light_table
+      - light.terrace_light
+      - light.guest_room_light
+      - light.bedroom_light
+      - light.toilet_light
+      - light.kitchen_light
+      - light.hallway_light
+
+
 script:
   hue_master_switch_on:
     alias: 'Hue Master Dimmer Switch ON pressed'
