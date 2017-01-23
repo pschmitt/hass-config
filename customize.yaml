@@ -5,7 +5,7 @@
     group.all:
       hidden: false
     group.all_automations:
-      hidden: true
+      hidden: false
     group.all_lights:
       hidden: false
       order: 2
@@ -115,6 +115,12 @@
       icon: mdi:television
     switch.pilight_tv:
       hidden: true
+      icon: mdi:power-plug
+    switch.guest_room_tv:
+      icon: mdi:power-plug
+    switch.shoe_cabinet:
+      icon: mdi:power-plug
+    switch.wall_plug:
       icon: mdi:power-plug
     switch.tv:
       icon: mdi:power-plug
