@@ -1,0 +1,112 @@
+automation:
+  - alias: Start a smoke break when the flic button is pressed and the outdoor light is off
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_1
+        click_type: single
+    condition:
+      - condition: state
+        entity_id: light.terrace
+        state: 'off'
+    action:
+      service: script.smoke_break
+
+  - alias: Turn off the outdoor light if it is on
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_1
+        click_type: single
+    condition:
+      - condition: state
+        entity_id: light.terrace
+        state: 'on'
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.terrace
+      - service: script.turn_off
+        data:
+          entity_id: script.smoke_break_timer_off
+
+  - alias: Display a caring message on the TV
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_1
+        click_type: single
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: !secret flic_button_message_1
+
+  - alias: Display a somewhat less caring message on the TV
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_1
+        click_type: double
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: !secret flic_button_message_2
+
+  - alias: Display an even less caring message on the TV
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_1
+        click_type: hold
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: !secret flic_button_message_3
+
+  - alias: Watch TV when single click flick button
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_2
+        click_type: single
+    action:
+      - service: script.watch_tv
+
+  - alias: Switch to kodi on double click flick button
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_2
+        click_type: double
+    action:
+      - service: script.start_kodi
+
+  - alias: Stop activity when holding
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_black_2
+        click_type: hold
+    action:
+      - service: script.poweroff
+
+  - alias: Toggle guest room TV when flic button is pressed
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_2
+        click_type: single
+    action:
+      - service: switch.toggle
+        entity_id: switch.guest_room_tv
+
+# vim: set filetype=yaml et sw=2 ts=2 :
