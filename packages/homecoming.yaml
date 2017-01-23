@@ -1,5 +1,6 @@
 automation:
   - alias: React to my homecoming
+    initial_state: false
     trigger:
       - platform: state
         entity_id: device_tracker.n5x
@@ -9,6 +10,7 @@ automation:
       - service: script.im_home
 
   - alias: Talk to my wife when she gets home
+    initial_state: false
     trigger:
       - platform: state
         entity_id: device_tracker.her_phone
@@ -22,16 +24,9 @@ script:
   im_home:
     alias: 'I am home'
     sequence:
-      # - service: notify.smsr
-      #   data:
-      #     message: "Je suis rentré, Mimine. Je t'aime :)"
-      #     target: her
-      - service: script.turn_on
-        data:
-          entity_id: script.watch_tv
       - service: notify.speakcast
         data:
-          message: "Attention! Le roi arrive!"
+          message: "Faites du bruit! Philipp arrive dans la place."
 
   she_is_home:
     alias: 'She is home'

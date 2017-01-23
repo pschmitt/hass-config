@@ -10,6 +10,22 @@ automation:
         data:
           priority: -1
 
+  - alias: Start disabled automations (cause they are annoying as fuck)
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      - delay: 00:05:00
+      - service: notify.html5
+        data:
+          message: "Enable annoying automations"
+          data:
+            priority: -1
+      - service: automation.turn_on
+        entity_id: automation.react_to_my_homecoming
+      - service: automation.turn_on
+        entity_id: automation.talk_to_my_wife_when_she_gets_home
+
   - alias: Update notifications
     trigger:
       - platform: state
