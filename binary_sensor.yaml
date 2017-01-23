@@ -3,4 +3,10 @@
   #   resource: http://nasteanas.lan:8993/livebox/state
   #   value_template: '{{ value }}'
 
+  - platform: flic
+    # host: nasteanas.lan
+    host: octopi.lan
+    port: 5551
+    discovery: false
+
 # vim: set filetype=yaml et sw=2 ts=2 :
