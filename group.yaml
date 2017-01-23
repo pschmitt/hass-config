@@ -6,7 +6,7 @@
       - group.weather
       - group.misc
       - group.cameras
-      - group.all_lights
+      - group.light_groups
 
   tracked_devices:
     name: Devices
@@ -51,7 +51,8 @@
       - scene.living_room_normal
       - scene.living_room_dim
       - sensor.tv
-      - switch.tv
+      - switch.shoe_cabinet
+      - switch.wall_plug
       - switch.livebox_play
       - binary_sensor.livebox_play
       - camera.c1
@@ -83,8 +84,10 @@
     name: Guest Room
     view: yes
     entities:
+      - switch.guest_room_tv
       - light.guest_room
       - group.z3c
+      - group.raspicam_rfpi
       - media_player.brightcast
 
   cctv:
@@ -99,6 +102,7 @@
       - group.c2
       - group.z3c
       - group.raspicam_octopi
+      - group.raspicam_rfpi
       - group.modect
 
   cameras:
@@ -106,6 +110,7 @@
     entities:
       - camera.c1
       - camera.octopi
+      - camera.rfpi
       - camera.c2
       - camera.z3c
 
@@ -113,8 +118,8 @@
     name: hass
     view: yes
     entities:
-      - group.all_scripts
       - group.all
+      - group.all_scripts
       - group.all_lights
       - group.all_switches
       - group.all_devices
@@ -172,6 +177,7 @@
       - switch.c2_state
       - switch.z3c_state
       - switch.octopi_state
+      - switch.rfpi_state
       - switch.c1_modect
       - switch.c2_modect
       - switch.c1_sodect
@@ -185,6 +191,15 @@
       - switch.octopi_state
       - sensor.octopi_status
       - sensor.octopi_events
+
+  raspicam_rfpi:
+    name: Raspberry Pi Camera (rfpi)
+    control: hidden
+    entities:
+      - camera.rfpi
+      - switch.rfpi_state
+      - sensor.rfpi_status
+      - sensor.rfpi_events
 
   misc:
     name: Misc
