@@ -53,6 +53,8 @@
       icon: mdi:run
     sensor.bathroom_presence:
       icon: mdi:run
+    sensor.harmony_hub:
+      icon: mdi:remote
     script.alarm_disarmed:
       icon: mdi:lock-open
     script.alarm_arm_away:

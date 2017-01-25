@@ -7,11 +7,8 @@ automation:
       condition: template
       value_template: '{{ trigger.from_state.attributes.current_activity == "Watch TV" }}'
     action:
-      - service: notify.html5
-        data:
-          message: "Watch TV: OFF"
-      - service: homeassistant.turn_off
-        entity_id: switch.livebox_play
+      - service: media_player.turn_off
+        entity_id: media_player.livebox_play
 
   - alias: Ensure the livebox-play is turned on when starting TV using Harmony Hub
     trigger:
@@ -21,11 +18,8 @@ automation:
       condition: template
       value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'
     action:
-      - service: notify.html5
-        data:
-          message: "Watch TV: ON"
-      - service: homeassistant.turn_on
-        entity_id: switch.livebox_play
+      - service: media_player.turn_on
+        entity_id: media_player.livebox_play
 
 
 rest_command:
@@ -37,9 +31,9 @@ rest_command:
 sensor:
   - platform: template
     sensors:
-      tv:
+      harmony_hub:
         value_template: '{{ states.remote.harmony_hub.attributes.current_activity }}'
-        friendly_name: 'TV'
+        friendly_name: 'Harmony Hub'
 
 
 script:

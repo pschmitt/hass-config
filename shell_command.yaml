@@ -1,4 +1,3 @@
 z3c_restart: 'curl nasteanas.lan:8993/z3c/restart &'
-remote_livebox_play: '/scripts/livebox-play.sh {{ key }}'
 
 # vim: set filetype=yaml et sw=2 ts=2 :
