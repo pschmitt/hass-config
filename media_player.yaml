@@ -1,5 +1,5 @@
   - platform: kodi
-    name: Kodi@Shield
+    name: Kodi
     host: shield.lan
     port: 8080
     username: !secret player_kodi_username
@@ -13,5 +13,50 @@
   - platform: liveboxplaytv
     name: Livebox Play
     host: livebox-play.lan
+
+  - platform: universal
+    name: TV
+    children:
+      - media_player.kodi
+      - media_player.nvidia_shield_tv
+      - media_player.livebox_play
+      - media_player.living_room_tv
+    commands:
+      turn_on:
+        service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 42046341
+          command: PowerOn
+        # service: media_player.turn_on
+        # data:
+        #   entity_id: media_player.living_room_tv
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.living_room_tv
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.living_room_tv
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.living_room_tv
+      volume_mute:
+        service: media_player.volume_mute
+        data:
+          entity_id: media_player.living_room_tv
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.living_room_tv
+          source: ''
+    attributes:
+      is_volume_muted: media_player.living_room_tv|is_volume_muted
+      state: media_player.living_room_tv
+      volume_level: media_player.living_room_tv|volume_level
+      source: media_player.living_room_tv|source
+      source_list: media_player.living_room_tv|source_list
 
 # vim: set filetype=yaml et sw=2 ts=2 :
