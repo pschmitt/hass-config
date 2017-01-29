@@ -8,13 +8,11 @@
     port: 5551
     discovery: false
 
-  - platform: tcp
+  - platform: command_line
     name: Livebox Play TV
-    host: livebox-play.lan
-    port: 8080
-    timeout: 2
-    value_template: "{% if value is not none %}on{% else %}off{% endif %}"
-    value_on: "on"
-    payload: ''
+    sensor_class: power
+    command: nmap -p 8080 -oG - --open livebox-play.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    payload_on: open
+    payload_off: closed
 
 # vim: set filetype=yaml et sw=2 ts=2 :
