@@ -3,6 +3,11 @@
     port: 5551
     discovery: false
 
+  - platform: flic
+    host: rfpi.lan
+    port: 5551
+    discovery: false
+
   - platform: tcp
     name: Livebox Play TV
     host: livebox-play.lan
