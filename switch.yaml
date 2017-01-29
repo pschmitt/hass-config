@@ -11,6 +11,17 @@
           systemcode: 1
           unitcode: 1
           'off': 1
+      Livebox Play Socket:
+        on_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 4
+          'on': 1
+        off_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 4
+          'off': 1
       Shoe Cabinet:
         on_code:
           protocol: pollin
@@ -33,6 +44,19 @@
           systemcode: 2
           unitcode: 2
           'off': 1
+
+  - platform: template
+    switches:
+      virt_livebox_play:
+        friendly_name: Livebox Play
+        # value_template: "{{ is_state('media_player.livebox_play', 'playing') }}"
+        value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on' ) }}"
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.livebox_play_socket
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.livebox_play_socket
 
   - platform: zoneminder
     command_on: Modect

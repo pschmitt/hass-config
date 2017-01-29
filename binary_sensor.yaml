@@ -1,12 +1,15 @@
-  # - platform: rest
-  #   name: Livebox Play
-  #   resource: http://nasteanas.lan:8993/livebox/state
-  #   value_template: '{{ value }}'
-
   - platform: flic
-    # host: nasteanas.lan
     host: octopi.lan
     port: 5551
     discovery: false
+
+  - platform: tcp
+    name: Livebox Play TV
+    host: livebox-play.lan
+    port: 8080
+    timeout: 2
+    value_template: "{% if value is not none %}on{% else %}off{% endif %}"
+    value_on: "on"
+    payload: ''
 
 # vim: set filetype=yaml et sw=2 ts=2 :
