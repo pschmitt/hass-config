@@ -33,6 +33,8 @@
       icon: mdi:white-balance-sunny
     sensor.bathroom_lux:
       icon: mdi:white-balance-sunny
+    sensor.owm_rain:
+      icon: mdi:weather-rainy
     sensor.transmission_down_speed:
       icon: mdi:download
     scene.living_room_normal:
@@ -85,6 +87,8 @@
       icon: mdi:arrow-up-drop-circle-outline
     script.play_ps3:
       icon: mdi:gamepad-variant
+    script.power_off:
+      icon: mdi:stop-circle
     script.she_is_home:
       icon: mdi:home-map-marker
     script.shield_tv:
