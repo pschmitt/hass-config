@@ -4,7 +4,14 @@
         event_type: remote_mce_key_power_pressed
     action:
       service: script.turn_on
-      entity_id: script.watch_tv
+      entity_id: script.power_off
+
+  - alias: MCE remote KEY_TUNER pressed
+    trigger:
+      - platform: event
+        event_type: remote_mce_key_tuner_pressed
+    action:
+      service: script.watch_tv
 
   - alias: MCE remote KEY_STOP pressed
     trigger:
