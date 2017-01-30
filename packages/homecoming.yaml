@@ -37,5 +37,8 @@ script:
       - service: notify.speakcast
         data:
           message: 'Salut Mimine. Bienvenue à la maison'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.virt_livebox_play
 
 # vim: set filetype=yaml et sw=2 ts=2 :
