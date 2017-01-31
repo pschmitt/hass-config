@@ -45,7 +45,7 @@
       - service: remote.send_command
         data:
           entity_id: remote.harmony_hub
-          device: 40563642
+          device: 42046341
           command: Mute
 
   - alias: MCE remote KEY_VOLUMEDOWN pressed
@@ -56,7 +56,7 @@
       - service: remote.send_command
         data:
           entity_id: remote.harmony_hub
-          device: 40563642
+          device: 42046341
           command: VolumeDown
 
   - alias: MCE remote KEY_VOLUMEUP pressed
@@ -67,7 +67,7 @@
       - service: remote.send_command
         data:
           entity_id: remote.harmony_hub
-          device: 40563642
+          device: 42046341
           command: VolumeUp
 
   - alias: MCE remote KEY_CHANNELDOWN pressed
