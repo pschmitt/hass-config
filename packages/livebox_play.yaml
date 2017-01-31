@@ -55,7 +55,6 @@ switch:
     switches:
       virt_livebox_play:
         friendly_name: Livebox Play
-        # value_template: "{{ is_state('media_player.livebox_play', 'playing') }}"
         value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on' ) }}"
         turn_on:
           service: switch.turn_on
