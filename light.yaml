@@ -1,4 +1,1 @@
-  - platform: hue
-    host: philips-hue.lan
-    allow_unreachable: true
 # vim: set filetype=yaml et sw=2 ts=2 :

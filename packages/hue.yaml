@@ -1,3 +1,9 @@
+light:
+  - platform: hue
+    host: philips-hue.lan
+    allow_unreachable: true
+
+
 automation:
   - alias: Hue Master Switch ON pressed
     trigger:
