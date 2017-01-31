@@ -47,6 +47,7 @@
           entity_id: switch.virt_livebox_play
 
   - alias: 'Watching Téva'
+    initial_state: false
     trigger:
       - platform: template
         value_template: "{{ is_state_attr('media_player.livebox_play', 'source', 'Téva') }}"
@@ -62,5 +63,15 @@
       - service: notify.livingroom_tv
         data:
           message: 'Mimine! Tu regardes encore Téva! :)'
+
+  - alias: 'Playing PS3'
+    initial_state: false
+    trigger:
+      - platform: template
+        value_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'Sony Playstation 3') }}"
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: 'Oh non, Mimine. Pas Skyrim ! PAS ENCORE !'
 
 # vim: set filetype=yaml et sw=2 ts=2 :

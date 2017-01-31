@@ -21,6 +21,10 @@ automation:
         entity_id: automation.react_to_my_homecoming
       - service: automation.turn_on
         entity_id: automation.talk_to_my_wife_when_she_gets_home
+      - service: automation.turn_on
+        entity_id: automation.watching_teva
+      - service: automation.turn_on
+        entity_id: automation.playing_ps3
 
   - alias: Update notifications
     trigger:
