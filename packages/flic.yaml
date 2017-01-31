@@ -1,3 +1,15 @@
+binary_sensor:
+  - platform: flic
+    host: octopi.lan
+    port: 5551
+    discovery: false
+
+  - platform: flic
+    host: rfpi.lan
+    port: 5551
+    discovery: false
+
+
 automation:
   - alias: Start a smoke break when the flic button is pressed and the outdoor light is off
     trigger:
@@ -5,11 +17,6 @@ automation:
         event_type: flic_click
         event_data:
           button_name: !secret flic_button_white_1
-          click_type: single
-      - platform: event
-        event_type: flic_click
-        event_data:
-          button_name: !secret flic_button_black_2
           click_type: single
     condition:
       - condition: state
@@ -24,11 +31,6 @@ automation:
         event_type: flic_click
         event_data:
           button_name: !secret flic_button_white_1
-          click_type: single
-      - platform: event
-        event_type: flic_click
-        event_data:
-          button_name: !secret flic_button_black_2
           click_type: single
     condition:
       - condition: state
@@ -118,5 +120,40 @@ automation:
     action:
       - service: switch.toggle
         entity_id: switch.guest_room_tv
+
+  # - alias: Turn on guest TV and light when button is double pressed
+  #   trigger:
+  #     platform: event
+  #     event_type: flic_click
+  #     event_data:
+  #       button_name: !secret flic_button_white_2
+  #       click_type: double
+  #   action:
+  #     - service: light.turn_on
+  #       entity_id: light.guest_room_light
+  #     - service: switch.turn_on
+  #       entity_id: switch.guest_room_tv
+
+  - alias: Start bedtime script on single button press
+    trigger:
+      - platform: event
+        event_type: flic_click
+        event_data:
+          button_name: !secret flic_button_black_2
+          click_type: single
+    action:
+      - service: scene.turn_on
+        data:
+          entity_id: scene.bedtime
+
+  - alias: Turn off all on long button press
+    trigger:
+      - platform: event
+        event_type: flic_click
+        event_data:
+          button_name: !secret flic_button_black_2
+          click_type: hold
+    action:
+      - service: script.all_off
 
 # vim: set filetype=yaml et sw=2 ts=2 :

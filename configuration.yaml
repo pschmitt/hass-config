@@ -34,7 +34,7 @@ logger:
 
 automation: !include_dir_merge_list automations
 alarm_control_panel: !include alarm.yaml
-binary_sensor: !include binary_sensor.yaml
+# binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
 # device_sun_light_trigger: !include device_sun_light_trigger.yaml
 device_tracker: !include device_tracker.yaml

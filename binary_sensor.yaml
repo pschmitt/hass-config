@@ -1,11 +1,2 @@
-  - platform: flic
-    host: octopi.lan
-    port: 5551
-    discovery: false
-
-  - platform: flic
-    host: rfpi.lan
-    port: 5551
-    discovery: false
 
 # vim: set filetype=yaml et sw=2 ts=2 :
