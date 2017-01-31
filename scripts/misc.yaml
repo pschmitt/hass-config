@@ -16,19 +16,4 @@
           domain: camera
       - service: shell_command.z3c_restart
 
-  livebox_play_reboot:
-    alias: Reboot Livebox Play TV via pilight
-    sequence:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.virt_livebox_play
-      - delay:
-          minutes: 10
-      - service: switch.turn_on
-        data:
-          entity_id: switch.virt_livebox_play
-      - service: notify.html5
-        data:
-          message: "Livebox Play TV has been restarted via pilight"
-
 # vim: set filetype=yaml et sw=2 ts=2 :

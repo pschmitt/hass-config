@@ -10,10 +10,6 @@
     mac: !secret lg_tv_mac_addr
     name: Living Room TV
 
-  - platform: liveboxplaytv
-    name: Livebox Play
-    host: livebox-play.lan
-
   - platform: universal
     name: TV
     children:

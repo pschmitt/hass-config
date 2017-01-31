@@ -29,16 +29,6 @@
       data:
         entity_id: switch.guest_room_tv
 
-  turn_off_livebox_play:
-    alias: Turn off the livebox play
-    sequence:
-    - service: media_player.turn_off
-      data:
-        entity_id: media_player.livebox_play
-    - service: homeassistant.turn_off
-      data:
-        entity_id: switch.livebox_play
-
   turn_off_nvidia_shield:
     alias: Turn off the Nvidia Shield TV
     sequence:

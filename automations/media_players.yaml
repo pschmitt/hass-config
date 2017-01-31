@@ -24,15 +24,6 @@
       service: scene.turn_on
       entity_id: scene.living_room_dim
 
-  - alias: Daily reboot of the Livebox Play TV
-    trigger:
-      - platform: time
-        hours: 4
-        minutes: 35
-        seconds: 12
-    action:
-      - service: script.livebox_play_reboot
-
   - alias: Turn off TV appliances if the TV is off for an hour
     trigger:
       platform: state

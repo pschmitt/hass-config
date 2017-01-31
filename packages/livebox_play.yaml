@@ -1,0 +1,81 @@
+media_player:
+  - platform: liveboxplaytv
+    name: Livebox Play
+    host: livebox-play.lan
+
+
+binary_sensor:
+  - platform: command_line
+    name: Livebox Play TV
+    sensor_class: power
+    command: nmap -p 8080 -oG - --open livebox-play.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    payload_on: open
+    payload_off: closed
+
+
+automation:
+  - alias: Daily reboot of the Livebox Play TV
+    trigger:
+      - platform: time
+        hours: 4
+        minutes: 35
+        seconds: 12
+    action:
+      - service: script.livebox_play_reboot
+
+script:
+  turn_off_livebox_play:
+    alias: Turn off the livebox play
+    sequence:
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.livebox_play
+    - service: homeassistant.turn_off
+      data:
+        entity_id: switch.livebox_play
+
+  livebox_play_reboot:
+    alias: Reboot Livebox Play TV via pilight
+    sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.virt_livebox_play
+      - delay:
+          minutes: 10
+      - service: switch.turn_on
+        data:
+          entity_id: switch.virt_livebox_play
+      # - service: notify.html5
+      #   data:
+      #     message: "Livebox Play TV has been restarted via pilight"
+
+
+switch:
+  - platform: template
+    switches:
+      virt_livebox_play:
+        friendly_name: Livebox Play
+        # value_template: "{{ is_state('media_player.livebox_play', 'playing') }}"
+        value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on' ) }}"
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.livebox_play_socket
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.livebox_play_socket
+
+  - platform: pilight
+    switches:
+      Livebox Play Socket:
+        on_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 4
+          'on': 1
+        off_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 4
+          'off': 1
+
+# vim: set filetype=yaml et sw=2 ts=2 :
