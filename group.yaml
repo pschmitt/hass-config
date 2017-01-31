@@ -95,6 +95,7 @@
     entities:
       - light.bedroom
       - scene.bedtime
+      - script.all_off
 
   guest_room:
     name: Guest Room
