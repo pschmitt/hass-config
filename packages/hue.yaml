@@ -47,6 +47,54 @@ group:
       - light.hallway_light
 
 
+scene:
+  - name: Living Room Normal
+    entities:
+      light.living_room:
+        state: on
+        transition: 3
+        brightness: 150
+        xy_color: [ 0.4448, 0.4066 ]
+
+  - name: Living Room Dim
+    entities:
+      light.living_room:
+        state: on
+        transition: 3
+        brightness: 75
+        xy_color: [ 0.5926, 0.3814 ]
+      light.entrance:
+        state: off
+        transition: 1
+      light.terrace:
+        state: off
+        transition: 1
+      light.kitchen:
+        state: off
+        transition: 1
+
+  - name: Flash Living Room Lights
+    entities:
+      light.living_room:
+        state: on
+        flash: long
+
+  - name: Bedtime
+    entities:
+      light.terrace:
+        state: off
+      light.hallway:
+        state: off
+      light.toilet:
+        state: off
+      light.bathroom:
+        state: off
+      light.guest_room:
+        state: off
+      light.bedroom:
+        state: off
+
+
 script:
   hue_master_switch_on:
     alias: 'Hue Master Dimmer Switch ON pressed'
@@ -62,6 +110,9 @@ script:
         data:
           entity_id: remote.harmony_hub
           activity: PowerOff
+      - service: switch.turn_off
+        data:
+          entity_id: switch.guest_room_tv
 
   flash_living_room_lights:
     alias: Flash Living Room Lights
