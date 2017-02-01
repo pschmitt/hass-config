@@ -45,9 +45,11 @@ script:
       - service: switch.turn_on
         data:
           entity_id: switch.virt_livebox_play
-      # - service: notify.html5
-      #   data:
-      #     message: "Livebox Play TV has been restarted via pilight"
+      - delay:
+          minutes: 5
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.livebox_play
 
 
 switch:
