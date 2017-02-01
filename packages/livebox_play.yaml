@@ -23,16 +23,17 @@ automation:
     action:
       - service: script.livebox_play_reboot
 
+
 script:
   turn_off_livebox_play:
     alias: Turn off the livebox play
     sequence:
-    - service: media_player.turn_off
-      data:
-        entity_id: media_player.livebox_play
-    - service: homeassistant.turn_off
-      data:
-        entity_id: switch.livebox_play
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.livebox_play
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play
 
   livebox_play_reboot:
     alias: Reboot Livebox Play TV via pilight
