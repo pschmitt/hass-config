@@ -21,7 +21,7 @@ automation:
         minutes: 35
         seconds: 12
     action:
-      - service: script.livebox_play_reboot
+      - service: script.reboot_livebox_play
 
 
 script:
@@ -35,7 +35,7 @@ script:
         data:
           entity_id: switch.livebox_play
 
-  livebox_play_reboot:
+  reboot_livebox_play:
     alias: Reboot Livebox Play TV via pilight
     sequence:
       - service: switch.turn_off
