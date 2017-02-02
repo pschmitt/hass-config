@@ -68,7 +68,7 @@ automation:
         data:
           message: !secret flic_button_message_2
 
-  - alias: Display an even less caring message on the TV
+  - alias: Toggle the livebox play socket
     trigger:
       platform: event
       event_type: flic_click
@@ -76,9 +76,9 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: hold
     action:
-      - service: notify.livingroom_tv
-        data:
-          message: !secret flic_button_message_3
+      service: switch.toggle
+      data:
+        entity_id: switch.virt_livebox_play
 
   # - alias: Watch TV when single click flick button
   #   trigger:
@@ -145,6 +145,7 @@ automation:
       - service: scene.turn_on
         data:
           entity_id: scene.bedtime
+      - service: script.lock_door
 
   - alias: Turn off all on long button press
     trigger:
@@ -155,5 +156,6 @@ automation:
           click_type: hold
     action:
       - service: script.all_off
+      - service: script.lock_door
 
 # vim: set filetype=yaml et sw=2 ts=2 :
