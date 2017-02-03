@@ -3,6 +3,8 @@
       - platform: state
         entity_id: media_player.kodi
         from: 'playing'
+        for:
+          minutes: 15
     condition:
       - condition: state
         entity_id: sun.sun
