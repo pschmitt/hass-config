@@ -57,8 +57,7 @@
       - light.terrace
       - scene.living_room_normal
       - scene.living_room_dim
-      - switch.shoe_cabinet
-      - switch.wall_plug
+      - switch.wall_socket
       # - switch.livebox_play_socket
       - switch.virt_livebox_play
       - camera.c1
