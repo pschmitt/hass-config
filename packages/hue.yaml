@@ -22,6 +22,7 @@ automation:
         event_type: zhue_switch_master_button_SHORT_RELEASED_1
     action:
       - service: script.hue_master_switch_on
+      - service: script.lock_n_go
 
 
 group:

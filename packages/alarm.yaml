@@ -155,6 +155,9 @@ script:
       - service: alarm_control_panel.alarm_arm_away
         data:
           code: !secret alarm_code
+      - service: lock.lock
+        data:
+          entity_id: lock.home
 
   alarm_armed_away:
     alias: 'Away alarm activated'

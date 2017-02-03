@@ -1,0 +1,64 @@
+lock:
+  - platform: nuki
+    host: !secret nuki_bridge
+    token: !secret nuki_token
+
+
+# sensor:
+#   - platform: rest
+#     name: Door lock
+#     resource: !secret nuki_state_url
+#     method: GET
+#     # command: curl !secret nuki_state_url
+#     value_template: "{{ value_json.stateName }}"
+
+
+rest_command:
+  lock_door:
+    url: !secret nuki_lock_url
+
+  unlock_door:
+    url: !secret nuki_unlock_url
+
+  lock_n_go:
+    url: !secret nuki_lockngo_url
+
+
+script:
+  lock_door:
+    alias: Lock door
+    sequence:
+      - service: rest_command.lock_door
+
+  unlock_door:
+    alias: Unlock door
+    sequence:
+      - service: rest_command.unlock_door
+
+  lock_n_go:
+    alias: Lock'n'go
+    sequence:
+      - service: rest_command.lock_n_go
+
+automation:
+  - alias: Door has been locked
+    trigger:
+      - platform: state
+        entity_id: lock.home
+        to: 'locked'
+    action:
+      - service: notify.html5
+        data:
+          message: "Front door has been locked"
+
+  - alias: Door has been unlocked
+    trigger:
+      - platform: state
+        entity_id: lock.home
+        to: 'unlocked'
+    action:
+      - service: notify.html5
+        data:
+          message: "Front door has been unlocked"
+
+# vim: set filetype=yaml et sw=2 ts=2 :
