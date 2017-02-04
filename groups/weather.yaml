@@ -1,0 +1,19 @@
+  weather:
+    name: Weather
+    entities:
+      - sensor.bathroom_temperature
+      - sensor.hallway_temperature
+      - sensor.kitchen_temperature
+      - sensor.toilet_temperature
+      - sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1
+      - sensor.yr_symbol
+      - sensor.owm_temperature
+
+  weather_outdoor:
+    name: Weather
+    entities:
+      - sensor.yr_symbol
+      - sensor.owm_temperature
+      - sensor.owm_rain
+
+# vim: set filetype=yaml et sw=2 ts=2 :

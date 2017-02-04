@@ -6,17 +6,35 @@
       hidden: false
     group.all_automations:
       hidden: false
+      order: 99
     group.all_lights:
       hidden: false
       order: 2
     group.all_devices:
       hidden: false
     group.all_scripts:
+      control: hidden
+      order: 1
       hidden: false
     group.all_switches:
+      control: hidden
       hidden: false
     group.shortcuts:
       order: 1
+    group.living_room:
+      order: 1
+    group.terrace_kitchen:
+      order: 2
+    group.bedrooms:
+      order: 4
+    group.media_players:
+      order: 5
+    group.cctv:
+      order: 6
+    group.zwave:
+      order: 7
+    group.hass:
+      order: 99
     light.living_room_table:
       icon: mdi:food
     light.living_room_tv:
@@ -43,6 +61,7 @@
       icon: mdi:brightness-2
     scene.bedtime:
       icon: mdi:weather-night
+      order: 1
     sensor.own_rain:
       icon: mdi:weather-rainy
     sensor.z3c_battery:

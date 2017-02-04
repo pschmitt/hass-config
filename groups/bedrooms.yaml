@@ -1,0 +1,14 @@
+  bedrooms:
+    name: Bedrooms
+    view: yes
+    entities:
+      - light.bedroom
+      - light.guest_room
+      - scene.bedtime
+      - script.all_off
+      - switch.guest_room_tv
+      - group.z3c
+      - group.raspicam_rfpi
+      - media_player.brightcast
+
+# vim: set filetype=yaml et sw=2 ts=2 :

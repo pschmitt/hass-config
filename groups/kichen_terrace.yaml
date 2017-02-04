@@ -1,0 +1,11 @@
+  terrace_kitchen:
+    name: Terrace / Kitchen
+    view: yes
+    entities:
+      - group.weather_outdoor
+      - group.c2
+      - light.kitchen_light
+      - light.terrace
+      - script.smoke_break
+
+# vim: set filetype=yaml et sw=2 ts=2 :

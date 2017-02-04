@@ -34,20 +34,16 @@ logger:
 
 automation: !include_dir_merge_list automations
 alarm_control_panel: !include alarm.yaml
-# binary_sensor: !include binary_sensor.yaml
 camera: !include camera.yaml
-# device_sun_light_trigger: !include device_sun_light_trigger.yaml
 device_tracker: !include device_tracker.yaml
-group: !include group.yaml
+group: !include_dir_merge_named groups
 ifttt: !include ifttt.yaml
-# light: !include light.yaml
 media_player: !include media_player.yaml
 mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 pilight: !include pilight.yaml
 remote: !include remote.yaml
 rest_command: !include rest_command.yaml
-# scene: !include scene.yaml
 script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml
 shell_command: !include shell_command.yaml

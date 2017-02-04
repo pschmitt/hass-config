@@ -1,0 +1,14 @@
+  hass:
+    name: hass
+    view: yes
+    entities:
+      - group.all
+      - group.all_scripts
+      - group.all_lights
+      - group.all_switches
+      - group.all_devices
+      - group.all_automations
+      - group.media_players
+      - group.zwave
+
+# vim: set filetype=yaml et sw=2 ts=2 :

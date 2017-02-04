@@ -1,0 +1,19 @@
+  tracked_devices:
+    name: Devices
+    view: no
+    entities:
+      - device_tracker.nexus7
+      - device_tracker.milestone
+      - device_tracker.her_phone
+      - device_tracker.popojitsu
+      - device_tracker.moto_g4play
+      - device_tracker.n5x
+
+  main_devices:
+    name: Main Devices
+    view: no
+    entities:
+      - device_tracker.her_phone
+      - device_tracker.n5x
+
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,38 @@
+  living_room:
+    name: Living Room
+    view: yes
+    entities:
+      - script.amp_toggle
+      - script.watch_tv
+      - script.shield_tv
+      - script.play_ps3
+      - script.start_kodi
+      - script.power_off
+      - script.wake_nvidia_shield
+      - light.living_room_light_tv
+      - light.living_room_light_table
+      - light.front_door
+      - light.terrace
+      - scene.living_room_normal
+      - scene.living_room_dim
+      - switch.wall_socket
+      # - switch.livebox_play_socket
+      - switch.virt_livebox_play
+      - camera.c1
+      - camera.octopi
+      - group.living_room_media_players
+
+  living_room_media_players:
+    name: Media Players
+    view: no
+    entities:
+      - sensor.harmony_hub
+      # - binary_sensor.livebox_play_tv
+      - media_player.tv
+      # - media_player.living_room_tv
+      # - media_player.kodi
+      # - media_player.nvidia_shield_tv
+      # - media_player.blindcast
+      # - media_player.livebox_play
+
+# vim: set filetype=yaml et sw=2 ts=2 :

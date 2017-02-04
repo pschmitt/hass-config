@@ -1,0 +1,24 @@
+  default_view:
+    view: yes
+    entities:
+      - group.shortcuts
+      - group.tracked_devices
+      - group.weather
+      - group.misc
+      - group.cameras
+      - group.light_groups
+
+  shortcuts:
+    name: Shortcuts
+    control: hidden
+    view: no
+    entities:
+      - alarm_control_panel.ha_alarm
+      - lock.home
+      - script.all_off
+      - script.smoke_break
+      - script.lock_n_go
+      - scene.living_room_dim
+      - scene.bedtime
+
+# vim: set filetype=yaml et sw=2 ts=2 :
