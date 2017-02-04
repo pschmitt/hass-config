@@ -1,3 +1,11 @@
+alarm_control_panel:
+  platform: manual
+  code: !secret alarm_code
+  pending_time: 30
+  trigger_time: 60
+  disarm_after_trigger: false
+
+
 automation:
   - alias: Arm alarm when erribody is away (and HASS starts)
     trigger:

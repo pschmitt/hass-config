@@ -1,7 +1,0 @@
-  platform: manual
-  code: !secret alarm_code
-  pending_time: 30
-  trigger_time: 60
-  disarm_after_trigger: false
-
-# vim: set filetype=yaml et sw=2 ts=2 :
