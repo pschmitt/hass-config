@@ -1,0 +1,42 @@
+automation:
+  - alias: 'Media player paused/stopped'
+    trigger:
+      - platform: state
+        entity_id: media_player.kodi
+        to: 'idle'
+        for:
+          minutes: 15
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.living_room_normal
+
+  - alias: 'Media player playing'
+    trigger:
+      - platform: state
+        entity_id: media_player.kodi
+        to: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+    action:
+      service: scene.turn_on
+      entity_id: scene.living_room_dim
+
+
+rest_command:
+  wake_nvidia_shield:
+    url: http://nasteanas.lan:8993/shield/wake
+
+
+script:
+  wake_nvidia_shield:
+    alias: Wake Nvidia Shield TV
+    sequence:
+      - service: rest_command.wake_nvidia_shield
+
+# vim: set filetype=yaml et sw=2 ts=2 :

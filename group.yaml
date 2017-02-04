@@ -35,8 +35,6 @@
       - lock.home
       - script.all_off
       - script.smoke_break
-      - script.lock_door
-      - script.unlock_door
       - script.lock_n_go
       - scene.living_room_dim
       - scene.bedtime
@@ -51,6 +49,7 @@
       - script.play_ps3
       - script.start_kodi
       - script.power_off
+      - script.wake_nvidia_shield
       - light.living_room_light_tv
       - light.living_room_light_table
       - light.front_door

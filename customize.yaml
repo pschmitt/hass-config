@@ -107,6 +107,8 @@
       icon: mdi:kodi
     script.tell_my_wife_i_love_her:
       icon: mdi:heart
+    script.wake_nvidia_shield:
+      icon: mdi:alarm
     script.watch_tv:
       icon: mdi:television
     script.z3c_restart:
