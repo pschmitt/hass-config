@@ -4,41 +4,30 @@ lock:
     token: !secret nuki_token
 
 
-# sensor:
-#   - platform: rest
-#     name: Door lock
-#     resource: !secret nuki_state_url
-#     method: GET
-#     # command: curl !secret nuki_state_url
-#     value_template: "{{ value_json.stateName }}"
-
-
-rest_command:
-  lock_door:
-    url: !secret nuki_lock_url
-
-  unlock_door:
-    url: !secret nuki_unlock_url
-
-  lock_n_go:
-    url: !secret nuki_lockngo_url
-
-
 script:
   lock_door:
     alias: Lock door
     sequence:
-      - service: rest_command.lock_door
+      - service: lock.lock
+        data:
+          entity_id: lock.home
 
   unlock_door:
     alias: Unlock door
     sequence:
-      - service: rest_command.unlock_door
+      - service: lock.unlock
+        data:
+          entity_id: lock.home
 
   lock_n_go:
     alias: Lock'n'go
     sequence:
-      - service: rest_command.lock_n_go
+      - delay:
+          seconds: 15
+      - service: lock.lock
+        data:
+          entity_id: lock.home
+
 
 automation:
   - alias: Door has been locked
