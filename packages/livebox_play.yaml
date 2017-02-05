@@ -48,6 +48,11 @@ script:
           entity_id: switch.virt_livebox_play
       - delay:
           minutes: 5
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40565609
+          command: PowerToggle
       - service: media_player.turn_off
         data:
           entity_id: media_player.livebox_play
