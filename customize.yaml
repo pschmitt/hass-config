@@ -76,6 +76,31 @@
       icon: mdi:run
     sensor.harmony_hub:
       icon: mdi:remote
+
+    # Fibaro FGSD002
+    binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor_8_0:
+      friendly_name: Smoke Sensor 1
+    sensor.fibaro_system_fgsd002_smoke_sensor_burglar_8_10:
+      friendly_name: Burglar Sensor
+    sensor.fibaro_system_fgsd002_smoke_sensor_general_8_0:
+      friendly_name: General Sensor
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_4:
+      friendly_name: Heat Sensor 1
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_7:
+      friendly_name: Heat Sensor 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_power_management_8_11:
+      friendly_name: Power Management
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_1:
+      friendly_name: Smoke Sensor 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_4:
+      friendly_name: Smoke Sensor 3
+    sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid_8_2:
+      friendly_name: Source Node ID
+    sensor.fibaro_system_fgsd002_smoke_sensor_system_8_12:
+      friendly_name: System Sensor
+    sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1:
+      friendly_name: Smoke Sensor Temperature
+
     script.alarm_disarmed:
       icon: mdi:lock-open
     script.alarm_arm_away:
