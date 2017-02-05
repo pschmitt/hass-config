@@ -65,25 +65,4 @@
     command: /scripts/android-cam.sh z3c battery
     unit_of_measurement: '%'
 
-  # - platform: speedtest
-  #   minute:
-  #      - 0
-  #      - 30
-  #   monitored_conditions:
-  #     - ping
-  #     - download
-  #     - upload
-
-  # - platform: mqtt
-  #   state_topic: "owntracks/n5x/n5x"
-  #   name: "Nexus 5X Battery"
-  #   unit_of_measurement: "%"
-  #   value_template: '{{ value_json.batt }}'
-
-  # - platform: google_travel_time
-  #   name: Travel Time to Home
-  #   api_key: !secret google_maps_api_key
-  #   origin: device_tracker.n5x_n5x
-  #   destination: zone.home
-
 # vim: set filetype=yaml et sw=2 ts=2 :
