@@ -9,6 +9,7 @@ automation:
         message: "Home Assistant has (re)started"
         data:
           priority: -1
+          tag: "hass-restart"
 
   - alias: Start disabled automations (cause they are annoying as fuck)
     trigger:
