@@ -1,3 +1,4 @@
+automation:
   - alias: Train reminder
     trigger:
       - platform: time
@@ -10,9 +11,17 @@
         # state: work
         state: not_home
     action:
-      service: notify.html5
-      data:
-        message: 'Time to leave for your train'
+      service: script.train_reminder
+
+  - alias: Train reminder postpone requested
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: postpone_train_reminder
+    action:
+      - delay: 01:00:00
+      - service: script.train_reminder
 
   - alias: Time to go to bed
     trigger:
@@ -35,12 +44,12 @@
             - thu
             - sun
     action:
-      - service: scene.turn_on
-        entity_id: scene.flash_living_room_lights
       - service: tts.google_say
         entity_id: media_player.blindcast
         data:
           message: "C'est l'heure!"
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights
 
   # - alias: 'Bruh your phone is dying'
   #   trigger:
@@ -50,5 +59,18 @@
   #   action:
   #     service: notify.pushover
   #     data:
+
+script:
+  train_reminder:
+    sequence:
+      service: notify.html5
+      data:
+        message: 'Time to leave for your train'
+        data:
+          tag: "train-reminder"
+          actions:
+            - action: postpone_train_reminder
+              icon: https://materialdesignicons.com/api/download/28F85724-265B-4C24-9975-DDDF788A99E5/000000/1/FFFFFF/0/48
+              title: Postpone
 
 # vim: set filetype=yaml et sw=2 ts=2 :
