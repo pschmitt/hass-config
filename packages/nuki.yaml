@@ -24,12 +24,37 @@ script:
     sequence:
       - delay:
           seconds: 15
-      - service: lock.lock
-        data:
-          entity_id: lock.home
+      - service: script.lock_door
 
 
 automation:
+  - alias: Lock door if everybody is home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.n5x  #group.main_devices
+        state: 'home'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Everybody has been home for a while. Maybe it is time to lock the door."
+          data:
+            tag: 'lock-door-query'
+            actions:
+              - action: lock_door
+                icon: https://materialdesignicons.com/api/download/icon/png/D711AFDE-2B8D-4932-82AC-A04E7B2810AE/48
+                title: Lock the door
+
+  - alias: HTML5 push notification action button clicked
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: lock_door
+    action:
+      - service: script.lock_door
+
   - alias: Door has been locked
     trigger:
       - platform: state
