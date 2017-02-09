@@ -34,11 +34,15 @@ automation:
         entity_id: device_tracker.n5x  #group.main_devices
         state: 'home'
         for:
-          minutes: 10
+          seconds: 10
+    condition:
+      condition: state
+      entity_id: lock.home
+      state: 'unlocked'
     action:
       - service: notify.html5
         data:
-          message: "Everybody has been home for a while. Maybe it is time to lock the door."
+          message: "You've been home for a while. Maybe it is time to lock the door."
           data:
             tag: 'lock-door-query'
             actions:
@@ -64,6 +68,7 @@ automation:
       - service: notify.html5
         data:
           message: "Front door has been locked"
+          renotify: True
 
   - alias: Door has been unlocked
     trigger:
@@ -74,5 +79,6 @@ automation:
       - service: notify.html5
         data:
           message: "Front door has been unlocked"
+          renotify: True
 
 # vim: set filetype=yaml et sw=2 ts=2 :
