@@ -84,7 +84,7 @@ scene:
     entities:
       light.living_room:
         state: on
-        flash: long
+        flash: short
 
   - name: Bedtime
     entities:
