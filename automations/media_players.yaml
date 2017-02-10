@@ -2,13 +2,21 @@
     trigger:
       platform: state
       entity_id: media_player.living_room_tv
-      to: 'off'
+      state: 'off'
       for:
         hours: 1
     action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.virt_livebox_play
+      - service: script.turn_off_media_players
+
+  # - alias: 'Shut down livebox-play when TV is on and not displaying livebox-play'
+  #   initial_state: false
+  #   trigger:
+  #     - platform: template
+  #       value_template: "{{ is_state('media_player.living_room_tv', 'playing') and not is_state_attr('media_player.living_room_tv', 'source', 'Orange Livebox Play') }}"
+  #       # for:
+  #       #   seconds: 30
+  #   action:
+  #     - service: service.turn_off_livebox_play
 
   - alias: 'Watching Téva'
     initial_state: false

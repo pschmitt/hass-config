@@ -147,12 +147,55 @@ automation:
         entity_id: alarm_control_panel.ha_alarm
         state: armed_away
     action:
-      - service: notify.pushover
-        data:
-          message: Someone is home and the alarm is on.
+      - service: notify.html5
+        data_template:
+          message: "{% if trigger.entity_id == 'device_tracker.n5x' %}You are{% else %}Marine is{% endif %} home and the alarm is on."
+          data:
+            tag: "homecoming-alarm-on"
+            actions:
+              - action: disable_alarm
+                # mdi:bell-off
+                icon: https://materialdesignicons.com/api/download/69686D8F-75FE-4091-9061-88DB64D95C01/000000/1/FFFFFF/0/48
+                title: Disable alarm
+              - action: alarm-homeinvasion
+                # mdi:stethoscope
+                icon: https://materialdesignicons.com/api/download/641202BA-294A-4A0F-851D-FB83FEC9D7EE/000000/1/FFFFFF/0/48
+                title: Kidnappers are here
+
+  - alias: Alarm disarm requested
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: disable_alarm
+    action:
+      - service: script.alarm_disarm
+
+  - alias: Kidnapping mode requested
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: alarm-homeinvasion
+    action:
+      - service: script.call_for_help
 
 
 script:
+  alarm_disarm:
+    alias: 'Disable alarm'
+    sequence:
+      - service: alarm_control_panel.alarm_disarm
+        data:
+          code: !secret alarm_code
+
+  call_for_help:
+    alias: 'Call for help'
+    sequence:
+      - service: notify.html5
+        data:
+          message: "The police is on its way"
+
   alarm_arm_away:
     alias: 'Activate away alarm'
     sequence:

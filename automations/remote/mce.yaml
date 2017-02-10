@@ -3,8 +3,16 @@
       - platform: event
         event_type: remote_mce_key_power_pressed
     action:
-      service: script.turn_on
-      entity_id: script.power_off
+      - service: script.watch_tv
+      # service_template: >
+      #   {% if is_state_attr('remote.harmony_hub', 'current_activity', 'PowerOff' %}
+      #     script.turn_on
+      #   {% endif %}
+      # data_template:
+      #   entity_id: >
+      #     {% if %}
+      #       script.watch_tv
+      #     {% endif %}
 
   - alias: MCE remote KEY_TUNER pressed
     trigger:
