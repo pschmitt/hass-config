@@ -4,9 +4,8 @@
       entity_id: media_player.living_room_tv
       to: 'off'
       for:
-        minutes: 15
+        hours: 1
     action:
-      - service: script.power_off
       - service: switch.turn_off
         data:
           entity_id: switch.virt_livebox_play
