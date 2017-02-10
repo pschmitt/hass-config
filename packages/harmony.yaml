@@ -49,9 +49,9 @@ script:
   watch_tv:
     alias: Watch TV
     sequence:
-      - service: homeassistant.turn_off
+      - service: homeassistant.turn_on
         data:
-          entity_id: switch.livebox_play
+          entity_id: switch.livebox_play_socket
       - service: remote.turn_on
         data:
           entity_id: remote.harmony_hub
