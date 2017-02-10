@@ -2,12 +2,13 @@
     name: hass
     view: yes
     entities:
+      - group.hass_infrastructure
       - group.all
       - group.all_scripts
       - group.all_lights
       - group.all_switches
       - group.all_devices
-      - group.all_automations
+      # - group.all_automations
       - group.media_players
       - group.zwave
 

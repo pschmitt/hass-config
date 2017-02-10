@@ -1,0 +1,59 @@
+binary_sensor:
+  - platform: command_line
+    name: flicd @rfpi
+    sensor_class: connectivity
+    command: nmap -p 5551 -oG - --open rfpi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    payload_on: open
+    payload_off: closed
+
+  - platform: command_line
+    name: pilight @rfpi
+    sensor_class: connectivity
+    command: nmap -p 5000 -oG - --open rfpi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    payload_on: open
+    payload_off: closed
+
+  - platform: command_line
+    name: flicd @octopi
+    sensor_class: connectivity
+    command: nmap -p 5551 -oG - --open octopi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    payload_on: open
+    payload_off: closed
+
+
+automation:
+  - alias: "Infrastructure component is off"
+    trigger:
+      platform: state
+      entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_octopi, binary_sensor.pilight_rfpi
+      from: 'on'
+      to: 'off'
+    action:
+      service: notify.html5
+      data_template:
+        message: "{{ trigger.to_state.attributes.friendly_name }} is unreachable!"
+
+  - alias: "Flicd is on"
+    trigger:
+      platform: state
+      entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_octopi, binary_sensor.pilight_rfpi
+      from: 'off'
+      to: 'on'
+    action:
+      service: notify.html5
+      data_template:
+        message: "{{ trigger.to_state.attributes.friendly_name }} is up again."
+
+
+group:
+  hass_infrastructure:
+    name: Infrastructure
+    control: hidden
+    view: no
+    entities:
+      - binary_sensor.flicd_octopi
+      - binary_sensor.flicd_rfpi
+      - binary_sensor.flicd_popojitsu
+      - binary_sensor.pilight_rfpi
+
+# vim: set filetype=yaml et sw=2 ts=2 :
