@@ -13,6 +13,13 @@
       - service: script.turn_off_nvidia_shield
       - service: script.turn_off_guest_tv
 
+  turn_off_media_players:
+    alias: Turn off media players
+    sequence:
+      - service: script.turn_off_tv
+      - service: script.turn_off_nvidia_shield
+      - service: script.turn_off_livebox_play
+
   turn_off_tv:
     alias: Turn off the living room TV
     sequence:
