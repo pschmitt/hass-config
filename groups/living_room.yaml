@@ -1,6 +1,7 @@
   living_room:
     name: Living Room
     view: yes
+    icon: mdi:sofa
     entities:
       - script.amp_toggle
       - script.watch_tv

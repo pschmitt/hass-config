@@ -1,6 +1,7 @@
   terrace_kitchen:
     name: Terrace / Kitchen
     view: yes
+    icon: mdi:food-fork-drink
     entities:
       - group.weather_outdoor
       - group.c2

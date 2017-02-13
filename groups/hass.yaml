@@ -1,6 +1,7 @@
   hass:
     name: hass
     view: yes
+    icon: mdi:settings
     entities:
       - group.hass_infrastructure
       - group.all

@@ -1,6 +1,7 @@
   cctv:
     name: CCTV
     view: yes
+    icon: mdi:camera-enhance
     entities:
       - sensor.bathroom_presence
       - sensor.hallway_presence

@@ -1,6 +1,7 @@
   bedrooms:
     name: Bedrooms
     view: yes
+    icon: mdi:hotel
     entities:
       - light.bedroom
       - light.guest_room
