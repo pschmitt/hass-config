@@ -49,7 +49,6 @@ sun:
 switch: !include switch.yaml
 tts: !include tts.yaml
 zone: !include zone.yaml
-zwave: !include zwave.yaml
 zoneminder: !include zoneminder.yaml
 
 # vim: set filetype=yaml et sw=2 ts=2 :

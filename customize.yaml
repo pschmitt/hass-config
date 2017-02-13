@@ -1,168 +1,168 @@
-    automation.z3c_battery_saver:
+    - entity_id: automation.z3c_battery_saver
       hidden: true
-    automation.z3c_camera_enabler:
+    - entity_id: automation.z3c_camera_enabler
       hidden: true
-    group.all:
+    - entity_id: group.all
       hidden: false
-    group.all_automations:
+    - entity_id: group.all_automations
       hidden: false
       order: 99
-    group.all_lights:
+    - entity_id: group.all_lights
       hidden: false
       order: 2
-    group.all_devices:
+    - entity_id: group.all_devices
       hidden: false
-    group.all_scripts:
+    - entity_id: group.all_scripts
       control: hidden
       order: 1
       hidden: false
-    group.all_switches:
+    - entity_id: group.all_switches
       control: hidden
       hidden: false
-    group.shortcuts:
+    - entity_id: group.shortcuts
       order: 1
-    group.living_room:
+    - entity_id: group.living_room
       order: 1
-    group.terrace_kitchen:
+    - entity_id: group.terrace_kitchen
       order: 2
-    group.bedrooms:
+    - entity_id: group.bedrooms
       order: 4
-    group.media_players:
+    - entity_id: group.media_players
       order: 5
-    group.cctv:
+    - entity_id: group.cctv
       order: 6
-    group.zwave:
+    - entity_id: group.zwave
       order: 7
-    group.hass:
+    - entity_id: group.hass
       order: 99
-    light.living_room_table:
+    - entity_id: light.living_room_table
       icon: mdi:food
-    light.living_room_tv:
+    - entity_id: light.living_room_tv
       icon: mdi:television
-    light.terrace:
+    - entity_id: light.terrace
       icon: mdi:pine-tree
-    light.toilet:
+    - entity_id: light.toilet
       icon: mdi:human-male-female
-    sensor.hallway_lux:
+    - entity_id: sensor.hallway_lux
       icon: mdi:white-balance-sunny
-    sensor.toilet_lux:
+    - entity_id: sensor.toilet_lux
       icon: mdi:white-balance-sunny
-    sensor.kitchen_lux:
+    - entity_id: sensor.kitchen_lux
       icon: mdi:white-balance-sunny
-    sensor.bathroom_lux:
+    - entity_id: sensor.bathroom_lux
       icon: mdi:white-balance-sunny
-    sensor.owm_rain:
+    - entity_id: sensor.owm_rain
       icon: mdi:weather-rainy
-    sensor.transmission_down_speed:
+    - entity_id: sensor.transmission_down_speed
       icon: mdi:download
-    scene.living_room_normal:
+    - entity_id: scene.living_room_normal
       icon: mdi:brightness-1
-    scene.living_room_dim:
+    - entity_id: scene.living_room_dim
       icon: mdi:brightness-2
-    scene.bedtime:
+    - entity_id: scene.bedtime
       icon: mdi:weather-night
       order: 1
-    sensor.own_rain:
+    - entity_id: sensor.own_rain
       icon: mdi:weather-rainy
-    sensor.z3c_battery:
+    - entity_id: sensor.z3c_battery
       icon: mdi:battery
-    sensor.toilet_presence:
+    - entity_id: sensor.toilet_presence
       icon: mdi:run
-    sensor.hallway_presence:
+    - entity_id: sensor.hallway_presence
       icon: mdi:run
-    sensor.kitchen_presence:
+    - entity_id: sensor.kitchen_presence
       icon: mdi:run
-    sensor.bathroom_presence:
+    - entity_id: sensor.bathroom_presence
       icon: mdi:run
-    sensor.harmony_hub:
+    - entity_id: sensor.harmony_hub
       icon: mdi:remote
-    script.alarm_disarmed:
+    - entity_id: script.alarm_disarmed
       icon: mdi:lock-open
-    script.alarm_arm_away:
+    - entity_id: script.alarm_arm_away
       icon: mdi:lock
-    script.alarm_armed_away:
+    - entity_id: script.alarm_armed_away
       icon: mdi:lock-plus
-    script.alarm_triggered:
+    - entity_id: script.alarm_triggered
       icon: mdi:alert-circle
-    script.all_off:
+    - entity_id: script.all_off
       icon: mdi:nuke
-    script.amp_toggle:
+    - entity_id: script.amp_toggle
       icon: mdi:amplifier
-    script.flash_living_room_lights:
+    - entity_id: script.flash_living_room_lights
       icon: mdi:spotlight
-    script.ha_restart:
+    - entity_id: script.ha_restart
       icon: mdi:power
-    script.ha_reload_config:
+    - entity_id: script.ha_reload_config
       icon: mdi:refresh
-    script.hue_master_switch_on:
+    - entity_id: script.hue_master_switch_on
       icon: mdi:grid
-    script.hue_master_switch_off:
+    - entity_id: script.hue_master_switch_off
       icon: mdi:grid-off
-    script.im_home:
+    - entity_id: script.im_home
       icon: mdi:home-map-marker
-    script.lock_n_go:
+    - entity_id: script.lock_n_go
       icon: mdi:run-fast
-    script.lock_door:
+    - entity_id: script.lock_door
       icon: mdi:lock
-    script.unlock_door:
+    - entity_id: script.unlock_door
       icon: mdi:lock-open-outline
-    script.dash_button_kleenex_pressed:
+    - entity_id: script.dash_button_kleenex_pressed
       icon: mdi:arrow-up-drop-circle
-    script.dash_button_durex_pressed:
+    - entity_id: script.dash_button_durex_pressed
       icon: mdi:arrow-up-drop-circle-outline
-    script.play_ps3:
+    - entity_id: script.play_ps3
       icon: mdi:gamepad-variant
-    script.power_off:
+    - entity_id: script.power_off
       icon: mdi:stop-circle
-    script.she_is_home:
+    - entity_id: script.she_is_home
       icon: mdi:home-map-marker
-    script.shield_tv:
+    - entity_id: script.shield_tv
       icon: mdi:television-guide
-    script.smoke_break:
+    - entity_id: script.smoke_break
       icon: mdi:smoking
-    script.smoke_break_timer_off:
+    - entity_id: script.smoke_break_timer_off
       hidden: true
-    script.start_kodi:
+    - entity_id: script.start_kodi
       icon: mdi:kodi
-    script.tell_my_wife_i_love_her:
+    - entity_id: script.tell_my_wife_i_love_her
       icon: mdi:heart
-    script.wake_nvidia_shield:
+    - entity_id: script.wake_nvidia_shield
       icon: mdi:alarm
-    script.watch_tv:
+    - entity_id: script.watch_tv
       icon: mdi:television
-    script.z3c_restart:
+    - entity_id: script.z3c_restart
       icon: mdi:power
-    switch.c1_ir:
+    - entity_id: switch.c1_ir
       icon: mdi:weather-night
-    switch.c2_ir:
+    - entity_id: switch.c2_ir
       icon: mdi:weather-night
-    switch.c1_modect:
+    - entity_id: switch.c1_modect
       icon: mdi:run
-    switch.c2_modect:
+    - entity_id: switch.c2_modect
       icon: mdi:run
-    switch.c1_sodect:
+    - entity_id: switch.c1_sodect
       icon: mdi:surround-sound
-    switch.c2_sodect:
+    - entity_id: switch.c2_sodect
       icon: mdi:surround-sound
-    switch.livebox_play:
+    - entity_id: switch.livebox_play
       icon: mdi:television
-    switch.pilight_tv:
+    - entity_id: switch.pilight_tv
       hidden: true
       icon: mdi:power-plug
-    switch.guest_room_tv:
+    - entity_id: switch.guest_room_tv
       icon: mdi:power-plug
-    switch.shoe_cabinet:
+    - entity_id: switch.shoe_cabinet
       icon: mdi:power-plug
-    switch.wall_plug:
+    - entity_id: switch.wall_plug
       icon: mdi:power-plug
-    switch.tv:
+    - entity_id: switch.tv
       icon: mdi:power-plug
       assumed_state: true
-    switch.z3c_cam:
+    - entity_id: switch.z3c_cam
       icon: mdi:camera
-    switch.z3c_cam_front:
+    - entity_id: switch.z3c_cam_front
       icon: mdi:camera-front
-    switch.z3c_torch:
+    - entity_id: switch.z3c_torch
       icon: mdi:flashlight
 
-# vim: set filetype=yaml et sw=2 ts=2 :
+# vim: set filetype=yaml et sw=2 ts=2
