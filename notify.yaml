@@ -12,6 +12,24 @@
     username: !secret notify_free_username
     access_token: !secret notify_free_key
 
+  - name: facebook
+    platform: facebook
+    page_access_token: !secret fb_page_token
+
+  - name: facebook_me
+    platform: group
+    services:
+      - service: facebook
+        data:
+          target: !secret fb_my_phone_number
+
+  - name: facebook_her
+    platform: group
+    services:
+      - service: facebook
+        data:
+          target: !secret fb_her_phone_number
+
   - name: smsr
     platform: rest
     resource: http://octopi.lan:8090/sms
