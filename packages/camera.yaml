@@ -104,6 +104,9 @@ switch:
         friendly_name: "C2 Foscam Audio Detection"
 
 
+shell_command:
+  cam_snap: /scripts/hass.sh snap {{ cam }} /tmp/{{ cam }}.jpg
+
 script:
   z3c_restart:
     alias: Reboot Z3C
@@ -114,6 +117,40 @@ script:
           message: rebooted
           domain: camera
       - service: shell_command.z3c_restart
+
+  snap_c1:
+    alias: Grab a picture from C1
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: c1
+
+  snap_c2:
+    alias: Grab a picture from C2
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: c2
+
+  snap_octopi:
+    alias: Grab a picture from octopi
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: octopi
+
+  snap_rfpi:
+    alias: Grab a picture from rfpi
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: rfpi
+  snap_z3c:
+    alias: Grab a picture from z3c
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: z3c
 
 
 automation:
