@@ -1,0 +1,47 @@
+  intents:
+    HomeTemperature:
+      speech: >
+        {% for entity_id in states.group.weather_indoor.attributes.entity_id %}
+          {%- for state in states.sensor if state.entity_id == entity_id -%}
+            {{ state.attributes.friendly_name }}
+          {%- endfor %} is {{ states(entity_id) }} C
+        {% endfor %}
+
+    TurnLights:
+      speech: Turning {{ Room }} lights {{ OnOff }}
+      async_action: True
+      action:
+        - service: notify.html5
+          data_template:
+            message: Someone asked via apiai to turn {{ Room }} lights {{ OnOff }}
+        - service_template: >
+            {%- if OnOff == "on" -%}
+              light.turn_on
+            {%- else -%}
+              light.turn_off
+            {%- endif -%}
+          data_template:
+            # entity_id: "light.{{ Room | replace(' ', '_') }}"
+            entity_id: >
+              {%- if Room == "all" -%}
+                group.all_lights
+              {%- else -%}
+                "light.{{ Room | replace(' ', '_') }}"
+              {%- endif -%}
+
+    DoorLock:
+      speech: Setting door lock state to {{ DoorLockState }}
+      async_action: True
+      action:
+        - service: notify.html5
+          data_template:
+            message: "[api.ai] {{ DoorLockState }} door"
+        - service_template: >
+            {%- if DesiredState == "unlock" -%}
+              script.lock_door
+            {%- else -%}
+              script.unlock_door
+            {%- endif -%}
+
+
+# vim: set filetype=yaml et sw=2 ts=2 :
