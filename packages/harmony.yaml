@@ -1,3 +1,10 @@
+remote:
+  - platform: harmony
+    name: Harmony Hub
+    host: harmonyhub.lan
+    scan_interval: 30
+
+
 automation:
   - alias: Ensure the livebox-play is turned off when stopping it using Harmony Hub
     trigger:

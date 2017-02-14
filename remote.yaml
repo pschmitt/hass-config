@@ -1,4 +1,0 @@
-  - platform: harmony
-    name: Harmony Hub
-    host: harmonyhub.lan
-    scan_interval: 10
