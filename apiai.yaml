@@ -21,7 +21,6 @@
               light.turn_off
             {%- endif -%}
           data_template:
-            # entity_id: "light.{{ Room | replace(' ', '_') }}"
             entity_id: >
               {%- if Room == "all" -%}
                 group.all_lights
@@ -37,11 +36,10 @@
           data_template:
             message: "[api.ai] {{ DoorLockState }} door"
         - service_template: >
-            {%- if DesiredState == "unlock" -%}
-              script.lock_door
-            {%- else -%}
+            {%- if DoorLockState == "unlock" -%}
               script.unlock_door
+            {%- else -%}
+              script.lock_door
             {%- endif -%}
-
 
 # vim: set filetype=yaml et sw=2 ts=2 :
