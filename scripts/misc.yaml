@@ -6,14 +6,4 @@
           message: "Je t'aime :)"
           target: her
 
-  z3c_restart:
-    alias: Reboot Z3C
-    sequence:
-      - event: LOGBOOK_ENTRY
-        event_data:
-          name: Sony Z3C
-          message: rebooted
-          domain: camera
-      - service: shell_command.z3c_restart
-
 # vim: set filetype=yaml et sw=2 ts=2 :

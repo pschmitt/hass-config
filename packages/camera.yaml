@@ -1,0 +1,153 @@
+camera:
+  - platform: foscam
+    name: C1
+    ip: !secret foscam_c1_hostname
+    username: !secret foscam_c1_username
+    password: !secret foscam_c1_password
+
+  - platform: foscam
+    name: C2
+    ip: !secret foscam_c2_hostname
+    username: !secret foscam_c2_username
+    password: !secret foscam_c2_password
+
+  - platform: mjpeg
+    name: z3c
+    mjpeg_url: http://z3c.lan:8080/video
+    authentication: basic
+    username: !secret android_cam_z3c_username
+    password: !secret android_cam_z3c_password
+
+  - platform: mjpeg
+    name: octopi
+    mjpeg_url: http://octopi.lan:8089/?action=stream
+    authentication: basic
+    username: !secret cam_octopi_username
+    password: !secret cam_octopi_password
+
+  - platform: mjpeg
+    name: rfpi
+    mjpeg_url: http://rfpi.lan:8089/?action=stream
+    authentication: basic
+    username: !secret cam_rfpi_username
+    password: !secret cam_rfpi_password
+
+
+zoneminder:
+  host: nasteanas.lan:10080
+  path: /zm/
+  ssl: false
+  # username: !secret zm_username
+  # password: !secret zm_password
+
+
+sensor:
+  - platform: zoneminder
+
+  - platform: command_line
+    name: 'Z3C Battery'
+    command: /scripts/android-cam.sh z3c battery
+    unit_of_measurement: '%'
+
+
+switch:
+  - platform: zoneminder
+    command_on: Modect
+    command_off: Monitor
+
+  - platform: command_line
+    switches:
+      z3c_cam:
+        command_on: /scripts/android-cam.sh z3c cam on
+        command_off: /scripts/android-cam.sh z3c cam off
+        command_state: /scripts/android-cam.sh z3c cam state
+        friendly_name: "Z3C Camera"
+      z3c_cam_front:
+        command_on: /scripts/android-cam.sh z3c ffc on
+        command_off: /scripts/android-cam.sh z3c ffc off
+        command_state: /scripts/android-cam.sh z3c ffc state
+        friendly_name: "Z3C Front Facing Camera"
+      z3c_torch:
+        command_on: /scripts/android-cam.sh z3c torch on
+        command_off: /scripts/android-cam.sh z3c torch off
+        command_state: /scripts/android-cam.sh z3c torch state
+        friendly_name: "Z3C Torch"
+      c1_ir:
+        command_on: /scripts/foscam.sh c1 ir on
+        command_off: /scripts/foscam.sh c1 ir off
+        command_state: /scripts/foscam.sh c1 ir state
+        friendly_name: "C1 Night Mode"
+      c2_ir:
+        command_on: /scripts/foscam.sh c2 ir on
+        command_off: /scripts/foscam.sh c2 ir off
+        command_state: /scripts/foscam.sh c2 ir state
+        friendly_name: "C2 Night Mode"
+      c1_modect:
+        command_on: /scripts/foscam.sh c1 modect on
+        command_off: /scripts/foscam.sh c1 modect off
+        command_state: /scripts/foscam.sh c1 modect state
+        friendly_name: "C1 Foscam Motion Detection"
+      c2_modect:
+        command_on: /scripts/foscam.sh c2 modect on
+        command_off: /scripts/foscam.sh c2 modect off
+        command_state: /scripts/foscam.sh c2 modect state
+        friendly_name: "C2 Foscam Motion Detection"
+      c1_sodect:
+        command_on: /scripts/foscam.sh c1 sodect on
+        command_off: /scripts/foscam.sh c1 sodect off
+        command_state: /scripts/foscam.sh c1 sodect state
+        friendly_name: "C1 Foscam Audio Detection"
+      c2_sodect:
+        command_on: /scripts/foscam.sh c2 sodect on
+        command_off: /scripts/foscam.sh c2 sodect off
+        command_state: /scripts/foscam.sh c2 sodect state
+        friendly_name: "C2 Foscam Audio Detection"
+
+
+script:
+  z3c_restart:
+    alias: Reboot Z3C
+    sequence:
+      - event: LOGBOOK_ENTRY
+        event_data:
+          name: Sony Z3C
+          message: rebooted
+          domain: camera
+      - service: shell_command.z3c_restart
+
+
+automation:
+  - alias: Z3C Battery saver
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        below: 25
+    action:
+      - service: homeassistant.turn_off
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery below 25%. Let's stop the camera for a while."
+
+  - alias: Z3C Camera enabler
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.z3c_battery
+        above: 80
+    action:
+      - service: homeassistant.turn_on
+        entity_id: switch.z3c_cam
+      - service: notify.pushover
+        data:
+          message: "Z3C battery above 80%. Starting the camera app..!"
+
+  - alias: Daily reboot of the Z3C
+    trigger:
+      - platform: time
+        hours: 4
+        minutes: 0
+        seconds: 0
+    action:
+      service: script.z3c_restart
+
+# vim: set filetype=yaml et sw=2 ts=2 :

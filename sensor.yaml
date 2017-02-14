@@ -51,18 +51,11 @@
       # - market_price_usd
   # End of Finance section
 
-  - platform: zoneminder
-
   - platform: transmission
     host: nasteanas.lan
     monitored_variables:
       - 'download_speed'
       # - 'current_status'
       # - 'upload_speed'
-
-  - platform: command_line
-    name: 'Z3C Battery'
-    command: /scripts/android-cam.sh z3c battery
-    unit_of_measurement: '%'
 
 # vim: set filetype=yaml et sw=2 ts=2 :
