@@ -42,4 +42,18 @@
               script.lock_door
             {%- endif -%}
 
+    Alarm:
+      speech: Setting alarm to {{ AlarmState }}
+      async_action: True
+      action:
+        - service: notify.html5
+          data_template:
+            message: "[api.ai] {{ AlarmState }} alarm"
+        - service_template: >
+            {%- if AlarmState == "disarm" -%}
+              script.alarm_disarm
+            {%- else -%}
+              script.alarm_arm_away
+            {%- endif -%}
+
 # vim: set filetype=yaml et sw=2 ts=2 :
