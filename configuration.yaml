@@ -34,8 +34,8 @@ logger:
     requests.packages.urllib3.connectionpool: critical
 
 automation: !include_dir_merge_list automations
-apiai: !include apiai.yaml
 device_tracker: !include device_tracker.yaml
+downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
 ifttt: !include ifttt.yaml
 media_player: !include media_player.yaml
