@@ -78,7 +78,7 @@ automation:
     action:
       service: switch.toggle
       data:
-        entity_id: switch.virt_livebox_play
+        entity_id: switch.livebox_play_socket
 
   # - alias: Watch TV when single click flick button
   #   trigger:
