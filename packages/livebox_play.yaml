@@ -14,6 +14,12 @@ binary_sensor:
 
 
 automation:
+  - alias: Setup routing for livebox-play
+    trigger:
+      - platform: event
+        event_type: homeassistant_start
+    action:
+      service: shell_command.livebox_play_tv_setup_routing
   - alias: Daily reboot of the Livebox Play TV
     trigger:
       - platform: time
@@ -22,6 +28,10 @@ automation:
         seconds: 12
     action:
       - service: script.reboot_livebox_play
+
+
+shell_command:
+  livebox_play_tv_setup_routing: !secret livebox_play_tv_setup_routing
 
 
 script:
