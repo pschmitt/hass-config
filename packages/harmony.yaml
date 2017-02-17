@@ -96,4 +96,31 @@ script:
           entity_id: remote.harmony_hub
           activity: PowerOff
 
+  tv_volume_mute:
+    alias: Mute TV
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 42046341
+          command: Mute
+
+  tv_volume_down:
+    alias: Lower TV volume
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 42046341
+          command: VolumeDown
+
+  tv_volume_up:
+    alias: Increase TV volume
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 42046341
+          command: VolumeUp
+
 # vim: set filetype=yaml et sw=2 ts=2 :
