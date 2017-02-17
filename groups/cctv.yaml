@@ -12,6 +12,7 @@
       - group.z3c
       - group.raspicam_octopi
       - group.raspicam_rfpi
+      - group.raspicam_rastapi
       - group.modect
 
   cameras:
@@ -20,8 +21,10 @@
       - camera.c1
       - camera.octopi
       - camera.rfpi
+      - camera.rastapi
       - camera.c2
       - camera.z3c
+
   c1:
     name: Foscam C1
     control: hidden
@@ -75,6 +78,7 @@
       - switch.z3c_state
       - switch.octopi_state
       - switch.rfpi_state
+      - switch.rastapi_state
       - switch.c1_modect
       - switch.c2_modect
       - switch.c1_sodect
@@ -97,5 +101,14 @@
       - switch.rfpi_state
       - sensor.rfpi_status
       - sensor.rfpi_events
+
+  raspicam_rastapi:
+    name: Raspberry Pi Camera (rastapi)
+    control: hidden
+    entities:
+      - camera.rastapi
+      - switch.rastapi_state
+      - sensor.rastapi_status
+      - sensor.rastapi_events
 
 # vim: set filetype=yaml et sw=2 ts=2 :

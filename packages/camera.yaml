@@ -32,6 +32,13 @@ camera:
     username: !secret cam_rfpi_username
     password: !secret cam_rfpi_password
 
+  - platform: mjpeg
+    name: rastapi
+    mjpeg_url: http://rastapi.lan:8089/?action=stream
+    authentication: basic
+    username: !secret cam_rastapi_username
+    password: !secret cam_rastapi_password
+
 
 zoneminder:
   host: nasteanas.lan:10080
@@ -105,7 +112,7 @@ switch:
 
 
 shell_command:
-  cam_snap: /scripts/hass.sh snap {{ cam }} /tmp/{{ cam }}.jpg
+  cam_snap: /scripts/hass.sh snap {{ cam }} /tmp/snap_{{ cam }}.jpg
 
 script:
   z3c_restart:
@@ -145,6 +152,14 @@ script:
       - service: shell_command.cam_snap
         data:
           cam: rfpi
+
+  snap_rastapi:
+    alias: Grab a picture from rastapi
+    sequence:
+      - service: shell_command.cam_snap
+        data:
+          cam: rastapi
+
   snap_z3c:
     alias: Grab a picture from z3c
     sequence:

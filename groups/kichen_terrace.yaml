@@ -4,7 +4,8 @@
     icon: mdi:food-fork-drink
     entities:
       - group.weather_outdoor
-      - group.c2
+      - camera.c2
+      - camera.rastapi
       - light.kitchen_light
       - light.terrace
       - script.smoke_break
