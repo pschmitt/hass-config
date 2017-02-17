@@ -81,4 +81,31 @@ automation:
           message: "Front door has been unlocked"
           renotify: True
 
+alert:
+  door:
+    name: "The door is unlocked. Want me to lock it?"
+    entity_id: lock.home
+    state: 'unlocked'
+    repeat: 10
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - door_is_open
+
+
+notify:
+  - name: door_is_open
+    platform: group
+    services:
+      - service: html5
+        data:
+          # message: "The door is unlocked. Want me to lock it?"
+          data:
+            tag: 'lock-door-query'
+            renotify: True
+            actions:
+              - action: lock_door
+                icon: https://materialdesignicons.com/api/download/icon/png/D711AFDE-2B8D-4932-82AC-A04E7B2810AE/48
+                title: "Lock it"
+
 # vim: set filetype=yaml et sw=2 ts=2 :
