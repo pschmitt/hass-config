@@ -1,6 +1,6 @@
 binary_sensor:
   - platform: flic
-    host: octopi.lan
+    host: rastapi.lan
     port: 5551
     discovery: false
 
