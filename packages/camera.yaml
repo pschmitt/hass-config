@@ -113,6 +113,10 @@ switch:
 
 shell_command:
   cam_snap: /scripts/hass.sh snap {{ cam }} /tmp/snap_{{ cam }}.jpg
+  snap_upload: !secret snap_upload
+  snap_ldelete: "rm -f /tmp/snap_*.jpg"
+  snap_rdelete: !secret snap_rdelete
+
 
 script:
   z3c_restart:
@@ -166,6 +170,41 @@ script:
       - service: shell_command.cam_snap
         data:
           cam: z3c
+
+  snap_delete:
+    alias: Delete snapshot
+    sequence:
+      - delay:
+          minutes: 2
+      - service: shell_command.snap_ldelete
+        data_template:
+          cam: "{{ cam }}"
+      - service: shell_command.snap_rdelete
+        data_template:
+          cam: "{{ cam }}"
+
+  snap_send:
+    alias: Send a CCTV picture
+    sequence:
+      # Disable ev. deletion job
+      - service: script.turn_off
+        data:
+          entity_id: script.snap_delete
+      - service_template: "script.snap_{{ cam }}"
+      - service: shell_command.snap_upload
+        data_template:
+          cam: "{{ cam }}"
+      - service: notify.facebook_me
+        data_template:
+          message: Camera image
+          data:
+            attachment:
+              type: image
+              payload:
+                url: !secret snap_public_url
+      - service: script.snap_delete
+        data_template:
+          cam: "{{ cam }}"
 
 
 automation:
