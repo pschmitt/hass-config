@@ -108,4 +108,15 @@ notify:
                 icon: https://materialdesignicons.com/api/download/icon/png/D711AFDE-2B8D-4932-82AC-A04E7B2810AE/48
                 title: "Lock it"
 
+
+homeassistant:
+  customize:
+    # Scripts
+    - entity_id: script.lock_n_go
+      icon: mdi:run-fast
+    - entity_id: script.lock_door
+      icon: mdi:lock
+    - entity_id: script.unlock_door
+      icon: mdi:lock-open-outline
+
 # vim: set filetype=yaml et sw=2 ts=2 :

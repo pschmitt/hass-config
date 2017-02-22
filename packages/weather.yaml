@@ -1,3 +1,4 @@
+group:
   weather:
     name: Weather
     entities:
@@ -30,5 +31,13 @@
       - sensor.yr_symbol
       - sensor.owm_temperature
       - sensor.owm_rain
+
+
+homeassistant:
+  customize:
+    - entity_id: sensor.owm_rain
+      icon: mdi:weather-rainy
+    - entity_id: sensor.own_rain
+      icon: mdi:weather-rainy
 
 # vim: set filetype=yaml et sw=2 ts=2 :

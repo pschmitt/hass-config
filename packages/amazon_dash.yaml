@@ -41,4 +41,12 @@ script:
       - service: switch.toggle
         entity_id: switch.guest_room_tv
 
+
+homeassistant:
+  customize:
+    - entity_id: script.dash_button_kleenex_pressed
+      icon: mdi:arrow-up-drop-circle
+    - entity_id: script.dash_button_durex_pressed
+      icon: mdi:arrow-up-drop-circle-outline
+
 # vim: set filetype=yaml et sw=2 ts=2 :

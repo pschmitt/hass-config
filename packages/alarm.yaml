@@ -247,4 +247,16 @@ script:
           message: has been triggered
           domain: alarm
 
+
+homeassistant:
+  customize:
+    - entity_id: script.alarm_disarmed
+      icon: mdi:lock-open
+    - entity_id: script.alarm_arm_away
+      icon: mdi:lock
+    - entity_id: script.alarm_armed_away
+      icon: mdi:lock-plus
+    - entity_id: script.alarm_triggered
+      icon: mdi:alert-circle
+
 # vim: set filetype=yaml et sw=2 ts=2 :

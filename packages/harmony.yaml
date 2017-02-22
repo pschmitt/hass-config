@@ -123,4 +123,26 @@ script:
           device: 42046341
           command: VolumeUp
 
+
+homeassistant:
+  customize:
+    # Sensors
+    - entity_id: sensor.harmony_hub
+      icon: mdi:remote
+    # Scripts
+    - entity_id: script.amp_toggle
+      icon: mdi:amplifier
+    - entity_id: script.play_ps3
+      icon: mdi:gamepad-variant
+    - entity_id: script.start_kodi
+      icon: mdi:kodi
+    - entity_id: script.power_off
+      icon: mdi:stop-circle
+    - entity_id: script.wake_nvidia_shield
+      icon: mdi:alarm
+    - entity_id: script.watch_tv
+      icon: mdi:television
+    - entity_id: script.shield_tv
+      icon: mdi:television-guide
+
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,3 +1,18 @@
+group:
+  bedrooms:
+    name: Bedrooms
+    view: yes
+    icon: mdi:hotel
+    entities:
+      - light.bedroom
+      - light.guest_room
+      - scene.bedtime
+      - script.all_off
+      - switch.guest_room_tv
+      - group.z3c
+      - group.raspicam_rfpi
+      - media_player.brightcast
+
   living_room:
     name: Living Room
     view: yes
@@ -35,5 +50,17 @@
       # - media_player.kodi
       # - media_player.nvidia_shield_tv
       # - media_player.livebox_play
+
+  terrace_kitchen:
+    name: Terrace / Kitchen
+    view: yes
+    icon: mdi:food-fork-drink
+    entities:
+      - group.weather_outdoor
+      - camera.c2
+      - camera.rastapi
+      - light.kitchen_light
+      - light.terrace
+      - script.smoke_break
 
 # vim: set filetype=yaml et sw=2 ts=2 :

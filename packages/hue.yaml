@@ -223,4 +223,50 @@ script:
         data:
           entity_id: light.terrace
 
+
+homeassistant:
+  customize:
+    # Lights
+    - entity_id: light.living_room_table
+      icon: mdi:food
+    - entity_id: light.living_room_tv
+      icon: mdi:television
+    - entity_id: light.terrace
+      icon: mdi:pine-tree
+    - entity_id: light.toilet
+      icon: mdi:human-male-female
+    # Hue sensors
+    - entity_id: sensor.hallway_lux
+      icon: mdi:white-balance-sunny
+    - entity_id: sensor.toilet_lux
+      icon: mdi:white-balance-sunny
+    - entity_id: sensor.kitchen_lux
+      icon: mdi:white-balance-sunny
+    - entity_id: sensor.bathroom_lux
+      icon: mdi:white-balance-sunny
+    # Sensors
+    - entity_id: sensor.toilet_presence
+      icon: mdi:run
+    - entity_id: sensor.hallway_presence
+      icon: mdi:run
+    - entity_id: sensor.kitchen_presence
+      icon: mdi:run
+    - entity_id: sensor.bathroom_presence
+      icon: mdi:run
+    # Scenes
+    - entity_id: scene.bedtime
+      icon: mdi:weather-night
+      order: 1
+    - entity_id: scene.living_room_normal
+      icon: mdi:brightness-1
+    - entity_id: scene.living_room_dim
+      icon: mdi:brightness-2
+    # Scripts
+    - entity_id: script.hue_master_switch_on
+      icon: mdi:grid
+    - entity_id: script.hue_master_switch_off
+      icon: mdi:grid-off
+    - entity_id: script.flash_living_room_lights
+      icon: mdi:spotlight
+
 # vim: set filetype=yaml et sw=2 ts=2 :

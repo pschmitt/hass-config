@@ -1,3 +1,4 @@
+media_player:
   - platform: kodi
     name: Kodi
     host: shield.lan
@@ -9,6 +10,14 @@
     host: lgwebostv.lan
     mac: !secret lg_tv_mac_addr
     name: Living Room TV
+
+  - platform: cast
+    host: chromecast-audio.lan
+    name: BlindCast
+
+  - platform: cast
+    host: chromecast.lan
+    name: BrightCast
 
   - platform: universal
     name: TV
@@ -54,5 +63,18 @@
       volume_level: media_player.living_room_tv|volume_level
       source: media_player.living_room_tv|source
       source_list: media_player.living_room_tv|source_list
+
+group:
+  media_players:
+    name: Media Players
+    view: yes
+    icon: mdi:music-circle
+    entities:
+      - media_player.living_room_tv
+      - media_player.kodi
+      - media_player.livebox_play
+      - media_player.blindcast
+      - media_player.brightcast
+      - media_player.nvidia_shield_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :

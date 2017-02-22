@@ -1,3 +1,4 @@
+group:
   default_view:
     view: yes
     icon: mdi:home
@@ -21,5 +22,23 @@
       - script.lock_n_go
       - scene.living_room_dim
       - scene.bedtime
+
+
+homeassistant:
+  customize:
+    - entity_id: group.shortcuts
+      order: 1
+    - entity_id: group.living_room
+      order: 1
+    - entity_id: group.terrace_kitchen
+      order: 2
+    - entity_id: group.bedrooms
+      order: 4
+    - entity_id: group.media_players
+      order: 5
+    - entity_id: group.cctv
+      order: 6
+    - entity_id: group.zwave
+      order: 7
 
 # vim: set filetype=yaml et sw=2 ts=2 :

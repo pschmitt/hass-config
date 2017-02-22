@@ -54,5 +54,59 @@ script:
     sequence:
       - service: homeassistant.reload_core_config
 
-# vim: set filetype=yaml et sw=2 ts=2 :
 
+group:
+  hass:
+    name: hass
+    view: yes
+    icon: mdi:bug
+    entities:
+      - group.hass_infrastructure
+      - group.all
+      - group.all_scripts
+      - group.all_lights
+      - group.all_switches
+      - group.all_devices
+      # - group.all_automations
+      # - group.media_players
+      - group.zwave
+
+
+homeassistant:
+  customize:
+    # Groups
+    - entity_id: group.hass
+      order: 99
+    # Entities belonging to HASS tab
+    - entity_id: group.hass_infrastructure
+      order: 1
+    - entity_id: group.all_devices
+      order: 2
+    - entity_id: group.zwave
+      order: 3
+    - entity_id: group.all_switches
+      order: 4
+    - entity_id: group.all
+      hidden: false
+    - entity_id: group.all_automations
+      hidden: false
+      order: 99
+    - entity_id: group.all_lights
+      hidden: false
+      order: 2
+    - entity_id: group.all_devices
+      hidden: false
+    - entity_id: group.all_scripts
+      control: hidden
+      order: 1
+      hidden: false
+    - entity_id: group.all_switches
+      control: hidden
+      hidden: false
+    # Scripts
+    - entity_id: script.ha_reload_config
+      icon: mdi:refresh
+    - entity_id: script.ha_restart
+      icon: mdi:power
+
+# vim: set filetype=yaml et sw=2 ts=2 :
