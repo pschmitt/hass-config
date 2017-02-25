@@ -27,30 +27,36 @@ automation:
       platform: state
       entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_rastapi, binary_sensor.pilight_rfpi
       state: 'off'
+      for:
+        minutes: 5
     action:
       - service: notify.html5
         data_template:
           message: "{{ trigger.to_state.attributes.friendly_name }} is unreachable!"
           data:
             tag: "{{ trigger.to_state.attributes.friendly_name }}_unreachable"
-      # - service: persistent_notification.create
-      #   data_template:
-      #     message: "{{ trigger.to_state.attributes.friendly_name }} is unreachable!"
-      #     title: "Infrastructure component error"
-      #     notification_id: "{{ trigger.to_state.attributes.friendly_name }}_unreachable"
+      # Notify when service comes back up
+      - service: automation.turn_on
+        entity_id: automation.infrastructure_component_has_come_up_again
 
   - alias: "Infrastructure component has come up again"
+    initial_state: false
     trigger:
       platform: state
       entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_rastapi, binary_sensor.pilight_rfpi
       from: 'off'
       to: 'on'
+      for:
+        minutes: 5
     action:
-      service: notify.html5
-      data_template:
-        message: "{{ trigger.to_state.attributes.friendly_name }} is up again."
-        data:
-          tag: "{{ trigger.to_state.attributes.friendly_name }}_up"
+      - service: notify.html5
+        data_template:
+          message: "{{ trigger.to_state.attributes.friendly_name }} is up again."
+          data:
+            tag: "{{ trigger.to_state.attributes.friendly_name }}_up"
+      # Self desactivation
+      - service: automation.turn_off
+        entity_id: automation.infrastructure_component_has_come_up_again
 
 
 group:
