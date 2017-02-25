@@ -14,6 +14,14 @@ automation:
       - service: script.dash_button_durex_pressed
 
 
+notify:
+  - name: dash_pressed
+    platform: rest
+    resource: http://nasteanas.lan:8993/dash/pressed
+    method: POST
+    message_param_name: dash_id
+
+
 script:
   dash_button_kleenex_pressed:
     alias: 'Kleenex Dash button pressed'

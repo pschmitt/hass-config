@@ -91,12 +91,6 @@
     access_token: !secret twitter_access_token
     access_token_secret: !secret twitter_access_token_secret
 
-  - name: dash_pressed
-    platform: rest
-    resource: http://nasteanas.lan:8993/dash/pressed
-    method: POST
-    message_param_name: dash_id
-
   - platform: webostv
     host: lgwebostv.lan
     name: livingroom_tv
