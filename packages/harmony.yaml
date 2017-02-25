@@ -5,34 +5,37 @@ remote:
     scan_interval: 30
 
 
-automation:
-  - alias: Ensure the livebox-play is turned off when stopping it using Harmony Hub
-    trigger:
-      - platform: state
-        entity_id: remote.harmony_hub
-    condition:
-      condition: template
-      value_template: '{{ trigger.from_state.attributes.current_activity == "Watch TV" }}'
-    action:
-      - service: media_player.turn_off
-        entity_id: media_player.livebox_play
-
-  - alias: Ensure the livebox-play is turned on when starting TV using Harmony Hub
-    trigger:
-      - platform: state
-        entity_id: remote.harmony_hub
-    condition:
-      condition: template
-      value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'
-    action:
-      - service: media_player.turn_on
-        entity_id: media_player.livebox_play
+# automation:
+#   - alias: Ensure the livebox-play is turned off when stopping it using Harmony Hub
+#     trigger:
+#       - platform: state
+#         entity_id: remote.harmony_hub
+#     condition:
+#       condition: template
+#       value_template: '{{ trigger.from_state.attributes.current_activity == "Watch TV" }}'
+#     action:
+#       - service: media_player.turn_off
+#         entity_id: media_player.livebox_play
+#
+#   - alias: Ensure the livebox-play is turned on when starting TV using Harmony Hub
+#     trigger:
+#       - platform: state
+#         entity_id: remote.harmony_hub
+#     condition:
+#       condition: template
+#       value_template: '{{ trigger.to_state.attributes.current_activity == "Watch TV" }}'
+#     action:
+#       - service: media_player.turn_on
+#         entity_id: media_player.livebox_play
 
 
 rest_command:
   shield_kodi:
-    method: get
     url: http://nasteanas.lan:8993/shield/kodi
+  kvm_start_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/start
+  kvm_stop_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/stop
 
 
 sensor:
@@ -44,57 +47,44 @@ sensor:
 
 
 script:
-  amp_toggle:
-    alias: Toggle the amp
+  turn_on_tv:
+    alias: Turn on the living room TV
     sequence:
+      # Try via the built in component
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.tv
+      # Use harmony hub if that did not work
       - service: remote.send_command
         data:
           entity_id: remote.harmony_hub
-          device: 40566636
-          command: PowerToggle
+          device: 42046341
+          command: PowerOn
 
-  watch_tv:
-    alias: Watch TV
+  select_tv_source:
+    alias: Set the living room TV source
     sequence:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: switch.livebox_play_socket
-      - service: remote.turn_on
-        data:
+      - delay:
+          seconds: 2
+      - service: media_player.select_source
+        data_template:
+          entity_id: media_player.living_room_tv
+          source: '{{ source }}'
+      # Harmony Hub fallback
+      - service: remote.send_command
+        data_template:
           entity_id: remote.harmony_hub
-          activity: Watch TV
-
-  shield_tv:
-    alias: Shield TV
-    sequence:
-      - service: remote.turn_on
-        data:
-          entity_id: remote.harmony_hub
-          activity: Shield
-
-  start_kodi:
-    alias: Kodi@Shield
-    sequence:
-      - service: script.turn_on
-        data:
-          entity_id: script.shield_tv
-      - service: rest_command.shield_kodi
-
-  play_ps3:
-    alias: PS3
-    sequence:
-      - service: remote.turn_on
-        data:
-          entity_id: remote.harmony_hub
-          activity: Play PS3
-
-  power_off:
-    alias: Stop current activity
-    sequence:
-      - service: remote.turn_on
-        data:
-          entity_id: remote.harmony_hub
-          activity: PowerOff
+          device: 42046341
+          command: >
+            {%- if source == "Nvidia Shield TV" -%}
+              InputHdmi1
+            {%- elif source == "Kinivo HDMI Splitter" -%}
+              InputHdmi2
+            {%- elif source == "Orange Livebox Play" -%}
+              InputHdmi3
+            {%- elif source == "Sony Playstation 3" -%}
+              InputHdmi4
+            {%- endif -%}
 
   tv_volume_mute:
     alias: Mute TV
@@ -123,6 +113,128 @@ script:
           device: 42046341
           command: VolumeUp
 
+  amp_toggle:
+    alias: Toggle the amp
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40566636
+          command: PowerToggle
+
+  watch_tv:
+    alias: Watch TV
+    sequence:
+      - service: script.turn_on_tv
+      - service: script.turn_on_livebox_play
+      - service: script.select_tv_source
+        data:
+          source: 'Orange Livebox Play'
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40565609
+          command: Return
+      - service: media_player.select_source
+        entity_id: media_player.livebox_play
+        data:
+          source: "BFM TV"
+
+  harmony_watch_tv:
+    alias: Watch TV
+    sequence:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: switch.livebox_play_socket
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Watch TV
+
+  shield_tv:
+    alias: Shield TV
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40563742
+          command: PowerOn
+      - service: script.turn_on_tv
+      - service: script.select_tv_source
+        data:
+          source: 'Nvidia Shield TV'
+
+  start_kodi:
+    alias: Kodi@Shield
+    sequence:
+      - service: script.shield_tv
+      - service: rest_command.shield_kodi
+
+  turn_off_nvidia_shield_tv:
+    alias: Turn off Nvidia Shield TV
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40563742
+          command: PowerOff
+
+  play_ps3:
+    alias: Play PS3
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40567705
+          command: PowerOn
+      - service: script.turn_on_tv
+      - service: script.select_tv_source
+        data:
+          source: 'Sony Playstation 3'
+
+  harmony_play_ps3:
+    alias: Launch Play PS3 Activity
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: Play PS3
+
+  turn_off_ps3:
+    alias: Turn off PS3
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40567705
+          command: PowerOff
+
+  start_dolphin:
+    alias: Start dolphin-emu
+    sequence:
+      # Start VM
+      - service: rest_command.kvm_start_win81_gpu
+      # Make sure the TV is on
+      - service: script.turn_on_tv
+      # Switch source
+      - service: script.select_tv_source
+        data:
+          source: Kinivo HDMI Splitter
+
+  turn_off_dolphin:
+    alias: Turn off dolphin-emu host
+    sequence:
+      # Stop VM
+      - service: rest_command.kvm_stop_win81_gpu
+
+  harmony_power_off:
+    alias: Stop current activity
+    sequence:
+      - service: remote.turn_on
+        data:
+          entity_id: remote.harmony_hub
+          activity: PowerOff
+
 
 homeassistant:
   customize:
@@ -144,5 +256,7 @@ homeassistant:
       icon: mdi:television
     - entity_id: script.shield_tv
       icon: mdi:television-guide
+    - entity_id: script.start_dolphin
+      icon: mdi:fish
 
 # vim: set filetype=yaml et sw=2 ts=2 :

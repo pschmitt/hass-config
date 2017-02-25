@@ -25,6 +25,7 @@ group:
       - script.start_kodi
       - script.power_off
       - script.wake_nvidia_shield
+      - script.start_dolphin
       - light.living_room_light_tv
       - light.living_room_light_table
       - light.front_door
