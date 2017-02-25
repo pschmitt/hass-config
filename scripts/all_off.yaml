@@ -19,6 +19,8 @@
       - service: script.turn_off_tv
       - service: script.turn_off_nvidia_shield
       - service: script.turn_off_livebox_play
+      - service: script.turn_off_ps3
+      - service: script.turn_off_dolphin
 
   turn_off_tv:
     alias: Turn off the living room TV
@@ -44,5 +46,21 @@
           entity_id: remote.harmony_hub
           device: 40563742
           command: PowerOff
+
+  turn_off_ps3:
+    alias: Turn off PS3
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40567705
+          command: PowerOff
+
+  turn_off_dolphin:
+    alias: Turn off dolphin-emu host
+    sequence:
+      # Stop VM
+      - service: rest_command.kvm_stop_win81_gpu
+
 
 # vim: set filetype=yaml et sw=2 ts=2 :
