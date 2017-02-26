@@ -82,6 +82,7 @@ homeassistant:
       order: 1
     group.all_devices:
       order: 2
+      hidden: false
     group.zwave:
       order: 3
     group.all_switches:
@@ -94,8 +95,6 @@ homeassistant:
     group.all_lights:
       hidden: false
       order: 2
-    group.all_devices:
-      hidden: false
     group.all_scripts:
       control: hidden
       order: 1
