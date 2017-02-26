@@ -80,18 +80,16 @@ homeassistant:
     # Entities belonging to HASS tab
     group.hass_infrastructure:
       order: 1
-    group.all_devices:
-      order: 2
-      hidden: false
     group.zwave:
       order: 3
-    group.all_switches:
-      order: 4
     group.all:
       hidden: false
     group.all_automations:
       hidden: false
       order: 99
+    group.all_devices:
+      order: 2
+      hidden: false
     group.all_lights:
       hidden: false
       order: 2
@@ -102,6 +100,7 @@ homeassistant:
     group.all_switches:
       control: hidden
       hidden: false
+      order: 4
     # Scripts
     script.ha_reload_config:
       icon: mdi:refresh
