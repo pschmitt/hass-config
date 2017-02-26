@@ -1,6 +1,41 @@
 zwave:
   usb_path: /dev/ttyACM0
   config_path: /config/zwave
+  device_config:
+    # Fibaro FGSD002
+    binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor_8_0:
+      ignored: false
+      polling_intensity: 1
+    sensor.fibaro_system_fgsd002_smoke_sensor_burglar_8_10:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_general_8_0:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_4:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_7:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_power_management_8_11:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_1:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_4:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid_8_2:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_system_8_12:
+      ignored: false
+      polling_intensity: 2
+    sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1:
+      ignored: false
+      polling_intensity: 1
 
 
 group:
@@ -32,27 +67,27 @@ group:
 homeassistant:
   customize:
     # Fibaro FGSD002
-    - entity_id: binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor_8_0
+    binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor_8_0:
       friendly_name: Smoke Sensor 1
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_burglar_8_10
+    sensor.fibaro_system_fgsd002_smoke_sensor_burglar_8_10:
       friendly_name: Burglar Sensor
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_general_8_0
+    sensor.fibaro_system_fgsd002_smoke_sensor_general_8_0:
       friendly_name: General Sensor
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_4
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_4:
       friendly_name: Heat Sensor 1
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_7
+    sensor.fibaro_system_fgsd002_smoke_sensor_heat_8_7:
       friendly_name: Heat Sensor 2
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_power_management_8_11
+    sensor.fibaro_system_fgsd002_smoke_sensor_power_management_8_11:
       friendly_name: Power Management
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_1
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_1:
       friendly_name: Smoke Sensor 2
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_4
+    sensor.fibaro_system_fgsd002_smoke_sensor_smoke_8_4:
       friendly_name: Smoke Sensor 3
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid_8_2
+    sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid_8_2:
       friendly_name: Source Node ID
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_system_8_12
+    sensor.fibaro_system_fgsd002_smoke_sensor_system_8_12:
       friendly_name: System Sensor
-    - entity_id: sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1
+    sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1:
       friendly_name: Smoke Sensor Temperature
 
 # vim: set filetype=yaml et sw=2 ts=2 :
