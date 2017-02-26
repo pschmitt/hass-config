@@ -112,11 +112,11 @@ notify:
 homeassistant:
   customize:
     # Scripts
-    - entity_id: script.lock_n_go
+    script.lock_n_go:
       icon: mdi:run-fast
-    - entity_id: script.lock_door
+    script.lock_door:
       icon: mdi:lock
-    - entity_id: script.unlock_door
+    script.unlock_door:
       icon: mdi:lock-open-outline
 
 # vim: set filetype=yaml et sw=2 ts=2 :

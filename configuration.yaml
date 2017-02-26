@@ -18,6 +18,7 @@ http:
   login_attempts_threshold: 5
   trusted_networks: !include trusted_networks.yaml
 
+config:
 conversation:
 discovery:
 frontend:

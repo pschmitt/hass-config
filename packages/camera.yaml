@@ -358,38 +358,38 @@ group:
 homeassistant:
   customize:
     # Automation
-    - entity_id: automation.z3c_battery_saver
+    automation.z3c_battery_saver:
       hidden: true
-    - entity_id: automation.z3c_camera_enabler
+    automation.z3c_camera_enabler:
       hidden: true
     # Switches
-    - entity_id: switch.z3c_cam
+    switch.z3c_cam:
       icon: mdi:camera
-    - entity_id: switch.z3c_cam_front
+    switch.z3c_cam_front:
       icon: mdi:camera-front
-    - entity_id: switch.z3c_torch
+    switch.z3c_torch:
       icon: mdi:flashlight
-    - entity_id: switch.c1_ir
+    switch.c1_ir:
       icon: mdi:weather-night
-    - entity_id: switch.c2_ir
+    switch.c2_ir:
       icon: mdi:weather-night
-    - entity_id: switch.c1_modect
+    switch.c1_modect:
       icon: mdi:run
-    - entity_id: switch.c2_modect
+    switch.c2_modect:
       icon: mdi:run
-    - entity_id: switch.c1_sodect
+    switch.c1_sodect:
       icon: mdi:surround-sound
-    - entity_id: switch.c2_sodect
+    switch.c2_sodect:
       icon: mdi:surround-sound
     # Sensors
-    - entity_id: sensor.z3c_battery
+    sensor.z3c_battery:
       icon: mdi:battery
     # Scripts
-    - entity_id: script.z3c_restart
+    script.z3c_restart:
       icon: mdi:power
-    - entity_id: script.smoke_break
+    script.smoke_break:
       icon: mdi:smoking
-    - entity_id: script.smoke_break_timer_off
+    script.smoke_break_timer_off:
       hidden: true
 
 # vim: set filetype=yaml et sw=2 ts=2 :

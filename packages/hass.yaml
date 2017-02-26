@@ -75,38 +75,38 @@ group:
 homeassistant:
   customize:
     # Groups
-    - entity_id: group.hass
+    group.hass:
       order: 99
     # Entities belonging to HASS tab
-    - entity_id: group.hass_infrastructure
+    group.hass_infrastructure:
       order: 1
-    - entity_id: group.all_devices
+    group.all_devices:
       order: 2
-    - entity_id: group.zwave
+    group.zwave:
       order: 3
-    - entity_id: group.all_switches
+    group.all_switches:
       order: 4
-    - entity_id: group.all
+    group.all:
       hidden: false
-    - entity_id: group.all_automations
+    group.all_automations:
       hidden: false
       order: 99
-    - entity_id: group.all_lights
+    group.all_lights:
       hidden: false
       order: 2
-    - entity_id: group.all_devices
+    group.all_devices:
       hidden: false
-    - entity_id: group.all_scripts
+    group.all_scripts:
       control: hidden
       order: 1
       hidden: false
-    - entity_id: group.all_switches
+    group.all_switches:
       control: hidden
       hidden: false
     # Scripts
-    - entity_id: script.ha_reload_config
+    script.ha_reload_config:
       icon: mdi:refresh
-    - entity_id: script.ha_restart
+    script.ha_restart:
       icon: mdi:power
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -139,6 +139,14 @@ script:
         entity_id: media_player.livebox_play
         data:
           source: "BFM TV"
+      # Wait 5 minutes in case the livebox play device was off due to the socket
+      - delay:
+          minutes: 5
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40565609
+          command: Return
 
   harmony_watch_tv:
     alias: Watch TV
@@ -215,24 +223,24 @@ script:
 homeassistant:
   customize:
     # Sensors
-    - entity_id: sensor.harmony_hub
+    sensor.harmony_hub:
       icon: mdi:remote
     # Scripts
-    - entity_id: script.amp_toggle
+    script.amp_toggle:
       icon: mdi:amplifier
-    - entity_id: script.play_ps3
+    script.play_ps3:
       icon: mdi:gamepad-variant
-    - entity_id: script.start_kodi
+    script.start_kodi:
       icon: mdi:kodi
-    - entity_id: script.power_off
+    script.power_off:
       icon: mdi:stop-circle
-    - entity_id: script.wake_nvidia_shield
+    script.wake_nvidia_shield:
       icon: mdi:alarm
-    - entity_id: script.watch_tv
+    script.watch_tv:
       icon: mdi:television
-    - entity_id: script.shield_tv
+    script.shield_tv:
       icon: mdi:television-guide
-    - entity_id: script.start_dolphin
+    script.start_dolphin:
       icon: mdi:fish
 
 # vim: set filetype=yaml et sw=2 ts=2 :

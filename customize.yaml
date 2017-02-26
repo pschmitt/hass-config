@@ -1,26 +1,33 @@
-    - entity_id: sensor.transmission_down_speed
-      icon: mdi:download
-    - entity_id: script.all_off
-      icon: mdi:nuke
-    - entity_id: script.im_home
-      icon: mdi:home-map-marker
-    - entity_id: script.she_is_home
-      icon: mdi:home-map-marker
-    - entity_id: script.tell_my_wife_i_love_her
-      icon: mdi:heart
-    - entity_id: switch.livebox_play
-      icon: mdi:television
-    - entity_id: switch.pilight_tv
-      hidden: true
-      icon: mdi:power-plug
-    - entity_id: switch.guest_room_tv
-      icon: mdi:power-plug
-    - entity_id: switch.shoe_cabinet
-      icon: mdi:power-plug
-    - entity_id: switch.wall_plug
-      icon: mdi:power-plug
-    - entity_id: switch.tv
-      icon: mdi:power-plug
-      assumed_state: true
+# Sensors
+sensor.transmission_down_speed:
+  icon: mdi:download
+
+# Scripts
+script.all_off:
+  icon: mdi:nuke
+script.turn_off_media_players:
+  icon: mdi:laptop-off
+script.im_home:
+  icon: mdi:home-map-marker
+script.she_is_home:
+  icon: mdi:home-map-marker
+script.tell_my_wife_i_love_her:
+  icon: mdi:heart
+
+# Switches
+switch.livebox_play:
+  icon: mdi:television
+switch.pilight_tv:
+  hidden: true
+  icon: mdi:power-plug
+switch.guest_room_tv:
+  icon: mdi:power-plug
+switch.shoe_cabinet:
+  icon: mdi:power-plug
+switch.wall_plug:
+  icon: mdi:power-plug
+switch.tv:
+  icon: mdi:power-plug
+  assumed_state: true
 
 # vim: set filetype=yaml et sw=2 ts=2
