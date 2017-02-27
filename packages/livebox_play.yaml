@@ -37,12 +37,21 @@ shell_command:
 
 
 script:
-  turn_off_livebox_play:
+  turn_off_livebox_play_tv:
     alias: Turn off the livebox play
     sequence:
       - service: media_player.turn_off
         data:
           entity_id: media_player.livebox_play
+      # Turn off socket
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play_socket
+      # Turn off socket (2)
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play_socket
+      # Turn off socket (3)
       - service: homeassistant.turn_off
         data:
           entity_id: switch.livebox_play_socket
@@ -73,6 +82,14 @@ script:
     alias: Force turning on the Livebox Play TV
     sequence:
       # Turn on socket
+      - service: homeassistant.turn_on
+        data:
+          entity_id: switch.livebox_play_socket
+      # Turn on socket (2)
+      - service: homeassistant.turn_on
+        data:
+          entity_id: switch.livebox_play_socket
+      # Turn on socket (3)
       - service: homeassistant.turn_on
         data:
           entity_id: switch.livebox_play_socket

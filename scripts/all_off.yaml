@@ -8,18 +8,16 @@
       #   data:
       #     entity_id: remote.harmony_hub
       #     activity: PowerOff
-      - service: script.turn_off_tv
-      - service: script.turn_off_livebox_play
-      - service: script.turn_off_nvidia_shield
-      - service: script.turn_off_guest_tv
+      - service: script.turn_off_media_players
+      - service: script.turn_off_guest_room_tv
 
   turn_off_media_players:
     alias: Turn off media players
     sequence:
       - service: script.turn_off_tv
-      - service: script.turn_off_nvidia_shield
-      - service: script.turn_off_livebox_play
-      - service: script.turn_off_ps3
+      - service: script.turn_off_nvidia_shield_tv
+      - service: script.turn_off_livebox_play_tv
+      - service: script.turn_off_sony_ps3
       - service: script.turn_off_dolphin
 
   turn_off_tv:
@@ -31,14 +29,14 @@
           device: 42046341
           command: PowerOff
 
-  turn_off_guest_tv:
+  turn_off_guest_room_tv:
     alias: Turn off the guest room TV
     sequence:
     - service: homeassistant.turn_off
       data:
         entity_id: switch.guest_room_tv
 
-  turn_off_nvidia_shield:
+  turn_off_nvidia_shield_tv:
     alias: Turn off the Nvidia Shield TV
     sequence:
       - service: remote.send_command
@@ -47,9 +45,12 @@
           device: 40563742
           command: PowerOff
 
-  turn_off_ps3:
+  turn_off_sony_ps3:
     alias: Turn off PS3
     sequence:
+      - condition: state
+        entity_id: binary_sensor.sony_ps3
+        state: 'on'
       - service: remote.send_command
         data:
           entity_id: remote.harmony_hub
@@ -59,8 +60,10 @@
   turn_off_dolphin:
     alias: Turn off dolphin-emu host
     sequence:
+      - service: notify.html5
+        data:
+          message: "Turning off VM win81-gpu"
       # Stop VM
       - service: rest_command.kvm_stop_win81_gpu
-
 
 # vim: set filetype=yaml et sw=2 ts=2 :

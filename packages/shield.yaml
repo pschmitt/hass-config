@@ -38,5 +38,11 @@ script:
     alias: Wake Nvidia Shield TV
     sequence:
       - service: rest_command.wake_nvidia_shield
+      # Harmony Hub fallback
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: 40563742
+          command: PowerOn
 
 # vim: set filetype=yaml et sw=2 ts=2 :

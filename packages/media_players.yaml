@@ -64,12 +64,14 @@ media_player:
       source: media_player.living_room_tv|source
       source_list: media_player.living_room_tv|source_list
 
+
 group:
   media_players:
     name: Media Players
     view: yes
     icon: mdi:music-circle
     entities:
+      - media_player.tv
       - media_player.living_room_tv
       - media_player.kodi
       - media_player.livebox_play
@@ -79,6 +81,26 @@ group:
 
 
 automation:
+  - alias: Turn on dolphin-emu if TV is on HDMI2 for 30s
+    trigger:
+      platform: state
+      entity_id: sensor.tv_source
+      state: 'Kinivo HDMI Splitter'
+      for:
+        seconds: 30
+    action:
+      service: script.start_dolphin
+
+  # - alias: Turn off dolphin-emu if TV is not displaying it for 5min
+  #   trigger:
+  #     platform: state
+  #     entity_id: sensor.tv_source
+  #     from: 'Kinivo HDMI Splitter'
+  #     for:
+  #       minutes: 5
+  #   action:
+  #     service: script.turn_off_dolphin
+
   - alias: Turn off TV appliances if the TV is off for an hour
     trigger:
       platform: state
@@ -89,22 +111,22 @@ automation:
     action:
       - service: script.turn_off_media_players
 
-  - alias: 'Shut down livebox-play when TV is on and not displaying livebox-play'
-    initial_state: false
-    trigger:
-      - platform: template
-        value_template: "{{ is_state('media_player.living_room_tv', 'playing') and not is_state_attr('media_player.living_room_tv', 'source', 'Orange Livebox Play') }}"
-        # for:
-        #   seconds: 30
-    action:
-      - service: service.turn_off_livebox_play
+  # - alias: 'Shut down livebox-play when TV is on and not displaying livebox-play'
+  #   initial_state: false
+  #   trigger:
+  #     - platform: template
+  #       value_template: "{{ is_state('media_player.living_room_tv', 'playing') and not is_state('sensor.tv_source', 'Orange Livebox Play') }}"
+  #       # for:
+  #       #   seconds: 30
+  #   action:
+  #     - service: service.turn_off_livebox_play_tv
 
   - alias: 'Watching Téva'
     initial_state: false
     trigger:
       - platform: template
         value_template: >
-          "{{ is_state_attr('media_player.living_room_tv', 'source', 'Orange Livebox Play') and is_state_attr('media_player.livebox_play', 'source', 'Téva') }}"
+          "{{ is_state('sensor.tv_source', 'Orange Livebox Play') and is_state('sensor.tv_channel', 'Téva') }}"
     action:
       - service: notify.html5
         data:
@@ -116,21 +138,78 @@ automation:
   - alias: 'Playing PS3'
     initial_state: false
     trigger:
-      - platform: template
-        value_template: "{{ is_state_attr('media_player.living_room_tv', 'source', 'Sony Playstation 3') }}"
+      - platform: state
+        entity_id: sensor.tv_source
+        state: 'Sony Playstation 3'
     action:
       - service: notify.livingroom_tv
         data:
           message: 'Oh non, Mimine. Pas Skyrim ! PAS ENCORE !'
 
-#   - alias: Turn off the livebox_play is it not currently displayed
-#     trigger:
-#       - platform: template
-#     condition:
-#       condition: template
-#       value_template: '{{ trigger.from_state.attributes.current_activity == "Watch TV" }}'
-#     action:
-#       - service: media_player.turn_off
-#         entity_id: media_player.livebox_play
+  - alias: Turn off the Livebox Play TV if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_liveboxplay
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Livebox Play TV b/c of inactivity"
+      - service: media_player.turn_off
+        entity_id: media_player.livebox_play
+
+  - alias: Turn off Nvidia shield TV if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_nvidia_shield_tv
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Nvidia Shield TV b/c of inactivity"
+      - service: script.turn_off_nvidia_shield_tv
+
+  - alias: Turn off the Sony PS3 if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_sony_ps3
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Sony PS3 TV b/c of inactivity"
+      - service: script.turn_off_sony_ps3
+
+sensor:
+  - platform: template
+    sensors:
+      tv_source:
+        value_template: '{{ states.media_player.living_room_tv.attributes.source }}'
+        friendly_name: 'Current TV Media Source'
+      tv_channel:
+        value_template: '{{ states.media_player.livebox_play.attributes.source }}'
+        friendly_name: 'Current TV Channel'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      tv_displaying_liveboxplay:
+        value_template: '{{ states.sensor.tv_source.state == "Orange Livebox Play" }}'
+        friendly_name: Livebox Play TV is currently displayed
+      tv_displaying_nvidia_shield_tv:
+        value_template: '{{ states.sensor.tv_source.state == "Nvidia Shield TV" }}'
+        friendly_name: Nvidia Shield TV is currently displayed
+      tv_displaying_kinivo_hdmi_splitter:
+        value_template: '{{ states.sensor.tv_source.state == "Kinivo HDMI Splitter" }}'
+        friendly_name: Kinivo HDMI Splitter is currently displayed
+      tv_displaying_sony_ps3:
+        value_template: '{{ states.sensor.tv_source.state == "Sony Playstation 3" }}'
+        friendly_name: Sony Playstation 3 is currently displayed
 
 # vim: set filetype=yaml et sw=2 ts=2 :
