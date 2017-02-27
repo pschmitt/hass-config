@@ -20,6 +20,13 @@ binary_sensor:
     payload_on: open
     payload_off: closed
 
+  - platform: command_line
+    name: sony_ps3
+    command: 'ping -c 2 sony-ps3.lan | grep " 0% packet loss" | wc -l'
+    device_class: connectivity
+    payload_on: 1
+    payload_off: 0
+
 
 automation:
   - alias: "Infrastructure component is off"
