@@ -43,18 +43,8 @@ script:
       - service: media_player.turn_off
         data:
           entity_id: media_player.livebox_play
-      # Turn off socket
-      - service: homeassistant.turn_off
-        data:
-          entity_id: switch.livebox_play_socket
-      # Turn off socket (2)
-      - service: homeassistant.turn_off
-        data:
-          entity_id: switch.livebox_play_socket
-      # Turn off socket (3)
-      - service: homeassistant.turn_off
-        data:
-          entity_id: switch.livebox_play_socket
+      # Turn the socket off
+      - service: script.pilight_turn_off_livebox_play_tv
 
   reboot_livebox_play:
     alias: Reboot Livebox Play TV via pilight
@@ -81,6 +71,18 @@ script:
   turn_on_livebox_play:
     alias: Force turning on the Livebox Play TV
     sequence:
+      # Turn the socket on
+      - service: script.pilight_turn_on_livebox_play_tv
+      # Try to use the built-in component
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.livebox_play
+      # Resort to external script
+      - service: shell_command.livebox_play_tv_turn_on
+
+  pilight_turn_on_livebox_play_tv:
+    alias: "Send 3 turn on RF commands"
+    sequence:
       # Turn on socket
       - service: homeassistant.turn_on
         data:
@@ -93,27 +95,25 @@ script:
       - service: homeassistant.turn_on
         data:
           entity_id: switch.livebox_play_socket
-      # Try to use the built-in component
-      - service: media_player.turn_on
+
+  pilight_turn_off_livebox_play_tv:
+    alias: "Send 3 turn off RF commands"
+    sequence:
+      # Turn off socket
+      - service: homeassistant.turn_off
         data:
-          entity_id: media_player.livebox_play
-      # Resort to external script
-      - service: shell_command.livebox_play_tv_turn_on
+          entity_id: switch.livebox_play_socket
+      # Turn off socket (2)
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play_socket
+      # Turn off socket (3)
+      - service: homeassistant.turn_off
+        data:
+          entity_id: switch.livebox_play_socket
 
 
 switch:
-  - platform: template
-    switches:
-      virt_livebox_play:
-        friendly_name: Livebox Play
-        value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on' ) }}"
-        turn_on:
-          service: switch.turn_on
-          entity_id: switch.livebox_play_socket
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.livebox_play_socket
-
   - platform: pilight
     switches:
       Livebox Play Socket:
@@ -127,5 +127,16 @@ switch:
           systemcode: 1
           unitcode: 4
           'off': 1
+
+  - platform: template
+    switches:
+      virt_livebox_play:
+        friendly_name: Livebox Play
+        value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on' ) }}"
+        turn_on:
+          service: script.pilight_turn_on_livebox_play_tv
+        turn_off:
+          service: script.pilight_turn_off_livebox_play_tv
+
 
 # vim: set filetype=yaml et sw=2 ts=2 :

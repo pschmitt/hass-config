@@ -32,6 +32,8 @@ remote:
 rest_command:
   shield_kodi:
     url: http://nasteanas.lan:8993/shield/kodi
+  kvm_restart_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/restart
   kvm_start_win81_gpu:
     url: http://nasteanas.lan:8993/kvm/win81-gpu/start
   kvm_stop_win81_gpu:
@@ -122,8 +124,8 @@ script:
           device: 40566636
           command: PowerToggle
 
-  watch_tv:
-    alias: Watch TV
+  tv_activity_watch_tv:
+    alias: "TV activity: Watch TV"
     sequence:
       - service: script.turn_on_tv
       - service: script.turn_on_livebox_play
@@ -159,8 +161,8 @@ script:
           entity_id: remote.harmony_hub
           activity: Watch TV
 
-  shield_tv:
-    alias: Shield TV
+  tv_activity_shield_tv:
+    alias: "TV activity: Nvidia Shield TV"
     sequence:
       - service: remote.send_command
         data:
@@ -172,14 +174,14 @@ script:
         data:
           source: 'Nvidia Shield TV'
 
-  start_kodi:
-    alias: Kodi@Shield
+  tv_activity_kodi:
+    alias: "TV activity: Kodi on Shield TV"
     sequence:
       - service: script.shield_tv
       - service: rest_command.shield_kodi
 
-  play_ps3:
-    alias: Play PS3
+  tv_activity_ps3:
+    alias: "TV activity: Sony PS3"
     sequence:
       - service: remote.send_command
         data:
@@ -199,8 +201,8 @@ script:
           entity_id: remote.harmony_hub
           activity: Play PS3
 
-  start_dolphin:
-    alias: Start dolphin-emu
+  tv_activity_dolphin_emu:
+    alias: "TV activity: dolphin-emu"
     sequence:
       # Start VM
       - service: rest_command.kvm_start_win81_gpu
@@ -211,8 +213,14 @@ script:
         data:
           source: Kinivo HDMI Splitter
 
+  restart_dolphin_emu:
+    alias: Restart dolphin-emu
+    sequence:
+      # Restart VM
+      - service: rest_command.kvm_restart_win81_gpu
+
   harmony_power_off:
-    alias: Stop current activity
+    alias: "Harmony: Stop current activity"
     sequence:
       - service: remote.turn_on
         data:
@@ -228,19 +236,19 @@ homeassistant:
     # Scripts
     script.amp_toggle:
       icon: mdi:amplifier
-    script.play_ps3:
-      icon: mdi:gamepad-variant
-    script.start_kodi:
-      icon: mdi:kodi
-    script.power_off:
+    script.harmony_power_off:
       icon: mdi:stop-circle
     script.wake_nvidia_shield:
       icon: mdi:alarm
-    script.watch_tv:
+    script.tv_activity_watch_tv:
       icon: mdi:television
-    script.shield_tv:
+    script.tv_activity_shield_tv:
       icon: mdi:television-guide
-    script.start_dolphin:
+    script.tv_activity_kodi:
+      icon: mdi:kodi
+    script.tv_activity_ps3:
+      icon: mdi:gamepad-variant
+    script.tv_activity_dolphin_emu:
       icon: mdi:fish
 
 # vim: set filetype=yaml et sw=2 ts=2 :

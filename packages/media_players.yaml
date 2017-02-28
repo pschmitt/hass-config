@@ -80,7 +80,69 @@ group:
       - media_player.nvidia_shield_tv
 
 
+input_select:
+  tv_activity:
+    name: TV Activity
+    options:
+      - "TV"
+      - "Shield TV"
+      - "Dolphin"
+      - "PS3"
+      - "OFF"
+    icon: mdi:television
+
+
 automation:
+  - alias: "TV activity: OFF"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "OFF"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: TV OFF"
+
+  - alias: "TV activity: Watch TV"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "TV"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: Watch TV"
+
+  - alias: "TV activity: Shield TV"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "Shield TV"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: Shield TV"
+
+  - alias: "TV activity: PS3"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "PS3"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: PS3"
+
+  - alias: "TV activity: Dolphin"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "Dolphin"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: dolphin"
+
   - alias: Turn on dolphin-emu if TV is on HDMI2 for 30s
     trigger:
       platform: state
@@ -89,7 +151,7 @@ automation:
       for:
         seconds: 30
     action:
-      service: script.start_dolphin
+      service: script.tv_activity_dolphin
 
   # - alias: Turn off dolphin-emu if TV is not displaying it for 5min
   #   trigger:
@@ -211,5 +273,11 @@ binary_sensor:
       tv_displaying_sony_ps3:
         value_template: '{{ states.sensor.tv_source.state == "Sony Playstation 3" }}'
         friendly_name: Sony Playstation 3 is currently displayed
+
+
+homeassistant:
+  customize:
+    script.turn_off_media_players:
+      icon: mdi:laptop-off
 
 # vim: set filetype=yaml et sw=2 ts=2 :

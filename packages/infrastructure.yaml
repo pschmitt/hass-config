@@ -27,6 +27,13 @@ binary_sensor:
     payload_on: 1
     payload_off: 0
 
+  - platform: command_line
+    name: win81_gpu
+    command: 'ping -c 2 win81-gpu.lan | grep " 0% packet loss" | wc -l'
+    device_class: connectivity
+    payload_on: 1
+    payload_off: 0
+
 
 automation:
   - alias: "Infrastructure component is off"

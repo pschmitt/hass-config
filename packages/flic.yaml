@@ -76,7 +76,7 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: hold
     action:
-      - service: script.restart_dolphin
+      - service: script.restart_dolphin_emu
       # service: switch.toggle
       # data:
       #   entity_id: switch.livebox_play_socket
