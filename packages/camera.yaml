@@ -1,4 +1,6 @@
 camera:
+  # - platform: zoneminder
+
   - platform: foscam
     name: C1
     ip: !secret foscam_c1_hostname
