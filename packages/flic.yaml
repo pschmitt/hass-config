@@ -76,9 +76,10 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: hold
     action:
-      service: switch.toggle
-      data:
-        entity_id: switch.livebox_play_socket
+      - service: script.restart_dolphin
+      # service: switch.toggle
+      # data:
+      #   entity_id: switch.livebox_play_socket
 
   # - alias: Watch TV when single click flick button
   #   trigger:
