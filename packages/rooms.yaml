@@ -26,8 +26,7 @@ group:
       - scene.living_room_normal
       - scene.living_room_dim
       - switch.wall_socket
-      # - switch.livebox_play_socket
-      - switch.virt_livebox_play
+      - switch.livebox_play_socket
       - camera.c1
       - camera.octopi
       - group.living_room_media_players

@@ -1,0 +1,10 @@
+media_player:
+  - platform: cast
+    host: chromecast-audio.lan
+    name: BlindCast
+
+  - platform: cast
+    host: chromecast.lan
+    name: BrightCast
+
+# vim: set filetype=yaml et sw=2 ts=2 :

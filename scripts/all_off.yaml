@@ -1,69 +1,14 @@
-  all_off:
-    alias: All off
-    sequence:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.all_lights
-      # - service: remote.turn_on
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     activity: PowerOff
-      - service: script.turn_off_media_players
-      - service: script.turn_off_guest_room_tv
-
-  turn_off_media_players:
-    alias: Turn off media players
-    sequence:
-      - service: script.turn_off_tv
-      - service: script.turn_off_nvidia_shield_tv
-      - service: script.turn_off_livebox_play_tv
-      - service: script.turn_off_sony_ps3
-      - service: script.turn_off_dolphin
-
-  turn_off_tv:
-    alias: Turn off the living room TV
-    sequence:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 42046341
-          command: PowerOff
-
-  turn_off_guest_room_tv:
-    alias: Turn off the guest room TV
-    sequence:
+all_off:
+  alias: All off
+  sequence:
     - service: homeassistant.turn_off
       data:
-        entity_id: switch.guest_room_tv
-
-  turn_off_nvidia_shield_tv:
-    alias: Turn off the Nvidia Shield TV
-    sequence:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40563742
-          command: PowerOff
-
-  turn_off_sony_ps3:
-    alias: Turn off PS3
-    sequence:
-      - condition: state
-        entity_id: binary_sensor.sony_ps3
-        state: 'on'
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40567705
-          command: PowerOff
-
-  turn_off_dolphin:
-    alias: Turn off dolphin-emu host
-    sequence:
-      - service: notify.html5
-        data:
-          message: "Turning off VM win81-gpu"
-      # Stop VM
-      - service: rest_command.kvm_stop_win81_gpu
+        entity_id: group.all_lights
+    # - service: remote.turn_on
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     activity: PowerOff
+    - service: script.turn_off_media_players
+    - service: script.turn_off_guest_room_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :

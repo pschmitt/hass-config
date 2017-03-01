@@ -1,0 +1,246 @@
+media_player:
+  - platform: webostv
+    host: lgwebostv.lan
+    mac: !secret lg_tv_mac_addr
+    name: Living Room TV
+
+  - platform: universal
+    name: TV
+    children:
+      - media_player.kodi
+      - media_player.nvidia_shield_tv
+      - media_player.livebox_play
+      - media_player.living_room_tv
+    commands:
+      turn_on:
+        service: harmony_turn_on_living_room_tv
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.living_room_tv
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.living_room_tv
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.living_room_tv
+      volume_mute:
+        service: media_player.volume_mute
+        data:
+          entity_id: media_player.living_room_tv
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.living_room_tv
+          source: '{{ source }}'
+    attributes:
+      is_volume_muted: media_player.living_room_tv|is_volume_muted
+      state: media_player.living_room_tv
+      volume_level: media_player.living_room_tv|volume_level
+      source: media_player.living_room_tv|source
+      source_list: media_player.living_room_tv|source_list
+
+
+notify:
+  - platform: webostv
+    host: lgwebostv.lan
+    name: livingroom_tv
+
+
+sensor:
+  - platform: template
+    sensors:
+      tv_source:
+        value_template: '{{ states.media_player.living_room_tv.attributes.source }}'
+        friendly_name: 'Current TV Media Source'
+
+
+binary_sensor:
+  - platform: template
+    sensors:
+      tv_displaying_liveboxplay:
+        value_template: '{{ states.sensor.tv_source.state == "Orange Livebox Play" }}'
+        friendly_name: Livebox Play TV is currently displayed
+      tv_displaying_nvidia_shield_tv:
+        value_template: '{{ states.sensor.tv_source.state == "Nvidia Shield TV" }}'
+        friendly_name: Nvidia Shield TV is currently displayed
+      tv_displaying_kinivo_hdmi_splitter:
+        value_template: '{{ states.sensor.tv_source.state == "Kinivo HDMI Splitter" }}'
+        friendly_name: Kinivo HDMI Splitter is currently displayed
+      tv_displaying_sony_ps3:
+        value_template: '{{ states.sensor.tv_source.state == "Sony Playstation 3" }}'
+        friendly_name: Sony Playstation 3 is currently displayed
+
+
+script:
+  turn_off_media_players:
+    alias: Turn off media players
+    sequence:
+      - service: script.turn_off_tv
+      - service: script.turn_off_nvidia_shield_tv
+      - service: script.turn_off_livebox_play_tv
+      - service: script.turn_off_sony_ps3
+      - service: script.turn_off_dolphin_emu
+
+  turn_on_tv:
+    alias: Turn on the living room TV
+    sequence:
+      # Try using the built in component
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.tv
+      # Harmony Hub fallback
+      - service: script.harmony_turn_on_living_room_tv
+
+  turn_off_tv:
+    alias: Turn off the living room TV
+    sequence:
+      - service: script.harmony_turn_off_living_room_tv
+
+  select_tv_source:
+    alias: Set the living room TV source
+    sequence:
+      # Wait 2 seconds in case the TV just turned on
+      - delay:
+          seconds: 2
+      - service: media_player.select_source
+        data_template:
+          entity_id: media_player.living_room_tv
+          source: '{{ source }}'
+      # Harmony Hub fallback
+      - service: script.harmony_set_living_room_tv_input
+        data_template:
+          source: "{{ source }}"
+
+  tv_activity_shield_tv:
+    alias: "TV activity: Nvidia Shield TV"
+    sequence:
+      - service: script.harmony_turn_on_nvidia_shield_tv
+      - service: script.turn_on_tv
+      - service: script.select_tv_source
+        data:
+          source: 'Nvidia Shield TV'
+
+  tv_activity_kodi:
+    alias: "TV activity: Kodi on Shield TV"
+    sequence:
+      - service: script.tv_activity_shield_tv
+      - service: rest_command.shield_kodi
+
+  tv_activity_watch_tv:
+    alias: "TV activity: Watch TV"
+    sequence:
+      - service: script.turn_on_tv
+      - service: script.turn_on_livebox_play
+      - service: script.select_tv_source
+        data:
+          source: 'Orange Livebox Play'
+      - service: script.livebox_play_tv_set_start_chanel
+      # Wait a bit in case the livebox play device was off due to the socket
+      - delay:
+          minutes: 3
+      - service: script.harmony_livebox_play_tv_send_return_key
+
+  tv_activity_dolphin_emu:
+    alias: "TV activity: dolphin-emu"
+    sequence:
+      # Start VM
+      - service: script.turn_on_dolphin_emu
+      # Make sure the TV is on
+      - service: script.turn_on_tv
+      # Switch source
+      - service: script.select_tv_source
+        data:
+          source: "Kinivo HDMI Splitter"
+
+  tv_activity_ps3:
+    alias: "TV activity: Sony PS3"
+    sequence:
+      - service: script.harmony_turn_on_sony_ps3
+      - service: script.turn_on_tv
+      - service: script.select_tv_source
+        data:
+          source: 'Sony Playstation 3'
+
+
+automation:
+  - alias: "Turn on dolphin-emu if TV is sitting on its input for 30s"
+    trigger:
+      platform: state
+      entity_id: sensor.tv_source
+      state: 'Kinivo HDMI Splitter'
+      for:
+        seconds: 30
+    action:
+      service: script.tv_activity_dolphin_emu
+
+  - alias: 'Playing PS3'
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: sensor.tv_source
+        state: 'Sony Playstation 3'
+    action:
+      - service: notify.livingroom_tv
+        data:
+          message: 'Oh non, Mimine. Pas Skyrim ! PAS ENCORE !'
+
+  - alias: Turn off TV appliances if the TV is off for an hour
+    trigger:
+      platform: state
+      entity_id: media_player.living_room_tv
+      state: 'off'
+      for:
+        hours: 1
+    action:
+      - service: script.turn_off_media_players
+
+  - alias: Turn off the Livebox Play TV if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_liveboxplay
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Livebox Play TV b/c of inactivity"
+      - service: media_player.turn_off
+        entity_id: media_player.livebox_play
+
+  - alias: Turn off Nvidia shield TV if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_nvidia_shield_tv
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Nvidia Shield TV b/c of inactivity"
+      - service: script.turn_off_nvidia_shield_tv
+
+  - alias: Turn off the Sony PS3 if is it not currently displayed
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.tv_displaying_sony_ps3
+        state: 'off'
+        for:
+          minutes: 10
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning off Sony PS3 TV b/c of inactivity"
+      - service: script.turn_off_sony_ps3
+
+
+homeassistant:
+  customize:
+    script.turn_off_media_players:
+      icon: mdi:laptop-off
+
+# vim: set filetype=yaml et sw=2 ts=2 :

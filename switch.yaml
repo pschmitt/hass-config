@@ -1,26 +1,26 @@
-  - platform: pilight
-    switches:
-      Guest Room TV:
-        on_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'off': 1
-      Wall socket:
-        on_code:
-          protocol: pollin
-          systemcode: 2
-          unitcode: 1
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 2
-          unitcode: 1
-          'off': 1
+- platform: pilight
+  switches:
+    Guest Room TV:
+      on_code:
+        protocol: pollin
+        systemcode: 1
+        unitcode: 1
+        'on': 1
+      off_code:
+        protocol: pollin
+        systemcode: 1
+        unitcode: 1
+        'off': 1
+    Wall socket:
+      on_code:
+        protocol: pollin
+        systemcode: 2
+        unitcode: 1
+        'on': 1
+      off_code:
+        protocol: pollin
+        systemcode: 2
+        unitcode: 1
+        'off': 1
 
 # vim: set filetype=yaml et sw=2 ts=2 :

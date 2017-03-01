@@ -77,39 +77,6 @@ automation:
         click_type: hold
     action:
       - service: script.restart_dolphin_emu
-      # service: switch.toggle
-      # data:
-      #   entity_id: switch.livebox_play_socket
-
-  # - alias: Watch TV when single click flick button
-  #   trigger:
-  #     platform: event
-  #     event_type: flic_click
-  #     event_data:
-  #       button_name: !secret flic_button_black_2
-  #       click_type: single
-  #   action:
-  #     - service: script.watch_tv
-  #
-  # - alias: Switch to kodi on double click flick button
-  #   trigger:
-  #     platform: event
-  #     event_type: flic_click
-  #     event_data:
-  #       button_name: !secret flic_button_black_2
-  #       click_type: double
-  #   action:
-  #     - service: script.start_kodi
-  #
-  # - alias: Stop activity when holding
-  #   trigger:
-  #     platform: event
-  #     event_type: flic_click
-  #     event_data:
-  #       button_name: !secret flic_button_black_2
-  #       click_type: hold
-  #   action:
-  #     - service: script.power_off
 
   - alias: Toggle guest room TV when flic button is pressed
     trigger:

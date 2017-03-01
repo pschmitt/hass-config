@@ -1,9 +1,30 @@
+media_player:
+  - platform: kodi
+    name: Kodi
+    host: shield.lan
+    port: 8080
+    username: !secret player_kodi_username
+    password: !secret player_kodi_password
+
+
+notify:
+  - platform: kodi
+    name: Kodi@Shield
+    host: shield.lan
+    port: 8080
+    username: !secret player_kodi_username
+    password: !secret player_kodi_password
+
+  - name: Shield TV
+    platform: nfandroidtv
+    host: shield.lan
+
 automation:
   - alias: 'Media player paused/stopped'
     trigger:
       - platform: state
         entity_id: media_player.kodi
-        to: 'idle'
+        state: 'idle'
         for:
           minutes: 15
     condition:
@@ -19,6 +40,8 @@ automation:
       - platform: state
         entity_id: media_player.kodi
         to: 'playing'
+        for:
+          seconds: 15
     condition:
       - condition: state
         entity_id: sun.sun
@@ -29,6 +52,8 @@ automation:
 
 
 rest_command:
+  shield_kodi:
+    url: http://nasteanas.lan:8993/shield/kodi
   wake_nvidia_shield:
     url: http://nasteanas.lan:8993/shield/wake
 
@@ -37,12 +62,19 @@ script:
   wake_nvidia_shield:
     alias: Wake Nvidia Shield TV
     sequence:
+      # Try using ADB
       - service: rest_command.wake_nvidia_shield
       # Harmony Hub fallback
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40563742
-          command: PowerOn
+      - service: script.harmony_turn_on_nvidia_shield_tv
+
+  turn_on_nvidia_shield_tv:
+    alias: Turn on Nvidia Shield TV
+    sequence:
+      - service: script.harmony_turn_on_nvidia_shield_tv
+
+  turn_off_nvidia_shield_tv:
+    alias: Turn off Nvidia Shield TV
+    sequence:
+      - service: script.harmony_turn_off_nvidia_shield_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :

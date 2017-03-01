@@ -1,0 +1,42 @@
+binary_sensor:
+  - platform: command_line
+    name: win81_gpu
+    # NOTE: win81-gpu.lan does not resolve via DNS but thanks to the --add-host
+    # entry in the systemd service home-assistant.service
+    command: 'ping -c 2 win81-gpu.lan | grep " 0% packet loss" | wc -l'
+    device_class: connectivity
+    payload_on: 1
+    payload_off: 0
+
+
+rest_command:
+  kvm_restart_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/restart
+  kvm_start_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/start
+  kvm_stop_win81_gpu:
+    url: http://nasteanas.lan:8993/kvm/win81-gpu/stop
+
+
+script:
+  turn_on_dolphin_emu:
+    alias: "Turn on dolphin-emu host"
+    sequence:
+      - service: rest_command.kvm_start_win81_gpu
+
+  turn_off_dolphin_emu:
+    alias: "Turn off dolphin-emu host"
+    sequence:
+      - service: notify.html5
+        data:
+          message: "Turning off VM win81-gpu"
+      # Stop VM
+      - service: rest_command.kvm_stop_win81_gpu
+
+  restart_dolphin_emu:
+    alias: "Restart dolphin-emu"
+    sequence:
+      # Restart VM
+      - service: rest_command.kvm_restart_win81_gpu
+
+# vim: set filetype=yaml et sw=2 ts=2 :

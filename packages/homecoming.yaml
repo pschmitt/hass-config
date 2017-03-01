@@ -24,9 +24,10 @@ script:
   im_home:
     alias: 'I am home'
     sequence:
-      - service: notify.speakcast
+      - service: tts.google_say
+        entity_id: media_player.blindcast
         data:
-          message: "Faites du bruit! Philipp arrive dans la place."
+          message: "Woop woop Philipp est al ! Fini la rigolade !"
 
   she_is_home:
     alias: 'She is home'
@@ -34,11 +35,12 @@ script:
       - service: notify.pushover
         data:
           message: 'Mimine just came home'
-      - service: notify.speakcast
+      - service: tts.google_say
+        entity_id: media_player.blindcast
         data:
           message: 'Salut Mimine. Bienvenue à la maison'
       - service: switch.turn_on
         data:
-          entity_id: switch.virt_livebox_play
+          entity_id: switch.livebox_play_socket
 
 # vim: set filetype=yaml et sw=2 ts=2 :

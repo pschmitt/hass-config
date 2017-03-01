@@ -1,0 +1,93 @@
+group:
+  media_players:
+    name: Media Players
+    view: yes
+    icon: mdi:music-circle
+    entities:
+      - media_player.tv
+      - media_player.living_room_tv
+      - media_player.kodi
+      - media_player.livebox_play
+      - media_player.blindcast
+      - media_player.brightcast
+      - media_player.nvidia_shield_tv
+
+
+input_select:
+  tv_activity:
+    name: TV Activity
+    options:
+      - "TV"
+      - "Shield TV"
+      - "Dolphin"
+      - "PS3"
+      - "OFF"
+    icon: mdi:television
+
+
+automation:
+  - alias: "TV activity: OFF"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "OFF"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: TV OFF"
+
+  - alias: "TV activity: Watch TV"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "TV"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: Watch TV"
+
+  - alias: "TV activity: Shield TV"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "Shield TV"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: Shield TV"
+
+  - alias: "TV activity: PS3"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "PS3"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: PS3"
+
+  - alias: "TV activity: Dolphin"
+    trigger:
+      platform: state
+      entity_id: input_select.tv_activity
+      state: "Dolphin"
+    action:
+      - service: notify.html5
+        data:
+          message: "input select: dolphin"
+
+  - alias: 'Watching Téva'
+    initial_state: false
+    trigger:
+      - platform: template
+        value_template: >
+          "{{ is_state('sensor.tv_source', 'Orange Livebox Play') and is_state('sensor.tv_channel', 'Téva') }}"
+    action:
+      - service: notify.html5
+        data:
+          message: 'Marine is watching Téva again!'
+      - service: notify.livingroom_tv
+        data:
+          message: 'Mimine! Tu regardes encore Téva! :)'
+
+# vim: set filetype=yaml et sw=2 ts=2 :

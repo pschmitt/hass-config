@@ -30,23 +30,19 @@
         data:
           target: !secret fb_her_phone_number
 
+  - name: twitter
+    platform: twitter
+    consumer_key: !secret twitter_consumer_key
+    consumer_secret: !secret twitter_consumer_secret
+    access_token: !secret twitter_access_token
+    access_token_secret: !secret twitter_access_token_secret
+
   - name: smsr
     platform: rest
     resource: http://octopi.lan:8090/sms
     method: POST
     message_param_name: msg
     target_param_name: to
-
-  - platform: kodi
-    name: Kodi@Shield
-    host: shield.lan
-    port: 8080
-    username: !secret player_kodi_username
-    password: !secret player_kodi_password
-
-  - name: Shield TV
-    platform: nfandroidtv
-    host: shield.lan
 
   - name: html5
     platform: html5
@@ -83,16 +79,5 @@
       - service: smsr
         data:
           target: her
-
-  - name: twitter
-    platform: twitter
-    consumer_key: !secret twitter_consumer_key
-    consumer_secret: !secret twitter_consumer_secret
-    access_token: !secret twitter_access_token
-    access_token_secret: !secret twitter_access_token_secret
-
-  - platform: webostv
-    host: lgwebostv.lan
-    name: livingroom_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :

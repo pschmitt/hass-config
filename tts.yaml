@@ -8,3 +8,5 @@
     language: 'fr-fr'
     codec: mp3
     format: 8khz_8bit_mono
+
+# vim: set filetype=yaml et sw=2 ts=2 :

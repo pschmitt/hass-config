@@ -1,0 +1,24 @@
+binary_sensor:
+  - platform: command_line
+    name: sony_ps3
+    command: 'ping -c 2 sony-ps3.lan | grep " 0% packet loss" | wc -l'
+    device_class: connectivity
+    payload_on: 1
+    payload_off: 0
+
+
+script:
+  turn_on_sony_ps3:
+    alias: "Turn on Sony PS3"
+    sequence:
+      - service: script.harmony_turn_on_sony_ps3
+
+  turn_off_sony_ps3:
+    alias: "Turn off Sony PS3"
+    sequence:
+      - condition: state
+        entity_id: binary_sensor.sony_ps3
+        state: 'on'
+      - service: script.harmony_turn_off_sony_ps3
+
+# vim: set filetype=yaml et sw=2 ts=2 :
