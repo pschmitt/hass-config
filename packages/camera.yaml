@@ -35,11 +35,11 @@ camera:
     password: !secret cam_rfpi_password
 
   - platform: mjpeg
-    name: rastapi
-    mjpeg_url: http://rastapi.lan:8089/?action=stream
+    name: winpi
+    mjpeg_url: http://winpi.lan:8089/?action=stream
     authentication: basic
-    username: !secret cam_rastapi_username
-    password: !secret cam_rastapi_password
+    username: !secret cam_winpi_username
+    password: !secret cam_winpi_password
 
 
 zoneminder:
@@ -159,12 +159,12 @@ script:
         data:
           cam: rfpi
 
-  snap_rastapi:
-    alias: Grab a picture from rastapi
+  snap_winpi:
+    alias: Grab a picture from winpi
     sequence:
       - service: shell_command.cam_snap
         data:
-          cam: rastapi
+          cam: winpi
 
   snap_z3c:
     alias: Grab a picture from z3c
@@ -259,7 +259,7 @@ group:
       - group.z3c
       - group.raspicam_octopi
       - group.raspicam_rfpi
-      - group.raspicam_rastapi
+      - group.raspicam_winpi
       - group.modect
 
   cameras:
@@ -268,7 +268,7 @@ group:
       - camera.c1
       - camera.octopi
       - camera.rfpi
-      - camera.rastapi
+      - camera.winpi
       - camera.c2
       - camera.z3c
 
@@ -323,7 +323,7 @@ group:
       - switch.z3c_state
       - switch.octopi_state
       - switch.rfpi_state
-      - switch.rastapi_state
+      - switch.winpi_state
       - switch.c1_modect
       - switch.c2_modect
       - switch.c1_sodect
@@ -347,14 +347,14 @@ group:
       - sensor.rfpi_status
       - sensor.rfpi_events
 
-  raspicam_rastapi:
-    name: Raspberry Pi Camera (rastapi)
+  raspicam_winpi:
+    name: Raspberry Pi Camera (winpi)
     control: hidden
     entities:
-      - camera.rastapi
-      - switch.rastapi_state
-      - sensor.rastapi_status
-      - sensor.rastapi_events
+      - camera.winpi
+      - switch.winpi_state
+      - sensor.winpi_status
+      - sensor.winpi_events
 
 
 homeassistant:
