@@ -35,7 +35,6 @@ group:
     name: Media Players
     view: no
     entities:
-      - sensor.harmony_hub
       - media_player.tv
       - media_player.blindcast
       # - media_player.living_room_tv
@@ -44,11 +43,12 @@ group:
       # - media_player.livebox_play
 
   living_room_media_player_scripts:
-    name: Media Player Scripts
+    name: TV Activities
     control: hidden
     view: no
     entities:
       - input_select.tv_activity
+      - sensor.harmony_hub
       - script.amp_toggle
       - script.tv_activity_dolphin_emu
       - script.tv_activity_kodi
@@ -66,7 +66,7 @@ group:
     entities:
       - group.weather_outdoor
       - camera.c2
-      - camera.rastapi
+      - camera.winpi
       - light.kitchen_light
       - light.terrace
       - script.smoke_break
