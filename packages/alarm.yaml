@@ -20,17 +20,17 @@ automation:
   - alias: Hue Motion Detector triggered
     trigger:
       - platform: state
-        entity_id: sensor.toilet_presence
-        state: "True"
+        entity_id: binary_sensor.toilet_presence
+        state: 'on'
       - platform: state
-        entity_id: sensor.hallway_presence
-        state: "True"
+        entity_id: binary_sensor.hallway_presence
+        state: 'on'
       - platform: state
-        entity_id: sensor.kitchen_presence
-        state: "True"
+        entity_id: binary_sensor.kitchen_presence
+        state: 'on'
       - platform: state
-        entity_id: sensor.bathroom_presence
-        state: "True"
+        entity_id: binary_sensor.bathroom_presence
+        state: 'on'
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm

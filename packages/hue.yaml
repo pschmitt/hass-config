@@ -116,11 +116,6 @@ sensor:
     unit_of_measurement: °C
 
   - platform: command_line
-    name: 'Toilet Presence'
-    command: /scripts/zhue.sh presence toilet
-    value_template: '{{ value_json.state.presence }}'
-
-  - platform: command_line
     name: 'Hallway Lux'
     command: /scripts/zhue.sh lux hallway
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
@@ -131,11 +126,6 @@ sensor:
     command: /scripts/zhue.sh temperature hallway
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
-
-  - platform: command_line
-    name: 'Hallway Presence'
-    command: /scripts/zhue.sh presence hallway
-    value_template: '{{ value_json.state.presence }}'
 
   - platform: command_line
     name: 'Kitchen Lux'
@@ -150,11 +140,6 @@ sensor:
     unit_of_measurement: °C
 
   - platform: command_line
-    name: 'Kitchen Presence'
-    command: /scripts/zhue.sh presence kitchen
-    value_template: '{{ value_json.state.presence }}'
-
-  - platform: command_line
     name: 'Bathroom Lux'
     command: /scripts/zhue.sh lux bathroom
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
@@ -166,8 +151,29 @@ sensor:
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
 
+
+binary_sensor:
+  - platform: command_line
+    name: 'Toilet Presence'
+    device_class: motion
+    command: /scripts/zhue.sh presence toilet
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: command_line
+    name: 'Hallway Presence'
+    device_class: motion
+    command: /scripts/zhue.sh presence hallway
+    value_template: '{{ value_json.state.presence }}'
+
+  - platform: command_line
+    name: 'Kitchen Presence'
+    device_class: motion
+    command: /scripts/zhue.sh presence kitchen
+    value_template: '{{ value_json.state.presence }}'
+
   - platform: command_line
     name: 'Bathroom Presence'
+    device_class: motion
     command: /scripts/zhue.sh presence bathroom
     value_template: '{{ value_json.state.presence }}'
 
@@ -244,15 +250,6 @@ homeassistant:
       icon: mdi:white-balance-sunny
     sensor.bathroom_lux:
       icon: mdi:white-balance-sunny
-    # Sensors
-    sensor.toilet_presence:
-      icon: mdi:run
-    sensor.hallway_presence:
-      icon: mdi:run
-    sensor.kitchen_presence:
-      icon: mdi:run
-    sensor.bathroom_presence:
-      icon: mdi:run
     # Scenes
     scene.bedtime:
       icon: mdi:weather-night

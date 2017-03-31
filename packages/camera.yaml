@@ -240,10 +240,10 @@ group:
     view: yes
     icon: mdi:camera-enhance
     entities:
-      - sensor.bathroom_presence
-      - sensor.hallway_presence
-      - sensor.kitchen_presence
-      - sensor.toilet_presence
+      - binary_sensor.bathroom_presence
+      - binary_sensor.hallway_presence
+      - binary_sensor.kitchen_presence
+      - binary_sensor.toilet_presence
       - group.c1
       - group.c2
       - group.z3c
@@ -312,10 +312,10 @@ group:
   modect:
     name: Motion detection
     entities:
-      - sensor.bathroom_presence
-      - sensor.hallway_presence
-      - sensor.kitchen_presence
-      - sensor.toilet_presence
+      - binary_sensor.bathroom_presence
+      - binary_sensor.hallway_presence
+      - binary_sensor.kitchen_presence
+      - binary_sensor.toilet_presence
       - switch.z3c_cam
       - switch.c1_state
       - switch.c2_state
