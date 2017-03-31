@@ -1,3 +1,10 @@
+android_ip_webcam:
+  - host: z3c.lan
+    name: Z3C
+    username: !secret android_cam_z3c_username
+    password: !secret android_cam_z3c_password
+    motion_sensor: True
+
 camera:
   # - platform: zoneminder
 
@@ -12,13 +19,6 @@ camera:
     ip: !secret foscam_c2_hostname
     username: !secret foscam_c2_username
     password: !secret foscam_c2_password
-
-  - platform: mjpeg
-    name: z3c
-    mjpeg_url: http://z3c.lan:8080/video
-    authentication: basic
-    username: !secret android_cam_z3c_username
-    password: !secret android_cam_z3c_password
 
   - platform: mjpeg
     name: octopi
@@ -71,16 +71,6 @@ switch:
         command_off: /scripts/android-cam.sh z3c cam off
         command_state: /scripts/android-cam.sh z3c cam state
         friendly_name: "Z3C Camera"
-      z3c_cam_front:
-        command_on: /scripts/android-cam.sh z3c ffc on
-        command_off: /scripts/android-cam.sh z3c ffc off
-        command_state: /scripts/android-cam.sh z3c ffc state
-        friendly_name: "Z3C Front Facing Camera"
-      z3c_torch:
-        command_on: /scripts/android-cam.sh z3c torch on
-        command_off: /scripts/android-cam.sh z3c torch off
-        command_state: /scripts/android-cam.sh z3c torch state
-        friendly_name: "Z3C Torch"
       c1_ir:
         command_on: /scripts/foscam.sh c1 ir on
         command_off: /scripts/foscam.sh c1 ir off
@@ -309,6 +299,15 @@ group:
       - switch.z3c_state
       - sensor.z3c_status
       - script.z3c_restart
+      - sensor.z3c_video_connections
+      - sensor.z3c_audio_connections
+      - switch.z3c_focus
+      - switch.z3c_frontfacing_camera
+      - switch.z3c_gps_active
+      - switch.z3c_night_vision
+      - switch.z3c_overlay
+      - switch.z3c_video_recording
+      - switch.z3c_white_balance_lock
 
   modect:
     name: Motion detection
