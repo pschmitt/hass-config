@@ -58,4 +58,13 @@
       # - 'current_status'
       # - 'upload_speed'
 
+  # Public IPv4
+  - platform: dnsip
+    name: wan_ipv4
+
+  - platform: rest
+    name: IP Location
+    resource: https://ifconfig.co/json
+    value_template: '{{ value_json.country }}'
+
 # vim: set filetype=yaml et sw=2 ts=2 :
