@@ -4,6 +4,7 @@ group:
     icon: mdi:home
     entities:
       - group.shortcuts
+      - group.roomba
       - group.tracked_devices
       - group.weather_shortcut
       - group.misc
@@ -16,6 +17,8 @@ group:
     view: no
     entities:
       - alarm_control_panel.ha_alarm
+      - sensor.myipopendnscom
+      - sensor.ip_location
       - lock.home
       - script.all_off
       - script.smoke_break

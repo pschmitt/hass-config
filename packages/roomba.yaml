@@ -1,0 +1,142 @@
+sensor:
+  - platform: rest
+    name: Roomba Battery Raw
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.batPct }}'
+    unit_of_measurement: '%'
+
+  - platform: rest
+    name: Roomba State
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.cleanMissionStatus.phase }}'
+
+  - platform: rest
+    name: Roomba Error
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.cleanMissionStatus.error }}'
+
+  - platform: template
+    sensors:
+      roomba_battery:
+        friendly_name: 'Battery Level'
+        unit_of_measurement: '%'
+        value_template: '{{ states.sensor.roomba_battery_raw.state }}'
+        icon_template: >-
+          {%- if states.sensor.roomba_state.state == 'charge' -%}
+            {%- if states.sensor.roomba_battery_raw.state >= '90' -%}
+              mdi:battery-charging
+            {%- else -%}
+              mdi:battery-charging-{{ (states.sensor.roomba_battery_raw.state|float / 10)|round*10 }}
+            {%- endif -%}
+          {%- else -%}
+            {%- if states.sensor.roomba_battery_raw.state >= '90' -%}
+              mdi:battery
+            {%- elif states.sensor.roomba_battery_raw.state < '10' -%}
+              mdi:battery-alert
+            {%- elif states.sensor.roomba_battery_raw.state <= '15' -%}
+              mdi:battery-outline
+            {%- else -%}
+              mdi:battery-{{ (states.sensor.roomba_battery_raw.state|float / 10)|round*10 }}
+            {%- endif -%}
+          {%- endif -%}
+
+
+binary_sensor:
+  - platform: rest
+    name: Roomba Bin
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.bin.full }}'
+
+
+rest_command:
+  roomba_start:
+    url: http://localhost:3000/api/local/action/start
+    username: !secret rest980_username
+    password: !secret rest980_password
+
+  roomba_stop:
+    url: http://localhost:3000/api/local/action/stop
+    username: !secret rest980_username
+    password: !secret rest980_password
+
+  roomba_dock:
+    url: http://localhost:3000/api/local/action/dock
+    username: !secret rest980_username
+    password: !secret rest980_password
+
+
+alert:
+  roomba_bin_full:
+    name: "Roomba bin is full"
+    entity_id: binary_sensor.roomba_bin
+    state: 'on'
+    repeat: 10
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - html5
+
+
+script:
+  roomba_start:
+    alias: "Roomba: Clean"
+    sequence:
+      - service: rest_command.roomba_start
+
+  roomba_stop:
+    alias: "Roomba: Stop and dock"
+    sequence:
+      - service: rest_command.roomba_stop
+      - service: rest_command.roomba_dock
+
+
+group:
+  roomba:
+    name: iRobot Roomba
+    view: no
+    control: hidden
+    entities:
+      - sensor.roomba_battery
+      - sensor.roomba_state
+      - sensor.roomba_error
+      - script.roomba_start
+      - script.roomba_stop
+
+
+automation:
+  - alias: 'Roomba is stuck'
+    trigger:
+      - platform: state
+        entity_id: sensor.roomba_state
+        to: 'stuck'
+    action:
+      - service: notify.html5
+        data:
+          message: 'Nimbus is stuck !'
+          data:
+            tag: roomba-stuck
+
+
+homeassistant:
+  customize:
+    # Sensors
+    # sensor.roomba_battery:
+    #   icon: mdi:battery
+    sensor.roomba_state:
+      icon: mdi:clippy
+    sensor.roomba_error:
+      icon: mdi:alert
+    # Scripts
+    script.roomba_start:
+      icon: mdi:roomba
+    script.roomba_stop:
+      icon: mdi:stop-circle
+# vim: set filetype=yaml et sw=2 ts=2 :
