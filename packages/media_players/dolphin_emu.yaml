@@ -27,9 +27,6 @@ script:
   turn_off_dolphin_emu:
     alias: "Turn off dolphin-emu host"
     sequence:
-      - service: notify.html5
-        data:
-          message: "Turning off VM win81-gpu"
       # Stop VM
       - service: rest_command.kvm_stop_win81_gpu
 

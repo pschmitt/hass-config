@@ -16,7 +16,9 @@ group:
 input_select:
   tv_activity:
     name: TV Activity
+    initial: "None"
     options:
+      - "None"
       - "TV"
       - "Shield TV"
       - "Dolphin"
@@ -35,6 +37,7 @@ automation:
       - service: notify.html5
         data:
           message: "input select: TV OFF"
+      - service: script.turn_off_media_players
 
   - alias: "TV activity: Watch TV"
     trigger:
@@ -45,6 +48,7 @@ automation:
       - service: notify.html5
         data:
           message: "input select: Watch TV"
+      - service: script.tv_activity_watch_tv
 
   - alias: "TV activity: Shield TV"
     trigger:
@@ -55,6 +59,7 @@ automation:
       - service: notify.html5
         data:
           message: "input select: Shield TV"
+      - service: script.tv_activity_shield_tv
 
   - alias: "TV activity: PS3"
     trigger:
@@ -65,6 +70,7 @@ automation:
       - service: notify.html5
         data:
           message: "input select: PS3"
+      - service: script.tv_activity_ps3
 
   - alias: "TV activity: Dolphin"
     trigger:
@@ -74,7 +80,8 @@ automation:
     action:
       - service: notify.html5
         data:
-          message: "input select: dolphin"
+          message: "input select: dolphin_emu"
+      - service: script.tv_activity_dolphin_emu
 
   - alias: 'Watching Téva'
     initial_state: false

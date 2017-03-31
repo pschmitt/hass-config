@@ -205,9 +205,6 @@ automation:
         for:
           minutes: 10
     action:
-      - service: notify.html5
-        data:
-          message: "Turning off Livebox Play TV b/c of inactivity"
       - service: media_player.turn_off
         entity_id: media_player.livebox_play
 
@@ -219,9 +216,6 @@ automation:
         for:
           minutes: 10
     action:
-      - service: notify.html5
-        data:
-          message: "Turning off Nvidia Shield TV b/c of inactivity"
       - service: script.turn_off_nvidia_shield_tv
 
   - alias: Turn off the Sony PS3 if is it not currently displayed
@@ -232,9 +226,6 @@ automation:
         for:
           minutes: 10
     action:
-      - service: notify.html5
-        data:
-          message: "Turning off Sony PS3 TV b/c of inactivity"
       - service: script.turn_off_sony_ps3
 
 
