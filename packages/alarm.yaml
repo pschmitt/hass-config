@@ -7,22 +7,13 @@ alarm_control_panel:
 
 
 automation:
-  - alias: Arm alarm when erribody is away (and HASS starts)
-    trigger:
-      - platform: event
-        event_type: homeassistant_start
-    condition:
-      - condition: state
-        entity_id: group.main_devices
-        state: not_home
-    action:
-      - service: script.alarm_arm_away
-
   - alias: Arm alarm when erribody is away
     trigger:
       - platform: state
         entity_id: group.main_devices
         state: not_home
+        for:
+          minutes: 3
     action:
       - service: script.alarm_arm_away
 
