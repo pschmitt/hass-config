@@ -43,4 +43,13 @@ script:
         data:
           entity_id: switch.livebox_play_socket
 
+  let_me_in:
+    alias: 'Let me in!'
+    sequence:
+      - service: script.alarm_disarm
+      - service: script.unlock_door
+      - delay:
+          minutes: 5
+      - service: script.lock_door
+
 # vim: set filetype=yaml et sw=2 ts=2 :
