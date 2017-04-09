@@ -24,8 +24,8 @@ sensor:
 automation:
   - alias: Setup routing for livebox-play
     trigger:
-      - platform: event
-        event_type: homeassistant_start
+      platform: homeassistant
+      event: start
     action:
       service: shell_command.livebox_play_tv_setup_routing
 

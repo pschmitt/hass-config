@@ -1,8 +1,8 @@
 automation:
   - alias: Notify when HA starts
     trigger:
-      - platform: event
-        event_type: homeassistant_start
+      platform: homeassistant
+      event: start
     action:
       service: notify.html5
       data:
@@ -13,8 +13,8 @@ automation:
 
   - alias: Start disabled automations (cause they are annoying as fuck)
     trigger:
-      - platform: event
-        event_type: homeassistant_start
+      platform: homeassistant
+      event: start
     action:
       - delay: 00:05:00
       - service: notify.html5
