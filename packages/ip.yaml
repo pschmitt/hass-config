@@ -1,0 +1,29 @@
+sensor:
+  # Public IPv4
+  - platform: dnsip
+
+  - platform: rest
+    name: IP Location
+    resource: https://ifconfig.co/json
+    value_template: '{{ value_json.country }}'
+
+binary_sensor:
+  - platform: template
+    sensors:
+      vpn_state:
+        value_template: '{{ states.sensor.ip_location.state == "Switzerland" }}'
+        friendly_name: 'VPN State'
+
+
+alert:
+  ip_location:
+    name: IP Location
+    entity_id: sensor.vpn_state
+    state: 'off'
+    repeat: 60
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - html5
+
+# vim: set filetype=yaml et sw=2 ts=2 :
