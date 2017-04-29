@@ -1,10 +1,10 @@
 all_off:
   alias: All off
   sequence:
+    - service: script.turn_off_media_players
+    - service: script.turn_off_guest_room_tv
     - service: homeassistant.turn_off
       data:
         entity_id: group.all_lights
-    - service: script.turn_off_media_players
-    - service: script.turn_off_guest_room_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :
