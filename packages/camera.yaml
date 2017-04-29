@@ -204,13 +204,13 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: sensor.z3c_battery
-        below: 25
+        below: 15
     action:
       - service: homeassistant.turn_off
         entity_id: switch.z3c_cam
       - service: notify.pushover
         data:
-          message: "Z3C battery below 25%. Let's stop the camera for a while."
+          message: "Z3C battery below 15%. Let's stop the camera for a while."
 
   - alias: Z3C Camera enabler
     trigger:
