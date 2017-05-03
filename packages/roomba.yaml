@@ -21,6 +21,27 @@ sensor:
     password: !secret rest980_password
     value_template: '{{ value_json.cleanMissionStatus.error }}'
 
+  - platform: rest
+    name: 'Roomba Position Raw (X)'
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.pose.point.x }}'
+
+  - platform: rest
+    name: 'Roomba Position Raw (Y)'
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.pose.point.y }}'
+
+  - platform: rest
+    name: 'Roomba Position Raw (Theta)'
+    resource: http://nasteanas.lan:3000/api/local/info/mission
+    username: !secret rest980_username
+    password: !secret rest980_password
+    value_template: '{{ value_json.pose.theta }}'
+
   - platform: template
     sensors:
       roomba_battery:
@@ -105,6 +126,9 @@ group:
     control: hidden
     entities:
       - sensor.roomba_battery
+      - sensor.roomba_position_raw_x
+      - sensor.roomba_position_raw_y
+      - sensor.roomba_position_raw_theta
       - sensor.roomba_state
       - sensor.roomba_error
       - script.roomba_start
@@ -119,10 +143,22 @@ automation:
         to: 'stuck'
     action:
       - service: notify.html5
-        data:
-          message: 'Nimbus is stuck !'
+        data_template:
+          message: 'Nimbus is stuck! Position: {{ states.sensor.roomba_position_raw_x.state }};{{ states.sensor.roomba_position_raw_y.state }};{{ states.sensor.roomba_position_raw_theta.state }} (X;Y;T)'
           data:
             tag: roomba-stuck
+
+  - alias: 'Roomba encountered an error'
+    trigger:
+      - platform: state
+        entity_id: sensor.roomba_error
+        from: '0'
+    action:
+      - service: notify.html5
+        data:
+          message: 'Nimbus encountered an error!'
+          data:
+            tag: roomba-error
 
 
 homeassistant:
@@ -130,6 +166,12 @@ homeassistant:
     # Sensors
     # sensor.roomba_battery:
     #   icon: mdi:battery
+    sensor.roomba_position_raw_x:
+      icon: mdi:crosshairs-gps
+    sensor.roomba_position_raw_y:
+      icon: mdi:crosshairs-gps
+    sensor.roomba_position_raw_theta:
+      icon: mdi:crosshairs-gps
     sensor.roomba_state:
       icon: mdi:clippy
     sensor.roomba_error:
