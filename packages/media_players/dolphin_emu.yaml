@@ -1,12 +1,7 @@
 binary_sensor:
-  - platform: command_line
-    name: win81_gpu
-    # NOTE: win81-gpu.lan does not resolve via DNS but thanks to the --add-host
-    # entry in the systemd service home-assistant.service
-    command: 'ping -c 2 win81-gpu.lan | grep " 0% packet loss" | wc -l'
-    device_class: connectivity
-    payload_on: 1
-    payload_off: 0
+  - platform: ping
+    name: win81-gpu
+    host: win81-gpu.lan
 
 
 rest_command:

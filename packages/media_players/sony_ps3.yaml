@@ -1,11 +1,7 @@
 binary_sensor:
-  - platform: command_line
-    name: sony_ps3
-    command: 'ping -c 2 sony-ps3.lan | grep " 0% packet loss" | wc -l'
-    device_class: connectivity
-    payload_on: 1
-    payload_off: 0
-
+  - platform: ping
+    name: Sony PS3
+    host: sony-ps3.lan
 
 script:
   turn_on_sony_ps3:
