@@ -123,6 +123,10 @@ automation:
           button_name: !secret flic_button_black_2
           click_type: hold
     action:
+      - service: tts.google_say
+        entity_id: media_player.blindcast
+        data:
+          message: "Bonne nuit!"
       - service: script.all_off
       - service: script.lock_door
 
