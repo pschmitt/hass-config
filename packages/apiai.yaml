@@ -83,6 +83,18 @@ apiai:
               script.alarm_arm_away
             {%- endif -%}
 
+    LetMeIn:
+      speech: Letting you in.
+      async_action: True
+      action:
+        - service: notify.html5
+          data_template:
+            message: "[api.ai] let me in (unlock and disarm)"
+            data:
+              tag: apiai-let-me-in
+        - service: script.alarm_disarm
+        - service: script.unlock_door
+
     CameraSnapshot:
       speech: "Hang on..."
       async_action: true
