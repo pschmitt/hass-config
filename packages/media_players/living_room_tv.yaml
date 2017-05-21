@@ -3,6 +3,12 @@ media_player:
     host: lgwebostv.lan
     mac: !secret lg_tv_mac_addr
     name: Living Room TV
+    customize:
+      sources:
+        - Nvidia Shield TV
+        - Orange Livebox Play
+        - Kinivo HDMI Splitter
+        - Sony Playstation 3
 
   - platform: universal
     name: TV
