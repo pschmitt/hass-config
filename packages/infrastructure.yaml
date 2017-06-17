@@ -1,21 +1,21 @@
 binary_sensor:
   - platform: command_line
     name: flicd @rfpi
-    sensor_class: connectivity
+    device_class: connectivity
     command: nmap -p 5551 -oG - --open rfpi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
     payload_on: open
     payload_off: closed
 
   - platform: command_line
     name: pilight @rfpi
-    sensor_class: connectivity
+    device_class: connectivity
     command: nmap -p 5000 -oG - --open rfpi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
     payload_on: open
     payload_off: closed
 
   - platform: command_line
     name: flicd @rastapi
-    sensor_class: connectivity
+    device_class: connectivity
     command: nmap -p 5551 -oG - --open rastapi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
     payload_on: open
     payload_off: closed
