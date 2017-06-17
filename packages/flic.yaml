@@ -86,21 +86,29 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: single
     action:
-      - service: switch.toggle
-        entity_id: switch.guest_room_tv
+      - service: script.toggle_guest_room_tv
 
-  # - alias: Turn on guest TV and light when button is double pressed
-  #   trigger:
-  #     platform: event
-  #     event_type: flic_click
-  #     event_data:
-  #       button_name: !secret flic_button_white_2
-  #       click_type: double
-  #   action:
-  #     - service: light.turn_on
-  #       entity_id: light.guest_room_light
-  #     - service: switch.turn_on
-  #       entity_id: switch.guest_room_tv
+  - alias: Turn on guest TV when button is double pressed
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_2
+        click_type: double
+    action:
+      # - service: light.turn_on
+      #   entity_id: light.guest_room_light
+      - service: script.turn_on_guest_room_tv
+
+  - alias: Turn off guest TV when button is double pressed
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_2
+        click_type: hold
+    action:
+      - service: script.turn_off_guest_room_tv
 
   - alias: Start bedtime script on single button press
     trigger:
