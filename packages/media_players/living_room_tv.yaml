@@ -176,13 +176,13 @@ automation:
   #   trigger:
   #     - platform: state
   #       entity_id: media_player.living_room_tv
-  #       state: 'idle'
+  #       to: 'idle'
   #       for:
   #         minutes: 15
   #   condition:
   #     - condition: state
   #       entity_id: sun.sun
-  #       state: 'below_horizon'
+  #       to: 'below_horizon'
   #   action:
   #     service: scene.turn_on
   #     entity_id: scene.living_room_normal
@@ -197,7 +197,7 @@ automation:
   #   condition:
   #     - condition: state
   #       entity_id: sun.sun
-  #       state: 'below_horizon'
+  #       to: 'below_horizon'
   #   action:
   #     service: scene.turn_on
   #     entity_id: scene.living_room_dim
@@ -206,7 +206,7 @@ automation:
   #   trigger:
   #     platform: state
   #     entity_id: sensor.tv_source
-  #     state: 'Kinivo HDMI Splitter'
+  #     to: 'Kinivo HDMI Splitter'
   #     for:
   #       seconds: 30
   #   action:
@@ -217,7 +217,7 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.tv_source
-        state: 'Sony Playstation 3'
+        to: 'Sony Playstation 3'
     action:
       - service: notify.livingroom_tv
         data:
@@ -227,7 +227,7 @@ automation:
     trigger:
       platform: state
       entity_id: media_player.living_room_tv
-      state: 'off'
+      to: 'off'
       for:
         hours: 1
     action:
@@ -237,7 +237,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_liveboxplay
-        state: 'off'
+        to: 'off'
         for:
           minutes: 10
     action:
@@ -248,7 +248,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_nvidia_shield_tv
-        state: 'off'
+        to: 'off'
         for:
           minutes: 10
     action:
@@ -258,7 +258,7 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_sony_ps3
-        state: 'off'
+        to: 'off'
         for:
           minutes: 10
     action:

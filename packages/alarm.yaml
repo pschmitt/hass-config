@@ -7,11 +7,11 @@ alarm_control_panel:
 
 
 automation:
-  - alias: Arm alarm when erribody is away
+  - alias: Arm alarm when we are away
     trigger:
       - platform: state
         entity_id: group.main_devices
-        state: not_home
+        to: not_home
         for:
           minutes: 3
     action:
@@ -21,20 +21,20 @@ automation:
     trigger:
       - platform: state
         entity_id: binary_sensor.toilet_presence
-        state: 'on'
+        to: 'on'
       - platform: state
         entity_id: binary_sensor.hallway_presence
-        state: 'on'
+        to: 'on'
       - platform: state
         entity_id: binary_sensor.kitchen_presence
-        state: 'on'
+        to: 'on'
       - platform: state
         entity_id: binary_sensor.bathroom_presence
-        state: 'on'
+        to: 'on'
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
-        state: armed_away
+        to: armed_away
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
@@ -59,7 +59,7 @@ automation:
       conditions:
         - condition: state
           entity_id: alarm_control_panel.ha_alarm
-          state: armed_away
+          to: armed_away
         - condition: template
           value_template: >
             {% if trigger.from_state.state == 'unknown' %}
@@ -99,7 +99,7 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
-        state: armed_away
+        to: armed_away
     action:
       - service: script.alarm_armed_away
 
@@ -107,7 +107,7 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
-        state: disarmed
+        to: disarmed
     action:
       - service: script.alarm_disarmed
 
@@ -115,11 +115,11 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
-        state: triggered
+        to: triggered
     # condition:
     #     - condition: state
     #       entity_id: alarm_control_panel.ha_alarm
-    #       state: not_disarmed
+    #       to: not_disarmed
     action:
       - service: script.alarm_triggered
 
@@ -136,7 +136,7 @@ automation:
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
-        state: armed_away
+        to: armed_away
     action:
       - service: notify.html5
         data_template:

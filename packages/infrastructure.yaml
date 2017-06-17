@@ -26,7 +26,7 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_rastapi, binary_sensor.pilight_rfpi
-      state: 'off'
+      to: 'off'
       for:
         minutes: 10
     action:

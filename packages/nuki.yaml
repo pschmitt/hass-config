@@ -32,7 +32,7 @@ automation:
     trigger:
       - platform: state
         entity_id: device_tracker.n5x  #group.main_devices
-        state: 'home'
+        to: 'home'
         for:
           seconds: 10
     condition:

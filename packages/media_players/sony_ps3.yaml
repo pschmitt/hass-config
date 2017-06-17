@@ -14,7 +14,7 @@ script:
     sequence:
       - condition: state
         entity_id: binary_sensor.sony_ps3
-        state: 'on'
+        to: 'on'
       - service: script.harmony_turn_off_sony_ps3
 
 # vim: set filetype=yaml et sw=2 ts=2 :

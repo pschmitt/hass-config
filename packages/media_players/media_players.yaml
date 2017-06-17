@@ -32,7 +32,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.tv_activity
-      state: "OFF"
+      to: "OFF"
     action:
       - service: notify.html5
         data:
@@ -43,7 +43,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.tv_activity
-      state: "TV"
+      to: "TV"
     action:
       - service: notify.html5
         data:
@@ -54,7 +54,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.tv_activity
-      state: "Shield TV"
+      to: "Shield TV"
     action:
       - service: notify.html5
         data:
@@ -65,7 +65,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.tv_activity
-      state: "PS3"
+      to: "PS3"
     action:
       - service: notify.html5
         data:
@@ -76,7 +76,7 @@ automation:
     trigger:
       platform: state
       entity_id: input_select.tv_activity
-      state: "Dolphin"
+      to: "Dolphin"
     action:
       - service: notify.html5
         data:
