@@ -28,7 +28,7 @@ automation:
       entity_id: binary_sensor.flicd_rfpi, binary_sensor.flicd_rastapi, binary_sensor.pilight_rfpi
       state: 'off'
       for:
-        minutes: 5
+        minutes: 10
     action:
       - service: notify.html5
         data_template:
@@ -47,7 +47,7 @@ automation:
       from: 'off'
       to: 'on'
       for:
-        minutes: 5
+        minutes: 10
     action:
       - service: notify.html5
         data_template:
@@ -68,7 +68,8 @@ group:
     entities:
       - binary_sensor.flicd_rastapi
       - binary_sensor.flicd_rfpi
-      - binary_sensor.flicd_popojitsu
       - binary_sensor.pilight_rfpi
+      - binary_sensor.win81gpu
+      - binary_sensor.brightcast
 
 # vim: set filetype=yaml et sw=2 ts=2 :
