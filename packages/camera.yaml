@@ -270,8 +270,8 @@ group:
       - switch.c1_ir
       - switch.c1_modect
       - switch.c1_sodect
-      - switch.c1_state
-      - sensor.c1_events
+      - switch.foscam_c1_state
+      - sensor.foscam_c1_events
       - sensor.c1_status
 
   c2:
@@ -282,8 +282,8 @@ group:
       - switch.c2_ir
       - switch.c2_modect
       - switch.c2_sodect
-      - switch.c2_state
-      - sensor.c2_events
+      - switch.foscam_c2_state
+      - sensor.foscam_c2_events
       - sensor.c2_status
 
   z3c:
@@ -296,8 +296,8 @@ group:
       - switch.z3c_cam_front
       - switch.z3c_torch
       - sensor.z3c_events
-      - switch.z3c_state
-      - sensor.z3c_status
+      - switch.sony_z3c_compact_state
+      - sensor.sony_z3c_compact_status
       - script.z3c_restart
       - sensor.z3c_video_connections
       - sensor.z3c_audio_connections
@@ -317,9 +317,9 @@ group:
       - binary_sensor.kitchen_presence
       - binary_sensor.toilet_presence
       - switch.z3c_cam
-      - switch.c1_state
-      - switch.c2_state
-      - switch.z3c_state
+      - switch.foscam_c1_state
+      - switch.foscam_c2_state
+      - switch.sony_z3c_compact_state
       - switch.octopi_state
       - switch.rfpi_state
       - switch.winpi_state
