@@ -34,7 +34,7 @@ automation:
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
-        to: armed_away
+        state: armed_away
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm
@@ -59,7 +59,7 @@ automation:
       conditions:
         - condition: state
           entity_id: alarm_control_panel.ha_alarm
-          to: armed_away
+          state: armed_away
         - condition: template
           value_template: >
             {% if trigger.from_state.state == 'unknown' %}
@@ -119,7 +119,7 @@ automation:
     # condition:
     #     - condition: state
     #       entity_id: alarm_control_panel.ha_alarm
-    #       to: not_disarmed
+    #       state: not_disarmed
     action:
       - service: script.alarm_triggered
 
@@ -136,7 +136,7 @@ automation:
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
-        to: armed_away
+        state: armed_away
     action:
       - service: notify.html5
         data_template:

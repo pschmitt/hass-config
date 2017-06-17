@@ -182,7 +182,7 @@ automation:
   #   condition:
   #     - condition: state
   #       entity_id: sun.sun
-  #       to: 'below_horizon'
+  #       state: 'below_horizon'
   #   action:
   #     service: scene.turn_on
   #     entity_id: scene.living_room_normal
@@ -197,7 +197,7 @@ automation:
   #   condition:
   #     - condition: state
   #       entity_id: sun.sun
-  #       to: 'below_horizon'
+  #       state: 'below_horizon'
   #   action:
   #     service: scene.turn_on
   #     entity_id: scene.living_room_dim
