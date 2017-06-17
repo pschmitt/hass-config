@@ -45,14 +45,14 @@
   - alias: Z-Wave soft reset at 02:30
     trigger:
       platform: time
-      after: '02:30:00'
+      at: '02:30:00'
     action:
       service: zwave.soft_reset
 
   - alias: Z-Wave network heal at 02:35
     trigger:
       platform: time
-      after: '02:35:00'
+      at: '02:35:00'
     action:
       service: zwave.heal_network
 
