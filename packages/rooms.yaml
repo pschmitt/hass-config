@@ -27,6 +27,7 @@ group:
       - scene.living_room_dim
       - switch.wall_socket
       - switch.livebox_play_socket
+      - switch.wemo_insight
       - camera.c1
       - camera.octopi
       - group.living_room_media_players

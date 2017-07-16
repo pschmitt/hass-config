@@ -1,0 +1,10 @@
+wemo:
+  static:
+    - wemo-insight.lan
+
+homeassistant:
+  customize:
+    switch.wemo_insight:
+      icon: mdi:power-plug
+
+# vim: set filetype=yaml et sw=2 ts=2
