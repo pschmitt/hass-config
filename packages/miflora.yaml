@@ -2,19 +2,26 @@ shell_command:
   refresh_plant_data: "ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no pschmitt@winpi ./dev/plantgateway/run.sh &"
 
 
+script:
+  refresh_plant_data:
+    alias: Refresh plant data
+    sequence:
+      - service: shell_command.refresh_plant_data
+
+
 automation:
   - alias: Refresh plant data on start
     trigger:
       platform: homeassistant
       event: start
     action:
-      - service: shell_command.refresh_plant_data
+      - service: script.refresh_plant_data
   - alias: Refresh plant data every hour
     trigger:
       platform: time
       minutes: 30
     action:
-      - service: shell_command.refresh_plant_data
+      - service: script.refresh_plant_data
 
 
 plant:
@@ -158,5 +165,7 @@ homeassistant:
   customize:
     group.all_plants:
       hidden: false
+    script.refresh_plant_data:
+      icon: mdi:flower
 
 # vim: set filetype=yaml et sw=2 ts=2 :

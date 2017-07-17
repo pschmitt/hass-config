@@ -67,6 +67,7 @@ group:
     entities:
       - group.weather_outdoor
       - group.all_plants
+      - script.refresh_plant_data
       - camera.c2
       - camera.winpi
       - light.kitchen_light
