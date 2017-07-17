@@ -66,6 +66,7 @@ group:
     icon: mdi:food-fork-drink
     entities:
       - group.weather_outdoor
+      - group.all_plants
       - camera.c2
       - camera.winpi
       - light.kitchen_light

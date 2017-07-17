@@ -1,0 +1,162 @@
+shell_command:
+  refresh_plant_data: "ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no pschmitt@winpi ./dev/plantgateway/run.sh &"
+
+
+automation:
+  - alias: Refresh plant data on start
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: shell_command.refresh_plant_data
+  - alias: Refresh plant data every hour
+    trigger:
+      platform: time
+      minutes: 30
+    action:
+      - service: shell_command.refresh_plant_data
+
+
+plant:
+  plant_1:
+    sensors:
+      moisture: sensor.plant_1_moisture
+      battery: sensor.plant_1_battery
+      temperature: sensor.plant_1_temperature
+      conductivity: sensor.plant_1_conductivity
+      brightness: sensor.plant_1_brightness
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 15
+    min_conductivity: 500
+    min_temperature: 15
+  plant_2:
+    sensors:
+      moisture: sensor.plant_2_moisture
+      battery: sensor.plant_2_battery
+      temperature: sensor.plant_2_temperature
+      conductivity: sensor.plant_2_conductivity
+      brightness: sensor.plant_2_brightness
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 15
+    min_conductivity: 500
+    min_temperature: 15
+  plant_3:
+    sensors:
+      moisture: sensor.plant_3_moisture
+      battery: sensor.plant_3_battery
+      temperature: sensor.plant_3_temperature
+      conductivity: sensor.plant_3_conductivity
+      brightness: sensor.plant_3_brightness
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 15
+    min_conductivity: 500
+    min_temperature: 15
+  plant_4:
+    sensors:
+      moisture: sensor.plant_4_moisture
+      battery: sensor.plant_4_battery
+      temperature: sensor.plant_4_temperature
+      conductivity: sensor.plant_4_conductivity
+      brightness: sensor.plant_4_brightness
+    min_moisture: 20
+    max_moisture: 60
+    min_battery: 15
+    min_conductivity: 500
+    min_temperature: 15
+
+
+sensor:
+  - platform: mqtt
+    name: plant_1_moisture
+    state_topic: 'plants/mi/plant1/'
+    value_template: '{{ value_json.moisture }}'
+  - platform: mqtt
+    name: plant_1_battery
+    state_topic: 'plants/mi/plant1/'
+    value_template: '{{ value_json.battery }}'
+  - platform: mqtt
+    name: plant_1_temperature
+    state_topic: 'plants/mi/plant1/'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    name: plant_1_conductivity
+    state_topic: 'plants/mi/plant1/'
+    value_template: '{{ value_json.conductivity }}'
+  - platform: mqtt
+    name: plant_1_brightness
+    state_topic: 'plants/mi/plant1/'
+    value_template: '{{ value_json.brightness }}'
+
+  - platform: mqtt
+    name: plant_2_moisture
+    state_topic: 'plants/mi/plant2/'
+    value_template: '{{ value_json.moisture }}'
+  - platform: mqtt
+    name: plant_2_battery
+    state_topic: 'plants/mi/plant2/'
+    value_template: '{{ value_json.battery }}'
+  - platform: mqtt
+    name: plant_2_temperature
+    state_topic: 'plants/mi/plant2/'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    name: plant_2_conductivity
+    state_topic: 'plants/mi/plant2/'
+    value_template: '{{ value_json.conductivity }}'
+  - platform: mqtt
+    name: plant_2_brightness
+    state_topic: 'plants/mi/plant2/'
+    value_template: '{{ value_json.brightness }}'
+
+  - platform: mqtt
+    name: plant_3_moisture
+    state_topic: 'plants/mi/plant3/'
+    value_template: '{{ value_json.moisture }}'
+  - platform: mqtt
+    name: plant_3_battery
+    state_topic: 'plants/mi/plant3/'
+    value_template: '{{ value_json.battery }}'
+  - platform: mqtt
+    name: plant_3_temperature
+    state_topic: 'plants/mi/plant3/'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    name: plant_3_conductivity
+    state_topic: 'plants/mi/plant3/'
+    value_template: '{{ value_json.conductivity }}'
+  - platform: mqtt
+    name: plant_3_brightness
+    state_topic: 'plants/mi/plant3/'
+    value_template: '{{ value_json.brightness }}'
+
+  - platform: mqtt
+    name: plant_4_moisture
+    state_topic: 'plants/mi/plant4/'
+    value_template: '{{ value_json.moisture }}'
+  - platform: mqtt
+    name: plant_4_battery
+    state_topic: 'plants/mi/plant4/'
+    value_template: '{{ value_json.battery }}'
+  - platform: mqtt
+    name: plant_4_temperature
+    state_topic: 'plants/mi/plant4/'
+    value_template: '{{ value_json.temperature }}'
+  - platform: mqtt
+    name: plant_4_conductivity
+    state_topic: 'plants/mi/plant4/'
+    value_template: '{{ value_json.conductivity }}'
+  - platform: mqtt
+    name: plant_4_brightness
+    state_topic: 'plants/mi/plant4/'
+    value_template: '{{ value_json.brightness }}'
+
+
+homeassistant:
+  customize:
+    group.all_plants:
+      hidden: false
+
+# vim: set filetype=yaml et sw=2 ts=2 :
