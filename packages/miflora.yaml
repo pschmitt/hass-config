@@ -1,5 +1,5 @@
 shell_command:
-  refresh_plant_data: "ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no pschmitt@winpi ./dev/plantgateway/run.sh &"
+  refresh_plant_data: "ssh -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no pschmitt@winpi sudo systemctl start plantgateway"
 
 
 script:
