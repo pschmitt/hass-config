@@ -6,6 +6,5 @@ homeassistant:
   customize:
     switch.wemo_insight__nasteanas:
       icon: mdi:server-network
-      friendly_name: "WeMo Insight (nasteanas)"
 
 # vim: set filetype=yaml et sw=2 ts=2
