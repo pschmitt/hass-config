@@ -164,6 +164,7 @@ sensor:
 homeassistant:
   customize:
     group.all_plants:
+      friendly_name: Plants
       hidden: false
     script.refresh_plant_data:
       icon: mdi:flower
