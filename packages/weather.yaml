@@ -1,3 +1,39 @@
+sensor:
+  - platform: yr
+    monitored_conditions:
+      - symbol
+
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    update_interval: '00:03:00'
+    monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - temperature_max
+      - temperature_min
+      - apparent_temperature_max
+      - apparent_temperature_min
+      - precip_intensity_max
+
+
 group:
   weather:
     name: Weather
@@ -8,9 +44,9 @@ group:
   weather_shortcut:
     name: Weather
     entities:
-      - sensor.owm_temperature
+      - sensor.dark_sky_temperature
       - sensor.yr_symbol
-      - sensor.owm_rain
+      - sensor.dark_sky_rain
       - sensor.bathroom_temperature
       - sensor.hallway_temperature
       - sensor.kitchen_temperature
