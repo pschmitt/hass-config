@@ -1,6 +1,7 @@
 wemo:
   static:
-    - wemo-insight.lan
+    - wemo-insight-01.lan
+    - wemo-insight-02.lan
 
 homeassistant:
   customize:

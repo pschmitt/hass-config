@@ -6,6 +6,9 @@ sensor:
   - platform: darksky
     api_key: !secret darksky_api_key
     update_interval: '00:03:00'
+    forecast:
+      - 1
+      - 2
     monitored_conditions:
       - summary
       - icon
