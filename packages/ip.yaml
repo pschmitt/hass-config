@@ -26,4 +26,12 @@ alert:
     notifiers:
       - html5
 
+
+homeassistant:
+  customize:
+    sensor.myipopendnscom:
+      icon: mdi:network
+    sensor.ip_location:
+      icon: mdi:map-marker
+
 # vim: set filetype=yaml et sw=2 ts=2 :

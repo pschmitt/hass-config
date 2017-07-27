@@ -1,10 +1,6 @@
 # Sensors
 sensor.transmission_down_speed:
   icon: mdi:download
-sensor.myipopendnscom:
-  icon: mdi:network
-sensor.ip_location:
-  icon: mdi:map-marker
 
 # Scripts
 script.all_off:
