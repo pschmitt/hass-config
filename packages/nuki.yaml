@@ -99,7 +99,7 @@ notify:
     services:
       - service: html5
         data:
-          # message: "The door is unlocked. Want me to lock it?"
+          message: "The door is unlocked. Want me to lock it?"
           data:
             tag: 'lock-door-query'
             renotify: True
