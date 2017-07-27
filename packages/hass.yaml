@@ -27,6 +27,15 @@ automation:
       - service: automation.turn_on
         entity_id: automation.playing_ps3
 
+  - alias: Set theme on startup
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: frontend.set_theme
+        data:
+          name: dark
+
   - alias: Update notifications
     trigger:
       - platform: state
