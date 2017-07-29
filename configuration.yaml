@@ -34,9 +34,11 @@ updater:
 logger:
   default: info
   logs:
-    homeassistant.components: info
-    homeassistant.components.automation: debug
+    homeassistant.components.http: critical
+    homeassistant.components.automation: critical
     homeassistant.components.apiai: debug
+    homeassistant.components.sensor.command_line: critical
+    homeassistant.components.switch.command_line: critical
     requests.packages.urllib3.connectionpool: critical
 
 automation: !include_dir_merge_list automations
