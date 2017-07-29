@@ -1,11 +1,39 @@
 wemo:
   static:
-    - wemo-insight-01.lan
-    - wemo-insight-02.lan
+    - wemo-insight-01.lan  # nasteanas
+    - wemo-insight-02.lan  # washing machine
+
+
+binary_sensor:
+  - platform: template
+    sensors:
+      washing_machine:
+        friendly_name: 'Washing Machine'
+        device_class: power
+        value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.state_detail == "on" }}'
+        entity_id: sensor.wemo_insight__washing_machine
+
+
+automation:
+  - alias: Notify when the washing machine has finished
+    trigger:
+      platform: state
+      entity_id: binary_sensor.washing_machine
+      from: "on"
+      to: "off"
+    action:
+      service: notify.html5
+      data:
+        message: "The Washing Machine has finished its cycle"
+
 
 homeassistant:
   customize:
+    binary_sensor.washing_machine:
+      icon: mdi:washing-machine
     switch.wemo_insight__nasteanas:
       icon: mdi:server-network
+    switch.wemo_insight__washing_machine:
+      icon: mdi:washing-machine
 
 # vim: set filetype=yaml et sw=2 ts=2
