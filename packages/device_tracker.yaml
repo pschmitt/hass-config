@@ -12,6 +12,8 @@ device_tracker:
   #   waypoint_whitelist:
   #     - n5x
 
+
+automation:
   - alias: Notify when new network device has been discovered
     trigger:
       - platform: event
