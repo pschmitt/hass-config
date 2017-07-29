@@ -4,12 +4,22 @@ group:
     icon: mdi:home
     entities:
       - group.shortcuts
-      - group.roomba
-      - group.tracked_devices
       - group.weather_shortcut
-      - group.misc
-      - group.cameras
+      - group.info
+      - camera.c1
+      - camera.winpi
       - group.light_groups
+
+  info:
+    name: Info
+    control: hidden
+    view: no
+    entities:
+      - device_tracker.her_phone
+      - device_tracker.n5x
+      - sensor.exchange_rate_1_btc
+      - sensor.transmission_down_speed
+      - sensor.ip_location_short
 
   shortcuts:
     name: Shortcuts
@@ -17,7 +27,6 @@ group:
     view: no
     entities:
       - alarm_control_panel.ha_alarm
-      - sensor.ip_location_short
       - lock.home
       - script.all_off
       - script.smoke_break

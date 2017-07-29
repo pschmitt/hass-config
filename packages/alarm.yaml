@@ -85,16 +85,6 @@ automation:
         message: "Home Assistant has discovered a new device (platform): {{ service }}.{{ discovered }}"
         target: me
 
-  - alias: Notify when new network device has been discovered
-    trigger:
-      - platform: event
-        event_type: device_tracker_new_device
-    action:
-      service: notify.smsr
-      data_template:
-        message: "A new device has been detected: {{ trigger.event }}"
-        target: me
-
   - alias: Away armed
     trigger:
       - platform: state

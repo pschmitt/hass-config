@@ -1,8 +1,0 @@
-  misc:
-    name: Misc
-    entities:
-      - sensor.travel_time_to_home
-      - sensor.exchange_rate_1_btc
-      - sensor.transmission_down_speed
-
-# vim: set filetype=yaml et sw=2 ts=2 :
