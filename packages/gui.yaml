@@ -17,8 +17,7 @@ group:
     view: no
     entities:
       - alarm_control_panel.ha_alarm
-      - sensor.myipopendnscom
-      - sensor.ip_location
+      - sensor.ip_location_short
       - lock.home
       - script.all_off
       - script.smoke_break
