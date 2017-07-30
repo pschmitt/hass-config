@@ -1,150 +1,161 @@
 apiai:
-  intents:
-    HomeTemperature:
-      speech: >
+
+intent_script:
+  HomeTemperature:
+    speech:
+      text: >
         {% for entity_id in states.group.weather_indoor.attributes.entity_id %}
           {%- for state in states.sensor if state.entity_id == entity_id -%}
             {{ state.attributes.friendly_name }}
           {%- endfor %} is {{ states(entity_id) }} C
         {% endfor %}
 
-    TurnLights:
-      speech: Turning {{ Room }} lights {{ OnOff }}
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: Someone asked via apiai to turn {{ Room }} lights {{ OnOff }}
-            data:
-              tag: apiai-light-ctrl
-        - service_template: >
-            {%- if OnOff == "on" -%}
-              light.turn_on
-            {%- elif OnOff == "toggle" -%}
-              light.toggle
+  TurnLights:
+    speech:
+      text: Turning {{ Room }} lights {{ OnOff }}
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: Someone asked via apiai to turn {{ Room }} lights {{ OnOff }}
+          data:
+            tag: apiai-light-ctrl
+      - service_template: >
+          {%- if OnOff == "on" -%}
+            light.turn_on
+          {%- elif OnOff == "toggle" -%}
+            light.toggle
+          {%- else -%}
+            light.turn_off
+          {%- endif -%}
+        data_template:
+          entity_id: >
+            {%- if Room == "all" -%}
+              group.all_lights
             {%- else -%}
-              light.turn_off
-            {%- endif -%}
-          data_template:
-            entity_id: >
-              {%- if Room == "all" -%}
-                group.all_lights
-              {%- else -%}
-                light.{{ Room | replace(' ', '_') }}
-              {%- endif -%}
-
-    Scene:
-      speech: Setting up scene {{ Scene }}
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] Activate scene {{ Scene }}"
-            data:
-              tag: apiai-activate-scene
-        - service_template: >
-            {%- if Scene == "smoke break" -%}
-              script.smoke_break
-            {%- else -%}
-              scene.turn_on
-            {%- endif -%}
-          data_template:
-            entity_id: "scene.{{ Scene | replace(' ', '_') }}"
-
-    DoorLock:
-      speech: Setting door lock state to {{ DoorLockState }}
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] {{ DoorLockState }} door"
-            data:
-              tag: apiai-door-lock
-        - service_template: >
-            {%- if DoorLockState == "unlock" -%}
-              script.unlock_door
-            {%- else -%}
-              script.lock_door
+              light.{{ Room | replace(' ', '_') }}
             {%- endif -%}
 
-    Alarm:
-      speech: Setting alarm to {{ AlarmState }}
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] {{ AlarmState }} alarm"
-            data:
-              tag: apiai-alarm-set
-        - service_template: >
-            {%- if AlarmState == "disarm" -%}
-              script.alarm_disarm
-            {%- else -%}
-              script.alarm_arm_away
-            {%- endif -%}
+  Scene:
+    speech:
+      text: Setting up scene {{ Scene }}
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] Activate scene {{ Scene }}"
+          data:
+            tag: apiai-activate-scene
+      - service_template: >
+          {%- if Scene == "smoke break" -%}
+            script.smoke_break
+          {%- else -%}
+            scene.turn_on
+          {%- endif -%}
+        data_template:
+          entity_id: "scene.{{ Scene | replace(' ', '_') }}"
 
-    LetMeIn:
-      speech: Letting you in.
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] let me in (unlock and disarm)"
-            data:
-              tag: apiai-let-me-in
-        - service: script.alarm_disarm
-        - service: script.unlock_door
+  DoorLock:
+    speech:
+      text: Setting door lock state to {{ DoorLockState }}
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] {{ DoorLockState }} door"
+          data:
+            tag: apiai-door-lock
+      - service_template: >
+          {%- if DoorLockState == "unlock" -%}
+            script.unlock_door
+          {%- else -%}
+            script.lock_door
+          {%- endif -%}
 
-    CameraSnapshot:
-      speech: "Hang on..."
-      async_action: true
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] Grab snapshot from {{ CameraName }}"
-            data:
-              tag: apiai-grab-screenshot
-        - service: script.snap_send
-          data_template:
-            cam: "{{ CameraName }}"
+  Alarm:
+    speech:
+      text: Setting alarm to {{ AlarmState }}
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] {{ AlarmState }} alarm"
+          data:
+            tag: apiai-alarm-set
+      - service_template: >
+          {%- if AlarmState == "disarm" -%}
+            script.alarm_disarm
+          {%- else -%}
+            script.alarm_arm_away
+          {%- endif -%}
 
-    # CameraSnap:
-    #   speech: "Grabbing snapshot from {{ Camera }}"
-    #   async_action: False
-    #   action:
-    #     - service: notify.facebook
-    #       message: Camera image
-    #       data:
-    #         attachment:
-    #           type: image
-    #           payload:
-    #             url: {%- for state in states.camera if state.entity_id == Camera -%}https://home.comreset.io:8443{{ state.attributes.entity_picture }}{%- endfor -%}
+  LetMeIn:
+    speech:
+      text: Letting you in.
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] let me in (unlock and disarm)"
+          data:
+            tag: apiai-let-me-in
+      - service: script.alarm_disarm
+      - service: script.unlock_door
 
-    TV_Volume:
-      speech: "Setting volume {{ VolumeLevel }}"
-      async_action: True
-      action:
-        - service_template: >
-            {%- if VolumeLevel == "mute" -%}
-              script.tv_volume_mute
-            {%- elif VolumeLevel == "down" -%}
-              script.tv_volume_down
-            {%- elif VolumeLevel == "up" -%}
-              script.tv_volume_up
-            {%- endif -%}
+  CameraSnapshot:
+    speech:
+      text: "Hang on..."
+    async_action: true
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] Grab snapshot from {{ CameraName }}"
+          data:
+            tag: apiai-grab-screenshot
+      - service: script.snap_send
+        data_template:
+          cam: "{{ CameraName }}"
 
-    ChangeTVChannel:
-      speech: "Bouge pas. Je te fais ça."
-      async_action: True
-      action:
-        - service: notify.html5
-          data_template:
-            message: "[api.ai] Set channel to {{ TVChannel }}"
-            data:
-              tag: apiai-set-channel
-        - service: media_player.select_source
-          data_template:
-            entity_id: media_player.livebox_play
-            source: "{{ TVChannel }}"
+  # CameraSnap:
+  #   speech:
+  #     text: "Grabbing snapshot from {{ Camera }}"
+  #   async_action: False
+  #   action:
+  #     - service: notify.facebook
+  #       message: Camera image
+  #       data:
+  #         attachment:
+  #           type: image
+  #           payload:
+  #             url: {%- for state in states.camera if state.entity_id == Camera -%}https://home.comreset.io:8443{{ state.attributes.entity_picture }}{%- endfor -%}
+
+  TV_Volume:
+    speech:
+      text: "Setting volume {{ VolumeLevel }}"
+    async_action: True
+    action:
+      - service_template: >
+          {%- if VolumeLevel == "mute" -%}
+            script.tv_volume_mute
+          {%- elif VolumeLevel == "down" -%}
+            script.tv_volume_down
+          {%- elif VolumeLevel == "up" -%}
+            script.tv_volume_up
+          {%- endif -%}
+
+  ChangeTVChannel:
+    speech:
+      text: "Bouge pas. Je te fais ça."
+    async_action: True
+    action:
+      - service: notify.html5
+        data_template:
+          message: "[api.ai] Set channel to {{ TVChannel }}"
+          data:
+            tag: apiai-set-channel
+      - service: media_player.select_source
+        data_template:
+          entity_id: media_player.livebox_play
+          source: "{{ TVChannel }}"
 
 # vim: set filetype=yaml et sw=2 ts=2 :
