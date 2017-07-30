@@ -3,9 +3,9 @@ group:
     view: yes
     icon: mdi:home
     entities:
+      - group.info
       - group.shortcuts
       - group.weather_shortcut
-      - group.info
       - camera.c1
       - camera.winpi
       - group.light_groups
@@ -37,8 +37,10 @@ group:
 
 homeassistant:
   customize:
-    group.shortcuts:
+    group.info:
       order: 1
+    group.shortcuts:
+      order: 2
     group.living_room:
       order: 1
     group.terrace_kitchen:
