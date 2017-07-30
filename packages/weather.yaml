@@ -62,7 +62,7 @@ group:
       - sensor.hallway_temperature
       - sensor.kitchen_temperature
       - sensor.toilet_temperature
-      - sensor.fibaro_system_fgsd002_smoke_sensor_temperature_8_1
+      - sensor.fibaro_system_fgsd002_smoke_sensor_temperature
 
   weather_outdoor:
     name: Weather
