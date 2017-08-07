@@ -49,11 +49,7 @@ group:
     entities:
       - sensor.dark_sky_temperature
       - sensor.yr_symbol
-      - sensor.dark_sky_rain
-      - sensor.bathroom_temperature
-      - sensor.hallway_temperature
-      - sensor.kitchen_temperature
-      - sensor.toilet_temperature
+      - sensor.home_temperature
 
   weather_indoor:
     name: Weather

@@ -150,6 +150,15 @@ scene:
 
 
 sensor:
+  - platform: min_max
+    name: 'Home Temperature'
+    type: mean
+    entity_ids:
+      - sensor.bathroom_temperature
+      - sensor.hallway_temperature
+      - sensor.kitchen_temperature
+      - sensor.toilet_temperature
+
   - platform: command_line
     name: 'Toilet Lux'
     command: /scripts/zhue.sh lux toilet
@@ -297,6 +306,8 @@ homeassistant:
       icon: mdi:white-balance-sunny
     sensor.bathroom_lux:
       icon: mdi:white-balance-sunny
+    sensor.home_temperature:
+      icon: mdi:temperature-celsius
     # Scenes
     scene.bedtime:
       icon: mdi:weather-night
