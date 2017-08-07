@@ -70,12 +70,14 @@ group:
     view: yes
     icon: mdi:bug
     entities:
+      # - group.all
       - group.hass_infrastructure
-      - group.all
+      - group.all_devices
+      - group.media_players
       - group.all_scripts
       - group.all_lights
+      - group.all_sensors
       - group.all_switches
-      - group.all_devices
       # - group.all_automations
       # - group.media_players
       - group.zwave
