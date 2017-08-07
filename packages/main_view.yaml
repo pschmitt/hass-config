@@ -17,9 +17,8 @@ group:
     entities:
       - device_tracker.her_phone
       - device_tracker.n5x
-      - sensor.exchange_rate_1_btc
-      - sensor.transmission_down_speed
       - sensor.ip_location_short
+      - sensor.exchange_rate_1_btc
 
   shortcuts:
     name: Shortcuts
@@ -30,7 +29,6 @@ group:
       - lock.home
       - script.all_off
       - script.smoke_break
-      - script.lock_n_go
       - scene.living_room_dim
       - scene.bedtime
 
