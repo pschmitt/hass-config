@@ -1,7 +1,7 @@
 group:
   media_players:
     name: Media Players
-    view: yes
+    view: no
     icon: mdi:music-circle
     entities:
       - media_player.tv
