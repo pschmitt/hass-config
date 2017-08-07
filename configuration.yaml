@@ -49,6 +49,8 @@ ifttt: !include ifttt.yaml
 mqtt:
 notify: !include notify.yaml
 pilight: !include pilight.yaml
+recorder:
+  purge_days: 3
 script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml
 shell_command: !include shell_command.yaml
