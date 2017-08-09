@@ -229,6 +229,36 @@ automation:
 
 
 group:
+  cameras:
+    name: Cameras
+    view: yes
+    icon: mdi:camera
+    entities:
+      - group.cameras_living_room
+      - group.cameras_misc
+      - group.cameras_guest_room
+
+  cameras_living_room:
+    name: Living Room Cameras
+    view: no
+    entities:
+      - camera.c1
+      - camera.octopi
+
+  cameras_guest_room:
+    name: Guest Room Cameras
+    view: no
+    entities:
+      - camera.rfpi
+      - camera.z3c
+
+  cameras_misc:
+    name: Other Cameras
+    view: no
+    entities:
+      - camera.c2
+      - camera.winpi
+
   cctv:
     name: CCTV
     view: yes
@@ -246,15 +276,6 @@ group:
       - group.raspicam_winpi
       - group.modect
 
-  cameras:
-    name: Cameras
-    entities:
-      - camera.c1
-      - camera.octopi
-      - camera.rfpi
-      - camera.winpi
-      - camera.c2
-      - camera.z3c
 
   c1:
     name: Foscam C1
