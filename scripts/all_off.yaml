@@ -1,6 +1,9 @@
 all_off:
   alias: All off
   sequence:
+    - service: notify.lannouncer
+      data:
+        message: "Shutdown initiated."
     - service: script.turn_off_media_players
     - service: script.turn_off_guest_room_tv
     - service: homeassistant.turn_off

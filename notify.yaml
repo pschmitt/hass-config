@@ -80,4 +80,8 @@
         data:
           target: her
 
+  - name: lannouncer
+    platform: lannouncer
+    host: !secret lannouncer_hostname
+
 # vim: set filetype=yaml et sw=2 ts=2 :
