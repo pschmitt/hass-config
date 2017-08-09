@@ -12,11 +12,6 @@ TurnLights:
     text: Turning {{ Room }} lights {{ OnOff }}
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: Someone asked via apiai to turn {{ Room }} lights {{ OnOff }}
-        data:
-          tag: apiai-light-ctrl
     - service_template: >
         {%- if OnOff == "on" -%}
           light.turn_on
@@ -38,11 +33,6 @@ Scene:
     text: Setting up scene {{ Scene }}
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] Activate scene {{ Scene }}"
-        data:
-          tag: apiai-activate-scene
     - service_template: >
         {%- if Scene == "smoke break" -%}
           script.smoke_break
@@ -57,11 +47,6 @@ DoorLock:
     text: Setting door lock state to {{ DoorLockState }}
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] {{ DoorLockState }} door"
-        data:
-          tag: apiai-door-lock
     - service_template: >
         {%- if DoorLockState == "unlock" -%}
           script.unlock_door
@@ -74,11 +59,6 @@ Alarm:
     text: Setting alarm to {{ AlarmState }}
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] {{ AlarmState }} alarm"
-        data:
-          tag: apiai-alarm-set
     - service_template: >
         {%- if AlarmState == "disarm" -%}
           script.alarm_disarm
@@ -91,11 +71,6 @@ LetMeIn:
     text: Letting you in.
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] let me in (unlock and disarm)"
-        data:
-          tag: apiai-let-me-in
     - service: script.alarm_disarm
     - service: script.unlock_door
 
@@ -104,11 +79,6 @@ CameraSnapshot:
     text: "Hang on..."
   async_action: true
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] Grab snapshot from {{ CameraName }}"
-        data:
-          tag: apiai-grab-screenshot
     - service: script.snap_send
       data_template:
         cam: "{{ CameraName }}"
@@ -145,11 +115,6 @@ ChangeTVChannel:
     text: "Bouge pas. Je te fais ça."
   async_action: True
   action:
-    - service: notify.html5
-      data_template:
-        message: "[api.ai] Set channel to {{ TVChannel }}"
-        data:
-          tag: apiai-set-channel
     - service: media_player.select_source
       data_template:
         entity_id: media_player.livebox_play
