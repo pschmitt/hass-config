@@ -27,6 +27,23 @@
 #       - roomba_bin_full
 #
 #
+# automation:
+#   - alias: "Notify when roomba is stuck and I'm coming home"
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.n5x
+#         from: not_home
+#         to: home
+#     condition:
+#       - condition: template
+#         value_template: '{{ "error" in states.vacuum.nimbus.attributes }}'
+#     action:
+#       - service: notify.html5
+#         data:
+#           message: "Nimbus is stuck. Go rescue him!"
+#           tag: "nimbus-rescue"
+#
+#
 # notify:
 #   - name: roomba_bin_full
 #     platform: group
