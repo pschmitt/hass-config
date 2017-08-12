@@ -27,6 +27,7 @@ group:
     entities:
       - alarm_control_panel.ha_alarm
       - lock.home
+      - vacuum.nimbus
       - script.all_off
       - script.smoke_break
       - scene.living_room_dim

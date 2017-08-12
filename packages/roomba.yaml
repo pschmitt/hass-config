@@ -1,58 +1,58 @@
-# vacuum:
-#   - platform: roomba
-#     name: Nimbus
-#     host: !secret roomba_hostname
-#     username: !secret roomba_username
-#     password: !secret roomba_password
-#     continuous: True
-#
-#
-# binary_sensor:
-#   - platform: template
-#     sensors:
-#       roomba_bin_full:
-#         friendly_name: Roomba Bin Full
-#         value_template: '{{ states.vacuum.nimbus.attributes.bin_full }}'
-#
-#
-# alert:
-#   bin_full:
-#     name: "The bin is full"
-#     entity_id: binary_sensor.roomba_bin_full
-#     state: true
-#     repeat: 10
-#     can_acknowledge: True
-#     skip_first: False
-#     notifiers:
-#       - roomba_bin_full
-#
-#
-# automation:
-#   - alias: "Notify when roomba is stuck and I'm coming home"
-#     trigger:
-#       - platform: state
-#         entity_id: device_tracker.n5x
-#         from: not_home
-#         to: home
-#     condition:
-#       - condition: template
-#         value_template: '{{ "error" in states.vacuum.nimbus.attributes }}'
-#     action:
-#       - service: notify.html5
-#         data:
-#           message: "Nimbus is stuck. Go rescue him!"
-#           tag: "nimbus-rescue"
-#
-#
-# notify:
-#   - name: roomba_bin_full
-#     platform: group
-#     services:
-#       - service: html5
-#         data:
-#           message: "Nimbus' bin is full"
-#           data:
-#             tag: 'bin-full'
-#             renotify: True
+vacuum:
+  - platform: roomba
+    name: Nimbus
+    host: !secret roomba_hostname
+    username: !secret roomba_username
+    password: !secret roomba_password
+    continuous: True
+
+
+binary_sensor:
+  - platform: template
+    sensors:
+      roomba_bin_full:
+        friendly_name: Roomba Bin Full
+        value_template: '{{ states.vacuum.nimbus.attributes.bin_full }}'
+
+
+alert:
+  bin_full:
+    name: "The bin is full"
+    entity_id: binary_sensor.roomba_bin_full
+    state: true
+    repeat: 10
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - roomba_bin_full
+
+
+automation:
+  - alias: "Notify when roomba is stuck and I'm coming home"
+    trigger:
+      - platform: state
+        entity_id: device_tracker.n5x
+        from: not_home
+        to: home
+    condition:
+      - condition: template
+        value_template: '{{ "error" in states.vacuum.nimbus.attributes }}'
+    action:
+      - service: notify.html5
+        data:
+          message: "Nimbus is stuck. Go rescue him!"
+          tag: "nimbus-rescue"
+
+
+notify:
+  - name: roomba_bin_full
+    platform: group
+    services:
+      - service: html5
+        data:
+          message: "Nimbus' bin is full"
+          data:
+            tag: 'bin-full'
+            renotify: True
 
 # vim: set filetype=yaml et sw=2 ts=2 :
