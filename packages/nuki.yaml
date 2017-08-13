@@ -22,9 +22,9 @@ script:
   lock_n_go:
     alias: Lock'n'go
     sequence:
-      - delay:
-          seconds: 15
-      - service: script.lock_door
+      - service: lock.nuki_lock_n_go
+        data:
+          entity_id: lock.home
 
 
 automation:
