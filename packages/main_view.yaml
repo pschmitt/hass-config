@@ -26,6 +26,7 @@ group:
     view: no
     entities:
       - alarm_control_panel.ha_alarm
+      - lock.nello_e414cae5
       - lock.home
       - vacuum.nimbus
       - script.all_off
