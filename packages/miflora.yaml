@@ -10,16 +10,12 @@ script:
 
 
 automation:
-  - alias: Refresh plant data on start
+  - alias: Refresh plant data on start and every 30min
     trigger:
-      platform: homeassistant
-      event: start
-    action:
-      - service: script.refresh_plant_data
-  - alias: Refresh plant data every hour
-    trigger:
-      platform: time
-      minutes: 30
+      - platform: homeassistant
+        event: start
+      - platform: time
+        minutes: 30
     action:
       - service: script.refresh_plant_data
 
