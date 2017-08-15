@@ -154,10 +154,10 @@ sensor:
     name: 'Home Temperature'
     type: mean
     entity_ids:
-      - sensor.bathroom_temperature
-      - sensor.hallway_temperature
-      - sensor.kitchen_temperature
-      - sensor.toilet_temperature
+      - sensor.hue_bathroom_temperature
+      - sensor.hue_hallway_temperature
+      - sensor.hue_kitchen_temperature
+      - sensor.hue_toilet_temperature
 
   - platform: command_line
     name: 'Hue Toilet Battery'
@@ -166,13 +166,13 @@ sensor:
     unit_of_measurement: '%'
 
   - platform: command_line
-    name: 'Toilet Lux'
+    name: 'Hue Toilet Lux'
     command: /scripts/zhue.sh lux toilet
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
   - platform: command_line
-    name: 'Toilet Temperature'
+    name: 'Hue Toilet Temperature'
     command: /scripts/zhue.sh temperature toilet
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
@@ -184,31 +184,31 @@ sensor:
     unit_of_measurement: '%'
 
   - platform: command_line
-    name: 'Hallway Lux'
+    name: 'Hue Hallway Lux'
     command: /scripts/zhue.sh lux hallway
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
   - platform: command_line
-    name: 'Hallway Temperature'
+    name: 'Hue Hallway Temperature'
     command: /scripts/zhue.sh temperature hallway
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
 
   - platform: command_line
-    name: 'Hue Kitchen Battery'
+    name: 'Hue Hue Kitchen Battery'
     command: /scripts/zhue.sh battery kitchen
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
 
   - platform: command_line
-    name: 'Kitchen Lux'
+    name: 'Hue Kitchen Lux'
     command: /scripts/zhue.sh lux kitchen
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
   - platform: command_line
-    name: 'Kitchen Temperature'
+    name: 'Hue Kitchen Temperature'
     command: /scripts/zhue.sh temperature kitchen
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
@@ -220,13 +220,13 @@ sensor:
     unit_of_measurement: '%'
 
   - platform: command_line
-    name: 'Bathroom Lux'
+    name: 'Hue Bathroom Lux'
     command: /scripts/zhue.sh lux bathroom
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
 
   - platform: command_line
-    name: 'Bathroom Temperature'
+    name: 'Hue Bathroom Temperature'
     command: /scripts/zhue.sh temperature bathroom
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
