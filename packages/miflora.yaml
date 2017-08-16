@@ -19,6 +19,16 @@ automation:
     action:
       - service: script.refresh_plant_data
 
+  - alias: Miflora battery is low
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.lemon_battery, sensor.aloe_vera_battery, sensor.mint_battery, sensor.ficus_battery, sensor.chive_battery
+        below: 15
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Miflora battery is low on {{ trigger.to_state.attributes.friendly_name }}"
+
 
 plant:
   Lemon Tree:

@@ -71,6 +71,16 @@ automation:
       - service: script.hue_master_switch_on
       - service: script.lock_n_go
 
+  - alias: Hue Motion Sensor battery is low
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.hue_bathroom_battery, sensor.hue_hallway_battery, sensor.hue_hue_kitchen_battery, sensor.hue_toilet_battery
+        below: 15
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Hue motion sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
+
 
 group:
   light_groups:

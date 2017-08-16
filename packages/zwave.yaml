@@ -72,6 +72,27 @@ group:
       - sensor.fibaro_system_fgsd002_smoke_sensor_temperature
 
 
+sensor:
+  - platform: template
+    sensors:
+      smoke_sensor_battery:
+        friendly_name: Fibaro FGSD002 Smoke Sensor Battery Level
+        value_template: '{{ states.zwave.fibaro_system_fgsd002_smoke_sensor.attributes.battery_level }}'
+        unit_of_measurement: '%'
+
+
+automation:
+  - alias: Smoke Sensor battery is low
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.smoke_sensor_battery
+        below: 15
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Battery is low on Fibaro FGSD002"
+
+
 homeassistant:
   customize:
     # Fibaro FGSD002
