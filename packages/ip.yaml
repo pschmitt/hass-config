@@ -20,6 +20,7 @@ binary_sensor:
       vpn_state:
         value_template: '{{ states.sensor.ip_location.state == "Switzerland" }}'
         friendly_name: 'VPN State'
+        entity_id: sensor.ip_location
 
 
 alert:

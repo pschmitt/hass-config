@@ -13,6 +13,7 @@ binary_sensor:
       roomba_bin_full:
         friendly_name: Roomba Bin Full
         value_template: '{{ states.vacuum.nimbus.attributes.bin_full }}'
+        entity_id: vacuum.nimbus
 
 
 alert:
