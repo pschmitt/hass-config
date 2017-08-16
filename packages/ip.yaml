@@ -10,7 +10,7 @@ sensor:
   - platform: template
     sensors:
       ip_location_short:
-        friendly_name: IP Location Short
+        friendly_name: WAN IP
         value_template: '{{ states.sensor.myipopendnscom.state }} ({{ states.sensor.ip_location.state }})'
 
 
