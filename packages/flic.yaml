@@ -5,7 +5,7 @@ binary_sensor:
     discovery: false
 
   - platform: flic
-    host: rfpi.lan
+    host: hassio.lan
     port: 5551
     discovery: false
 
@@ -137,5 +137,16 @@ automation:
           message: "Bonne nuit!"
       - service: script.all_off
       - service: script.lock_door
+
+homeassistant:
+  customize:
+    binary_sensor.flic_80e4da721df4:
+      friendly_name: "Flic Button - Guest Room"
+    binary_sensor.flic_80e4da720d46:
+      friendly_name: "Flic Button - Bedroom"
+    binary_sensor.flic_80e4da721d59:
+      friendly_name: "Flic Button - Terrace"
+    binary_sensor.flic_80e4da720d40:
+      friendly_name: "Flic Button - Living Room"
 
 # vim: set filetype=yaml et sw=2 ts=2 :
