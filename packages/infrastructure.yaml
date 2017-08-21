@@ -67,7 +67,7 @@ group:
     icon: mdi:switch
     entities:
       - binary_sensor.flicd_rastapi
-      - binary_sensor.flicd_rfpi
+      - binary_sensor.flicd_hassio
       - binary_sensor.pilight_rfpi
       - binary_sensor.win81gpu
       - binary_sensor.brightcast
