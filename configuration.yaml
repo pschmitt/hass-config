@@ -40,8 +40,7 @@ automation: !include_dir_merge_list automations
 downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
 ifttt: !include ifttt.yaml
-# mqtt: !include mqtt.yaml
-mqtt:
+mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 pilight: !include pilight.yaml
 recorder:
