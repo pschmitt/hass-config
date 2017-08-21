@@ -22,11 +22,6 @@ config:
 conversation:
 discovery:
 
-frontend:
-  themes:
-    dark:
-      primary-color: dimgray
-
 history:
 logbook:
 updater:
