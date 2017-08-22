@@ -1,6 +1,6 @@
-  name: work
-  latitude: !secret work_latitude
-  longitude: !secret work_longitude
-  icon: mdi:worker
+name: work
+latitude: !secret work_latitude
+longitude: !secret work_longitude
+icon: mdi:worker
 
 # vim: set filetype=yaml et sw=2 ts=2 :
