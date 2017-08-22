@@ -26,6 +26,5 @@ automation:
       service: notify.html5
       data_template:
         message: "A new device has been detected: {{ trigger.event }}"
-        target: me
 
 # vim: set filetype=yaml et sw=2 ts=2 :
