@@ -16,6 +16,7 @@ group:
     view: no
     entities:
       - device_tracker.her_phone
+      - device_tracker.zanzito_n5x
       - device_tracker.n5x
       - sensor.ip_location_short
       - sensor.exchange_rate_1_btc

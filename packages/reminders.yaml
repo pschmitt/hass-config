@@ -7,9 +7,8 @@ automation:
         seconds: 0
     condition:
       - condition: state
-        entity_id: device_tracker.n5x
-        # state: work
-        state: not_home
+        entity_id: device_tracker.zanzito_n5x
+        state: work
     action:
       service: script.train_reminder
 

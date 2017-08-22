@@ -80,8 +80,16 @@
         data:
           target: her
 
-  - name: lannouncer
-    platform: lannouncer
-    host: !secret lannouncer_hostname
+  - name: zanzito
+    platform: zanzito
+    device-name: nexus5x
+
+  - name: zanzito_tts
+    platform: group
+    services:
+      - service: zanzito
+        data:
+          data:
+            say:
 
 # vim: set filetype=yaml et sw=2 ts=2 :

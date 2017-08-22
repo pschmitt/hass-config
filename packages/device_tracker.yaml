@@ -6,6 +6,10 @@ device_tracker:
     track_new_devices: false
     consider_home: 180
 
+  - platform: mqtt_json
+    devices:
+      zanzito_n5x: zanzito/nexus5x/location
+
   # - platform: owntracks
   #   max_gps_accuracy: 200
   #   waypoints: False
