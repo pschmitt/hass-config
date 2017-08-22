@@ -1,7 +1,7 @@
 all_off:
   alias: All off
   sequence:
-    - service: notify.lannouncer
+    - service: notify.zanzito_tts
       data:
         message: "Brace yourself: Shutdown is coming."
     - service: script.turn_off_media_players
