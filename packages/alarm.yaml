@@ -10,7 +10,7 @@ automation:
   - alias: Arm alarm when we are away
     trigger:
       - platform: state
-        entity_id: group.main_devices
+        entity_id: group.all_devices
         to: not_home
         for:
           minutes: 3
