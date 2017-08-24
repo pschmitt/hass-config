@@ -15,9 +15,6 @@ automation:
       entity_id: group.all_devices
       state: home
     action:
-      - service: notify.html5
-        data:
-          message: "Turning on living room lights because it going to be dark soon"
       - service: light.turn_on
         entity_id: light.living_room
         data:
@@ -32,9 +29,6 @@ automation:
         for:
           minutes: 30
     action:
-      - service: notify.html5
-        data:
-          message: "Bedroom light has been on for 30min, let's turn it off"
       - service: light.turn_off
         entity_id: light.bedroom_light
 
@@ -46,9 +40,6 @@ automation:
         for:
           minutes: 30
     action:
-      - service: notify.html5
-        data:
-          message: "Guest room light has been on for 30min, let's turn it off"
       - service: light.turn_off
         entity_id: light.guest_room_light
 
