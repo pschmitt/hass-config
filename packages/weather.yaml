@@ -54,10 +54,10 @@ group:
   weather_indoor:
     name: Weather
     entities:
-      - sensor.bathroom_temperature
-      - sensor.hallway_temperature
-      - sensor.kitchen_temperature
-      - sensor.toilet_temperature
+      - sensor.hue_bathroom_temperature
+      - sensor.hue_hallway_temperature
+      - sensor.hue_kitchen_temperature
+      - sensor.hue_toilet_temperature
       - sensor.fibaro_system_fgsd002_smoke_sensor_temperature
 
   weather_outdoor:
