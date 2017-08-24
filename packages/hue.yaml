@@ -20,6 +20,7 @@ automation:
         data:
           color_name: white
           brightness: 150
+          transition: 10
 
   - alias: Turn off bedroom lights after 30 minutes
     trigger:
