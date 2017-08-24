@@ -5,7 +5,8 @@ HomeTemperature:
         {%- for state in states.sensor if state.entity_id == entity_id -%}
           {{ state.attributes.friendly_name }}
         {%- endfor %} is {{ states(entity_id) }} C
-      {% endfor %}
+      {%- endfor -%}
+      Average is: {{ states('sensor.home_temperature') }}C
 
 TurnLights:
   speech:
