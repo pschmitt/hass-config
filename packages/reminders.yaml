@@ -43,12 +43,7 @@ automation:
             - thu
             - sun
     action:
-      - service: tts.google_say
-        entity_id: media_player.blindcast
-        data:
-          message: "C'est l'heure!"
-      - service: scene.turn_on
-        entity_id: scene.flash_living_room_lights
+      - service: script.bedtime
 
   # - alias: 'Bruh your phone is dying'
   #   trigger:
@@ -59,7 +54,22 @@ automation:
   #     service: notify.pushover
   #     data:
 
+
 script:
+  bedtime:
+    sequence:
+      - service: script.tts_say
+        data:
+          message: "C'est l'heure!"
+      - service: notify.zanzito_tts
+        data:
+          message: "It's time!"
+      # - service: tts.google_say
+      #   data:
+      #     entity_id: media_player.sony_srszr7
+      #     message: "C'est l'heure!"
+      - service: scene.turn_on
+        entity_id: scene.flash_living_room_lights
   train_reminder:
     sequence:
       service: notify.html5

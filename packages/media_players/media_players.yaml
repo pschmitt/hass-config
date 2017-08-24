@@ -8,6 +8,7 @@ group:
       - media_player.living_room_tv
       - media_player.kodi
       - media_player.livebox_play
+      - media_player.sony_srszr7
       - media_player.blindcast
       - media_player.brightcast
       - media_player.nvidia_shield_tv

@@ -25,7 +25,7 @@ script:
     alias: 'I am home'
     sequence:
       - service: tts.google_say
-        entity_id: media_player.blindcast
+        entity_id: media_player.sony_srszr7
         data:
           message: "Woop woop Philipp est al ! Fini la rigolade !"
 
@@ -36,7 +36,7 @@ script:
         data:
           message: 'Mimine just came home'
       - service: tts.google_say
-        entity_id: media_player.blindcast
+        entity_id: media_player.sony_srszr7
         data:
           message: 'Salut Mimine. Bienvenue à la maison'
       - service: switch.turn_on

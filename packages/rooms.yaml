@@ -37,11 +37,7 @@ group:
     view: no
     entities:
       - media_player.tv
-      - media_player.blindcast
-      # - media_player.living_room_tv
-      # - media_player.kodi
-      # - media_player.nvidia_shield_tv
-      # - media_player.livebox_play
+      - media_player.sony_srszr7
 
   living_room_media_player_scripts:
     name: TV Activities

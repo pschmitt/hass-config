@@ -21,6 +21,9 @@ http:
 config:
 conversation:
 discovery:
+  # DIRTY to avoid having a dupplicate Sony player
+  # ignore:
+  #   - google_cast
 
 history:
 logbook:
@@ -39,7 +42,6 @@ sensor: !include sensor.yaml
 shell_command: !include shell_command.yaml
 sun:
 switch: !include switch.yaml
-tts: !include tts.yaml
 zone: !include zone.yaml
 
 # DIRTYFIX: Why can't apiai be in the package dir?

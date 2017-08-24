@@ -1,0 +1,63 @@
+tts:
+  - platform: google
+    cache_dir: /tmp/tts.cache
+    time_memory: 900
+    language: 'fr'
+
+  - platform: voicerss
+    api_key: !secret voicerss_api_key
+    language: 'fr-fr'
+    codec: mp3
+    format: 8khz_8bit_mono
+
+
+script:
+  reset_tts_volume:
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sony_srszr7
+          volume_level: 0.6
+      # DIRTYFIX: Repeat 5 times so that the volume level gets set correctly
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sony_srszr7
+          volume_level: 0.6
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sony_srszr7
+          volume_level: 0.6
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sony_srszr7
+          volume_level: 0.6
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.sony_srszr7
+          volume_level: 0.6
+
+  tts_say:
+    sequence:
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.sony_srszr7
+      - service: media_player.mute
+        data:
+          entity_id: media_player.sony_srszr7
+          mute: False
+      - service: script.reset_tts_volume
+      - service: tts.google_say
+        data_template:
+          entity_id: media_player.sony_srszr7
+          message: '{{ message }}'
+
+
+# Reset the volume to 50% every 6 hours
+automation:
+  trigger:
+    platform: time
+    hours: '/6'
+  action:
+    - service: script.reset_tts_volume
+
+# vim: set filetype=yaml et sw=2 ts=2 :
