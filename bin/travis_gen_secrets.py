@@ -9,6 +9,7 @@ TRAVIS_SECRETS_FILE = '../config/.travis/secrets.yaml'
 TRAVIS_FLOAT = 0.0
 TRAVIS_INT = 0
 TRAVIS_STR = 'travis_secret'
+TRAVIS_FILE = './config/.travis/file'
 
 with open(HASS_SECRETS_FILE, 'r') as stream:
     hass_config = yaml.load(stream)
@@ -22,7 +23,10 @@ for k, v in hass_config.items():
     elif t == int:
         travis_val = TRAVIS_INT
     elif t == str:
-        travis_val = TRAVIS_STR
+        if v.startswith('/'):
+            travis_val = TRAVIS_FILE
+        else:
+            travis_val = TRAVIS_STR
     travis_config[k] = travis_val
 
 with open(TRAVIS_SECRETS_FILE, 'w') as outfile:
