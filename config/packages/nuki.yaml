@@ -45,7 +45,6 @@ automation:
         to: 'home'
         for:
           minutes: 5
-
     condition:
       condition: state
       entity_id: lock.home
