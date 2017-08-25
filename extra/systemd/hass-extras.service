@@ -1,0 +1,12 @@
+[Unit]
+Description=Home Assistant extra functionnality (REST API and Hue Button listener)
+After=network.target
+
+[Service]
+User=pschmitt
+Restart=always
+RestartSec=2
+ExecStart=/srv/hass/extra/systemd/hass-extras.sh
+
+[Install]
+WantedBy=multi-user.target

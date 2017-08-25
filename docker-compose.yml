@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  hass:
+    image: homeassistant/home-assistant:latest
+    container_name: hass
+    restart: always
+    depends_on:
+      - database
+    network_mode: host
+    extra_hosts:
+      - "hass-db:172.92.92.92"
+    volumes:
+      - ./certs:/certs:ro
+      - ./config:/config
+      - ./scripts:/scripts:ro
+      - ./override/foscam__init__.py:/usr/local/lib/python3.6/site-packages/foscam/__init__.py:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+    devices:
+      - /dev/zwave:/dev/ttyACM0
+    healthcheck:
+      test: "curl -kLf https://localhost:8123"
+
+  database:
+    image: postgres:latest
+    container_name: hass-db
+    restart: always
+    networks:
+      database:
+        ipv4_address: 172.92.92.92
+    env_file:
+      - postgres.env
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    healthcheck:
+      test: "su postgres -c pg_isready"
+
+
+networks:
+  database:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.92.92.0/24
+
+# vim: set ft=yaml et ts=2 sw=2 :

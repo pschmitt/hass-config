@@ -1,0 +1,14 @@
+[Unit]
+Description=Home Assistant
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+RestartSec=30
+ExecStart=/usr/bin/docker-compose -f /srv/hass/docker-compose.yml up
+ExecStop=/usr/bin/docker-compose -f /srv/hass/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target
+Alias=hass.service
