@@ -8,6 +8,7 @@ group:
       - light.guest_room
       - scene.bedtime
       - script.all_off
+      - switch.wemo_insight__nasteanas
       - switch.guest_room_tv
       - group.z3c
       - group.raspicam_rfpi
@@ -27,7 +28,6 @@ group:
       - scene.living_room_dim
       - switch.wall_socket
       - switch.livebox_play_socket
-      - switch.wemo_insight__nasteanas
       - camera.c1
       - camera.octopi
       - group.living_room_media_players
