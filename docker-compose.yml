@@ -13,6 +13,7 @@ services:
     volumes:
       - ./certs:/certs:ro
       - ./config:/config
+      - ./data/log:/log
       - ./scripts:/scripts:ro
       - ./override/foscam__init__.py:/usr/local/lib/python3.6/site-packages/foscam/__init__.py:ro
       - /etc/localtime:/etc/localtime:ro
