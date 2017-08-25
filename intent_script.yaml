@@ -73,6 +73,9 @@ LetMeIn:
   async_action: True
   action:
     - service: script.buzz_door_open
+    - service: script.buzz_door_open
+    - service: script.buzz_door_open
+    - service: script.buzz_door_open
     - service: script.alarm_disarm
     - service: script.unlock_door
 
