@@ -38,13 +38,14 @@ script:
 
 
 automation:
-  - alias: Lock door if everybody is home
+  - alias: Lock door when everybody is home
     trigger:
       - platform: state
-        entity_id: device_tracker.n5x  #group.all_devices
+        entity_id: group.all_devices
         to: 'home'
         for:
-          minutes: 10
+          minutes: 5
+
     condition:
       condition: state
       entity_id: lock.home
