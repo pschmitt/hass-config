@@ -35,6 +35,7 @@ ifttt: !include ifttt.yaml
 mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 pilight: !include pilight.yaml
+prometheus:
 recorder:
   purge_days: 3
   db_url: !secret db_url

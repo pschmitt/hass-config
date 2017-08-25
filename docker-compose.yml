@@ -12,7 +12,7 @@ services:
       - "hass-db:172.92.92.92"
     volumes:
       - ./certs:/certs:ro
-      - ./config:/config
+      - ./config/hass:/config
       - ./data/log:/log
       - ./scripts:/scripts:ro
       - ./override/foscam__init__.py:/usr/local/lib/python3.6/site-packages/foscam/__init__.py:ro
