@@ -5,5 +5,8 @@
 ## TL;DR
 
 - [Dockerized](https://hub.docker.com/r/homeassistant/home-assistant/) with a few script that are run by the host
-- docker-compose
-- [Packaged](https://home-assistant.io/docs/configuration/packages/)
+- [docker-compose'd](./docker-compose.yml)
+- [systemd services](./extra/systemd)
+- Mostly [Packaged](https://home-assistant.io/docs/configuration/packages/)
+- PostgreSQL DB backend
+- A few [helper scripts](./bin)
