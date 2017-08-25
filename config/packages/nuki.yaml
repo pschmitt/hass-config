@@ -45,10 +45,6 @@ automation:
         to: 'home'
         for:
           minutes: 5
-    condition:
-      condition: state
-      entity_id: lock.home
-      state: 'unlocked'
     action:
       - service: script.lock_door
 
