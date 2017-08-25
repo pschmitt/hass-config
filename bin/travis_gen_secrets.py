@@ -3,13 +3,13 @@
 import os
 import yaml
 
-HASS_SECRETS_FILE = '../config/secrets.yaml'
-TRAVIS_SECRETS_FILE = '../config/.travis/secrets.yaml'
+HASS_SECRETS_FILE = '../config/hass/secrets.yaml'
+TRAVIS_SECRETS_FILE = '../config/hass/.travis/secrets.yaml'
 
 TRAVIS_FLOAT = 0.0
 TRAVIS_INT = 0
 TRAVIS_STR = 'travis_secret'
-TRAVIS_FILE = './config/.travis/file'
+TRAVIS_FILE = './config/hass/.travis/file'
 
 with open(HASS_SECRETS_FILE, 'r') as stream:
     hass_config = yaml.load(stream)
