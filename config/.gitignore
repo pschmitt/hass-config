@@ -19,3 +19,4 @@ harmony_harmony_hub.conf
 packages/test.yaml
 webostv.conf
 downloads/*
+__pycache__/
