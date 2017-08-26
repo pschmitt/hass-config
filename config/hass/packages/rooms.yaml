@@ -4,6 +4,7 @@ group:
     view: yes
     icon: mdi:hotel
     entities:
+      - light.gateway_light_34ce008d7aba
       - light.bedroom
       - light.guest_room
       - scene.bedtime
@@ -68,5 +69,7 @@ group:
       - light.kitchen_light
       - light.terrace
       - script.smoke_break
+      - binary_sensor.door_window_sensor_158d0001a1eb5b
+      - binary_sensor.door_window_sensor_158d0001a1ec56
 
 # vim: set filetype=yaml et sw=2 ts=2 :
