@@ -6,6 +6,6 @@ install:
 script:
   - hass -c config --script check_config
 before_install:
-  - mv config/.travis/secrets.yaml config/secrets.yaml
-  - mv config/.travis/trusted_networks.yaml config/trusted_networks.yaml
-  - rm config/home-assistant.log
+  - mv config/hass/.travis/secrets.yaml config/hass/secrets.yaml
+  - mv config/hass/.travis/trusted_networks.yaml config/hass/trusted_networks.yaml
+  - rm config/hass/home-assistant.log
