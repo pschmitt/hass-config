@@ -10,8 +10,7 @@ group:
       - script.all_off
       - switch.wemo_insight__nasteanas
       - switch.guest_room_tv
-      - group.z3c
-      - group.raspicam_rfpi
+      - camera.rfpi
       - media_player.brightcast
 
   living_room:
