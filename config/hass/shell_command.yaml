@@ -1,3 +1,0 @@
-z3c_restart: '/scripts/android-cam.sh z3c reboot &'
-
-# vim: set filetype=yaml et sw=2 ts=2 :

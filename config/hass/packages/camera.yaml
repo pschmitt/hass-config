@@ -108,6 +108,7 @@ shell_command:
   snap_upload: !secret snap_upload
   snap_ldelete: "rm -f /tmp/snap_*.jpg"
   snap_rdelete: !secret snap_rdelete
+  z3c_restart: '/scripts/android-cam.sh z3c reboot &'
 
 
 script:
