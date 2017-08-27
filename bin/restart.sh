@@ -4,13 +4,6 @@ cd "$(dirname $(realpath $0))"
 
 HASS_SERVICE=home-assistant
 
-ha_restart() {
-    echo -n "Restarting Home Assistant... "
-    sudo systemctl daemon-reload
-    sudo systemctl restart "$HASS_SERVICE"
-    echo 'Done !'
-}
-
 if ! systemctl is-active "$HASS_SERVICE" > /dev/null
 then
     echo -n "HASS is not running. Starting it... "
@@ -20,7 +13,7 @@ then
 elif ./check-config.sh > /dev/null
 then
     echo "Config checks out ✓"
-    ha_restart
+    docker-compose -f ../docker-compose.yml restart hass
 else
     echo "Config is invalid. Please fix it." >&2
     exit 2
