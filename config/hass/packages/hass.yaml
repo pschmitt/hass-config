@@ -11,11 +11,20 @@ automation:
           tag: "hass-restart"
           renotify: True
 
-  - alias: Start disabled automations (cause they are annoying as fuck)
+  - alias: HASS startup automation
     trigger:
       platform: homeassistant
       event: start
     action:
+      - service: frontend.set_theme
+        data:
+          name: dark
+      # Request zanzito update
+      - service: mqtt.publish
+        data:
+          topic: zanzito/nexus5x/cmd/send_heartbeat
+          qos: 0
+          retain: 0
       - delay: 00:05:00
       - service: automation.turn_on
         entity_id: automation.react_to_my_homecoming
@@ -25,15 +34,6 @@ automation:
         entity_id: automation.watching_teva
       - service: automation.turn_on
         entity_id: automation.playing_ps3
-
-  - alias: Set theme on startup
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-      - service: frontend.set_theme
-        data:
-          name: dark
 
   - alias: Update notifications
     trigger:
