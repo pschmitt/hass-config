@@ -44,15 +44,17 @@ homeassistant:
       order: 2
     group.living_room:
       order: 1
-    group.terrace_kitchen:
+    group.kitchen:
       order: 2
-    group.bedrooms:
+    group.terrace:
+      order: 3
+    group.datacenter:
       order: 4
-    group.media_players:
+    group.bedroom:
       order: 5
-    group.cctv:
+    group.media_players:
       order: 6
-    group.zwave:
+    group.cctv:
       order: 7
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,14 +1,20 @@
 group:
-  bedrooms:
-    name: Bedrooms
+  bedroom:
+    name: Bedroom
     view: yes
     icon: mdi:hotel
     entities:
-      - light.gateway_light_34ce008d7aba
       - light.bedroom
-      - light.guest_room
       - scene.bedtime
       - script.all_off
+
+  datacenter:
+    name: Datacenter
+    view: yes
+    icon: mdi:server-network
+    entities:
+      - light.gateway_light_34ce008d7aba
+      - light.guest_room
       - switch.wemo_insight__nasteanas
       - switch.guest_room_tv
       - camera.rfpi
@@ -56,20 +62,26 @@ group:
       - script.harmony_power_off
       - script.turn_off_media_players
 
-  terrace_kitchen:
-    name: Terrace / Kitchen
+  terrace:
+    name: Terrace
     view: yes
-    icon: mdi:food-fork-drink
+    icon: mdi:tree
     entities:
       - group.weather_outdoor
       - group.all_plants
       - script.refresh_plant_data
-      - camera.c2
       - camera.winpi
-      - light.kitchen_light
       - light.terrace
       - script.smoke_break
-      - binary_sensor.door_window_sensor_158d0001a1eb5b
       - binary_sensor.door_window_sensor_158d0001a1ec56
+
+  kitchen:
+    name: Kitchen
+    view: yes
+    icon: mdi:food-fork-drink
+    entities:
+      - camera.c2
+      - light.kitchen_light
+      - group.fridge
 
 # vim: set filetype=yaml et sw=2 ts=2 :
