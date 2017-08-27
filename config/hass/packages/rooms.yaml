@@ -17,6 +17,7 @@ group:
       - light.guest_room
       - switch.wemo_insight__nasteanas
       - switch.guest_room_tv
+      - camera.octopi
       - camera.rfpi
       - media_player.brightcast
 
@@ -35,7 +36,6 @@ group:
       - switch.wall_socket
       - switch.livebox_play_socket
       - camera.c1
-      - camera.octopi
       - group.living_room_media_players
 
   living_room_media_players:
