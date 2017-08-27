@@ -26,6 +26,23 @@ sensor:
         unit_of_measurement: '%'
 
 
+group:
+  fridge:
+    name: Fridge
+    view: no
+    icon: mdi:fridge
+    entities:
+      - binary_sensor.door_window_sensor_158d0001a1eb5b
+      - sensor.humidity_34ce008d7aba
+      - sensor.illumination_34ce008d7aba
+      - sensor.pressure_158d0001d6f4da
+      - sensor.temperature_158d0001d6f4da
+      - sensor.humidity_158d0001d6f4e5
+      - sensor.illumination_158d0001d6f4e5
+      - sensor.pressure_158d0001d6f4e5
+      - sensor.temperature_158d0001d6f4e5
+
+
 automation:
   - alias: Mi Sensor battery is low
     trigger:
@@ -42,20 +59,24 @@ automation:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1ec56
         to: 'on'
+    condition:
+      condition: sun
+      after: sunset
+      before_offset: "-1:00:00"
     action:
-      - service: notify.html5
-        data:
-          message: "Terrace door opened"
+      - service: script.smoke_break
 
   - alias: Alert when terrace door has been opened
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b
         to: 'on'
+        for:
+          minutes: 2
     action:
       - service: notify.html5
         data:
-          message: "Fridge door opened"
+          message: "The fridge has been open for 2 minutes"
 
 
 homeassistant:
