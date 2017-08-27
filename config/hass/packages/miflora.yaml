@@ -41,7 +41,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
   Aloe Vera:
     sensors:
@@ -53,7 +53,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
   Basil:
     sensors:
@@ -65,7 +65,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
   Mint:
     sensors:
@@ -77,7 +77,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
   Ficus Microcarpa:
     sensors:
@@ -89,7 +89,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
   Chive:
     sensors:
@@ -101,7 +101,7 @@ plant:
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
-    min_conductivity: 500
+    min_conductivity: 10
     min_temperature: 15
 
 
