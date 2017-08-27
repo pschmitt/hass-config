@@ -15,17 +15,6 @@ script.tell_my_wife_i_love_her:
   icon: mdi:heart
 
 # Switches
-switch.livebox_play:
-  icon: mdi:television
-switch.pilight_tv:
-  hidden: true
-  icon: mdi:power-plug
-switch.guest_room_tv:
-  icon: mdi:power-plug
-switch.shoe_cabinet:
-  icon: mdi:power-plug
-switch.wall_plug:
-  icon: mdi:power-plug
 switch.tv:
   icon: mdi:power-plug
   assumed_state: true

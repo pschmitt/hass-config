@@ -1,5 +1,0 @@
-  host: rfpi.lan
-  port: 5000
-  # send_delay: 0.4
-
-# vim: set filetype=yaml et sw=2 ts=2 :

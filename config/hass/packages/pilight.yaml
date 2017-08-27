@@ -1,0 +1,27 @@
+pilight:
+  host: rfpi.lan
+  port: 5000
+  # send_delay: 0.4
+
+
+switch:
+  - platform: pilight
+    switches:
+      Guest Room TV:
+        on_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 1
+          'on': 1
+        off_code:
+          protocol: pollin
+          systemcode: 1
+          unitcode: 1
+          'off': 1
+
+homeassistant:
+  customize:
+    switch.guest_room_tv:
+      icon: mdi:power-plug
+
+# vim: set filetype=yaml et sw=2 ts=2 :

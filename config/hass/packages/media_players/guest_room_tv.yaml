@@ -19,38 +19,6 @@ switch:
           unitcode: 1
           'off': 1
 
-  - platform: template
-    switches:
-      guest_room_tv:
-        friendly_name: "Guest Room TV"
-        value_template: "{{ is_state('binary_sensor.brightcast', 'on') }}"
-        turn_on:
-          # Turn on socket 1/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_guest_room_tv
-          # Turn on socket 2/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_guest_room_tv
-          # Turn on socket 3/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_guest_room_tv
-        turn_off:
-          # Turn off socket 1/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_guest_room_tv
-          # Turn off socket 2/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_guest_room_tv
-          # Turn off socket 3/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_guest_room_tv
-
 
 script:
   turn_on_guest_room_tv:
