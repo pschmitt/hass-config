@@ -18,23 +18,19 @@ http:
   login_attempts_threshold: 5
   trusted_networks: !include trusted_networks.yaml
 
+automation: !include_dir_merge_list automations
 config:
 conversation:
 discovery:
-  # DIRTY to avoid having a dupplicate Sony player
-  # ignore:
-  #   - google_cast
-
-history:
-logbook:
-updater:
-automation: !include_dir_merge_list automations
 downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
+history:
 ifttt: !include ifttt.yaml
+logbook:
 mqtt: !include mqtt.yaml
 notify: !include notify.yaml
 prometheus:
+updater:
 recorder:
   purge_days: 3
   db_url: !secret db_url
