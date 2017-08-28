@@ -10,4 +10,16 @@ all_off:
       data:
         entity_id: group.all_lights
 
+bedtime:
+  alias: Bedtime
+  sequence:
+    - service: notify.zanzito_tts
+      data:
+        message: "Night."
+    - service: scene.turn_on
+      data:
+        entity_id: scene.bedtime
+    - service: script.lock_door
+    - service: script.turn_off_guest_room_tv
+
 # vim: set filetype=yaml et sw=2 ts=2 :

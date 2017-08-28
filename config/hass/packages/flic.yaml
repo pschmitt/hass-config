@@ -118,10 +118,7 @@ automation:
           button_name: !secret flic_button_black_2
           click_type: single
     action:
-      - service: scene.turn_on
-        data:
-          entity_id: scene.bedtime
-      - service: script.lock_door
+      - service: script.bedtime
 
   - alias: Turn off all on long button press
     trigger:

@@ -32,7 +32,7 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: device_tracker.n5x
+          entity_id: device_tracker.pschmitt
           state: home
         - condition: time
           after: '21:00:00'
@@ -43,7 +43,7 @@ automation:
             - thu
             - sun
     action:
-      - service: script.bedtime
+      - service: script.bedtime_reminder
 
   # - alias: 'Bruh your phone is dying'
   #   trigger:
@@ -56,7 +56,7 @@ automation:
 
 
 script:
-  bedtime:
+  bedtime_reminder:
     sequence:
       - service: script.tts_say
         data:
@@ -64,12 +64,8 @@ script:
       - service: notify.zanzito_tts
         data:
           message: "It's time!"
-      # - service: tts.google_say
-      #   data:
-      #     entity_id: media_player.sony_srszr7
-      #     message: "C'est l'heure!"
-      - service: scene.turn_on
-        entity_id: scene.flash_living_room_lights
+      - service: script.flash_lights
+
   train_reminder:
     sequence:
       service: notify.html5

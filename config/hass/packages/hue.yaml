@@ -135,6 +135,21 @@ scene:
         state: on
         flash: short
 
+  - name: Flash Guest Room Lights
+    entities:
+      light.guest_room:
+        state: on
+        flash: short
+
+  - name: Flash Lights
+    entities:
+      light.guest_room:
+        state: on
+        flash: short
+      light.living_room:
+        state: on
+        flash: short
+
   - name: Bedtime
     entities:
       light.terrace:
@@ -274,11 +289,23 @@ script:
     sequence:
       - service: script.all_off
 
+  flash_guest_room_lights:
+    alias: Flash Guest Room Lights
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.flash_guest_room_lights
+
   flash_living_room_lights:
     alias: Flash Living Room Lights
     sequence:
       - service: scene.turn_on
         entity_id: scene.flash_living_room_lights
+
+  flash_lights:
+    alias: Flash Lights
+    sequence:
+      - service: script.flash_living_room_lights
+      - service: script.flash_guest_room_lights
 
   smoke_break:
     alias: "Smoke break"
