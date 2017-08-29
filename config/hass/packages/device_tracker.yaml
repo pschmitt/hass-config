@@ -27,8 +27,11 @@ automation:
       - platform: event
         event_type: device_tracker_new_device
     action:
-      service: notify.html5
-      data_template:
-        message: "A new device has been detected: {{ trigger.event }}"
+      - service: notify.html5
+        data_template:
+          message: "A new device has been detected: {{ trigger.event }}"
+      - service: notify.pushover
+        data_template:
+          message: "A new device has been detected: {{ trigger.event }}"
 
 # vim: set filetype=yaml et sw=2 ts=2 :
