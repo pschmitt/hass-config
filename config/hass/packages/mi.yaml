@@ -33,14 +33,12 @@ group:
     icon: mdi:fridge
     entities:
       - binary_sensor.door_window_sensor_158d0001a1eb5b
-      - sensor.humidity_34ce008d7aba
-      - sensor.illumination_34ce008d7aba
-      - sensor.pressure_158d0001d6f4da
       - sensor.temperature_158d0001d6f4da
-      - sensor.humidity_158d0001d6f4e5
-      - sensor.illumination_158d0001d6f4e5
-      - sensor.pressure_158d0001d6f4e5
       - sensor.temperature_158d0001d6f4e5
+      - sensor.humidity_158d0001d6f4da
+      - sensor.humidity_158d0001d6f4e5
+      - sensor.pressure_158d0001d6f4da
+      - sensor.pressure_158d0001d6f4e5
 
 
 automation:
@@ -108,16 +106,16 @@ automation:
 
 homeassistant:
   customize:
+    light.gateway_light_34ce008d7aba:
+      friendly_name: Mi Gateway Light
+    sensor.illumination_34ce008d7aba:
+      friendly_name: Mi Gateway Light Level
     binary_sensor.door_window_sensor_158d0001a1eb5b:
       friendly_name: Fridge Door
     binary_sensor.door_window_sensor_158d0001a1ec56:
       friendly_name: Terrace Door
-    light.gateway_light_34ce008d7aba:
-      friendly_name: Xiaomi Gateway Light
-    sensor.humidity_34ce008d7aba:
+    sensor.humidity_158d0001d6f4da:
       friendly_name: Fridge Humidity
-    sensor.illumination_34ce008d7aba:
-      friendly_name: Fridge Light Level
     sensor.pressure_158d0001d6f4da:
       friendly_name: Fridge Pressure
     sensor.temperature_158d0001d6f4da:
