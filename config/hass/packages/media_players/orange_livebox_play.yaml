@@ -100,20 +100,6 @@ script:
 
 
 switch:
-  - platform: pilight
-    switches:
-      Pilight Livebox Play Socket:
-        on_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 4
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 4
-          'off': 1
-
   # Virtual Switch that replicates the pilight_livebox_play_socket but repeats
   # commands 3 times
   - platform: template

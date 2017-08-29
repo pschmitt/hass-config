@@ -39,9 +39,6 @@ script:
         entity_id: media_player.sony_srszr7
         data:
           message: 'Salut Mimine. Bienvenue à la maison'
-      - service: switch.turn_on
-        data:
-          entity_id: switch.livebox_play_socket
 
   let_me_in:
     alias: 'Let me in!'

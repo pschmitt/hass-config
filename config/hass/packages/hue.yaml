@@ -279,9 +279,6 @@ script:
   hue_master_switch_on:
     alias: 'Hue Master Dimmer Switch ON pressed'
     sequence:
-      - service: switch.turn_on
-        data:
-          entity_id: switch.livebox_play_socket
       - service: script.watch_tv
 
   hue_master_switch_off:

@@ -34,7 +34,6 @@ group:
       - scene.living_room_normal
       - scene.living_room_dim
       - switch.wall_socket
-      - switch.livebox_play_socket
       - camera.c1
       - group.living_room_media_players
 
