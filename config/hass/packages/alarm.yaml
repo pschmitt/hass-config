@@ -17,20 +17,27 @@ automation:
     action:
       - service: script.alarm_arm_away
 
+  - alias: Door/Window sensor triggered
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b, binary_sensor.door_window_sensor_158d0001a1ec56
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    action:
+      - service: alarm_control_panel.alarm_trigger
+        entity_id: alarm_control_panel.ha_alarm
+      - service: notify.get_to_me
+        data_template:
+          message: >
+            {{ trigger.to_state.attributes.friendly_name }}
+            on has been opened
+
   - alias: Hue Motion Detector triggered
     trigger:
       - platform: state
-        entity_id: binary_sensor.toilet_presence
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.hallway_presence
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.kitchen_presence
-        to: 'on'
-      - platform: state
-        entity_id: binary_sensor.bathroom_presence
-        to: 'on'
+        entity_id: binary_sensor.toilet_presence, binary_sensor.hallway_presence, binary_sensor.kitchen_presence, binary_sensor.bathroom_presence, binary_sensor.door_window_sensor_158d0001a1eb5b, binary_sensor.door_window_sensor_158d0001a1ec56
     condition:
       - condition: state
         entity_id: alarm_control_panel.ha_alarm
@@ -116,11 +123,7 @@ automation:
   - alias: Someone is home and the alarm is on
     trigger:
       - platform: state
-        entity_id: device_tracker.her_phone
-        from: not_home
-        to: home
-      - platform: state
-        entity_id: device_tracker.n5x
+        entity_id: device_tracker.her_phone, group.n5x
         from: not_home
         to: home
     condition:
@@ -130,7 +133,7 @@ automation:
     action:
       - service: notify.html5
         data_template:
-          message: "{% if trigger.entity_id == 'device_tracker.n5x' %}You are{% else %}Marine is{% endif %} home and the alarm is on."
+          message: "{% if trigger.entity_id == 'group.n5x' %}You are{% else %}Marine is{% endif %} home and the alarm is on."
           data:
             tag: "homecoming-alarm-on"
             actions:

@@ -3,7 +3,7 @@ automation:
     initial_state: false
     trigger:
       - platform: state
-        entity_id: device_tracker.n5x
+        entity_id: device_tracker.n5x_arp
         from: not_home
         to: home
     action:

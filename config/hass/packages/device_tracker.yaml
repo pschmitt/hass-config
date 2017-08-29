@@ -8,13 +8,17 @@ device_tracker:
 
   - platform: mqtt_json
     devices:
-      zanzito_n5x: zanzito/nexus5x/location
+      n5x_zanzito: zanzito/nexus5x/location
 
-  # - platform: owntracks
-  #   max_gps_accuracy: 200
-  #   waypoints: False
-  #   waypoint_whitelist:
-  #     - n5x
+
+group:
+  n5x:
+    name: Nexus 5X
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.n5x_zanzito
+      - device_tracker.n5x_arp
 
 
 automation:

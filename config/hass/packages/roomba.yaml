@@ -32,7 +32,7 @@ automation:
   - alias: "Notify when roomba is stuck and I'm coming home"
     trigger:
       - platform: state
-        entity_id: device_tracker.n5x
+        entity_id: device_tracker.n5x_zanzito
         from: not_home
         to: home
     condition:
