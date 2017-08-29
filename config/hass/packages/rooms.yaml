@@ -15,6 +15,7 @@ group:
     entities:
       - light.gateway_light_34ce008d7aba
       - light.guest_room
+      - light.office_light
       - switch.wemo_insight__nasteanas
       - switch.guest_room_tv
       - camera.octopi
