@@ -4,22 +4,6 @@ binary_sensor:
     host: chromecast.lan
 
 
-switch:
-  - platform: pilight
-    switches:
-      Pilight Guest Room TV:
-        on_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'off': 1
-
-
 script:
   turn_on_guest_room_tv:
     alias: "Turn on the guest room TV"
