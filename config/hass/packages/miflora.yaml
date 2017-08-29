@@ -232,6 +232,7 @@ sensor:
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.brightness }}'
 
+
 homeassistant:
   customize:
     group.all_plants:
