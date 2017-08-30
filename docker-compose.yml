@@ -23,6 +23,22 @@ services:
     healthcheck:
       test: "curl -kLf https://localhost:8123"
 
+  caddy:
+    image: mkozak/caddy-full:latest
+    container_name: hass-caddy
+    restart: always
+    network_mode: host
+    ports:
+      # - 80:80/tcp
+      - 443:443/tcp
+    environment:
+      - CADDYPATH=/caddy
+    volumes:
+      - ./data/caddy/certs:/caddy
+      - ./config/caddy:/config:ro
+    entrypoint: /usr/local/bin/caddy
+    command: --conf /config/Caddyfile
+
   database:
     image: postgres:latest
     container_name: hass-db

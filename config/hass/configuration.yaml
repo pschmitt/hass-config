@@ -12,11 +12,8 @@ http:
   base_url: !secret base_url
   server_port: 8123
   api_password: !secret http_password
-  ssl_certificate: !secret ssl_crt_path
-  ssl_key: !secret ssl_key_path
-  ip_ban_enabled: False
   login_attempts_threshold: 5
-  trusted_networks: !include trusted_networks.yaml
+  use_x_forwarded_for: True
 
 automation: !include_dir_merge_list automations
 config:
