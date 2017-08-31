@@ -11,8 +11,6 @@ script.im_home:
   icon: mdi:home-map-marker
 script.she_is_home:
   icon: mdi:home-map-marker
-script.tell_my_wife_i_love_her:
-  icon: mdi:heart
 
 # Switches
 switch.tv:

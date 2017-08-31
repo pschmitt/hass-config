@@ -30,7 +30,6 @@ prometheus:
 recorder:
   purge_days: 3
   db_url: !secret db_url
-script: !include_dir_merge_named scripts
 sensor: !include sensor.yaml
 sun:
 updater:

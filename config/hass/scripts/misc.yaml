@@ -1,9 +1,0 @@
-  tell_my_wife_i_love_her:
-    alias: "Tell my wife I love her"
-    sequence:
-      - service: notify.smsr
-        data:
-          message: "Je t'aime :)"
-          target: her
-
-# vim: set filetype=yaml et sw=2 ts=2 :
