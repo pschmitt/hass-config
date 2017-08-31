@@ -21,5 +21,8 @@ bedtime:
         entity_id: scene.bedtime
     - service: script.lock_door
     - service: script.turn_off_guest_room_tv
+    - service: light.turn_off
+      data:
+        entity_id: group.office_lights
 
 # vim: set filetype=yaml et sw=2 ts=2 :
