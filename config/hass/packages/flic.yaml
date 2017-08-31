@@ -44,7 +44,7 @@ automation:
         data:
           entity_id: script.smoke_break_timer_off
 
-  - alias: Display a caring message on the TV
+  - alias: Flic B1: Toggle office stuff on flic press
     trigger:
       platform: event
       event_type: flic_click
@@ -52,11 +52,12 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: single
     action:
-      - service: notify.livingroom_tv
+      - service: script.toggle_guest_room_tv
+      - service: light.toggle
         data:
-          message: !secret flic_button_message_1
+          entity_id: group.office_lights
 
-  - alias: Display a somewhat less caring message on the TV
+  - alias: Flic B1: Turn on office stuff on double flic press
     trigger:
       platform: event
       event_type: flic_click
@@ -64,11 +65,12 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: double
     action:
-      - service: notify.livingroom_tv
+      - service: script.turn_on_guest_room_tv
+      - service: light.turn_on
         data:
-          message: !secret flic_button_message_2
+          entity_id: group.office_lights
 
-  - alias: Toggle the livebox play socket
+  - alias: Flic B1: Turn off office stuff on flic hold
     trigger:
       platform: event
       event_type: flic_click
@@ -76,9 +78,12 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: hold
     action:
-      - service: script.restart_dolphin_emu
+      - service: script.turn_off_guest_room_tv
+      - service: light.turn_off
+        data:
+          entity_id: group.office_lights
 
-  - alias: Toggle guest room TV when flic button is pressed
+  - alias: Flic W2: Toggle office when flic button is pressed
     trigger:
       platform: event
       event_type: flic_click
@@ -87,8 +92,11 @@ automation:
         click_type: single
     action:
       - service: script.toggle_guest_room_tv
+      - service: light.toggle
+        data:
+          entity_id: group.office_lights
 
-  - alias: Turn on guest TV when button is double pressed
+  - alias: Flic W2: Turn on office when flic button is pressed
     trigger:
       platform: event
       event_type: flic_click
@@ -96,11 +104,12 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: double
     action:
-      # - service: light.turn_on
-      #   entity_id: light.guest_room_light
       - service: script.turn_on_guest_room_tv
+      - service: light.turn_on
+        data:
+          entity_id: group.office_lights
 
-  - alias: Turn off guest TV when button is double pressed
+  - alias: Flic W2: Turn off office when flic button is pressed
     trigger:
       platform: event
       event_type: flic_click
@@ -109,6 +118,9 @@ automation:
         click_type: hold
     action:
       - service: script.turn_off_guest_room_tv
+      - service: light.turn_off
+        data:
+          entity_id: group.office_lights
 
   - alias: Start bedtime script on single button press
     trigger:
