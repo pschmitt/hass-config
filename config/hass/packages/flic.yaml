@@ -44,6 +44,21 @@ automation:
         data:
           entity_id: script.smoke_break_timer_off
 
+  - alias: Flic W1: Turn off outdoor light when hold
+    trigger:
+      platform: event
+      event_type: flic_click
+      event_data:
+        button_name: !secret flic_button_white_1
+        click_type: hold
+    action:
+      - service: light.turn_off
+        data:
+          entity_id: light.terrace_light
+      - service: script.turn_off
+        data:
+          entity_id: script.smoke_break_timer_off
+
   - alias: Flic B1: Toggle office stuff on flic press
     trigger:
       platform: event
