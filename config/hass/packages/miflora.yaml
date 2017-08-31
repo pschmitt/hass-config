@@ -110,127 +110,181 @@ sensor:
     name: lemon_moisture
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: lemon_battery
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: lemon_temperature
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: lemon_conductivity
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: lemon_brightness
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
   - platform: mqtt
     name: aloe_vera_moisture
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: aloe_vera_battery
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: aloe_vera_temperature
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: aloe_vera_conductivity
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: aloe_vera_brightness
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
   - platform: mqtt
     name: basil_moisture
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: basil_battery
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: basil_temperature
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: basil_conductivity
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: basil_brightness
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
   - platform: mqtt
     name: mint_moisture
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: mint_battery
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: mint_temperature
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: mint_conductivity
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: mint_brightness
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
   - platform: mqtt
     name: ficus_moisture
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: ficus_battery
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: ficus_temperature
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: ficus_conductivity
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: ficus_brightness
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
   - platform: mqtt
     name: chive_moisture
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.moisture }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: chive_battery
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.battery }}'
+    unit_of_measurement: '%'
+
   - platform: mqtt
     name: chive_temperature
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.temperature }}'
+    unit_of_measurement: 'C'
+
   - platform: mqtt
     name: chive_conductivity
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.conductivity }}'
+    unit_of_measurement: 'S'
+
   - platform: mqtt
     name: chive_brightness
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.brightness }}'
+    unit_of_measurement: 'kLx'
 
 
 homeassistant:
