@@ -21,6 +21,15 @@ group:
       - device_tracker.n5x_arp
 
 
+sensor:
+  - platform: template
+    sensors:
+      n5x_battery:
+        friendly_name: Nexus 5X Battery
+        value_template: ' {{ states.device_tracker.n5x_zanzito.attributes.battery }}'
+        unit_of_measurement: '%'
+
+
 automation:
   - alias: Notify when new network device has been discovered
     trigger:

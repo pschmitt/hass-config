@@ -1,0 +1,43 @@
+group:
+  battery_devices:
+    name: Battery Devices
+    view: no
+    icon: mdi:battery
+    entities:
+      # Hue
+      - sensor.hue_bathroom_battery
+      - sensor.hue_hallway_battery
+      - sensor.hue_hue_kitchen_battery
+      - sensor.hue_toilet_battery
+      # Camera
+      - sensor.z3c_battery
+      # Mi
+      - sensor.mi_fridge_door_battery
+      - sensor.mi_terrace_door_battery
+      - sensor.mi_fridge_door_battery
+      - sensor.mi_freezer_temp_battery
+      # Mi Flora
+      - sensor.lemon_battery
+      - sensor.aloe_vera_battery
+      - sensor.mint_battery
+      - sensor.ficus_battery
+      - sensor.chive_battery
+      # zwave
+      - sensor.smoke_sensor_battery
+      # nuki
+      - binary_sensor.nuki_battery_critical
+      # device_tracker
+      - sensor.n5x_battery
+
+
+# intent_script:
+#   HomeTemperature:
+#     speech:
+#       text: >
+#         {% for entity_id in states.group.battery_devices.attributes.entity_id %}
+#           {%- for state in states.sensor if state.entity_id == entity_id -%}
+#             {{ state.attributes.friendly_name }}
+#           {%- endfor %} is {{ states(entity_id) }}
+#         {%- endfor -%}
+
+# vim: set filetype=yaml et sw=2 ts=2 :
