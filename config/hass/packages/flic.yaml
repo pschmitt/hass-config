@@ -11,7 +11,7 @@ binary_sensor:
 
 
 automation:
-  - alias: Start a smoke break when the flic button is pressed and the outdoor light is off
+  - alias: Flic W1: Start a smoke break when the flic button is pressed and the outdoor light is off
     trigger:
       - platform: event
         event_type: flic_click
@@ -25,7 +25,7 @@ automation:
     action:
       - service: script.smoke_break
 
-  - alias: Turn off the outdoor light if it is on
+  - alias: Flic W1: Turn off the outdoor light if it is on
     trigger:
       - platform: event
         event_type: flic_click
@@ -122,7 +122,7 @@ automation:
         data:
           entity_id: group.office_lights
 
-  - alias: Start bedtime script on single button press
+  - alias: Flic B2: Start bedtime script on single button press
     trigger:
       - platform: event
         event_type: flic_click
@@ -132,7 +132,7 @@ automation:
     action:
       - service: script.bedtime
 
-  - alias: Turn off all on long button press
+  - alias: Flic B2: Turn off all on long button press
     trigger:
       - platform: event
         event_type: flic_click
