@@ -48,7 +48,7 @@ homeassistant:
       order: 2
     group.terrace:
       order: 3
-    group.datacenter:
+    group.office:
       order: 4
     group.bedroom:
       order: 5

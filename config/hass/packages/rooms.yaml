@@ -8,8 +8,8 @@ group:
       - scene.bedtime
       - script.all_off
 
-  datacenter:
-    name: Datacenter
+  office:
+    name: Office
     view: yes
     icon: mdi:server-network
     entities:
@@ -21,6 +21,15 @@ group:
       - camera.octopi
       - camera.rfpi
       - media_player.brightcast
+
+  office_lights:
+    name: Office Lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.gateway_light_34ce008d7aba
+      - light.guest_room
+      - light.office_light
 
   living_room:
     name: Living Room
