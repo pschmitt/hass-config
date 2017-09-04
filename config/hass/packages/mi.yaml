@@ -40,6 +40,13 @@ group:
       - sensor.pressure_158d0001d6f4da
       - sensor.pressure_158d0001d6f4e5
 
+  terrace_doors:
+    name: Terrace Doors
+    view: no
+    icon: mdi:door
+    entities:
+      - binary_sensor.door_window_sensor_158d0001a1ec56
+
 
 automation:
   - alias: Mi Sensor battery is low

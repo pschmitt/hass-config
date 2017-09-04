@@ -82,7 +82,7 @@ group:
       - camera.winpi
       - light.terrace
       - script.smoke_break
-      - binary_sensor.door_window_sensor_158d0001a1ec56
+      - group.terrace_doors
 
   kitchen:
     name: Kitchen
