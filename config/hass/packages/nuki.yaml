@@ -44,38 +44,28 @@ automation:
         entity_id: group.all_devices
         to: 'home'
         for:
-          minutes: 5
+          minutes: 15
     action:
+      - service: notify.html5
+        data:
+          message: "You've been home for 15min. I locked the door."
       - service: script.lock_door
 
-  - alias: Door has been locked
+  - alias: "HTML5 notification: Close door"
     trigger:
-      - platform: state
-        entity_id: lock.home
-        to: 'locked'
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: lock_door
     action:
-      - service: notify.html5
-        data:
-          message: "Front door has been locked"
-          renotify: True
-
-  - alias: Door has been unlocked
-    trigger:
-      - platform: state
-        entity_id: lock.home
-        to: 'unlocked'
-    action:
-      - service: notify.html5
-        data:
-          message: "Front door has been unlocked"
-          renotify: True
+      - service: script.lock_door
 
 alert:
   door_open:
     name: "The door is unlocked. Want me to lock it?"
     entity_id: lock.home
     state: 'unlocked'
-    repeat: 15
+    repeat: 60
     can_acknowledge: True
     skip_first: True
     notifiers:
