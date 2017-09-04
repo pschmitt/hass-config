@@ -2,7 +2,7 @@
 
 cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
-HASS_URL="https://$(awk '/base_url/ { print $2;exit }' ../config/hass/secrets.yaml)"
+HASS_URL="$(awk '/base_url/ { print $2;exit }' ../config/hass/secrets.yaml)"
 HASS_PASSWORD=$(awk '/http_password/ { print $2;exit }' ../config/hass/secrets.yaml)
 
 usage() {
