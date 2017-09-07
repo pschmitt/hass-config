@@ -16,6 +16,46 @@ automation:
         data:
           message: 'Nello: The door bell rung.'
 
+  - alias: "Buzz door open when ringing and I'm home"
+    trigger:
+      - platform: event
+        event_type: nello_bell_ring
+        event_data:
+          short_id: e414cae5
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.n5x_zanzito
+          state: home
+        - condition: state
+          entity_id: device_tracker.n5x_arp
+          state: not_home
+    action:
+      - service: notify.html5
+        data:
+          message: "You are outside. Let's buzz every 30s"
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+      - delay: 00:00:30
+      - service: script.buzz_door_open
+
 
 script:
   buzz_door_open:
