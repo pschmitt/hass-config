@@ -70,7 +70,7 @@ automation:
       - service: script.toggle_guest_room_tv
       - service: light.toggle
         data:
-          entity_id: group.office_lights
+          entity_id: group.main_office_lights
 
   - alias: "Flic B1: Turn on office stuff on double flic press"
     trigger:
@@ -83,7 +83,7 @@ automation:
       - service: script.turn_on_guest_room_tv
       - service: light.turn_on
         data:
-          entity_id: group.office_lights
+          entity_id: group.main_office_lights
 
   - alias: "Flic B1: Turn off office stuff on flic hold"
     trigger:
@@ -110,7 +110,7 @@ automation:
       - service: script.toggle_guest_room_tv
       - service: light.toggle
         data:
-          entity_id: group.office_lights
+          entity_id: group.main_office_lights
 
   - alias: "Flic W2: Turn on office when flic button is pressed"
     trigger:
@@ -123,7 +123,7 @@ automation:
       - service: script.turn_on_guest_room_tv
       - service: light.turn_on
         data:
-          entity_id: group.office_lights
+          entity_id: group.main_office_lights
 
   - alias: "Flic W2: Turn off office when flic button is pressed"
     trigger:
