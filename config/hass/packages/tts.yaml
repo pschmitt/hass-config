@@ -16,39 +16,39 @@ script:
     sequence:
       - service: media_player.volume_set
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           volume_level: 0.6
       # DIRTYFIX: Repeat 5 times so that the volume level gets set correctly
       - service: media_player.volume_set
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           volume_level: 0.6
       - service: media_player.volume_set
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           volume_level: 0.6
       - service: media_player.volume_set
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           volume_level: 0.6
       - service: media_player.volume_set
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           volume_level: 0.6
 
   tts_say:
     sequence:
       - service: media_player.turn_on
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
       - service: media_player.mute
         data:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           mute: False
       - service: script.reset_tts_volume
       - service: tts.google_say
         data_template:
-          entity_id: media_player.living_room_speaker
+          entity_id: media_player.home_group
           message: '{{ message }}'
 
 
