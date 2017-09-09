@@ -18,7 +18,7 @@ switch:
           systemcode: 1
           unitcode: 1
           'off': 1
-      Office Light:
+      Office Desk Light:
         on_code:
           protocol: pollin
           systemcode: 1
@@ -32,34 +32,34 @@ switch:
 
 
 script:
-  turn_on_office_light:
+  turn_on_office_desk_light:
     sequence:
       - service: switch.turn_on
-        entity_id: switch.office_light
+        entity_id: switch.office_desk_light
 
-  turn_off_office_light:
+  turn_off_office_desk_light:
     sequence:
       - service: switch.turn_off
-        entity_id: switch.office_light
+        entity_id: switch.office_desk_light
 
 light:
   - platform: template
     lights:
-      office_light:
+      office_desk_light:
         friendly_name: "Office Light"
-        value_template: '{{ is_state("switch.office_light", "on") }}'
+        value_template: '{{ is_state("switch.office_desk_light", "on") }}'
         turn_on:
-          service: script.turn_on_office_light
+          service: script.turn_on_office_desk_light
         turn_off:
-          service: script.turn_off_office_light
-        entity_id: switch.office_light
+          service: script.turn_off_office_desk_light
+        entity_id: switch.office_desk_light
 
 homeassistant:
   customize:
     switch.office_tv:
       icon: mdi:power-plug
     # Fix the friendly_name (Why isn't that working?)
-    light.office_light:
-      friendly_name: Office Light
+    light.office_desk_light:
+      friendly_name: Office Desk Light
 
 # vim: set filetype=yaml et sw=2 ts=2 :

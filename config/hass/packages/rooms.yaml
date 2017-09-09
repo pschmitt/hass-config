@@ -14,7 +14,7 @@ group:
     icon: mdi:book-open
     entities:
       - light.gateway_light_34ce008d7aba
-      - light.office
+      - light.office_desk_light
       - light.office_light
       - switch.wemo_insight__nasteanas
       - switch.office_tv
@@ -29,7 +29,7 @@ group:
     icon: mdi:lightbulb
     entities:
       - light.gateway_light_34ce008d7aba
-      - light.office
+      - light.office_desk_light
       - light.office_light
 
   main_office_lights:
@@ -37,7 +37,7 @@ group:
     view: no
     icon: mdi:lightbulb
     entities:
-      - light.office
+      - light.office_desk_light
       - light.office_light
 
   living_room:
@@ -89,7 +89,7 @@ group:
       - group.all_plants
       - script.refresh_plant_data
       - camera.winpi
-      - light.terrace
+      - light.terrace_light
       - script.smoke_break
       - group.terrace_doors
 
