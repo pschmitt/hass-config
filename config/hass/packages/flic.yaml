@@ -67,7 +67,7 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: single
     action:
-      - service: script.toggle_guest_room_tv
+      - service: script.toggle_office_tv
       - service: light.toggle
         data:
           entity_id: group.main_office_lights
@@ -80,7 +80,7 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: double
     action:
-      - service: script.turn_on_guest_room_tv
+      - service: script.turn_on_office_tv
       - service: light.turn_on
         data:
           entity_id: group.main_office_lights
@@ -94,7 +94,7 @@ automation:
         click_type: hold
     action:
       - service: script.turn_off_mushu
-      - service: script.turn_off_guest_room_tv
+      - service: script.turn_off_office_tv
       - service: light.turn_off
         data:
           entity_id: group.office_lights
@@ -107,7 +107,7 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: single
     action:
-      - service: script.toggle_guest_room_tv
+      - service: script.toggle_office_tv
       - service: light.toggle
         data:
           entity_id: group.main_office_lights
@@ -120,7 +120,7 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: double
     action:
-      - service: script.turn_on_guest_room_tv
+      - service: script.turn_on_office_tv
       - service: light.turn_on
         data:
           entity_id: group.main_office_lights
@@ -133,7 +133,7 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: hold
     action:
-      - service: script.turn_off_guest_room_tv
+      - service: script.turn_off_office_tv
       - service: light.turn_off
         data:
           entity_id: group.office_lights

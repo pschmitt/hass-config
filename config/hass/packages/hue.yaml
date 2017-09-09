@@ -71,7 +71,7 @@ group:
       - light.front_door
       - light.living_room
       - light.terrace
-      - light.guest_room
+      - light.office
       - light.bedroom
       - light.toilet
       - light.kitchen
@@ -85,7 +85,7 @@ group:
       - light.living_room_light_tv
       - light.living_room_light_table
       - light.terrace_light
-      - light.guest_room_light
+      - light.office_light
       - light.bedroom_light
       - light.toilet_light
       - light.kitchen_light
@@ -124,15 +124,15 @@ scene:
         state: on
         flash: short
 
-  - name: Flash Guest Room Lights
+  - name: Flash Office Lights
     entities:
-      light.guest_room:
+      light.office:
         state: on
         flash: short
 
   - name: Flash Lights
     entities:
-      light.guest_room:
+      light.office:
         state: on
         flash: short
       light.living_room:
@@ -149,7 +149,7 @@ scene:
         state: off
       light.bathroom:
         state: off
-      light.guest_room:
+      light.office:
         state: off
       light.bedroom:
         state: off
@@ -275,11 +275,11 @@ script:
     sequence:
       - service: script.all_off
 
-  flash_guest_room_lights:
-    alias: Flash Guest Room Lights
+  flash_office_lights:
+    alias: Flash Office Lights
     sequence:
       - service: scene.turn_on
-        entity_id: scene.flash_guest_room_lights
+        entity_id: scene.flash_office_lights
 
   flash_living_room_lights:
     alias: Flash Living Room Lights
@@ -291,7 +291,7 @@ script:
     alias: Flash Lights
     sequence:
       - service: script.flash_living_room_lights
-      - service: script.flash_guest_room_lights
+      - service: script.flash_office_lights
 
   smoke_break:
     alias: "Smoke break"

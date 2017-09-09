@@ -6,7 +6,7 @@ script:
         data:
           message: "Shutdown initiated."
       - service: script.turn_off_media_players
-      - service: script.turn_off_guest_room_tv
+      - service: script.turn_off_office_tv
       - service: light.turn_off
         data:
           entity_id: group.all_lights
@@ -21,7 +21,7 @@ script:
         data:
           entity_id: scene.bedtime
       - service: script.lock_door
-      - service: script.turn_off_guest_room_tv
+      - service: script.turn_off_office_tv
       - service: light.turn_off
         data:
           entity_id: group.office_lights

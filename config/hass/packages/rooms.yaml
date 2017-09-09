@@ -14,10 +14,10 @@ group:
     icon: mdi:server-network
     entities:
       - light.gateway_light_34ce008d7aba
-      - light.guest_room
+      - light.office
       - light.office_light
       - switch.wemo_insight__nasteanas
-      - switch.guest_room_tv
+      - switch.office_tv
       - camera.octopi
       - camera.rfpi
       - media_player.brightcast
@@ -29,7 +29,7 @@ group:
     icon: mdi:lightbulb
     entities:
       - light.gateway_light_34ce008d7aba
-      - light.guest_room
+      - light.office
       - light.office_light
 
   main_office_lights:
@@ -37,7 +37,7 @@ group:
     view: no
     icon: mdi:lightbulb
     entities:
-      - light.guest_room
+      - light.office
       - light.office_light
 
   living_room:

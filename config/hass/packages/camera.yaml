@@ -237,7 +237,7 @@ group:
     entities:
       - group.cameras_living_room
       - group.cameras_misc
-      - group.cameras_guest_room
+      - group.cameras_office
 
   cameras_living_room:
     name: Living Room Cameras
@@ -246,8 +246,8 @@ group:
       - camera.c1
       - camera.octopi
 
-  cameras_guest_room:
-    name: Guest Room Cameras
+  cameras_office:
+    name: Office Cameras
     view: no
     entities:
       - camera.rfpi

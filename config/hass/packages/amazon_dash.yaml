@@ -47,7 +47,7 @@ script:
         data:
           message: durex
       - service: switch.toggle
-        entity_id: switch.guest_room_tv
+        entity_id: switch.office_tv
 
 
 homeassistant:

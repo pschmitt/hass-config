@@ -7,7 +7,7 @@ pilight:
 switch:
   - platform: pilight
     switches:
-      Guest Room TV:
+      Office TV:
         on_code:
           protocol: pollin
           systemcode: 1
@@ -56,7 +56,7 @@ light:
 
 homeassistant:
   customize:
-    switch.guest_room_tv:
+    switch.office_tv:
       icon: mdi:power-plug
     # Fix the friendly_name (Why isn't that working?)
     light.office_light:
