@@ -14,6 +14,8 @@ group:
       - media_player.blindcast
       - media_player.brightcast
       - media_player.nvidia_shield_tv
+      - media_player.sony_living_room_speaker
+      - media_player.sony_office_speaker
 
 
 input_select:

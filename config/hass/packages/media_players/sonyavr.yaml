@@ -1,0 +1,10 @@
+media_player:
+  - platform: sonyavr
+    host: sony-living-room-speaker.lan
+    name: Sony Living Room Speaker
+
+  - platform: sonyavr
+    host: sony-office-speaker.lan
+    name: Sony Office Speaker
+
+# vim: set filetype=yaml et sw=2 ts=2 :

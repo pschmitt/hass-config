@@ -22,6 +22,7 @@ group:
       - camera.rfpi
       - media_player.brightcast
       - media_player.office_speaker
+      - media_player.sony_office_speaker
 
   office_lights:
     name: All Office Lights
