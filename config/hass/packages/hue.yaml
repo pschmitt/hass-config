@@ -74,6 +74,7 @@ group:
       - light.office
       - light.bedroom
       - light.toilet
+      - light.bathroom
       - light.kitchen
       - light.hallway
 
