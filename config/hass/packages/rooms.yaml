@@ -11,7 +11,7 @@ group:
   office:
     name: Office
     view: yes
-    icon: mdi:server-network
+    icon: mdi:book-open
     entities:
       - light.gateway_light_34ce008d7aba
       - light.office
@@ -96,7 +96,7 @@ group:
   kitchen:
     name: Kitchen
     view: yes
-    icon: mdi:food-fork-drink
+    icon: mdi:pot-mix
     entities:
       - camera.c2
       - light.kitchen_light

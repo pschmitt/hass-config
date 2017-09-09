@@ -329,12 +329,27 @@ script:
 homeassistant:
   customize:
     # Lights
-    light.living_room_table:
+    light.bathroom:
+      # icon: mdi:hot-tub
+      icon: mdi:water-pump
+    light.bedroom:
+      icon: mdi:hotel
+    light.front_door:
+      icon: mdi:home-modern
+    light.hallway:
+      icon: mdi:vector-square
+    light.kitchen:
+      icon: mdi:pot-mix
+    light.living_room:
+      icon: mdi:sofa
+    light.living_room_table_light:
       icon: mdi:food
-    light.living_room_tv:
+    light.living_room_tv_light:
       icon: mdi:television
+    light.office:
+      icon: mdi:book-open
     light.terrace:
-      icon: mdi:pine-tree
+      icon: mdi:tree
     light.toilet:
       icon: mdi:human-male-female
     # Hue sensors
