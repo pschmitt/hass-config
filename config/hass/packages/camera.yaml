@@ -64,6 +64,18 @@ switch:
     command_on: Modect
     command_off: Monitor
 
+  - platform: template
+    switches:
+      modect:
+        friendly_name: Motion Detection
+        value_template: "{{ is_state('group.modect', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          entity_id: group.modect
+        turn_off:
+          service: homeassistant.turn_off
+          entity_id: group.modect
+
   - platform: command_line
     switches:
       z3c_cam:
@@ -235,6 +247,7 @@ group:
     view: yes
     icon: mdi:camera
     entities:
+      - switch.modect
       - group.cameras_living_room
       - group.cameras_misc
       - group.cameras_office
@@ -262,7 +275,7 @@ group:
 
   cctv:
     name: CCTV
-    view: yes
+    view: no
     icon: mdi:camera-enhance
     entities:
       - binary_sensor.bathroom_presence
@@ -339,10 +352,10 @@ group:
       - switch.octopi_state
       - switch.rfpi_state
       - switch.winpi_state
-      - switch.c1_modect
-      - switch.c2_modect
-      - switch.c1_sodect
-      - switch.c2_sodect
+      - switch.foscam_c1_modect
+      - switch.foscam_c2_modect
+      - switch.foscam_c1_sodect
+      - switch.foscam_c2_sodect
 
   raspicam_octopi:
     name: Raspberry Pi Camera (octopi)
@@ -398,6 +411,8 @@ homeassistant:
       icon: mdi:surround-sound
     switch.c2_sodect:
       icon: mdi:surround-sound
+    switch.modect:
+      icon: mdi:camera-enhance
     # Sensors
     sensor.z3c_battery:
       icon: mdi:battery
