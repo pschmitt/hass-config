@@ -12,7 +12,7 @@ TRAVIS_SECRETS_FILE = os.path.join(
 
 TRAVIS_FLOAT = 0.0
 TRAVIS_INT = 0
-TRAVIS_STR = 'travis_secret'
+TRAVIS_STR = 'travis_secret_16'
 TRAVIS_FILE = './config/hass/.travis/file'
 
 with open(HASS_SECRETS_FILE, 'r') as stream:
