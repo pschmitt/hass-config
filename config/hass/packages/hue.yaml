@@ -89,6 +89,7 @@ group:
       - light.office_light
       - light.bedroom_light
       - light.toilet_light
+      - light.bathroom_light
       - light.kitchen_light
       - light.hallway_light
 
