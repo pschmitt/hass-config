@@ -60,7 +60,7 @@ automation:
           message: "Mi sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
           tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
 
-  - alias: Alert when fridge has been opened
+  - alias: Turn on the terrace light when door opened during night
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1ec56
@@ -72,7 +72,7 @@ automation:
     action:
       - service: script.smoke_break
 
-  - alias: Alert when terrace door has been opened
+  - alias: Alert when the fridge has been open for 2 min
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b
@@ -98,7 +98,7 @@ automation:
           data:
             tag: 'fridge-temp-high'
 
-  - alias: Alert when freezer temperature is above 15C
+  - alias: Alert when freezer temperature is above -10C
     trigger:
       - platform: numeric_state
         entity_id: sensor.temperature_158d0001d6f4e5
