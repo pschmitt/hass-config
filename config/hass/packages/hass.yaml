@@ -67,7 +67,7 @@ group:
   hass:
     name: hass
     view: yes
-    icon: mdi:bug
+    icon: mdi:home-assistant
     entities:
       # - group.all
       - group.hass_infrastructure
