@@ -58,6 +58,7 @@ automation:
       - service: notify.html5
         data_template:
           message: "Mi sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
+          tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
 
   - alias: Alert when fridge has been opened
     trigger:
