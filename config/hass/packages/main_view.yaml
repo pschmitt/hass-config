@@ -29,6 +29,7 @@ group:
     entities:
       - alarm_control_panel.ha_alarm
       - lock.nello_e414cae5
+      - binary_sensor.door_window_sensor_158d00016d7083
       - lock.home
       - vacuum.nimbus
       - script.all_off
