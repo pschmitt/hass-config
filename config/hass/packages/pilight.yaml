@@ -42,6 +42,7 @@ script:
       - service: switch.turn_off
         entity_id: switch.office_desk_light
 
+
 light:
   - platform: template
     lights:
@@ -53,6 +54,7 @@ light:
         turn_off:
           service: script.turn_off_office_desk_light
         entity_id: switch.office_desk_light
+
 
 homeassistant:
   customize:
