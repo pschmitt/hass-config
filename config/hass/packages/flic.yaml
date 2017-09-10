@@ -67,10 +67,9 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: single
     action:
-      - service: script.toggle_office_tv
       - service: light.toggle
         data:
-          entity_id: group.main_office_lights
+          entity_id: group.office_lights
 
   - alias: "Flic B1: Turn on office stuff on double flic press"
     trigger:
@@ -80,10 +79,9 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: double
     action:
-      - service: script.turn_on_office_tv
       - service: light.turn_on
         data:
-          entity_id: group.main_office_lights
+          entity_id: group.office_lights
 
   - alias: "Flic B1: Turn off office stuff on flic hold"
     trigger:
@@ -107,10 +105,9 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: single
     action:
-      - service: script.toggle_office_tv
       - service: light.toggle
         data:
-          entity_id: group.main_office_lights
+          entity_id: group.office_lights
 
   - alias: "Flic W2: Turn on office when flic button is pressed"
     trigger:
@@ -120,10 +117,9 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: double
     action:
-      - service: script.turn_on_office_tv
       - service: light.turn_on
         data:
-          entity_id: group.main_office_lights
+          entity_id: group.office_lights
 
   - alias: "Flic W2: Turn off office when flic button is pressed"
     trigger:

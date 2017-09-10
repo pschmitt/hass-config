@@ -1,3 +1,51 @@
+media_player:
+  - platform: universal
+    name: Office TV Universal
+    children:
+      - media_player.brightcast
+      - media_player.office_speaker
+      - media_player.sony_office_speaker
+    commands:
+      turn_on:
+        service: script.turn_on_office_media_players
+        # service: media_player.turn_on
+        # data:
+        #   entity_id: media_player.sony_office_speaker
+      turn_off:
+        service: script.turn_off_office_media_players
+        # service: media_player.turn_off
+        # data:
+        #   entity_id: media_player.sony_office_speaker
+      volume_set:
+        service: media_player.volume_set
+        data_template:
+          entity_id: media_player.sony_office_speaker
+          volume_level: '{{ volume_level }}'
+      volume_up:
+        service: media_player.volume_up
+        data:
+          entity_id: media_player.sony_office_speaker
+      volume_down:
+        service: media_player.volume_down
+        data:
+          entity_id: media_player.sony_office_speaker
+      volume_mute:
+        service: media_player.volume_mute
+        data:
+          entity_id: media_player.sony_office_speaker
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.sony_office_speaker
+          source: '{{ source }}'
+    attributes:
+      is_volume_muted: media_player.sony_office_speaker|is_volume_muted
+      state: media_player.brightcast
+      volume_level: media_player.sony_office_speaker|volume_level
+      source: media_player.sony_office_speaker|source
+      source_list: media_player.sony_office_speaker|source_list
+
+
 binary_sensor:
   - platform: ping
     name: brightcast
@@ -5,6 +53,23 @@ binary_sensor:
 
 
 script:
+  turn_on_office_media_players:
+    sequence:
+      - service: script.turn_on_office_tv
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.sony_office_speaker
+
+  turn_off_office_media_players:
+    sequence:
+      - service: script.turn_off_office_tv
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.brightcast
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.sony_office_speaker
+
   turn_on_office_tv:
     alias: "Turn on the office TV"
     sequence:
@@ -25,5 +90,19 @@ script:
       service: switch.toggle
       data:
         entity_id: switch.office_tv
+
+
+automation:
+  - alias: Switch office Sony speaker input to AUX when playing something on brightcast
+    trigger:
+      platform: state
+      entity_id: media_player.brightcast
+      to: 'playing'
+    action:
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.sony_office_speaker
+      - service: script.set_office_speaker_to_aux
+      - service: script.turn_on_office_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -13,28 +13,16 @@ group:
     view: yes
     icon: mdi:book-open
     entities:
-      - light.gateway_light_34ce008d7aba
       - light.office_desk_light
       - light.office_light
       - switch.wemo_insight__nasteanas
       - switch.office_tv
       - camera.octopi
       - camera.rfpi
-      - media_player.brightcast
-      - media_player.office_speaker
-      - media_player.sony_office_speaker
+      - media_player.office_tv_universal
 
   office_lights:
     name: All Office Lights
-    view: no
-    icon: mdi:lightbulb
-    entities:
-      - light.gateway_light_34ce008d7aba
-      - light.office_desk_light
-      - light.office_light
-
-  main_office_lights:
-    name: Office Lights
     view: no
     icon: mdi:lightbulb
     entities:
@@ -49,6 +37,7 @@ group:
       - group.living_room_media_player_scripts
       - light.living_room_light_tv
       - light.living_room_light_table
+      - light.gateway_light_34ce008d7aba
       - light.front_door
       - light.terrace
       - scene.living_room_normal

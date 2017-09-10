@@ -7,4 +7,13 @@ media_player:
     host: sony-office-speaker.lan
     name: Sony Office Speaker
 
+
+script:
+  set_office_speaker_to_aux:
+    sequence:
+      service: media_player.select_source
+      data:
+        entity_id: media_player.sony_office_speaker
+        source: "Audio In"
+
 # vim: set filetype=yaml et sw=2 ts=2 :
