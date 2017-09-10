@@ -12,8 +12,10 @@ group:
       # Camera
       - sensor.z3c_battery
       # Mi
+      - sensor.mi_front_door_battery
       - sensor.mi_fridge_door_battery
       - sensor.mi_terrace_door_battery
+      - sensor.mi_terrace_door_bedroom_battery
       - sensor.mi_fridge_door_battery
       - sensor.mi_freezer_temp_battery
       # Mi Flora

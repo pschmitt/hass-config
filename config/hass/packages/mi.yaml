@@ -8,6 +8,10 @@ xiaomi:
 sensor:
   - platform: template
     sensors:
+      mi_front_door_battery:
+        friendly_name: "Mi Front Door Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d00016d7083.attributes.battery_level }}'
+        unit_of_measurement: '%'
       mi_fridge_door_battery:
         friendly_name: Mi Fridge Door Sensor Battery
         value_template: '{{ states.binary_sensor.door_window_sensor_158d0001a1eb5b.attributes.battery_level }}'
@@ -16,6 +20,10 @@ sensor:
         friendly_name: Mi Terrace Door Sensor Battery
         value_template: '{{ states.binary_sensor.door_window_sensor_158d0001a1ec56.attributes.battery_level }}'
         unit_of_measurement: '%'
+      mi_terrace_door_bedroom_battery:
+        friendly_name: "Mi Terrace Door (Bedroom) Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d00016572aa.attributes.battery_level }}'
+        unit_of_measurement: '%'
       mi_fridge_temp_battery:
         friendly_name: Mi Fridge Temperature Sensor Battery
         value_template: '{{ states.sensor.temperature_158d0001d6f4da.attributes.battery_level }}'
@@ -23,6 +31,14 @@ sensor:
       mi_freezer_temp_battery:
         friendly_name: Mi Freezer Temperature Sensor Battery
         value_template: '{{ states.sensor.temperature_158d0001d6f4e5.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      mi_water_leak_bathroom_battery:
+        friendly_name: Mi Bathroom Water Leak Sensor Battery
+        value_template: '{{ states.binary_sensor.water_leak_sensor_158d0001d7668e.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      mi_water_leak_kitchen_battery:
+        friendly_name: Mi Kitchen Water Leak Sensor Battery
+        value_template: '{{ states.binary_sensor.water_leak_sensor_158d0001df1cc3.attributes.battery_level }}'
         unit_of_measurement: '%'
 
 
@@ -53,7 +69,7 @@ automation:
   - alias: Mi Sensor battery is low
     trigger:
       - platform: numeric_state
-        entity_id: sensor.mi_fridge_door_battery, sensor.mi_terrace_door_battery, sensor.mi_fridge_door_battery, sensor.mi_freezer_temp_battery
+        entity_id: sensor.mi_front_door_battery, sensor.mi_fridge_door_battery, sensor.mi_terrace_door_battery, sensor.mi_terrace_door_bedroom_battery, sensor.mi_fridge_door_battery, sensor.mi_freezer_temp_battery
         below: 15
     action:
       - service: notify.html5
