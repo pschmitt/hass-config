@@ -18,6 +18,8 @@ group:
       - sensor.mi_terrace_door_bedroom_battery
       - sensor.mi_fridge_door_battery
       - sensor.mi_freezer_temp_battery
+      - sensor.mi_water_leak_bathroom_battery
+      - sensor.mi_water_leak_kitchen_battery
       # Mi Flora
       - sensor.lemon_battery
       - sensor.aloe_vera_battery
