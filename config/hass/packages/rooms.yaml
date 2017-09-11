@@ -19,7 +19,8 @@ group:
       - switch.office_tv
       - camera.octopi
       - camera.rfpi
-      - media_player.office_tv_universal
+      - media_player.sony_office_speaker
+      - media_player.office_tv
 
   office_lights:
     name: All Office Lights
