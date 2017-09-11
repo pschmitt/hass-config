@@ -1,6 +1,6 @@
 media_player:
   - platform: universal
-    name: Office TV Universal
+    name: Office TV
     children:
       - media_player.brightcast
       - media_player.office_speaker
@@ -8,14 +8,8 @@ media_player:
     commands:
       turn_on:
         service: script.turn_on_office_media_players
-        # service: media_player.turn_on
-        # data:
-        #   entity_id: media_player.sony_office_speaker
       turn_off:
         service: script.turn_off_office_media_players
-        # service: media_player.turn_off
-        # data:
-        #   entity_id: media_player.sony_office_speaker
       volume_set:
         service: media_player.volume_set
         data_template:
@@ -46,19 +40,13 @@ media_player:
       source_list: media_player.sony_office_speaker|source_list
 
 
-binary_sensor:
-  - platform: ping
-    name: brightcast
-    host: chromecast.lan
-
-
 script:
   turn_on_office_media_players:
     sequence:
       - service: script.turn_on_office_tv
-      - service: media_player.turn_on
-        data:
-          entity_id: media_player.brightcast
+      # - service: media_player.turn_on
+      #   data:
+      #     entity_id: media_player.brightcast
       - service: media_player.turn_on
         data:
           entity_id: media_player.sony_office_speaker
