@@ -4,13 +4,13 @@ cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
 HUE_HOSTNAME=philips-hue.lan
 HUE_PORT=80
-HUE_USERNAME=$(awk '/hue_username/ { print $2 }' ../config/secrets.yaml)
+HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' /config/phue.conf)
 
-declare -A SENSOR_BATTERY=( [bathroom]=5 [hallway]=11 [kitchen]=8 [toilet]=2 )
-declare -A SENSOR_TEMPERATURE=( [bathroom]=5 [hallway]=11 [kitchen]=8 [toilet]=2 )
-declare -A SENSOR_PRESENCE=( [bathroom]=6 [hallway]=12 [kitchen]=9 [toilet]=3 )
-declare -A SENSOR_LIGHT_LEVEL=( [bathroom]=7 [hallway]=13 [kitchen]=10 [toilet]=4 )
-declare -A SENSOR_SWITCH=( [master]=17 [living_room]=21 )
+declare -A SENSOR_BATTERY=( [bathroom]=12 [hallway]=3 [kitchen]=6 [toilet]=9 )
+declare -A SENSOR_TEMPERATURE=( [bathroom]=11 [hallway]=2 [kitchen]=5 [toilet]=8 )
+declare -A SENSOR_PRESENCE=( [bathroom]=12 [hallway]=3 [kitchen]=6 [toilet]=9 )
+declare -A SENSOR_LIGHT_LEVEL=( [bathroom]=13 [hallway]=4 [kitchen]=7 [toilet]=10 )
+declare -A SENSOR_SWITCH=( [master]=20 [living_room]=14 )
 declare -A SENSOR_SWITCH_BUTTONS=(
     [1000]=INITIAL_PRESSED_1 [1001]=HOLD_1 [1002]=SHORT_RELEASED_1 [1003]=LONG_RELEASED_1
     [2000]=INITIAL_PRESSED_2 [2001]=HOLD_2 [2002]=SHORT_RELEASED_2 [2003]=LONG_RELEASED_2
