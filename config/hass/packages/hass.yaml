@@ -1,21 +1,17 @@
 automation:
-  - alias: Notify when HA starts
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-      service: notify.html5
-      data:
-        message: "Home Assistant has (re)started"
-        data:
-          tag: "hass-restart"
-          renotify: True
 
   - alias: HASS startup automation
     trigger:
       platform: homeassistant
       event: start
     action:
+      - service: shell_command.setup_routing
+      - service: notify.html5
+        data:
+          message: "Home Assistant has (re)started"
+          data:
+            tag: "hass-restart"
+            renotify: True
       - service: frontend.set_theme
         data:
           name: dark
@@ -49,6 +45,10 @@ rest_command:
   ha_restart:
     method: get
     url: http://nasteanas.lan:8993/ha/restart
+
+
+shell_command:
+  setup_routing: !secret shell_cmd_setup_routing
 
 
 script:

@@ -8,6 +8,8 @@ services:
     depends_on:
       - database
     network_mode: host
+    cap_add:
+      - NET_ADMIN  # Required for adding new routes
     extra_hosts:
       - "hass-db:172.92.92.92"
     volumes:
