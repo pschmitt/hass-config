@@ -2,9 +2,14 @@
 
 cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
+HUE_CONFIG_FILE=/config/phue.conf
+if [[ -r ../config/hass/phue.conf ]]
+then
+    HUE_CONFIG_FILE="../config/hass/phue.conf"
+fi
 HUE_HOSTNAME=philips-hue.lan
 HUE_PORT=80
-HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' /config/phue.conf)
+HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' $HUE_CONFIG_FILE)
 
 declare -A SENSOR_BATTERY=( [bathroom]=12 [hallway]=3 [kitchen]=6 [toilet]=9 )
 declare -A SENSOR_TEMPERATURE=( [bathroom]=11 [hallway]=2 [kitchen]=5 [toilet]=8 )
@@ -144,7 +149,7 @@ switch_check() {
 }
 
 switch_daemon_multi() {
-    local interval=1
+    local interval=2
     local switch_name
     while :
     do
@@ -157,7 +162,7 @@ switch_daemon_multi() {
 }
 
 switch_daemon_single() {
-    local interval=1
+    local interval=2
     while :
     do
         switch_check "$1"
