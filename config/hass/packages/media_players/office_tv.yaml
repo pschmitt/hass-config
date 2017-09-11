@@ -58,6 +58,9 @@ script:
       - service: script.turn_on_office_tv
       - service: media_player.turn_on
         data:
+          entity_id: media_player.brightcast
+      - service: media_player.turn_on
+        data:
           entity_id: media_player.sony_office_speaker
 
   turn_off_office_media_players:
