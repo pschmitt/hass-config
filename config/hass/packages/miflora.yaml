@@ -54,7 +54,7 @@ plant:
     max_moisture: 60
     min_battery: 15
     min_conductivity: 10
-    min_temperature: 15
+    min_temperature: 12
   Basil:
     sensors:
       moisture: sensor.basil_moisture
