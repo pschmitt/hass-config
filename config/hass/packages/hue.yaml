@@ -172,72 +172,84 @@ sensor:
     command: /scripts/zhue.sh battery toilet
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
+    scan_interval: 3600
 
   - platform: command_line
     name: 'Hue Toilet Lux'
     command: /scripts/zhue.sh lux toilet
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Toilet Temperature'
     command: /scripts/zhue.sh temperature toilet
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Hallway Battery'
     command: /scripts/zhue.sh battery hallway
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
+    scan_interval: 3600
 
   - platform: command_line
     name: 'Hue Hallway Lux'
     command: /scripts/zhue.sh lux hallway
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Hallway Temperature'
     command: /scripts/zhue.sh temperature hallway
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Kitchen Battery'
     command: /scripts/zhue.sh battery kitchen
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
+    scan_interval: 3600
 
   - platform: command_line
     name: 'Hue Kitchen Lux'
     command: /scripts/zhue.sh lux kitchen
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Kitchen Temperature'
     command: /scripts/zhue.sh temperature kitchen
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Bathroom Battery'
     command: /scripts/zhue.sh battery bathroom
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
+    scan_interval: 3600
 
   - platform: command_line
     name: 'Hue Bathroom Lux'
     command: /scripts/zhue.sh lux bathroom
     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
     unit_of_measurement: klx
+    scan_interval: 600
 
   - platform: command_line
     name: 'Hue Bathroom Temperature'
     command: /scripts/zhue.sh temperature bathroom
     value_template: '{{ value_json.state.temperature | float / 100 }}'
     unit_of_measurement: °C
+    scan_interval: 600
 
 
 binary_sensor:
