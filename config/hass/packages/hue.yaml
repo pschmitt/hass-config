@@ -204,7 +204,7 @@ sensor:
     unit_of_measurement: °C
 
   - platform: command_line
-    name: 'Hue Hue Kitchen Battery'
+    name: 'Hue Kitchen Battery'
     command: /scripts/zhue.sh battery kitchen
     value_template: '{{ value_json.config.battery }}'
     unit_of_measurement: '%'
