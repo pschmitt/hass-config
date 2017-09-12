@@ -1,0 +1,4 @@
+media_player:
+  - platform: emby
+    host: nasteanas.lan
+    api_key: !secret emby_api_key

@@ -2,6 +2,7 @@ media_player:
   - platform: universal
     name: Office TV
     children:
+      - media_player.emby__emby_for_chromecast__brightcast
       - media_player.brightcast
       - media_player.office_speaker
       - media_player.sony_office_speaker
