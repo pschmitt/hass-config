@@ -35,6 +35,8 @@ automation:
       - service: notify.html5
         data:
           message: "You are outside. Let's buzz every 30s"
+          data:
+            tag: 'homecoming-buzz'
       - delay: 00:00:30
       - service: script.buzz_door_open
       - delay: 00:00:30
@@ -70,5 +72,8 @@ homeassistant:
   customize:
     lock.nello_e414cae5:
       friendly_name: Nello Home
+    # Scripts
+    script.buzz_door_open:
+      icon: mdi:lock-open
 
 # vim: set filetype=yaml et sw=2 ts=2 :

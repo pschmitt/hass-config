@@ -28,7 +28,7 @@ group:
     view: no
     entities:
       - alarm_control_panel.ha_alarm
-      - lock.nello_e414cae5
+      - script.buzz_door_open
       - binary_sensor.door_window_sensor_158d00016d7083
       - lock.home
       - vacuum.nimbus
@@ -53,6 +53,8 @@ homeassistant:
     group.office:
       order: 4
     group.bedroom:
+      order: 5
+    group.misc:
       order: 5
     group.media_players:
       order: 6

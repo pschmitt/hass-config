@@ -1,12 +1,22 @@
 group:
   bedroom:
     name: Bedroom
-    view: yes
+    view: no
     icon: mdi:hotel
     entities:
       - light.bedroom
       - scene.bedtime
       - script.all_off
+
+  misc:
+    name: Misc
+    view: yes
+    icon: mdi:square-inc
+    entities:
+      - light.bedroom
+      - light.toilet
+      - light.bathroom
+      - switch.wemo_insight__washing_machine
 
   office:
     name: Office
