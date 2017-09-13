@@ -37,7 +37,7 @@ automation:
         to: home
     condition:
       - condition: template
-        value_template: '{{ "error" in states.vacuum.nimbus.attributes }}'
+        value_template: '{{ states.vacuum.nimbus.attributes.status != "Charging" }}'
     action:
       - service: notify.html5
         data:
