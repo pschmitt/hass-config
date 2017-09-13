@@ -33,16 +33,16 @@ automation:
     trigger:
       - platform: state
         entity_id: device_tracker.n5x_zanzito
-        from: not_home
         to: home
     condition:
       - condition: template
         value_template: '{{ states.vacuum.nimbus.attributes.status != "Charging" }}'
     action:
       - service: notify.html5
-        data:
-          message: "Nimbus is stuck. Go rescue him!"
-          tag: "nimbus-rescue"
+        data_template:
+          message: "Nimbus is {{ states.vacuum.nimbus.attributes.status }}. Go rescue him!"
+          data:
+            tag: "nimbus-rescue"
 
 
 notify:
