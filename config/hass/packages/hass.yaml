@@ -72,6 +72,7 @@ group:
       # - group.all
       - group.hass_infrastructure
       - group.all_devices
+      - group.flic_buttons
       - group.media_players
       - group.all_scripts
       - group.all_lights

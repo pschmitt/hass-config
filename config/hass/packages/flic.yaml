@@ -10,6 +10,17 @@ binary_sensor:
     discovery: false
 
 
+group:
+  flic_buttons:
+    name: Flic Buttons
+    view: no
+    entities:
+      - binary_sensor.flic_80e4da720d40
+      - binary_sensor.flic_80e4da720d46
+      - binary_sensor.flic_80e4da721d59
+      - binary_sensor.flic_80e4da721df4
+
+
 automation:
   - alias: "Flic W1: Start a smoke break when the flic button is pressed and the outdoor light is off"
     trigger:
