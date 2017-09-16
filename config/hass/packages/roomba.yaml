@@ -29,6 +29,39 @@ alert:
 
 
 automation:
+  - alias: Schedule cleaning when nobody is home
+    trigger:
+      - platform: time
+        at: '14:00:00'
+    condition:
+      - condition: state
+        entity_id: group.all_devices
+        state: not_home
+    action:
+      - service: vacuum.turn_on
+        data:
+          entity_id: vacuum.nimbus
+
+  - alias: "Stop cleaning procedure if any of use comes home"
+    trigger:
+      - platform: state
+        entity_id: device_tracker.n5x_zanzito
+        to: home
+      - platform: state
+        entity_id: device_tracker.n5x_arp
+        to: home
+      - platform: state
+        entity_id: device_tracker.her_phone
+        to: home
+    condition:
+      - condition: state
+        entity_id: vacuum.nimbus
+        state: 'on'
+    action:
+      - service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.nimbus
+
   - alias: "Notify when roomba is stuck and I'm coming home"
     trigger:
       - platform: state
