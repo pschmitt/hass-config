@@ -25,6 +25,7 @@ group:
     entities:
       - light.office_desk_light
       - light.office_light
+      - light.yeelight_office
       - switch.wemo_insight__nasteanas
       - switch.office_tv
       - camera.octopi
@@ -39,6 +40,7 @@ group:
     entities:
       - light.office_desk_light
       - light.office_light
+      - light.yeelight_office
 
   living_room:
     name: Living Room

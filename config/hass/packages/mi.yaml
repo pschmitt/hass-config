@@ -5,6 +5,13 @@ xiaomi:
       key: !secret mi_gw_api_key
 
 
+light:
+  - platform: yeelight
+    devices:
+      "yeelight-office.lan":
+        name: YeeLight Office
+
+
 sensor:
   - platform: template
     sensors:
