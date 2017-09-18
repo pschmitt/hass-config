@@ -88,7 +88,7 @@ automation:
   - alias: Switch office Sony speaker input to AUX when playing something on brightcast
     trigger:
       platform: state
-      entity_id: media_player.brightcast
+      entity_id: media_player.office_tv
       to: 'playing'
     action:
       - service: media_player.turn_on
