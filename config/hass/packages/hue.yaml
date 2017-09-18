@@ -83,8 +83,8 @@ group:
     view: no
     entities:
       - light.front_door_light
-      - light.living_room_light_tv
-      - light.living_room_light_table
+      - light.living_room_tv_light
+      - light.living_room_table_light
       - light.terrace_light
       - light.office_light
       - light.bedroom_light

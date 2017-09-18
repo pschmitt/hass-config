@@ -46,8 +46,8 @@ group:
     icon: mdi:sofa
     entities:
       - group.living_room_media_player_scripts
-      - light.living_room_light_tv
-      - light.living_room_light_table
+      - light.living_room_tv_light
+      - light.living_room_table_light
       - light.gateway_light_34ce008d7aba
       - light.front_door
       - light.terrace
