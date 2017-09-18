@@ -23,7 +23,6 @@ group:
     view: yes
     icon: mdi:book-open
     entities:
-      - light.office_desk_light
       - light.office_light
       - light.yeelight_office
       - switch.wemo_insight__nasteanas
@@ -38,7 +37,6 @@ group:
     view: no
     icon: mdi:lightbulb
     entities:
-      - light.office_desk_light
       - light.office_light
       - light.yeelight_office
 
