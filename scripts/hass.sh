@@ -2,8 +2,14 @@
 
 cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
-HASS_URL="$(awk '/base_url/ { print $2;exit }' ../config/hass/secrets.yaml)"
-HASS_PASSWORD=$(awk '/http_password/ { print $2;exit }' ../config/hass/secrets.yaml)
+HASS_SECRETS=/config/secrets.yaml
+if [[ -r ../config/hass/phue.conf ]]
+then
+    HASS_SECRETS="../config/hass/secrets.yaml"
+fi
+
+HASS_URL="$(awk '/base_url/ { print $2; exit }' $HASS_SECRETS)"
+HASS_PASSWORD=$(awk '/http_password/ { print $2; exit }' $HASS_SECRETS)
 
 usage() {
     echo -e "Usage: $(basename "$0") ACTION API_ENDPOINT [DATA]\n"
@@ -13,6 +19,7 @@ usage() {
     echo -e "- light on|off|toggle LIGHT_NAME"
     echo -e "- scene SCENE_NAME"
     echo -e "- event EVENT_NAME"
+    echo -e "- snap CAMERA FILE"
 }
 
 __rq_curl() {
