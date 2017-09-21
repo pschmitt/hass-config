@@ -12,9 +12,4 @@ script.im_home:
 script.she_is_home:
   icon: mdi:home-map-marker
 
-# Switches
-switch.tv:
-  icon: mdi:power-plug
-  assumed_state: true
-
 # vim: set filetype=yaml et sw=2 ts=2
