@@ -9,8 +9,6 @@ group:
       - sensor.hue_hallway_battery
       - sensor.hue_hue_kitchen_battery
       - sensor.hue_toilet_battery
-      # Camera
-      - sensor.z3c_battery
       # Mi
       - sensor.mi_front_door_battery
       - sensor.mi_fridge_door_battery

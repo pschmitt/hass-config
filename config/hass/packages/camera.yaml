@@ -1,10 +1,3 @@
-android_ip_webcam:
-  - host: z3c.lan
-    name: Z3C
-    username: !secret android_cam_z3c_username
-    password: !secret android_cam_z3c_password
-    motion_sensor: True
-
 camera:
   # - platform: zoneminder
 
@@ -53,11 +46,6 @@ zoneminder:
 sensor:
   - platform: zoneminder
 
-  - platform: command_line
-    name: 'Z3C Battery'
-    command: /scripts/android-cam.sh z3c battery
-    unit_of_measurement: '%'
-
 
 switch:
   - platform: zoneminder
@@ -78,11 +66,6 @@ switch:
 
   - platform: command_line
     switches:
-      z3c_cam:
-        command_on: /scripts/android-cam.sh z3c cam on
-        command_off: /scripts/android-cam.sh z3c cam off
-        command_state: /scripts/android-cam.sh z3c cam state
-        friendly_name: "Z3C Camera"
       c1_ir:
         command_on: /scripts/foscam.sh c1 ir on
         command_off: /scripts/foscam.sh c1 ir off
@@ -120,20 +103,9 @@ shell_command:
   snap_upload: !secret snap_upload
   snap_ldelete: "rm -f /tmp/snap_*.jpg"
   snap_rdelete: !secret snap_rdelete
-  z3c_restart: '/scripts/android-cam.sh z3c reboot &'
 
 
 script:
-  z3c_restart:
-    alias: Reboot Z3C
-    sequence:
-      - event: LOGBOOK_ENTRY
-        event_data:
-          name: Sony Z3C
-          message: rebooted
-          domain: camera
-      - service: shell_command.z3c_restart
-
   snap_c1:
     alias: Grab a picture from C1
     sequence:
@@ -168,13 +140,6 @@ script:
       - service: shell_command.cam_snap
         data:
           cam: winpi
-
-  snap_z3c:
-    alias: Grab a picture from z3c
-    sequence:
-      - service: shell_command.cam_snap
-        data:
-          cam: z3c
 
   snap_delete:
     alias: Delete snapshot
@@ -212,35 +177,6 @@ script:
           cam: "{{ cam }}"
 
 
-automation:
-  - alias: Z3C Battery saver
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.z3c_battery
-        below: 15
-    action:
-      - service: homeassistant.turn_off
-        entity_id: switch.z3c_cam
-
-  - alias: Z3C Camera enabler
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.z3c_battery
-        above: 80
-    action:
-      - service: homeassistant.turn_on
-        entity_id: switch.z3c_cam
-
-  - alias: Daily reboot of the Z3C
-    trigger:
-      - platform: time
-        hours: 4
-        minutes: 0
-        seconds: 0
-    action:
-      service: script.z3c_restart
-
-
 group:
   cameras:
     name: Cameras
@@ -263,8 +199,8 @@ group:
     name: Office Cameras
     view: no
     entities:
+      - camera.octopi
       - camera.rfpi
-      - camera.z3c
 
   cameras_misc:
     name: Other Cameras
@@ -284,7 +220,6 @@ group:
       - binary_sensor.toilet_presence
       - group.c1
       - group.c2
-      - group.z3c
       - group.raspicam_octopi
       - group.raspicam_rfpi
       - group.raspicam_winpi
@@ -315,29 +250,6 @@ group:
       - sensor.foscam_c2_events
       - sensor.c2_status
 
-  z3c:
-    name: Sony Z3C
-    control: hidden
-    entities:
-      - sensor.z3c_battery
-      - camera.z3c
-      - switch.z3c_cam
-      - switch.z3c_cam_front
-      - switch.z3c_torch
-      - sensor.z3c_events
-      - switch.sony_z3c_compact_state
-      - sensor.sony_z3c_compact_status
-      - script.z3c_restart
-      - sensor.z3c_video_connections
-      - sensor.z3c_audio_connections
-      - switch.z3c_focus
-      - switch.z3c_frontfacing_camera
-      - switch.z3c_gps_active
-      - switch.z3c_night_vision
-      - switch.z3c_overlay
-      - switch.z3c_video_recording
-      - switch.z3c_white_balance_lock
-
   modect:
     name: Motion detection
     entities:
@@ -345,10 +257,8 @@ group:
       - binary_sensor.hallway_presence
       - binary_sensor.kitchen_presence
       - binary_sensor.toilet_presence
-      - switch.z3c_cam
       - switch.foscam_c1_state
       - switch.foscam_c2_state
-      - switch.sony_z3c_compact_state
       - switch.octopi_state
       - switch.rfpi_state
       - switch.winpi_state
@@ -387,18 +297,7 @@ group:
 
 homeassistant:
   customize:
-    # Automation
-    automation.z3c_battery_saver:
-      hidden: true
-    automation.z3c_camera_enabler:
-      hidden: true
     # Switches
-    switch.z3c_cam:
-      icon: mdi:camera
-    switch.z3c_cam_front:
-      icon: mdi:camera-front
-    switch.z3c_torch:
-      icon: mdi:flashlight
     switch.c1_ir:
       icon: mdi:weather-night
     switch.c2_ir:
@@ -413,12 +312,7 @@ homeassistant:
       icon: mdi:surround-sound
     switch.modect:
       icon: mdi:camera-enhance
-    # Sensors
-    sensor.z3c_battery:
-      icon: mdi:battery
     # Scripts
-    script.z3c_restart:
-      icon: mdi:power
     script.smoke_break:
       icon: mdi:smoking
     script.smoke_break_timer_off:

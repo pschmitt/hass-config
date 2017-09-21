@@ -59,8 +59,6 @@ automation:
         entity_id: sensor.c2_events
       - platform: state
         entity_id: sensor.octopi_events
-      - platform: state
-        entity_id: sensor.z3c_events
     condition:
       condition: and
       conditions:
