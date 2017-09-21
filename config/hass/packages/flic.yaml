@@ -169,12 +169,12 @@ automation:
 homeassistant:
   customize:
     binary_sensor.flic_80e4da721df4:
-      friendly_name: "Flic Button - Guest Room"
+      friendly_name: "Flic Button - Office"
+    binary_sensor.flic_80e4da720d40:
+      friendly_name: "Flic Button - Office Desk"
     binary_sensor.flic_80e4da720d46:
       friendly_name: "Flic Button - Bedroom"
     binary_sensor.flic_80e4da721d59:
       friendly_name: "Flic Button - Terrace"
-    binary_sensor.flic_80e4da720d40:
-      friendly_name: "Flic Button - Living Room"
 
 # vim: set filetype=yaml et sw=2 ts=2 :
