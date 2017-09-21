@@ -11,11 +11,11 @@ HUE_HOSTNAME=philips-hue.lan
 HUE_PORT=80
 HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' $HUE_CONFIG_FILE)
 
-declare -A SENSOR_BATTERY=( [bathroom]=12 [hallway]=3 [kitchen]=6 [toilet]=9 )
-declare -A SENSOR_TEMPERATURE=( [bathroom]=11 [hallway]=2 [kitchen]=5 [toilet]=8 )
-declare -A SENSOR_PRESENCE=( [bathroom]=12 [hallway]=3 [kitchen]=6 [toilet]=9 )
-declare -A SENSOR_LIGHT_LEVEL=( [bathroom]=13 [hallway]=4 [kitchen]=7 [toilet]=10 )
-declare -A SENSOR_SWITCH=( [master]=20 [living_room]=14 )
+declare -A SENSOR_BATTERY=( [bathroom]=9 [hallway]=3 [kitchen]=12 [toilet]=6 )
+declare -A SENSOR_TEMPERATURE=( [bathroom]=8 [hallway]=2 [kitchen]=11 [toilet]=5 )
+declare -A SENSOR_PRESENCE=( [bathroom]=9 [hallway]=3 [kitchen]=12 [toilet]=6 )
+declare -A SENSOR_LIGHT_LEVEL=( [bathroom]=10 [hallway]=4 [kitchen]=13 [toilet]=7 )
+declare -A SENSOR_SWITCH=( [master]=14 [living_room]=20 )
 declare -A SENSOR_SWITCH_BUTTONS=(
     [1000]=INITIAL_PRESSED_1 [1001]=HOLD_1 [1002]=SHORT_RELEASED_1 [1003]=LONG_RELEASED_1
     [2000]=INITIAL_PRESSED_2 [2001]=HOLD_2 [2002]=SHORT_RELEASED_2 [2003]=LONG_RELEASED_2
