@@ -1,4 +1,4 @@
-xiaomi:
+xiaomi_aqara:
   interface: !secret lan_ipv4_addr
   gateways:
     - mac: !secret mi_gw_mac
