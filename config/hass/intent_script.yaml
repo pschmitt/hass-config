@@ -43,6 +43,18 @@ Scene:
       data_template:
         entity_id: "scene.{{ Scene | replace(' ', '_') }}"
 
+BuzzDoorOpen:
+  speech:
+    text: Buzzing door open
+  async_action: False
+  action:
+    - service: notify.html5
+      data:
+        message: 'Buzz the door open requested via apiai'
+        data:
+          tag: 'apiai-buzz-open'
+    - service: script.buzz_door_open
+
 DoorLock:
   speech:
     text: Setting door lock state to {{ DoorLockState }}
