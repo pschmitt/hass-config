@@ -1,0 +1,34 @@
+zone:
+  - name: Home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    elevation: !secret home_elevation
+    icon: mdi:home
+
+  - name: Work
+    latitude: !secret work_latitude
+    longitude: !secret work_longitude
+    elevation: !secret work_elevation
+    icon: mdi:worker
+
+
+proximity:
+  home:
+    # ignored_zones:
+    #   - work
+    devices:
+      - device_tracker.n5x_zanzito
+    tolerance: 10
+    unit_of_measurement: m
+
+
+sensor:
+  - platform: google_travel_time
+    name: Travel time to Home
+    api_key: !secret google_maps_api_key
+    origin: device_tracker.n5x_zanzito
+    destination: zone.home
+    options:
+      mode: walking
+
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,8 +1,4 @@
 homeassistant:
-  name: Home
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  elevation: !secret home_elevation
   unit_system: metric
   time_zone: Europe/Paris
   customize: !include customize.yaml
@@ -33,7 +29,6 @@ recorder:
 sensor: !include sensor.yaml
 sun:
 updater:
-zone: !include zone.yaml
 
 # DIRTYFIX: Why can't apiai be in the package dir?
 apiai:
