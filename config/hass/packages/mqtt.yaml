@@ -1,0 +1,12 @@
+mqtt:
+  broker: !secret mqtt_broker
+  port: 8883
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  certificate: !secret mqtt_cert
+
+
+mqtt_statestream:
+  base_topic: homeassistant
+
+# vim: set filetype=yaml et sw=2 ts=2 :
