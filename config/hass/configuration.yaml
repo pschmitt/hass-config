@@ -31,6 +31,5 @@ updater:
 
 # DIRTYFIX: Why can't apiai be in the package dir?
 apiai:
-intent_script: !include intent_script.yaml
 
 # vim: set filetype=yaml et sw=2 ts=2 :
