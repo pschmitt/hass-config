@@ -5,7 +5,7 @@ binary_sensor:
     discovery: false
 
   - platform: flic
-    host: hassio.lan
+    host: hassistant.lan
     port: 5551
     discovery: false
 
