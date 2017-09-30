@@ -103,7 +103,7 @@ automation:
         click_type: hold
     action:
       - service: script.turn_off_mushu
-      - service: script.turn_off_office_tv
+      - service: script.turn_off_office_media_players
       - service: light.turn_off
         data:
           entity_id: group.office_lights
@@ -140,7 +140,7 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: hold
     action:
-      - service: script.turn_off_office_tv
+      - service: script.turn_off_office_media_players
       - service: light.turn_off
         data:
           entity_id: group.office_lights
