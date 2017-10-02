@@ -1,5 +1,5 @@
 pilight:
-  host: rfpi.lan
+  host: hassistant.lan
   port: 5000
   # send_delay: 0.4
 

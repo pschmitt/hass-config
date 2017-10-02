@@ -21,11 +21,11 @@ camera:
     password: !secret cam_octopi_password
 
   - platform: mjpeg
-    name: rfpi
-    mjpeg_url: http://rfpi.lan:8089/?action=stream
+    name: hassistant
+    mjpeg_url: http://hassistant.lan:8000/stream.mjpg
     authentication: basic
-    username: !secret cam_rfpi_username
-    password: !secret cam_rfpi_password
+    username: !secret cam_hassistant_username
+    password: !secret cam_hassistant_password
 
   - platform: mjpeg
     name: winpi
@@ -127,12 +127,12 @@ script:
         data:
           cam: octopi
 
-  snap_rfpi:
-    alias: Grab a picture from rfpi
+  snap_hassistant:
+    alias: Grab a picture from hassistant
     sequence:
       - service: shell_command.cam_snap
         data:
-          cam: rfpi
+          cam: hassistant
 
   snap_winpi:
     alias: Grab a picture from winpi
@@ -200,7 +200,7 @@ group:
     view: no
     entities:
       - camera.octopi
-      - camera.rfpi
+      - camera.hassistant
 
   cameras_misc:
     name: Other Cameras
@@ -221,7 +221,7 @@ group:
       - group.c1
       - group.c2
       - group.raspicam_octopi
-      - group.raspicam_rfpi
+      - group.raspicam_hassistant
       - group.raspicam_winpi
       - group.modect
 
@@ -260,7 +260,7 @@ group:
       - switch.foscam_c1_state
       - switch.foscam_c2_state
       - switch.octopi_state
-      - switch.rfpi_state
+      - switch.hassistant_state
       - switch.winpi_state
       - switch.foscam_c1_modect
       - switch.foscam_c2_modect
@@ -276,14 +276,14 @@ group:
       - sensor.octopi_status
       - sensor.octopi_events
 
-  raspicam_rfpi:
-    name: Raspberry Pi Camera (rfpi)
+  raspicam_hassistant:
+    name: Raspberry Pi Camera (hassistant)
     control: hidden
     entities:
-      - camera.rfpi
-      - switch.rfpi_state
-      - sensor.rfpi_status
-      - sensor.rfpi_events
+      - camera.hassistant
+      - switch.hassistant_state
+      - sensor.hassistant_status
+      - sensor.hassistant_events
 
   raspicam_winpi:
     name: Raspberry Pi Camera (winpi)
