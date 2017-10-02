@@ -21,6 +21,19 @@ group:
       - binary_sensor.flic_80e4da721df4
 
 
+script:
+  toggle_office_lights:
+    alias: 'Toggle office lights'
+    sequence:
+      - service_template: >
+          {% if states.light.yeelight_office.state == "on" %}
+            light.turn_off
+          {% else %}
+            light.turn_on
+          {% endif %}
+        entity_id: group.office_lights
+
+
 automation:
   - alias: "Flic W1: Start a smoke break when the flic button is pressed and the outdoor light is off"
     trigger:
@@ -78,9 +91,7 @@ automation:
         button_name: !secret flic_button_black_1
         click_type: single
     action:
-      - service: light.toggle
-        data:
-          entity_id: group.office_lights
+      - service: script.toggle_office_lights
 
   - alias: "Flic B1: Turn on office stuff on double flic press"
     trigger:
@@ -116,9 +127,7 @@ automation:
         button_name: !secret flic_button_white_2
         click_type: single
     action:
-      - service: light.toggle
-        data:
-          entity_id: group.office_lights
+      - service: script.toggle_office_lights
 
   - alias: "Flic W2: Turn on office when flic button is pressed"
     trigger:
