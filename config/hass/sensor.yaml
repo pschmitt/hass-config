@@ -1,14 +1,14 @@
-  - platform: bitcoin
-    currency: EUR
-    display_options:
-      - exchangerate
-      # - market_price_usd
+- platform: bitcoin
+  currency: EUR
+  display_options:
+    - exchangerate
+    # - market_price_usd
 
-  - platform: transmission
-    host: nasteanas.lan
-    monitored_variables:
-      - 'download_speed'
-      # - 'current_status'
-      # - 'upload_speed'
+- platform: transmission
+  host: nasteanas.lan
+  monitored_variables:
+    - 'download_speed'
+    # - 'current_status'
+    # - 'upload_speed'
 
 # vim: set filetype=yaml et sw=2 ts=2 :
