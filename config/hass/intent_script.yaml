@@ -55,6 +55,14 @@ BuzzDoorOpen:
           tag: 'apiai-buzz-open'
     - service: script.buzz_door_open
 
+LocateDevice:
+  speech:
+    text: >
+      Philipp is {{ states.device_tracker.n5x_zanzito }}
+
+      She is {{ states.device_tracker.her_phone }}
+  async_action: False
+
 DoorLock:
   speech:
     text: Setting door lock state to {{ DoorLockState }}
