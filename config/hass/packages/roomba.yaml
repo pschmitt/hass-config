@@ -16,6 +16,15 @@ binary_sensor:
         entity_id: vacuum.nimbus
 
 
+sensor:
+  - platform: template
+    sensors:
+      nimbus_status:
+        friendly_name: 'Nimbus Status'
+        value_template: '{{ states.vacuum.nimbus.attributes.status }}'
+        entity_id: vacuum.nimbus
+
+
 alert:
   bin_full:
     name: "The bin is full"
@@ -76,6 +85,21 @@ automation:
           message: "Nimbus is {{ states.vacuum.nimbus.attributes.status }}. Go rescue him!"
           data:
             tag: "nimbus-rescue"
+
+  - alias: "Notify when roomba finished a job"
+    trigger:
+      - platform: state
+        entity_id: sensor.nimbus_status
+        to: 'Charging'
+    condition:
+      condition: template
+      value_template: '{{ trigger.from_state.state != "" }}'
+    action:
+      - service: notify.html5
+        data_template:
+          message: 'Nimbus returned to its base and is charging now. He probably finished a job. Previous: "{{ trigger.from_state.state }}"'
+          data:
+            tag: 'nimbus-finished-job'
 
 
 notify:
