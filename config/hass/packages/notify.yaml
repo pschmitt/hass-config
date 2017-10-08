@@ -1,3 +1,10 @@
+joaoapps_join:
+  - name: join
+    api_key: !secret joaoapps_join_api_key
+    device_names: !secret joaoapps_join_device_names
+
+
+notify:
   - name: pushbullet
     platform: pushbullet
     api_key: !secret notify_pushbullet_api_key
@@ -91,5 +98,10 @@
         data:
           data:
             say:
+
+  - name: join
+    platform: joaoapps_join
+    api_key: !secret joaoapps_join_api_key
+    device_names: !secret joaoapps_join_device_names
 
 # vim: set filetype=yaml et sw=2 ts=2 :
