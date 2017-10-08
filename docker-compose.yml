@@ -42,7 +42,7 @@ services:
     command: --conf /config/Caddyfile
 
   database:
-    image: postgres:latest
+    image: postgres:9
     container_name: hass-db
     restart: always
     networks:
