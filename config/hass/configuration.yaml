@@ -20,7 +20,6 @@ group: !include_dir_merge_named groups
 history:
 ifttt: !include ifttt.yaml
 logbook:
-notify: !include notify.yaml
 prometheus:
 recorder:
   purge_days: 3
