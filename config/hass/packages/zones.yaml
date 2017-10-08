@@ -3,6 +3,7 @@ zone:
     latitude: !secret home_latitude
     longitude: !secret home_longitude
     elevation: !secret home_elevation
+    radius: 30
     icon: mdi:home
 
   - name: Work
@@ -14,10 +15,10 @@ zone:
 
 proximity:
   home:
-    # ignored_zones:
-    #   - work
+    ignored_zones:
+      - work
     devices:
-      - device_tracker.n5x_zanzito
+      - device_tracker.g4p_zanzito
     tolerance: 10
     unit_of_measurement: m
 
@@ -26,7 +27,7 @@ sensor:
   - platform: google_travel_time
     name: Travel time to Home
     api_key: !secret google_maps_api_key
-    origin: device_tracker.n5x_zanzito
+    origin: device_tracker.g4p_zanzito
     destination: zone.home
     options:
       mode: walking

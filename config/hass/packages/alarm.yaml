@@ -121,7 +121,7 @@ automation:
   - alias: Someone is home and the alarm is on
     trigger:
       - platform: state
-        entity_id: device_tracker.her_phone, group.n5x
+        entity_id: device_tracker.her_phone, group.pschmitt_location
         from: not_home
         to: home
     condition:
@@ -131,7 +131,7 @@ automation:
     action:
       - service: notify.html5
         data_template:
-          message: "{% if trigger.entity_id == 'group.n5x' %}You are{% else %}Marine is{% endif %} home and the alarm is on."
+          message: "{% if trigger.entity_id == 'group.pschmitt_location' %}You are{% else %}Marine is{% endif %} home and the alarm is on."
           data:
             tag: "homecoming-alarm-on"
             actions:

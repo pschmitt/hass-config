@@ -9,21 +9,28 @@ device_tracker:
   - platform: mqtt_json
     devices:
       n5x_zanzito: zanzito/nexus5x/location
+      g4p_zanzito: zanzito/g4play/location
 
 
 group:
-  n5x:
-    name: Nexus 5X
+  pschmitt_location:
+    name: "My location"
     view: no
     icon: mdi:cellphone-android
     entities:
-      - device_tracker.n5x_zanzito
-      - device_tracker.n5x_arp
+      - device_tracker.g4p_zanzito
+      - device_tracker.g4p_arp
+      # - device_tracker.n5x_zanzito
+      # - device_tracker.n5x_arp
 
 
 sensor:
   - platform: template
     sensors:
+      g4p_battery:
+        friendly_name: Moto G4 Play Battery
+        value_template: ' {{ states.device_tracker.g4p_zanzito.attributes.battery }}'
+        unit_of_measurement: '%'
       n5x_battery:
         friendly_name: Nexus 5X Battery
         value_template: ' {{ states.device_tracker.n5x_zanzito.attributes.battery }}'

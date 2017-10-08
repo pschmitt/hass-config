@@ -17,8 +17,8 @@ group:
     view: no
     entities:
       - device_tracker.her_phone
-      - device_tracker.n5x_zanzito
-      # - group.n5x
+      - device_tracker.g4p_zanzito
+      # - group.pschmitt_location
       - sensor.ip_location_short
       - sensor.exchange_rate_1_btc
 
@@ -29,6 +29,7 @@ group:
     entities:
       - alarm_control_panel.ha_alarm
       - script.buzz_door_open
+      - script.buzz_door_open_multiple
       - binary_sensor.door_window_sensor_158d00016d7083
       - lock.home
       - vacuum.nimbus
