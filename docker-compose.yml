@@ -23,7 +23,7 @@ services:
     devices:
       - /dev/zwave:/dev/ttyACM0
     healthcheck:
-      test: "curl -kLf https://localhost:8123"
+      test: "curl -Lf http://localhost:8123"
 
   caddy:
     image: mkozak/caddy-full:latest
@@ -40,6 +40,8 @@ services:
       - ./config/caddy:/config:ro
     entrypoint: /usr/local/bin/caddy
     command: --conf /config/Caddyfile
+    healthcheck:
+      test: "curl -kLf https://localhost:443"
 
   database:
     image: postgres:9
