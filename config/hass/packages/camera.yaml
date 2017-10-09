@@ -29,7 +29,7 @@ camera:
 
   - platform: mjpeg
     name: winpi
-    mjpeg_url: http://winpi.lan:8089/?action=stream
+    mjpeg_url: http://winpi.lan:8000/stream.mjpg
     authentication: basic
     username: !secret cam_winpi_username
     password: !secret cam_winpi_password
