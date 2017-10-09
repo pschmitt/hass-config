@@ -1,0 +1,11 @@
+switch:
+  - platform: mqtt
+    name: "Sonoff Classic"
+    state_topic: "stat/sonoff/POWER"
+    command_topic: "cmnd/sonoff/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+# vim: set filetype=yaml et sw=2 ts=2 :
