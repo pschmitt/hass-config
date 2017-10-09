@@ -1,6 +1,6 @@
 binary_sensor:
   - platform: flic
-    host: rastapi.lan
+    host: zabbix-proxy-armhf.lan
     port: 5551
     discovery: false
 
