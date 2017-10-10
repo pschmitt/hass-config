@@ -44,7 +44,7 @@ automation:
         at: '14:00:00'
     condition:
       - condition: state
-        entity_id: group.all_devices
+        entity_id: group.main_mobile_devices
         state: not_home
     action:
       - service: vacuum.turn_on

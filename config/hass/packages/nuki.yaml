@@ -41,10 +41,14 @@ automation:
   - alias: Lock door when everybody is home
     trigger:
       - platform: state
-        entity_id: group.all_devices
+        entity_id: group.main_devices
         to: 'home'
         for:
           minutes: 15
+    condition:
+      - platform: state
+        entity_id: lock.home
+        state: 'unlocked'
     action:
       - service: notify.html5
         data:

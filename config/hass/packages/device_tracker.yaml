@@ -23,6 +23,17 @@ group:
       # - device_tracker.n5x_zanzito
       # - device_tracker.n5x_arp
 
+  main_mobile_devices:
+    name: Main Devices
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.g4p_zanzito
+      - device_tracker.g4p_arp
+      # - device_tracker.n5x_zanzito
+      # - device_tracker.n5x_arp
+      - device_tracker.her_phone
+
 
 sensor:
   - platform: template
