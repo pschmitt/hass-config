@@ -46,7 +46,7 @@ automation:
         for:
           minutes: 15
     condition:
-      - platform: state
+      - condition: state
         entity_id: lock.home
         state: 'unlocked'
     action:
