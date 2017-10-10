@@ -193,7 +193,6 @@ group:
     view: no
     entities:
       - camera.c1
-      - camera.octopi
 
   cameras_office:
     name: Office Cameras
