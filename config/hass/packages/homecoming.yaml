@@ -3,7 +3,7 @@ automation:
     initial_state: false
     trigger:
       - platform: state
-        entity_id: device_tracker.n5x_zanzito
+        entity_id: device_tracker.g4p_zanzito
         from: not_home
         to: home
     action:
