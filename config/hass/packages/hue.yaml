@@ -367,7 +367,7 @@ script:
         data:
           entity_id: script.morning_front_door_light_off
 
-    morning_front_door_light_off:
+  morning_front_door_light_off:
     alias: "Turn off the front door light after 15min in the morning"
     sequence:
       - delay:
