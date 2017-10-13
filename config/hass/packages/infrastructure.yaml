@@ -1,6 +1,6 @@
 binary_sensor:
   - platform: command_line
-    name: flicd @hassio
+    name: flicd @hassistant
     device_class: connectivity
     command: nmap -p 5551 -oG - --open hassistant.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
     payload_on: open
@@ -14,9 +14,9 @@ binary_sensor:
     payload_off: closed
 
   - platform: command_line
-    name: flicd @rastapi
+    name: flicd @zabbix_proxy_armhf
     device_class: connectivity
-    command: nmap -p 5551 -oG - --open rastapi.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
+    command: nmap -p 5551 -oG - --open zabbix-proxy-armhf.lan 2>/dev/null | awk '!/^#/' | grep -q open && echo open || echo closed
     payload_on: open
     payload_off: closed
 
@@ -25,7 +25,7 @@ automation:
   - alias: "Infrastructure component is off"
     trigger:
       platform: state
-      entity_id: binary_sensor.flicd_hassistant, binary_sensor.flicd_rastapi, binary_sensor.pilight_hassistant
+      entity_id: binary_sensor.flicd_hassistant, binary_sensor.flicd_zabbix_proxy_armhf, binary_sensor.pilight_hassistant
       to: 'off'
       for:
         minutes: 10
@@ -43,7 +43,7 @@ automation:
     initial_state: false
     trigger:
       platform: state
-      entity_id: binary_sensor.flicd_hassistant, binary_sensor.flicd_rastapi, binary_sensor.pilight_hassistant
+      entity_id: binary_sensor.flicd_hassistant, binary_sensor.flicd_zabbix_proxy_armhf, binary_sensor.pilight_hassistant
       from: 'off'
       to: 'on'
       for:
@@ -66,10 +66,9 @@ group:
     view: no
     icon: mdi:switch
     entities:
-      - binary_sensor.flicd_rastapi
+      - binary_sensor.flicd_zabbix_proxy_armhf
       - binary_sensor.flicd_hassio
       - binary_sensor.pilight_hassistant
-      - binary_sensor.win81gpu
       - binary_sensor.brightcast
 
 # vim: set filetype=yaml et sw=2 ts=2 :
