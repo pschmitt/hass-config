@@ -19,6 +19,33 @@ automation:
     action:
       - service: script.she_is_home
 
+  - alias: "Ask to buzz door open when approaching home"
+    initial_state: false
+    trigger:
+      - platform: numeric_state
+        entity_id: proximity.home
+        below: 50
+    action:
+      - service: notify.html5
+        data:
+          message: "You are approaching home. Wanna make me buzz you in?"
+          data:
+            tag: 'buzz-open-query'
+            renotify: False
+            actions:
+              - action: buzz_open
+                icon: https://materialdesignicons.com/api/download/icon/png/E357D5CD-7E42-463B-899A-7D7B038A3E31/48
+                title: "Buzz Open"
+
+  - alias: "HTML5 notification: Buzz open"
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: buzz_open
+    action:
+      - service: script.buzz_door_open_multiple
+
 
 script:
   im_home:

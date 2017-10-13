@@ -37,26 +37,7 @@ automation:
           message: "You are outside. Let's buzz every 30s"
           data:
             tag: 'homecoming-buzz'
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
-      - delay: 00:00:30
-      - service: script.buzz_door_open
+      - service: script.buzz_door_open_multiple
 
 
 script:
@@ -66,6 +47,20 @@ script:
       - service: lock.unlock
         data:
           entity_id: lock.nello_e414cae5
+
+  buzz_door_open_multiple:
+    alias: Buzz door open repeatedly
+    sequence:
+      - service: script.buzz_door_open
+      - delay: 00:00:15
+      - service: script.buzz_door_open
+      - delay: 00:00:15
+      - service: script.buzz_door_open
+      - delay: 00:00:15
+      - service: script.buzz_door_open
+      - delay: 00:00:15
+      - service: script.buzz_door_open
+      - delay: 00:00:15
 
 
 homeassistant:
