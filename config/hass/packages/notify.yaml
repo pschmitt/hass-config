@@ -89,7 +89,7 @@ notify:
 
   - name: zanzito
     platform: zanzito
-    device-name: nexus5x
+    device-name: g4play
 
   - name: zanzito_tts
     platform: group
