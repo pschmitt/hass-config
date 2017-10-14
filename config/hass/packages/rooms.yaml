@@ -16,6 +16,7 @@ group:
       - light.bedroom
       - light.toilet
       - light.bathroom
+      - binary_sensor.washing_machine
       - switch.wemo_insight__washing_machine
 
   office:
