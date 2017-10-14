@@ -25,6 +25,22 @@ sensor:
         entity_id: vacuum.nimbus
 
 
+script:
+  roomba_start:
+    alias: 'Start Roomba'
+    sequence:
+      - service: vacuum.start
+        data:
+          entity_id: vacuum.nimbus
+
+  roomba_stop:
+    alias: 'Stop Roomba'
+    sequence:
+      - service: vacuum.return_to_base
+        data:
+          entity_id: vacuum.nimbus
+
+
 alert:
   bin_full:
     name: "The bin is full"
@@ -112,5 +128,13 @@ notify:
           data:
             tag: 'bin-full'
             renotify: True
+
+
+homeassistant:
+  customize:
+    script.roomba_start:
+      icon: mdi:roomba
+    script.roomba_stop:
+      icon: mdi:stop
 
 # vim: set filetype=yaml et sw=2 ts=2 :
