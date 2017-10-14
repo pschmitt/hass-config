@@ -15,7 +15,7 @@ camera:
 
   - platform: mjpeg
     name: octopi
-    mjpeg_url: http://octopi.lan:8089/?action=stream
+    mjpeg_url: http://octopi.lan:8000/stream.mjpg
     authentication: basic
     username: !secret cam_octopi_username
     password: !secret cam_octopi_password
