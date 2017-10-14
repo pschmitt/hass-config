@@ -3,6 +3,17 @@ sensor:
     monitored_conditions:
       - symbol
 
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - alerts
+      - feelslike_c
+      - feelslike_string
+      - temp_c
+      - weather
+      - weather_1d_metric
+      - weather_2d_metric
+
   - platform: darksky
     api_key: !secret darksky_api_key
     update_interval: '00:03:00'
@@ -47,8 +58,11 @@ group:
   weather_shortcut:
     name: Weather
     entities:
-      - sensor.dark_sky_temperature
-      - sensor.yr_symbol
+      - sensor.pws_weather_1d_metric
+      - sensor.pws_weather_2d_metric
+      - sensor.pws_temp_c
+      # - sensor.dark_sky_temperature
+      # - sensor.yr_symbol
       - sensor.home_temperature
 
   weather_indoor:
