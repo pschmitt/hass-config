@@ -6,8 +6,6 @@ group:
       - group.info
       - group.shortcuts
       - group.weather_shortcut
-      - camera.c1
-      - camera.winpi
       - group.light_groups
       - media_player.home_group
 
