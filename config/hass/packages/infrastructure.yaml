@@ -67,7 +67,7 @@ group:
     icon: mdi:switch
     entities:
       - binary_sensor.flicd_zabbix_proxy_armhf
-      - binary_sensor.flicd_hassio
+      - binary_sensor.flicd_hassistant
       - binary_sensor.pilight_hassistant
       - binary_sensor.brightcast
 
