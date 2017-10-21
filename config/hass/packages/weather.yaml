@@ -9,10 +9,14 @@ sensor:
       - alerts
       - feelslike_c
       - feelslike_string
+      - precip_1d
+      - precip_today_metric
+      - precip_today_string
       - temp_c
       - weather
       - weather_1d_metric
       - weather_2d_metric
+      - wind_string
 
   - platform: darksky
     api_key: !secret darksky_api_key
