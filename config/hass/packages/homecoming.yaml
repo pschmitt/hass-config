@@ -24,7 +24,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
-        below: 50
+        below: 100
     action:
       - service: notify.html5
         data:
