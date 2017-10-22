@@ -137,6 +137,11 @@ sensor:
     unit_of_measurement: 'lux'
 
   - platform: mqtt
+    name: lemon_last_updated
+    state_topic: 'plants/mi/lemon/'
+    value_template: '{{ value_json.timestamp }}'
+
+  - platform: mqtt
     name: aloe_vera_moisture
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.moisture }}'
@@ -165,6 +170,11 @@ sensor:
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
+
+  - platform: mqtt
+    name: aloe_vera_last_updated
+    state_topic: 'plants/mi/aloe_vera/'
+    value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
     name: basil_moisture
@@ -197,6 +207,11 @@ sensor:
     unit_of_measurement: 'lux'
 
   - platform: mqtt
+    name: mint_last_updated
+    state_topic: 'plants/mi/mint/'
+    value_template: '{{ value_json.timestamp }}'
+
+  - platform: mqtt
     name: mint_moisture
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.moisture }}'
@@ -225,6 +240,11 @@ sensor:
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
+
+  - platform: mqtt
+    name: ficus_last_updated
+    state_topic: 'plants/mi/ficus/'
+    value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
     name: ficus_moisture
@@ -285,6 +305,11 @@ sensor:
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
+
+  - platform: mqtt
+    name: chive_last_updated
+    state_topic: 'plants/mi/chive/'
+    value_template: '{{ value_json.timestamp }}'
 
 
 homeassistant:
