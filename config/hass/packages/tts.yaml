@@ -42,13 +42,4 @@ script:
           entity_id: media_player.home_group
           message: '{{ message }}'
 
-
-# Reset the volume to 50% every 6 hours
-automation:
-  trigger:
-    platform: time
-    hours: '/12'
-  action:
-    - service: script.reset_tts_volume
-
 # vim: set filetype=yaml et sw=2 ts=2 :
