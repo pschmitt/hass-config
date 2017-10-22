@@ -1,0 +1,34 @@
+shell_command:
+  turn_on_doorpi_screen: !secret cmd_turn_on_doorpi_screen
+  turn_off_doorpi_screen: !secret cmd_turn_off_doorpi_screen
+
+
+script:
+  turn_on_doorpi_screen:
+    alias: Turn on doorpi screen
+    sequence:
+      service: shell_command.turn_on_doorpi_screen
+  turn_off_doorpi_screen:
+    alias: Turn off doorpi screen
+    sequence:
+      service: shell_command.turn_off_doorpi_screen
+
+
+switch:
+  - platform: command_line
+    switches:
+      doorpi_screen:
+        friendly_name: Doorpi Screen
+        command_on: !secret cmd_turn_on_doorpi_screen
+        command_off: !secret cmd_turn_off_doorpi_screen
+
+
+homeassistant:
+  customize:
+    # Scripts
+    script.turn_on_doorpi_screen:
+      icon: mdi:brightness-7
+    script.turn_off_doorpi_screen:
+      icon: mdi:brightness-1
+
+# vim: set filetype=yaml et sw=2 ts=2 :
