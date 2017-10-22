@@ -14,11 +14,11 @@ camera:
     password: !secret foscam_c2_password
 
   - platform: mjpeg
-    name: octopi
-    mjpeg_url: http://octopi.lan:8000/stream.mjpg
+    name: doorpi
+    mjpeg_url: http://doorpi.lan:8000/stream.mjpg
     authentication: basic
-    username: !secret cam_octopi_username
-    password: !secret cam_octopi_password
+    username: !secret cam_doorpi_username
+    password: !secret cam_doorpi_password
 
   - platform: mjpeg
     name: hassistant
@@ -120,12 +120,12 @@ script:
         data:
           cam: c2
 
-  snap_octopi:
-    alias: Grab a picture from octopi
+  snap_doorpi:
+    alias: Grab a picture from doorpi
     sequence:
       - service: shell_command.cam_snap
         data:
-          cam: octopi
+          cam: doorpi
 
   snap_hassistant:
     alias: Grab a picture from hassistant
@@ -198,7 +198,7 @@ group:
     name: Office Cameras
     view: no
     entities:
-      - camera.octopi
+      - camera.doorpi
       - camera.hassistant
 
   cameras_misc:
@@ -219,7 +219,7 @@ group:
       - binary_sensor.toilet_presence
       - group.c1
       - group.c2
-      - group.raspicam_octopi
+      - group.raspicam_doorpi
       - group.raspicam_hassistant
       - group.raspicam_winpi
       - group.modect
@@ -258,7 +258,7 @@ group:
       - binary_sensor.toilet_presence
       - switch.foscam_c1_state
       - switch.foscam_c2_state
-      - switch.octopi_state
+      - switch.doorpi_state
       - switch.hassistant_state
       - switch.winpi_state
       - switch.foscam_c1_modect
@@ -266,14 +266,14 @@ group:
       - switch.foscam_c1_sodect
       - switch.foscam_c2_sodect
 
-  raspicam_octopi:
-    name: Raspberry Pi Camera (octopi)
+  raspicam_doorpi:
+    name: Raspberry Pi Camera (doorpi)
     control: hidden
     entities:
-      - camera.octopi
-      - switch.octopi_state
-      - sensor.octopi_status
-      - sensor.octopi_events
+      - camera.doorpi
+      - switch.doorpi_state
+      - sensor.doorpi_status
+      - sensor.doorpi_events
 
   raspicam_hassistant:
     name: Raspberry Pi Camera (hassistant)

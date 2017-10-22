@@ -28,7 +28,7 @@ group:
       - light.yeelight_office
       - switch.wemo_insight__nasteanas
       - switch.office_tv
-      - camera.octopi
+      - camera.doorpi
       - camera.hassistant
       - media_player.sony_office_speaker
       - media_player.office_tv
