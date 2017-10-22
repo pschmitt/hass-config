@@ -1,0 +1,80 @@
+load_main_panel:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Main
+  # icon: mdi-home-map-marker
+  icon_inactive: mdi-home
+  dashboard: rpi-main
+
+load_living_room:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Living Room
+  icon_inactive: mdi-sofa
+  dashboard: rpi-room-living-room
+  args:
+    timeout: 300
+    return: rpi-main
+
+load_office_room:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Office
+  icon_inactive: mdi-book-open
+  dashboard: rpi-room-office
+  args:
+    timeout: 300
+    return: rpi-main
+
+load_kitchen:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Kitchen
+  icon_inactive: mdi-pot-mix
+  dashboard: rpi-room-kitchen
+  args:
+    timeout: 300
+    return: rpi-main
+
+load_terrace:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Terrace
+  icon_inactive: mdi-tree
+  dashboard: rpi-room-terrace
+  args:
+    timeout: 300
+    return: rpi-main
+
+load_cctv_panel:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: CCTV
+  # icon: mdi-camera
+  icon_inactive: mdi-camera
+  dashboard: rpi-cctv
+  args:
+    timeout: 300
+    return: rpi-main
+
+load_misc_panel:
+  widget_type: navigate
+  # widget_style: "background: #2b2b2b"
+  title: Misc
+  # icon: mdi-camera
+  icon_inactive: mdi-home-assistant
+  dashboard: rpi-misc
+  args:
+    timeout: 300
+    return: rpi-main
+
+reload:
+  widget_type: reload
+  # widget_style: "background: #2b2b2b"
+  title: Reload
+
+
+layout:
+  - load_main_panel, load_living_room, load_kitchen, load_terrace, load_office_room, load_cctv_panel, load_misc_panel, reload
+
+# vim: set ft=yaml et ts=2 sw=2 :

@@ -1,0 +1,37 @@
+title: Main Panel
+widget_dimensions: [132, 130]
+widget_size: [1, 1]
+widget_margins: [10, 10]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+
+
+clock:
+  widget_type: clock
+  time_format: 24hr
+  show_seconds: 1
+
+device_tracker_me:
+  widget_type: device_tracker
+  title: pschmitt
+  entity: device_tracker.g4p_zanzito
+
+device_tracker_her:
+  widget_type: device_tracker
+  title: mbiver
+  entity: device_tracker.her_phone
+
+
+layout:
+  - clock(2x1),                              alarm(1x2),       weather(2x2), sensor.home_temperature, device_tracker_me, device_tracker_her
+  - script.buzz_door_open, script.lock_n_go,                                 group.all_lights, script.all_off(2x2)
+  - cam_foscam_c1(5x3)
+  - spacer, script.roomba_start, script.roomba_stop
+  - empty: 1
+  # - include: rooms_panel
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

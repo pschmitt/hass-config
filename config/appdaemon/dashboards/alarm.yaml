@@ -1,0 +1,6 @@
+widget_type: alarm
+entity: alarm_control_panel.ha_alarm
+title: Alarm
+icon: mdi-danger
+
+# vim: set ft=yaml et ts=2 sw=2 :

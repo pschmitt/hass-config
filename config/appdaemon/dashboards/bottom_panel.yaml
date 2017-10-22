@@ -1,0 +1,69 @@
+load_main_panel:
+  widget_type: navigate
+  title: Main
+  # icon: mdi-home-map-marker
+  icon_inactive: mdi-home
+  dashboard: rpi-main
+
+load_living_room:
+  widget_type: navigate
+  title: Living Room
+  icon_inactive: mdi-sofa
+  dashboard: rpi-room-living-room
+  args:
+    timeout: 30
+    return: rpi-main
+
+load_office_room:
+  widget_type: navigate
+  title: Office
+  icon_inactive: mdi-book-open
+  dashboard: rpi-room-office
+  args:
+    timeout: 30
+    return: rpi-main
+
+load_kitchen:
+  widget_type: navigate
+  title: Kitchen
+  icon_inactive: mdi-pot-mix
+  dashboard: rpi-room-kitchen
+  args:
+    timeout: 30
+    return: rpi-main
+
+load_terrace:
+  widget_type: navigate
+  title: Terrace
+  icon_inactive: mdi-tree
+  dashboard: rpi-room-terrace
+  args:
+    timeout: 30
+    return: rpi-main
+
+load_cctv_panel:
+  widget_type: navigate
+  title: CCTV
+  icon_inactive: mdi-camera
+  dashboard: rpi-cctv
+  args:
+    timeout: 30
+    return: rpi-main
+
+load_misc_panel:
+  widget_type: navigate
+  title: Misc
+  icon_inactive: mdi-home-assistant
+  dashboard: rpi-misc
+  args:
+    timeout: 30
+    return: rpi-main
+
+reload:
+  widget_type: reload
+  title: Reload
+
+layout:
+  - load_main_panel, load_living_room, load_kitchen, load_terrace, load_office_room, load_cctv_panel, load_misc_panel, reload
+
+# vim: set ft=yaml et ts=2 sw=2 :

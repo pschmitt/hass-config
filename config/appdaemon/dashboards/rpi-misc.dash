@@ -1,0 +1,20 @@
+title: Misc Panel
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+
+layout:
+  - spacer(6x1), script.bedtime, script.all_off
+  - binary_sensor.door_window_sensor_158d00016d7083, binary_sensor.door_window_sensor_158d0001a1ec56, binary_sensor.door_window_sensor_158d00016572aa
+  - binary_sensor.washing_machine, sensor.power_consumption_washing_machine, script.turn_on_doorpi_screen, script.turn_off_doorpi_screen
+  - empty: 1
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

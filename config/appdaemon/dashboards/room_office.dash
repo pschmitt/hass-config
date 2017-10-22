@@ -1,0 +1,18 @@
+title: Office
+widget_dimensions: [132, 130]
+widget_size: [1, 1]
+widget_margins: [10, 10]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+
+layout:
+  - cam_hassistant(4x3), cam_octopi(4x3)
+  - empty: 2
+  - media_player.office_tv(2x2), script.turn_on_office_tv, group.office_lights
+  - script.turn_off_office_tv, light.yeelight_office, light.office_light
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

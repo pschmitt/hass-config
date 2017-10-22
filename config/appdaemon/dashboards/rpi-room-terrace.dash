@@ -1,0 +1,20 @@
+title: Terrace
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+
+layout:
+  - cam_winpi(5x4), spacer(2x1), light.terrace
+  - empty: 1
+  - betterweather(3x2)
+  - empty: 1
+  - include: rpi_bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

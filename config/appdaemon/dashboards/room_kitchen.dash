@@ -1,0 +1,19 @@
+title: Kitchen
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+
+layout:
+  - cam_foscam_c2(5x3), light.kitchen_light
+  - sensor.temperature_158d0001d6f4da
+  - sensor.temperature_158d0001d6f4e5
+  - empty: 1
+  # - include: rooms_panel
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

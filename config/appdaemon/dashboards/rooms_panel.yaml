@@ -1,0 +1,29 @@
+load_living_room:
+  widget_type: navigate
+  title: Living Room
+  icon_inactive: mdi-sofa
+  dashboard: room_living_room
+
+load_office_room:
+  widget_type: navigate
+  title: Office
+  icon_inactive: mdi-book-open
+  dashboard: room_office
+
+load_kitchen:
+  widget_type: navigate
+  title: Kitchen
+  icon_inactive: mdi-pot-mix
+  dashboard: room_kitchen
+
+load_terrace:
+  widget_type: navigate
+  title: Terrace
+  icon_inactive: mdi-tree
+  dashboard: room_terrace
+
+
+layout:
+  - load_living_room, load_kitchen, load_terrace, load_office_room
+
+# vim: set ft=yaml et ts=2 sw=2 :

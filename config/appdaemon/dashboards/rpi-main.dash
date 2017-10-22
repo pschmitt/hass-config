@@ -1,0 +1,79 @@
+title: Main Panel
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+
+clock:
+  widget_type: betterclock
+  time_format: 24hr
+  date_style: "color: white"
+  time_style: "color: gray; font-size: 225%;"
+  show_seconds: 1
+
+device_tracker_me:
+  widget_type: device_tracker
+  title: pschmitt
+  icon_on: fa-male # fa-mars
+  icon_off: fa-male # fa-mars
+  icon_style_active: "color: #dad55e"
+  entity: device_tracker.g4p_zanzito
+
+device_tracker_her:
+  widget_type: device_tracker
+  title: mbiver
+  icon_on: fa-female # fa-venus
+  icon_off: fa-female # fa-venus
+  icon_style_active: "color: #dad55e"
+  entity: device_tracker.her_phone
+
+all_lights:
+  widget_type: light
+  title: Lights
+  monitored_entity: light.living_room
+  state_text: 0
+  use_hass_icon: 0
+
+roomba:
+  widget_type: switch
+  title: Roomba
+  icon_on: mdi-roomba
+  icon_off: mdi-roomba
+  entity: vacuum.nimbus
+
+weather_today:
+  widget_type: sensor
+  title: Today
+  entity: sensor.pws_weather_1d_metric
+
+weather_tomorrow:
+  widget_type: sensor
+  # widget_type: basebetterweather
+  title: Tomorrow
+  entity: sensor.pws_weather_2d_metric
+
+precipitation_prob:
+  widget_type: sensor
+  title: Rain Probability
+  entity: sensor.dark_sky_precip_probability
+
+buzz:
+  widget_type: script
+  entity: script.buzz_door_open
+  title: "Buzz"
+
+
+layout:
+  - clock(2x1), sensor.home_temperature, device_tracker_me, device_tracker_her, betterweather(3x2)
+  - buzz, script.lock_n_go,             all_lights, script.all_off, roomba
+  - cam_doorpi(3x2), alarm(1x2), cam_foscam_c1(4x2)
+  - empty: 1
+  - include: rpi_bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

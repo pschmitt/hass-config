@@ -1,0 +1,4 @@
+widget_type: weather
+units: '&deg;C'
+
+# vim: set ft=yaml et ts=2 sw=2 :

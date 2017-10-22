@@ -1,0 +1,19 @@
+title: Kitchen
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+layout:
+  - cam_foscam_c2(7x4), light.kitchen_light
+  - binary_sensor.door_window_sensor_158d0001a1eb5b
+  - sensor.temperature_158d0001d6f4da
+  - sensor.temperature_158d0001d6f4e5
+  - include: rpi_bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

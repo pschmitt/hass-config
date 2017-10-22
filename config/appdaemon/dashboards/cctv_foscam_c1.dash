@@ -1,0 +1,15 @@
+title: Foscam C1
+widget_dimensions: [180, 180]
+widget_size: [5, 3]
+widget_margins: [5, 5]
+columns: 5
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+
+layout:
+  - foscam_c1
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

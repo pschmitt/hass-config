@@ -1,0 +1,5 @@
+widget_type: camera
+entity_picture: !secret cam_url_foscam_c1
+refresh: 2
+
+# vim: set tf=yaml et ts=2 sw=2 :

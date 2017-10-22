@@ -1,0 +1,20 @@
+title: Living Room
+widget_dimensions: [120, 120]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+
+layout:
+  - cam_foscam_c1(5x3), light.living_room, scene.living_room_dim
+  - light.living_room_tv_light, scene.living_room_normal
+  - light.living_room_table_light
+  - media_player.living_room_tv(2x2)
+  - empty: 1
+  # - include: rooms_panel
+  - include: bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

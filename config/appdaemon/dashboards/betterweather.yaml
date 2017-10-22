@@ -1,0 +1,5 @@
+widget_type: betterweather
+title: Better Weather
+units: '&deg;C'
+unit_style: "color: gray"
+secondary_unit_style: "color: gray"

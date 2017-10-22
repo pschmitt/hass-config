@@ -1,0 +1,26 @@
+title: Office
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+
+office_lights:
+  widget_type: light
+  entity: group.office_lights
+  title: Office Lights
+
+
+layout:
+  - cam_hassistant(5x4), light.yeelight_office, light.office_light, office_lights
+  - sensor.power_consumption_nasteanas, spacer, script.toggle_office_tv
+  - media_player.office_tv(2x2), script.turn_on_office_tv
+  - script.turn_off_office_tv
+  - include: rpi_bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

@@ -66,6 +66,14 @@ services:
     volumes:
       - ./config/stunnel:/config:ro
 
+  appdaemon:
+    image: acockburn/appdaemon
+    restart: always
+    ports:
+      - 5050:5050
+    volumes:
+      - ./config/appdaemon:/conf
+
 
 networks:
   database:

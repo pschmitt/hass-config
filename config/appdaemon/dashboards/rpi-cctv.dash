@@ -1,0 +1,20 @@
+title: CCTV Panel
+widget_dimensions: [97, 93]
+widget_size: [1, 1]
+widget_margins: [2, 2]
+columns: 8
+global_parameters:
+  use_comma: 0
+  precision: 1
+  use_hass_icon: 1
+  state_text: 0
+
+
+layout:
+  - cam_foscam_c1(3x2), cam_foscam_c2(3x2), alarm, switch.modect
+  - binary_sensor.door_window_sensor_158d00016d7083, binary_sensor.door_window_sensor_158d0001a1ec56
+  - cam_hassistant(3x2), cam_winpi(3x2), binary_sensor.door_window_sensor_158d00016572aa
+  - empty: 1
+  - include: rpi_bottom_panel
+
+# vim: set ft=yaml et ts=2 sw=2 :

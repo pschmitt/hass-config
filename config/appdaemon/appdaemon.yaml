@@ -1,0 +1,10 @@
+AppDaemon:
+  disable_apps: 1
+  logfile: STDOUT
+  errorfile: STDERR
+  threads: 10
+HASS:
+  ha_url: !secret ha_url
+  ha_key: !secret ha_key
+HADashboard:
+  dash_url: !secret dash_url
