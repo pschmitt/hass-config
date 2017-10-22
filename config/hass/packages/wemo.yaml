@@ -14,6 +14,21 @@ binary_sensor:
         entity_id: switch.wemo_insight__washing_machine
 
 
+sensor:
+  - platform: template
+    sensors:
+      power_consumption_washing_machine:
+        friendly_name: Washing Machine Power Consumption
+        unit_of_measurement: W
+        value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.current_power_w }}'
+  - platform: template
+    sensors:
+      power_consumption_nasteanas:
+        friendly_name: NAS Power Consumption
+        unit_of_measurement: W
+        value_template: '{{ states.switch.wemo_insight__nasteanas.attributes.current_power_w }}'
+
+
 automation:
   - alias: Notify when the washing machine has finished
     trigger:
@@ -38,4 +53,4 @@ homeassistant:
     switch.wemo_insight__washing_machine:
       icon: mdi:washing-machine
 
-# vim: set filetype=yaml et sw=2 ts=2
+# vim: set filetype=yaml et sw=2 ts=2 :
