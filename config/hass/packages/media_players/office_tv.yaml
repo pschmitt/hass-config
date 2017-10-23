@@ -2,8 +2,8 @@ media_player:
   - platform: universal
     name: Office TV
     children:
-      - media_player.brightcast
       - media_player.emby__emby_for_chromecast__brightcast
+      - media_player.brightcast
       - media_player.office_speaker
       - media_player.sony_office_speaker
     commands:
@@ -87,13 +87,20 @@ script:
 automation:
   - alias: Switch office Sony speaker input to AUX when playing something on brightcast
     trigger:
-      platform: state
-      entity_id: media_player.office_tv
+    # - platform: state
+    #   entity_id: media_player.office_tv
+    #   to: 'playing'
+    - platform: state
+      entity_id: media_player.brightcast
+      to: 'playing'
+    - platform: state
+      entity_id: media_player.emby__emby_for_chromecast__brightcast
       to: 'playing'
     action:
       - service: media_player.turn_on
         data:
           entity_id: media_player.sony_office_speaker
+      - service: script.set_office_speaker_to_aux
       - service: script.set_office_speaker_to_aux
       - service: script.turn_on_office_tv
 
