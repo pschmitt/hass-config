@@ -89,6 +89,7 @@ group:
     entities:
       - group.weather_outdoor
       - group.all_plants
+      - binary_sensor.plant_data_outdated
       - script.refresh_plant_data
       - camera.winpi
       - light.terrace_light

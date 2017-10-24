@@ -30,6 +30,46 @@ automation:
           message: "Miflora battery is low on {{ trigger.to_state.attributes.friendly_name }}"
 
 
+
+alert:
+  plant_data_outdated:
+    name: "The plant data is outdated"
+    done_message: "Plant data is up to date"
+    entity_id: binary_sensor.plant_data_outdated
+    state: 'on'
+    repeat: 86400
+    can_acknowledge: True
+    skip_first: False
+    notifiers:
+      - html5
+
+
+binary_sensor:
+  - platform: template
+    sensors:
+      plant_data_outdated:
+        value_template: '{{ is_state("binary_sensor.aloe_vera_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.mint_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") }}'
+        friendly_name: 'Mi Flora Data Outdated'
+      aloe_vera_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.aloe_vera_last_updated.state) > 86400 }}'
+        friendly_name: 'Aloe Vera Data Outdated'
+      lemon_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.lemon_last_updated.state) > 86400 }}'
+        friendly_name: 'Lemon Data Outdated'
+      basil_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.basil_last_updated.state) > 86400 }}'
+        friendly_name: 'Basil Data Outdated'
+      chive_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.chive_last_updated.state) > 86400 }}'
+        friendly_name: 'Chive Data Outdated'
+      mint_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.mint_last_updated.state) > 86400 }}'
+        friendly_name: 'Mint Data Outdated'
+      ficus_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.ficus_last_updated.state) > 86400 }}'
+        friendly_name: 'Ficus Data Outdated'
+
+
 plant:
   Lemon Tree:
     sensors:
@@ -205,6 +245,11 @@ sensor:
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
+
+  - platform: mqtt
+    name: basil_last_updated
+    state_topic: 'plants/mi/basil/'
+    value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
     name: mint_last_updated
