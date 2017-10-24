@@ -152,6 +152,10 @@ homeassistant:
   customize:
     light.gateway_light_34ce008d7aba:
       friendly_name: Mi Gateway Light
+    light.yeelight_office:
+      google_assistant_name: Desk Light
+    light.yeelight_rgb_34ce00824709:
+      google_assistant: false
     sensor.illumination_34ce008d7aba:
       friendly_name: Mi Gateway Light Level
     binary_sensor.door_window_sensor_158d0001a1eb5b:

@@ -65,7 +65,7 @@ automation:
   - alias: Turn on front door light when I get up in the morning
     trigger:
       - platform: state
-        entity_id: binary_sensor.bathroom_presence, sensor.toilet_presence
+        entity_id: light.toilet_light, light.bathroom_light
         to: 'on'
     condition:
       condition: time
@@ -380,29 +380,40 @@ script:
 homeassistant:
   customize:
     # Lights
+    light.all_hue_lights:
+      google_assistant: false
     light.bathroom:
       # icon: mdi:hot-tub
       icon: mdi:water-pump
+      google_assistant: false
     light.bedroom:
       icon: mdi:hotel
+      google_assistant: false
     light.front_door:
       icon: mdi:home-modern
+      google_assistant: false
     light.hallway:
       icon: mdi:vector-square
+      google_assistant: false
     light.kitchen:
       icon: mdi:pot-mix
+      google_assistant: false
     light.living_room:
       icon: mdi:sofa
+      google_assistant: false
     light.living_room_table_light:
       icon: mdi:food
     light.living_room_tv_light:
       icon: mdi:television
     light.office:
       icon: mdi:book-open
+      google_assistant: false
     light.terrace:
       icon: mdi:tree
+      google_assistant: false
     light.toilet:
       icon: mdi:human-male-female
+      google_assistant: false
     # Hue sensors
     sensor.hallway_lux:
       icon: mdi:white-balance-sunny

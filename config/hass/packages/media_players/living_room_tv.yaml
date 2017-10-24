@@ -80,17 +80,30 @@ binary_sensor:
         friendly_name: Sony Playstation 3 is currently displayed
 
 
+switch:
+  - platform: template
+    switches:
+      living_room_tv:
+        friendly_name: Living Room TV
+        entity_id: media_player.living_room_tv
+        value_template: '{{ not is_state("media_player.living_room_tv", "off") }}'
+        turn_on:
+          service: script.turn_on_living_room_tv
+        turn_off:
+          service: script.turn_off_living_room_tv
+
+
 script:
   turn_off_media_players:
     alias: Turn off media players
     sequence:
-      - service: script.turn_off_tv
+      - service: script.turn_off_living_room_tv
       - service: script.turn_off_nvidia_shield_tv
       - service: script.turn_off_livebox_play_tv
       - service: script.turn_off_sony_ps3
       - service: script.turn_off_dolphin_emu
 
-  turn_on_tv:
+  turn_on_living_room_tv:
     alias: Turn on the living room TV
     sequence:
       # Try using the built in component
@@ -100,7 +113,7 @@ script:
       # Harmony Hub fallback
       - service: script.harmony_turn_on_living_room_tv
 
-  turn_off_tv:
+  turn_off_living_room_tv:
     alias: Turn off the living room TV
     sequence:
       - service: script.harmony_turn_off_living_room_tv
@@ -124,7 +137,7 @@ script:
     alias: "TV activity: Nvidia Shield TV"
     sequence:
       - service: script.harmony_turn_on_nvidia_shield_tv
-      - service: script.turn_on_tv
+      - service: script.turn_on_living_room_tv
       - service: script.select_tv_source
         data:
           source: 'Nvidia Shield TV'
@@ -138,7 +151,7 @@ script:
   tv_activity_watch_tv:
     alias: "TV activity: Watch TV"
     sequence:
-      - service: script.turn_on_tv
+      - service: script.turn_on_living_room_tv
       - service: script.turn_on_livebox_play
       - service: script.select_tv_source
         data:
@@ -155,7 +168,7 @@ script:
       # Start VM
       - service: script.turn_on_dolphin_emu
       # Make sure the TV is on
-      - service: script.turn_on_tv
+      - service: script.turn_on_living_room_tv
       # Switch source
       - service: script.select_tv_source
         data:
@@ -165,7 +178,7 @@ script:
     alias: "TV activity: Sony PS3"
     sequence:
       - service: script.harmony_turn_on_sony_ps3
-      - service: script.turn_on_tv
+      - service: script.turn_on_living_room_tv
       - service: script.select_tv_source
         data:
           source: 'Sony Playstation 3'

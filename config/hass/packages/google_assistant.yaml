@@ -1,0 +1,11 @@
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  client_id: !secret google_assistant_client_id
+  access_token: !secret google_assistant_access_token
+  exposed_domains:
+    - cover
+    - light
+    - scene
+    - switch
+
+# vim: set filetype=yaml et sw=2 ts=2 :
