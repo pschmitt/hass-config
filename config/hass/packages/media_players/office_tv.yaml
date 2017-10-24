@@ -1,9 +1,9 @@
 media_player:
   - platform: universal
-    name: Office TV
+    name: Office TV (Universal)
     children:
-      - media_player.emby__emby_for_chromecast__brightcast
-      - media_player.brightcast
+      - media_player.emby__emby_for_chromecast__office_tv
+      - media_player.office_tv
       - media_player.office_speaker
       - media_player.sony_office_speaker
     commands:
@@ -35,7 +35,7 @@ media_player:
           source: '{{ source }}'
     attributes:
       is_volume_muted: media_player.sony_office_speaker|is_volume_muted
-      state: media_player.brightcast
+      state: media_player.office_tv
       volume_level: media_player.sony_office_speaker|volume_level
       source: media_player.sony_office_speaker|source
       source_list: media_player.sony_office_speaker|source_list
@@ -47,7 +47,7 @@ script:
       - service: script.turn_on_office_tv
       # - service: media_player.turn_on
       #   data:
-      #     entity_id: media_player.brightcast
+      #     entity_id: media_player.office_tv
       - service: media_player.turn_on
         data:
           entity_id: media_player.sony_office_speaker
@@ -57,7 +57,7 @@ script:
       - service: script.turn_off_office_tv
       - service: media_player.turn_off
         data:
-          entity_id: media_player.brightcast
+          entity_id: media_player.office_tv
       - service: media_player.turn_off
         data:
           entity_id: media_player.sony_office_speaker
@@ -85,16 +85,16 @@ script:
 
 
 automation:
-  - alias: Switch office Sony speaker input to AUX when playing something on brightcast
+  - alias: Switch office Sony speaker input to AUX when playing something on office_tv
     trigger:
     # - platform: state
     #   entity_id: media_player.office_tv
     #   to: 'playing'
     - platform: state
-      entity_id: media_player.brightcast
+      entity_id: media_player.office_tv
       to: 'playing'
     - platform: state
-      entity_id: media_player.emby__emby_for_chromecast__brightcast
+      entity_id: media_player.emby__emby_for_chromecast__office_tv
       to: 'playing'
     action:
       - service: media_player.turn_on
