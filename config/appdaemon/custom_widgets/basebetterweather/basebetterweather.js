@@ -87,7 +87,7 @@ function basebetterweather(widget_id, url, skin, parameters)
         else
         {
             var field = state.entity_id.split(".")[1];
-            self.set_field(self, field, state.state)
+            self.set_field(self, field, Math.round(state.state));
         }
     }
 }
