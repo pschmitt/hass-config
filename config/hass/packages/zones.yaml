@@ -6,7 +6,7 @@ zone:
     radius: 30
     icon: mdi:home
 
-  - name: Work
+  - name: work
     latitude: !secret work_latitude
     longitude: !secret work_longitude
     elevation: !secret work_elevation
