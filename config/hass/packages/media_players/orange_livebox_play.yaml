@@ -52,39 +52,10 @@ script:
       - service: media_player.turn_off
         data:
           entity_id: media_player.livebox_play
-      # Turn the socket off
-      - service: switch.turn_off
-        entity_id: switch.livebox_play_socket
-
-  reboot_livebox_play:
-    alias: Reboot Livebox Play TV via pilight
-    sequence:
-      # Shut it down (hard)
-      - service: switch.turn_off
-        data:
-          entity_id: switch.livebox_play_socket
-      # Leave it off for a while
-      - delay:
-          minutes: 10
-      - service: switch.turn_on
-        data:
-          entity_id: switch.livebox_play_socket
-      # Give it time to turn on
-      - delay:
-          minutes: 5
-      # Shut it down (soft)
-      - service: media_player.turn_off
-        data:
-          entity_id: media_player.livebox_play
-      # - service: script.harmony_livebox_play_tv_send_power_key
 
   turn_on_livebox_play:
     alias: Force turning on the Livebox Play TV
     sequence:
-      # Turn the socket on
-      - service: switch.turn_on
-        entity_id: switch.livebox_play_socket
-      # Try to use the built-in component
       - service: media_player.turn_on
         data:
           entity_id: media_player.livebox_play
@@ -97,42 +68,5 @@ script:
         entity_id: media_player.livebox_play
         data:
           source: "BFM TV"
-
-
-switch:
-  # Virtual Switch that replicates the pilight_livebox_play_socket but repeats
-  # commands 3 times
-  - platform: template
-    switches:
-      livebox_play_socket:
-        friendly_name: "Livebox Play Socket"
-        # value_template: "{{ is_state('switch.pilight_pilight_livebox_play_socket', 'on') }}"
-        value_template: "{{ is_state('binary_sensor.livebox_play_tv', 'on') }}"
-        turn_on:
-          # Turn on socket 1/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
-          # Turn on socket 2/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
-          # Turn on socket 3/3
-          - service: switch.turn_on
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
-        turn_off:
-          # Turn off socket 1/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
-          # Turn off socket 2/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
-          # Turn off socket 3/3
-          - service: switch.turn_off
-            data:
-              entity_id: switch.pilight_pilight_livebox_play_socket_tv
 
 # vim: set filetype=yaml et sw=2 ts=2 :
