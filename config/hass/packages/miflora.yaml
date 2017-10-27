@@ -163,7 +163,7 @@ sensor:
     name: aloe_vera_temperature
     state_topic: 'plants/mi/aloe_vera/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: aloe_vera_conductivity
@@ -198,7 +198,7 @@ sensor:
     name: basil_temperature
     state_topic: 'plants/mi/basil/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: basil_conductivity
@@ -233,7 +233,7 @@ sensor:
     name: chive_temperature
     state_topic: 'plants/mi/chive/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: chive_conductivity
@@ -272,7 +272,7 @@ sensor:
     name: ficus_temperature
     state_topic: 'plants/mi/ficus/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: ficus_conductivity
@@ -302,7 +302,7 @@ sensor:
     name: lemon_temperature
     state_topic: 'plants/mi/lemon/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: lemon_conductivity
@@ -342,7 +342,7 @@ sensor:
     name: mint_temperature
     state_topic: 'plants/mi/mint/'
     value_template: '{{ value_json.temperature }}'
-    unit_of_measurement: 'C'
+    unit_of_measurement: '°C'
 
   - platform: mqtt
     name: mint_conductivity
