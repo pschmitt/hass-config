@@ -170,15 +170,6 @@ scene:
 
 
 sensor:
-  - platform: min_max
-    name: 'Home Temperature'
-    type: mean
-    entity_ids:
-      - sensor.hue_bathroom_temperature
-      - sensor.hue_hallway_temperature
-      - sensor.hue_kitchen_temperature
-      - sensor.hue_toilet_temperature
-
   - platform: command_line
     name: 'Hue Toilet Battery'
     command: /scripts/zhue.sh battery toilet

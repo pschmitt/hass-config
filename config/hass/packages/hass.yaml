@@ -43,6 +43,22 @@ automation:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
 
 
+sensor:
+  - platform: min_max
+    name: 'Home Temperature'
+    type: mean
+    entity_ids:
+      - sensor.hue_bathroom_temperature
+      - sensor.hue_hallway_temperature
+      - sensor.hue_kitchen_temperature
+      - sensor.hue_toilet_temperature
+      - sensor.aloe_vera_temperature
+      - sensor.basil_temperature
+      - sensor.chive_temperature
+      - sensor.ficus_temperature
+      - sensor.mint_temperature
+
+
 rest_command:
   ha_restart:
     method: get
