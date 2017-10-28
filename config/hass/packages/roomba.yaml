@@ -45,8 +45,8 @@ alert:
   bin_full:
     name: "The bin is full"
     entity_id: binary_sensor.roomba_bin_full
-    state: true
-    repeat: 10
+    state: "on"
+    repeat: 7200
     can_acknowledge: True
     skip_first: False
     notifiers:
