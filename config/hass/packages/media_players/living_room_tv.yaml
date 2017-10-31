@@ -13,6 +13,7 @@ media_player:
   - platform: universal
     name: TV
     children:
+      - media_player.emby__emby_for_chromecast__nvidia_shield_tv
       - media_player.kodi
       - media_player.nvidia_shield_tv
       - media_player.livebox_play
