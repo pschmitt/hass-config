@@ -80,7 +80,7 @@ alert:
     done_message: "Nuki lock battery level: OK!"
     entity_id: binary_sensor.nuki_battery_critical
     state: 'on'
-    repeat: 10
+    repeat: 7200
     can_acknowledge: True
     skip_first: False
     notifiers:
