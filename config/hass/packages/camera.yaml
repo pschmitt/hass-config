@@ -15,21 +15,21 @@ camera:
 
   - platform: mjpeg
     name: doorpi
-    mjpeg_url: http://doorpi.lan:8000/stream.mjpg
+    mjpeg_url: http://doorpi.lan:8089/stream.mjpg
     authentication: basic
     username: !secret cam_doorpi_username
     password: !secret cam_doorpi_password
 
   - platform: mjpeg
     name: hassistant
-    mjpeg_url: http://hassistant.lan:8000/stream.mjpg
+    mjpeg_url: http://hassistant.lan:8089/stream.mjpg
     authentication: basic
     username: !secret cam_hassistant_username
     password: !secret cam_hassistant_password
 
   - platform: mjpeg
     name: winpi
-    mjpeg_url: http://winpi.lan:8000/stream.mjpg
+    mjpeg_url: http://winpi.lan:8089/stream.mjpg
     authentication: basic
     username: !secret cam_winpi_username
     password: !secret cam_winpi_password
