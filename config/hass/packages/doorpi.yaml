@@ -21,6 +21,22 @@ switch:
         friendly_name: Doorpi Screen
         command_on: !secret cmd_turn_on_doorpi_screen
         command_off: !secret cmd_turn_off_doorpi_screen
+        command_state: !secret cmd_doorpi_screen_state
+        value_template: '{{ value == "on" }}'
+
+
+automation:
+  trigger:
+    - platform: state
+      entity_id: switch.doorpi_screen
+      to: "on"
+      for:
+        minutes: 15
+  action:
+    - service: notify.html5
+      data:
+        message: "Doorpi screen has been on for 15 minutes. Turning it off."
+    - service: script.turn_off_doorpi_screen
 
 
 homeassistant:
