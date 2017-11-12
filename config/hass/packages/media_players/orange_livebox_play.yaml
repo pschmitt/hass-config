@@ -23,6 +23,7 @@ sensor:
 
 automation:
   - alias: Setup routing for livebox-play
+    initial_state: true
     trigger:
       platform: homeassistant
       event: start
@@ -30,6 +31,7 @@ automation:
       service: shell_command.livebox_play_tv_setup_routing
 
   - alias: Daily reboot of the Livebox Play TV
+    initial_state: true
     trigger:
       - platform: time
         hours: 4
