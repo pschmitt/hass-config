@@ -8,6 +8,7 @@ alarm_control_panel:
 
 automation:
   - alias: Arm alarm when we are away
+    initial_state: true
     trigger:
       - platform: state
         entity_id: group.main_mobile_devices
@@ -18,6 +19,7 @@ automation:
       - service: script.alarm_arm_away
 
   - alias: Door/Window sensor triggered
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b, binary_sensor.door_window_sensor_158d0001a1ec56, binary_sensor.door_window_sensor_158d00016572aa, binary_sensor.door_window_sensor_158d00016d7083
@@ -35,6 +37,7 @@ automation:
             on has been opened
 
   - alias: Hue Motion Detector triggered
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.toilet_presence, binary_sensor.hallway_presence, binary_sensor.kitchen_presence, binary_sensor.bathroom_presence
@@ -52,6 +55,7 @@ automation:
             Motion has been detected
 
   - alias: Trigger an alert when zoneminder picks up a new event
+    initial_state: true
     trigger:
       - platform: state
         entity_id: sensor.c1_events
@@ -81,6 +85,7 @@ automation:
             ALERT: Camera {{ trigger.to_state.attributes.friendly_name | replace("Events", "", 1) }} has detected motion
 
   - alias: Notify when a new platform has been discovered
+    initial_state: true
     trigger:
       - platform: event
         event_type: platform
@@ -91,6 +96,7 @@ automation:
         target: me
 
   - alias: Away armed
+    initial_state: true
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
@@ -99,6 +105,7 @@ automation:
       - service: script.alarm_armed_away
 
   - alias: Alarm disarmed
+    initial_state: true
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
@@ -107,6 +114,7 @@ automation:
       - service: script.alarm_disarmed
 
   - alias: Alarm has been triggered
+    initial_state: true
     trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
@@ -119,6 +127,7 @@ automation:
       - service: script.alarm_triggered
 
   - alias: Someone is home and the alarm is on
+    initial_state: true
     trigger:
       - platform: state
         entity_id: device_tracker.her_phone, group.pschmitt_location
@@ -145,6 +154,7 @@ automation:
                 title: Kidnappers are here
 
   - alias: Alarm disarm requested
+    initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked
@@ -154,6 +164,7 @@ automation:
       - service: script.alarm_disarm
 
   - alias: Kidnapping mode requested
+    initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked

@@ -39,6 +39,7 @@ script:
 
 automation:
   - alias: Lock door when everybody is home
+    initial_state: true
     trigger:
       - platform: state
         entity_id: group.main_devices
@@ -56,6 +57,7 @@ automation:
       - service: script.lock_door
 
   - alias: "HTML5 notification: Close door"
+    initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked

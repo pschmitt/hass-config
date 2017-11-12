@@ -50,6 +50,7 @@ sensor:
 
 automation:
   - alias: Notify when new network device has been discovered
+    initial_state: true
     trigger:
       - platform: event
         event_type: device_tracker_new_device

@@ -1,277 +1,302 @@
-  - alias: MCE remote KEY_POWER pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_power_pressed
-    action:
-      - service: script.watch_tv
+- alias: MCE remote KEY_POWER pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_power_pressed
+  action:
+    - service: script.watch_tv
 
-  - alias: MCE remote KEY_MEDIA pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_media_pressed
-    action:
-      - service: script.start_dolphin
+- alias: MCE remote KEY_MEDIA pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_media_pressed
+  action:
+    - service: script.start_dolphin
 
-  - alias: MCE remote KEY_TUNER pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_tuner_pressed
-    action:
-      service: script.watch_tv
+- alias: MCE remote KEY_TUNER pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_tuner_pressed
+  action:
+    service: script.watch_tv
 
-  - alias: MCE remote KEY_STOP pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_stop_pressed
-    action:
-      service: script.turn_on
-      entity_id: script.all_off
+- alias: MCE remote KEY_STOP pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_stop_pressed
+  action:
+    service: script.turn_on
+    entity_id: script.all_off
 
-  - alias: MCE remote KEY_EPG pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_epg_pressed
-    action:
-      service: script.turn_on
-      entity_id: script.shield_tv
+- alias: MCE remote KEY_EPG pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_epg_pressed
+  action:
+    service: script.turn_on
+    entity_id: script.shield_tv
 
-  - alias: MCE remote KEY_LIST pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_list_pressed
-    action:
-      service: script.turn_on
-      entity_id: script.start_kodi
+- alias: MCE remote KEY_LIST pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_list_pressed
+  action:
+    service: script.turn_on
+    entity_id: script.start_kodi
 
-  - alias: MCE remote KEY_MUTE pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_mute_pressed
-    action:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 42046341
-          command: Mute
+- alias: MCE remote KEY_MUTE pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_mute_pressed
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: 42046341
+        command: Mute
 
-  - alias: MCE remote KEY_VOLUMEDOWN pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_volumedown_pressed
-    action:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 42046341
-          command: VolumeDown
+- alias: MCE remote KEY_VOLUMEDOWN pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_volumedown_pressed
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: 42046341
+        command: VolumeDown
 
-  - alias: MCE remote KEY_VOLUMEUP pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_volumeup_pressed
-    action:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 42046341
-          command: VolumeUp
+- alias: MCE remote KEY_VOLUMEUP pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_volumeup_pressed
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: 42046341
+        command: VolumeUp
 
-  - alias: MCE remote KEY_CHANNELDOWN pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_channeldown_pressed
-    action:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40565609
-          command: ChannelDown
+- alias: MCE remote KEY_CHANNELDOWN pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_channeldown_pressed
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: 40565609
+        command: ChannelDown
 
-  - alias: MCE remote KEY_CHANNELUP pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_channelup_pressed
-    action:
-      - service: remote.send_command
-        data:
-          entity_id: remote.harmony_hub
-          device: 40565609
-          command: ChannelUp
+- alias: MCE remote KEY_CHANNELUP pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_channelup_pressed
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony_hub
+        device: 40565609
+        command: ChannelUp
 
-  - alias: MCE remote KEY_0 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_0_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number0
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 0
+- alias: MCE remote KEY_0 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_0_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number0
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 0
 
-  - alias: MCE remote KEY_1 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_1_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number1
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 1
+- alias: MCE remote KEY_1 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_1_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number1
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 1
 
-  - alias: MCE remote KEY_2 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_2_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number2
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 2
+- alias: MCE remote KEY_2 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_2_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number2
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 2
 
-  - alias: MCE remote KEY_3 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_3_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number3
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 3
+- alias: MCE remote KEY_3 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_3_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number3
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 3
 
-  - alias: MCE remote KEY_4 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_4_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number4
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 4
+- alias: MCE remote KEY_4 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_4_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number4
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 4
 
-  - alias: MCE remote KEY_5 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_5_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number5
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 5
+- alias: MCE remote KEY_5 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_5_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number5
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 5
 
-  - alias: MCE remote KEY_6 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_6_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number6
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 6
+- alias: MCE remote KEY_6 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_6_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number6
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 6
 
-  - alias: MCE remote KEY_7 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_7_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number7
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 7
+- alias: MCE remote KEY_7 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_7_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number7
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 7
 
-  - alias: MCE remote KEY_8 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_8_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number8
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 8
+- alias: MCE remote KEY_8 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_8_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number8
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 8
 
-  - alias: MCE remote KEY_9 pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_9_pressed
-    action:
-      # - service: remote.send_command
-      #   data:
-      #     entity_id: remote.harmony_hub
-      #     device: 40565609
-      #     command: Number9
-      - service: shell_command.remote_livebox_play
-        data:
-          key: num_key 9
+- alias: MCE remote KEY_9 pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_9_pressed
+  action:
+    # - service: remote.send_command
+    #   data:
+    #     entity_id: remote.harmony_hub
+    #     device: 40565609
+    #     command: Number9
+    - service: shell_command.remote_livebox_play
+      data:
+        key: num_key 9
 
-  - alias: MCE remove KEY_RED pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_red_pressed
-    action:
-      - service: light.toggle
-        data:
-          entity_id: light.living_room
+- alias: MCE remove KEY_RED pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_red_pressed
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.living_room
 
-  - alias: MCE remove KEY_GREEN pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_green_pressed
-    action:
-      - service: light.toggle
-        data:
-          entity_id: light.front_door_light
+- alias: MCE remove KEY_GREEN pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_green_pressed
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.front_door_light
 
-  - alias: MCE remove KEY_YELLOW pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_yellow_pressed
-    action:
-      - service: light.toggle
-        data:
-          entity_id: light.front_door_light
+- alias: MCE remove KEY_YELLOW pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_yellow_pressed
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.front_door_light
 
-  - alias: MCE remove KEY_BLUE pressed
-    trigger:
-      - platform: event
-        event_type: remote_mce_key_blue_pressed
-    action:
-      - service: light.toggle
-        data:
-          entity_id: light.terrace_light
+- alias: MCE remove KEY_BLUE pressed
+  initial_state: true
+  trigger:
+    - platform: event
+      event_type: remote_mce_key_blue_pressed
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.terrace_light
 
 # vim: set filetype=yaml et sw=2 ts=2 :

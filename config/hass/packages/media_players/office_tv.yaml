@@ -86,6 +86,7 @@ script:
 
 automation:
   - alias: Switch office Sony speaker input to AUX when playing something on office_tv
+    initial_state: true
     trigger:
     # - platform: state
     #   entity_id: media_player.office_tv
@@ -100,7 +101,6 @@ automation:
       - service: media_player.turn_on
         data:
           entity_id: media_player.sony_office_speaker
-      - service: script.set_office_speaker_to_aux
       - service: script.set_office_speaker_to_aux
       - service: script.turn_on_office_tv
 

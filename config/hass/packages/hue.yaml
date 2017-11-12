@@ -6,6 +6,7 @@ light:
 
 automation:
   - alias: Turn on lights just before sunset
+    initial_state: true
     trigger:
       platform: sun
       event: sunset
@@ -23,6 +24,7 @@ automation:
           transition: 10
 
   - alias: Turn off bedroom lights after 30 minutes
+    initial_state: true
     trigger:
       - platform: state
         entity_id: light.bedroom_light
@@ -34,6 +36,7 @@ automation:
         entity_id: light.bedroom_light
 
   - alias: Hue Master Switch ON pressed
+    initial_state: true
     trigger:
       - platform: event
         event_type: zhue_switch_master_button_INITIAL_PRESSED_4
@@ -43,6 +46,7 @@ automation:
       - service: script.hue_master_switch_off
 
   - alias: Hue Master Switch OFF pressed
+    initial_state: true
     trigger:
       - platform: event
         event_type: zhue_switch_master_button_INITIAL_PRESSED_1
@@ -53,6 +57,7 @@ automation:
       - service: script.lock_n_go
 
   - alias: Hue Motion Sensor battery is low
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.hue_bathroom_battery, sensor.hue_hallway_battery, sensor.hue_hue_kitchen_battery, sensor.hue_toilet_battery

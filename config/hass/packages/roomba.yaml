@@ -55,6 +55,7 @@ alert:
 
 automation:
   - alias: Schedule cleaning when nobody is home
+    initial_state: true
     trigger:
       - platform: time
         at: '14:00:00'
@@ -68,6 +69,7 @@ automation:
           entity_id: vacuum.nimbus
 
   - alias: "Stop cleaning procedure if any of use comes home"
+    initial_state: true
     trigger:
       - platform: state
         entity_id: device_tracker.g4p_zanzito
@@ -88,6 +90,7 @@ automation:
           entity_id: vacuum.nimbus
 
   - alias: "Notify when roomba is stuck and I'm coming home"
+    initial_state: true
     trigger:
       - platform: state
         entity_id: device_tracker.g4p_zanzito
@@ -103,6 +106,7 @@ automation:
             tag: "nimbus-rescue"
 
   - alias: "Notify when roomba finished a job"
+    initial_state: true
     trigger:
       - platform: state
         entity_id: sensor.nimbus_status

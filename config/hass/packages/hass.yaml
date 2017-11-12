@@ -9,6 +9,7 @@ input_boolean:
 
 automation:
   - alias: HASS startup automation
+    initial_state: true
     trigger:
       platform: homeassistant
       event: start
@@ -33,6 +34,7 @@ automation:
       - service: script.enable_annoying_automations
 
   - alias: Update notifications
+    initial_state: true
     trigger:
       - platform: state
         entity_id: updater.updater
@@ -42,6 +44,7 @@ automation:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
 
   - alias: Having friends sleeping on the couch
+    initial_state: true
     trigger:
       platform: state
       entity_id: input_boolean.sleepover

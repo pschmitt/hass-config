@@ -36,6 +36,7 @@ script:
 
 automation:
   - alias: "Flic W1: Start a smoke break when the flic button is pressed and the outdoor light is off"
+    initial_state: true
     trigger:
       - platform: event
         event_type: flic_click
@@ -50,6 +51,7 @@ automation:
       - service: script.smoke_break
 
   - alias: "Flic W1: Turn off the outdoor light if it is on"
+    initial_state: true
     trigger:
       - platform: event
         event_type: flic_click
@@ -69,6 +71,7 @@ automation:
           entity_id: script.smoke_break_timer_off
 
   - alias: "Flic W1: Turn off outdoor light when hold"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -84,6 +87,7 @@ automation:
           entity_id: script.smoke_break_timer_off
 
   - alias: "Flic B1: Toggle office stuff on flic press"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -96,6 +100,7 @@ automation:
           entity_id: light.yeelight_office
 
   - alias: "Flic B1: Turn on office stuff on double flic press"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -106,6 +111,7 @@ automation:
       - service: script.toggle_office_lights
 
   - alias: "Flic B1: Turn off office stuff on flic hold"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -120,6 +126,7 @@ automation:
           entity_id: group.office_lights
 
   - alias: "Flic W2: Toggle office when flic button is pressed"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -132,6 +139,7 @@ automation:
           entity_id: light.yeelight_office
 
   - alias: "Flic W2: Turn on office when flic button is pressed"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -142,6 +150,7 @@ automation:
       - service: script.toggle_office_lights
 
   - alias: "Flic W2: Turn off office when flic button is pressed"
+    initial_state: true
     trigger:
       platform: event
       event_type: flic_click
@@ -155,6 +164,7 @@ automation:
           entity_id: group.office_lights
 
   - alias: "Flic B2: Start bedtime script on single button press"
+    initial_state: true
     trigger:
       - platform: event
         event_type: flic_click
@@ -165,6 +175,7 @@ automation:
       - service: script.bedtime
 
   - alias: "Flic B2: Turn off all on long button press"
+    initial_state: true
     trigger:
       - platform: event
         event_type: flic_click

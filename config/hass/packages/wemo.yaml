@@ -33,6 +33,7 @@ sensor:
 
 automation:
   - alias: Notify when the washing machine has finished
+    initial_state: true
     trigger:
       platform: state
       entity_id: binary_sensor.washing_machine

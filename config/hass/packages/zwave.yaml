@@ -83,6 +83,7 @@ sensor:
 
 automation:
   - alias: Smoke Sensor battery is low
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.smoke_sensor_battery
@@ -93,6 +94,7 @@ automation:
           message: "Battery is low on Fibaro FGSD002"
 
   - alias: Z-Wave soft reset at 02:30
+    initial_state: true
     trigger:
       platform: time
       at: '02:30:00'
@@ -100,6 +102,7 @@ automation:
       service: zwave.soft_reset
 
   - alias: Z-Wave network heal at 02:35
+    initial_state: true
     trigger:
       platform: time
       at: '02:35:00'

@@ -26,17 +26,19 @@ switch:
 
 
 automation:
-  trigger:
-    - platform: state
-      entity_id: switch.doorpi_screen
-      to: "on"
-      for:
-        minutes: 15
-  action:
-    - service: notify.html5
-      data:
-        message: "Doorpi screen has been on for 15 minutes. Turning it off."
-    - service: script.turn_off_doorpi_screen
+  - alias: Turn off doorpi screen after 15min
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: switch.doorpi_screen
+        to: "on"
+        for:
+          minutes: 15
+    action:
+      - service: notify.html5
+        data:
+          message: "Doorpi screen has been on for 15 minutes. Turning it off."
+      - service: script.turn_off_doorpi_screen
 
 
 homeassistant:

@@ -187,6 +187,7 @@ script:
 
 automation:
   # - alias: 'Media player paused/stopped'
+  #   initial_state: true
   #   trigger:
   #     - platform: state
   #       entity_id: media_player.living_room_tv
@@ -202,6 +203,7 @@ automation:
   #     entity_id: scene.living_room_normal
 
   # - alias: 'Media player playing'
+  #   initial_state: true
   #   trigger:
   #     - platform: state
   #       entity_id: media_player.living_room_tv
@@ -217,6 +219,7 @@ automation:
   #     entity_id: scene.living_room_dim
 
   # - alias: "Turn on dolphin-emu if TV is sitting on its input for 30s"
+  #   initial_state: true
   #   trigger:
   #     platform: state
   #     entity_id: sensor.tv_source
@@ -238,6 +241,7 @@ automation:
           message: 'Oh non, Mimine. Pas Skyrim ! PAS ENCORE !'
 
   - alias: Turn off TV appliances if the TV is off for an hour
+    initial_state: true
     trigger:
       platform: state
       entity_id: media_player.living_room_tv
@@ -248,6 +252,7 @@ automation:
       - service: script.turn_off_media_players
 
   - alias: Turn off the Livebox Play TV if is it not currently displayed
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_liveboxplay
@@ -259,6 +264,7 @@ automation:
         entity_id: media_player.livebox_play
 
   - alias: Turn off Nvidia shield TV if is it not currently displayed
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_nvidia_shield_tv
@@ -269,6 +275,7 @@ automation:
       - service: script.turn_off_nvidia_shield_tv
 
   - alias: Turn off the Sony PS3 if is it not currently displayed
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.tv_displaying_sony_ps3

@@ -11,6 +11,7 @@ script:
 
 automation:
   - alias: Refresh plant data on start and every 30min
+    initial_state: true
     trigger:
       - platform: homeassistant
         event: start
@@ -20,6 +21,7 @@ automation:
       - service: script.refresh_plant_data
 
   - alias: Miflora battery is low
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.lemon_battery, sensor.aloe_vera_battery, sensor.mint_battery, sensor.ficus_battery, sensor.chive_battery

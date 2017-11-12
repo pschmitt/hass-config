@@ -1,5 +1,6 @@
 automation:
   - alias: Amazon Dash Button (Kleenex) pressed
+    initial_state: true
     trigger:
       - platform: event
         event_type: dash_button_kleenex_pressed
@@ -7,6 +8,7 @@ automation:
       - service: script.dash_button_kleenex_pressed
 
   - alias: Amazon Dash Button (Durex) pressed
+    initial_state: true
     trigger:
       - platform: event
         event_type: dash_button_durex_pressed

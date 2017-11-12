@@ -6,6 +6,7 @@ lock:
 
 automation:
   - alias: Notify when the door bell has been rung
+    initial_state: true
     trigger:
       - platform: event
         event_type: nello_bell_ring
@@ -17,6 +18,7 @@ automation:
           message: 'Nello: The door bell rung.'
 
   - alias: "Buzz door open when ringing and I'm home"
+    initial_state: true
     trigger:
       - platform: event
         event_type: nello_bell_ring

@@ -1,5 +1,6 @@
 automation:
   - alias: Train reminder
+    initial_state: true
     trigger:
       - platform: time
         hours: 16
@@ -13,6 +14,7 @@ automation:
       service: script.train_reminder
 
   - alias: Train reminder postpone requested
+    initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked
@@ -23,6 +25,7 @@ automation:
       - service: script.train_reminder
 
   - alias: Time to go to bed
+    initial_state: true
     trigger:
       - platform: time
         hours: 21
@@ -46,6 +49,7 @@ automation:
       - service: script.bedtime_reminder
 
   # - alias: 'Bruh your phone is dying'
+  #   initial_state: true
   #   trigger:
   #     - platform: numeric_state
   #       entity_id: sensor.nexus_5x_battery

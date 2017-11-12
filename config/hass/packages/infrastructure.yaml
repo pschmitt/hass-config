@@ -23,6 +23,7 @@ binary_sensor:
 
 automation:
   - alias: "Infrastructure component is off"
+    initial_state: true
     trigger:
       platform: state
       entity_id: binary_sensor.flicd_hassistant, binary_sensor.flicd_zabbix_proxy_armhf, binary_sensor.pilight_hassistant

@@ -74,6 +74,7 @@ group:
 
 automation:
   - alias: Mi Sensor battery is low
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.mi_front_door_battery, sensor.mi_fridge_door_battery, sensor.mi_terrace_door_battery, sensor.mi_terrace_door_bedroom_battery, sensor.mi_fridge_door_battery, sensor.mi_freezer_temp_battery
@@ -85,6 +86,7 @@ automation:
           tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
 
   - alias: Turn on the terrace light when door opened during night
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1ec56
@@ -97,6 +99,7 @@ automation:
       - service: script.smoke_break
 
   - alias: Alert when the fridge has been open for 2 min
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b
@@ -111,6 +114,7 @@ automation:
             tag: 'fridge-open'
 
   - alias: Alert when fridge temperature is above 15C
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.temperature_158d0001d6f4da
@@ -123,6 +127,7 @@ automation:
             tag: 'fridge-temp-high'
 
   - alias: Alert when freezer temperature is above -10C
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: sensor.temperature_158d0001d6f4e5
@@ -135,6 +140,7 @@ automation:
             tag: 'freezer-temp-high'
 
   - alias: Alert when water leak detected
+    initial_state: true
     trigger:
       - platform: state
         entity_id: binary_sensor.water_leak_sensor_158d0001d7668e, binary_sensor.water_leak_sensor_158d0001df1cc3
