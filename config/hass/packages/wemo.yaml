@@ -9,6 +9,8 @@ binary_sensor:
     sensors:
       washing_machine:
         friendly_name: 'Washing Machine'
+        delay_off:
+          minutes: 2
         device_class: power
         value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.state_detail == "on" }}'
         entity_id: switch.wemo_insight__washing_machine
@@ -36,8 +38,6 @@ automation:
       entity_id: binary_sensor.washing_machine
       from: "on"
       to: "off"
-      for:
-        minutes: 2
     action:
       service: notify.html5
       data:
