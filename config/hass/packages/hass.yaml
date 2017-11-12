@@ -1,5 +1,13 @@
-automation:
+input_boolean:
+  sleepover:
+    name: Having friends sleeping on the couch
+    icon: mdi:account-box-outline
+  dnd:
+    name: DND Mode
+    icon: mdi:volume-off
 
+
+automation:
   - alias: HASS startup automation
     trigger:
       platform: homeassistant
@@ -22,16 +30,7 @@ automation:
           qos: 0
           retain: 0
       - delay: 00:05:00
-      - service: automation.turn_on
-        entity_id: automation.ask_to_buzz_door_open_when_approaching_home
-      - service: automation.turn_on
-        entity_id: automation.react_to_my_homecoming
-      - service: automation.turn_on
-        entity_id: automation.talk_to_my_wife_when_she_gets_home
-      - service: automation.turn_on
-        entity_id: automation.watching_teva
-      - service: automation.turn_on
-        entity_id: automation.playing_ps3
+      - service: script.enable_annoying_automations
 
   - alias: Update notifications
     trigger:
@@ -41,6 +40,19 @@ automation:
       service: notify.html5
       data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
+
+  - alias: Having friends sleeping on the couch
+    trigger:
+      platform: state
+      entity_id: input_boolean.sleepover
+    action:
+      - service_template: >
+          {% if states.input_boolean.sleepover.state == 'on' %}
+            automation.turn_off
+          {% else %}
+            automation.turn_on
+          {% endif %}
+        entity_id: automation.turn_on_front_door_light_when_i_get_up_in_the_morning
 
 
 sensor:
@@ -79,6 +91,20 @@ script:
     alias: 'Reload core config'
     sequence:
       - service: homeassistant.reload_core_config
+
+  enable_annoying_automations:
+    alias: 'Enable annoying automations'
+    sequence:
+      - service: automation.turn_on
+        entity_id: automation.ask_to_buzz_door_open_when_approaching_home
+      - service: automation.turn_on
+        entity_id: automation.react_to_my_homecoming
+      - service: automation.turn_on
+        entity_id: automation.talk_to_my_wife_when_she_gets_home
+      - service: automation.turn_on
+        entity_id: automation.watching_teva
+      - service: automation.turn_on
+        entity_id: automation.playing_ps3
 
 
 group:

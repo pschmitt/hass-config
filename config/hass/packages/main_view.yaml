@@ -25,6 +25,9 @@ group:
     control: hidden
     view: no
     entities:
+      - input_boolean.sleepover
+      - input_boolean.dnd
+      - switch.doorpi_screen
       - alarm_control_panel.ha_alarm
       - script.buzz_door_open
       - script.buzz_door_open_multiple
