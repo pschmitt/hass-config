@@ -341,31 +341,6 @@ script:
         data:
           entity_id: light.terrace
 
-  morning_front_door_light:
-    alias: "Turn on front door light for 15min in the morning"
-    sequence:
-      # Cancel ev. old timers
-      - service: script.turn_off
-        data:
-          entity_id: script.morning_front_door_light_off
-      - service: light.turn_on
-        data:
-          entity_id: light.front_door_light
-          color_name: white
-          brightness: 217 # 85%
-      # Set new timer
-      - service: script.turn_on
-        data:
-          entity_id: script.morning_front_door_light_off
-
-  morning_front_door_light_off:
-    alias: "Turn off the front door light after 15min in the morning"
-    sequence:
-      - delay:
-          minutes: 15
-      - service: light.turn_off
-        data:
-          entity_id: light.front_door_light
 
 
 homeassistant:

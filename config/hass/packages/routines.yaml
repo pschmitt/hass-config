@@ -46,6 +46,35 @@ automation:
     action:
       - service: script.buzz_door_open_multiple
 
+  - alias: "Turn on front door light for 15min in the morning"
+    id: morning_front_door_light
+    sequence:
+      # Cancel ev. old timers
+      - service: script.turn_off
+        data:
+          entity_id: script.morning_front_door_light_off
+      - service: light.turn_on
+        data:
+          entity_id: light.front_door_light
+          color_name: white
+          brightness: 217 # 85%
+      - service: switch.turn_on
+        data:
+          entity_id: switch.doorpi_screen
+      # Set new timer
+      - service: script.turn_on
+        data:
+          entity_id: script.morning_front_door_light_off
+
+  - alias: "Turn off the front door light after 15min in the morning"
+    id: morning_front_door_light_off
+    sequence:
+      - delay:
+          minutes: 15
+      - service: light.turn_off
+        data:
+          entity_id: light.front_door_light
+
 
 script:
   im_home:
