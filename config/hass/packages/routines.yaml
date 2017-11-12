@@ -46,34 +46,17 @@ automation:
     action:
       - service: script.buzz_door_open_multiple
 
-  - alias: "Turn on front door light for 15min in the morning"
-    id: morning_front_door_light
-    sequence:
-      # Cancel ev. old timers
-      - service: script.turn_off
-        data:
-          entity_id: script.morning_front_door_light_off
-      - service: light.turn_on
-        data:
-          entity_id: light.front_door_light
-          color_name: white
-          brightness: 217 # 85%
-      - service: switch.turn_on
-        data:
-          entity_id: switch.doorpi_screen
-      # Set new timer
-      - service: script.turn_on
-        data:
-          entity_id: script.morning_front_door_light_off
-
-  - alias: "Turn off the front door light after 15min in the morning"
-    id: morning_front_door_light_off
-    sequence:
-      - delay:
-          minutes: 15
-      - service: light.turn_off
-        data:
-          entity_id: light.front_door_light
+  - alias: Turn on front door light when I get up in the morning
+    trigger:
+      - platform: state
+        entity_id: light.toilet_light, light.bathroom_light
+        to: 'on'
+    condition:
+      condition: time
+      after: '05:00:00'
+      before: '07:00:00'
+    action:
+      - service: script.morning_front_door_light
 
 
 script:
@@ -103,5 +86,34 @@ script:
       - delay:
           minutes: 5
       - service: script.lock_door
+
+  morning_front_door_light:
+    alias: "Turn on front door light for 15min in the morning"
+    sequence:
+      # Cancel ev. old timers
+      - service: script.turn_off
+        data:
+          entity_id: script.morning_front_door_light_off
+      - service: light.turn_on
+        data:
+          entity_id: light.front_door_light
+          color_name: white
+          brightness: 217 # 85%
+      - service: switch.turn_on
+        data:
+          entity_id: switch.doorpi_screen
+      # Set new timer
+      - service: script.turn_on
+        data:
+          entity_id: script.morning_front_door_light_off
+
+  morning_front_door_light_off:
+    alias: "Turn off the front door light after 15min in the morning"
+    sequence:
+      - delay:
+          minutes: 15
+      - service: light.turn_off
+        data:
+          entity_id: light.front_door_light
 
 # vim: set filetype=yaml et sw=2 ts=2 :

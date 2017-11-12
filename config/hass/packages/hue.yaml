@@ -62,18 +62,6 @@ automation:
         data_template:
           message: "Hue motion sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
 
-  - alias: Turn on front door light when I get up in the morning
-    trigger:
-      - platform: state
-        entity_id: light.toilet_light, light.bathroom_light
-        to: 'on'
-    condition:
-      condition: time
-      after: '05:00:00'
-      before: '07:00:00'
-    action:
-      - service: script.morning_front_door_light
-
 
 group:
   light_groups:
