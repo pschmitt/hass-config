@@ -113,7 +113,7 @@ automation:
     action:
       - service: notify.html5
         data_template:
-          message: 'Nimbus returned to its base and is charging now. He probably finished a job. Previous: "{{ trigger.from_state.state }}"'
+          message: 'Nimbus has finished a job. He cleaned {{ trigger.from_state.attributes.cleaned_area }}m2 in {{ trigger.from_state.attributes.cleaning_time }}.'
           data:
             tag: 'nimbus-finished-job'
 
