@@ -1,3 +1,9 @@
+input_boolean:
+  sleepover:
+    name: Having friends sleeping on the couch
+    icon: mdi:account-box-outline
+
+
 automation:
   - alias: React to my homecoming
     initial_state: false
@@ -38,6 +44,7 @@ automation:
                 title: "Buzz Open"
 
   - alias: "HTML5 notification: Buzz open"
+    initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked
@@ -47,6 +54,7 @@ automation:
       - service: script.buzz_door_open_multiple
 
   - alias: Turn on front door light when I get up in the morning
+    initial_state: true
     trigger:
       - platform: state
         entity_id: light.toilet_light, light.bathroom_light
@@ -57,6 +65,20 @@ automation:
       before: '07:00:00'
     action:
       - service: script.morning_front_door_light
+
+  - alias: Having friends sleeping on the couch
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.sleepover
+    action:
+      - service_template: >
+          {% if states.input_boolean.sleepover.state == 'on' %}
+            automation.turn_off
+          {% else %}
+            automation.turn_on
+          {% endif %}
+        entity_id: automation.turn_on_front_door_light_when_i_get_up_in_the_morning
 
 
 script:

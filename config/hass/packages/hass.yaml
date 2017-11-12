@@ -1,7 +1,4 @@
 input_boolean:
-  sleepover:
-    name: Having friends sleeping on the couch
-    icon: mdi:account-box-outline
   dnd:
     name: DND Mode
     icon: mdi:volume-off
@@ -42,20 +39,6 @@ automation:
       service: notify.html5
       data_template:
         message: "Home Assistant {{ states.updater.updater.state }} is now available."
-
-  - alias: Having friends sleeping on the couch
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.sleepover
-    action:
-      - service_template: >
-          {% if states.input_boolean.sleepover.state == 'on' %}
-            automation.turn_off
-          {% else %}
-            automation.turn_on
-          {% endif %}
-        entity_id: automation.turn_on_front_door_light_when_i_get_up_in_the_morning
 
 
 sensor:
