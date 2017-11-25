@@ -7,6 +7,13 @@ mqtt:
 
 
 mqtt_statestream:
-  base_topic: homeassistant
+  base_topic: homeassistant/states
+  publish_attributes: true
+  publish_timestamps: true
+
+
+mqtt_eventstream:
+  publish_topic: homeassistant/events
+  subscribe_topic: hassistant/events/#
 
 # vim: set filetype=yaml et sw=2 ts=2 :
