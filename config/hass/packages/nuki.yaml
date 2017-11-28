@@ -38,22 +38,15 @@ script:
 
 
 automation:
-  - alias: Lock door when everybody is home
+  - alias: Lock door after 15min
     initial_state: true
     trigger:
       - platform: state
-        entity_id: group.main_devices
-        to: 'home'
-        for:
-          minutes: 15
-    condition:
-      - condition: state
         entity_id: lock.home
         state: 'unlocked'
+        for:
+          minutes: 15
     action:
-      - service: notify.html5
-        data:
-          message: "You've been home for 15min. I locked the door."
       - service: script.lock_door
 
   - alias: "HTML5 notification: Close door"
@@ -65,6 +58,7 @@ automation:
         action: lock_door
     action:
       - service: script.lock_door
+
 
 alert:
   door_open:
