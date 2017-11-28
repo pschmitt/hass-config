@@ -41,11 +41,11 @@ automation:
   - alias: Lock door after 15min
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: lock.home
-        state: 'unlocked'
-        for:
-          minutes: 15
+      platform: state
+      entity_id: lock.home
+      to: 'unlocked'
+      for:
+        minutes: 15
     action:
       - service: script.lock_door
 
