@@ -7,6 +7,8 @@ group:
       - light.bedroom
       - scene.bedtime
       - script.all_off
+      - cover.bedroom_table
+      - cover.bedroom_door
 
   misc:
     name: Misc
@@ -32,6 +34,7 @@ group:
       - camera.hassistant
       - media_player.sony_office_speaker
       - media_player.office_tv
+      - cover.office
 
   office_lights:
     name: All Office Lights
@@ -57,6 +60,8 @@ group:
       - switch.wall_socket
       - camera.c1
       - group.living_room_media_players
+      - cover.living_room_door
+      - cover.living_room_table
 
   living_room_media_players:
     name: Media Players
@@ -95,6 +100,8 @@ group:
       - light.terrace_light
       - script.smoke_break
       - group.terrace_doors
+      - cover.living_room_door
+      - cover.bedroom_door
 
   kitchen:
     name: Kitchen
@@ -104,5 +111,6 @@ group:
       - camera.c2
       - light.kitchen_light
       - group.fridge
+      - cover.kitchen
 
 # vim: set filetype=yaml et sw=2 ts=2 :

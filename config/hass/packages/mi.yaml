@@ -97,6 +97,9 @@ automation:
       before_offset: "-1:00:00"
     action:
       - service: script.smoke_break
+      - service: cover.open_cover
+        data:
+          entity_id: cover.living_room_door
 
   - alias: Alert when the fridge has been open for 2 min
     initial_state: true

@@ -8,6 +8,7 @@ group:
       - group.weather_shortcut
       - group.light_groups
       - media_player.home_group
+      - group.all_covers
 
   info:
     name: Info

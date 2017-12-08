@@ -48,6 +48,10 @@ automation:
         entity_id: light.terrace_light
         state: 'off'
     action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.living_room_door
+
       - service: script.smoke_break
 
   - alias: "Flic W1: Turn off the outdoor light if it is on"
@@ -70,7 +74,7 @@ automation:
         data:
           entity_id: script.smoke_break_timer_off
 
-  - alias: "Flic W1: Turn off outdoor light when hold"
+  - alias: "Flic W1: Turn off outdoor light and close cover when hold"
     initial_state: true
     trigger:
       platform: event
@@ -85,6 +89,9 @@ automation:
       - service: script.turn_off
         data:
           entity_id: script.smoke_break_timer_off
+      - service: cover.close_cover
+        data:
+          entity_id: cover.living_room_door
 
   - alias: "Flic B1: Toggle office stuff on flic press"
     initial_state: true

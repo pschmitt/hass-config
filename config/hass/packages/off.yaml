@@ -10,6 +10,9 @@ script:
       - service: light.turn_off
         data:
           entity_id: group.all_lights
+      - service: cover.close_cover
+        data:
+          entity_id: group.all_covers
 
   bedtime:
     alias: Bedtime
