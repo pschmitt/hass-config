@@ -85,7 +85,7 @@ automation:
           message: "Mi sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
           tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
 
-  - alias: Turn on the terrace light when door opened during night
+  - alias: Turn on the terrace light when door opened during nighttime
     initial_state: true
     trigger:
       - platform: state
