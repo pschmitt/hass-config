@@ -131,6 +131,9 @@ automation:
       - service: light.turn_off
         data:
           entity_id: group.office_lights
+      - service: cover.close_cover
+        data:
+          entity_id: cover.office
 
   - alias: "Flic W2: Toggle office when flic button is pressed"
     initial_state: true
@@ -169,6 +172,9 @@ automation:
       - service: light.turn_off
         data:
           entity_id: group.office_lights
+      - service: cover.close_cover
+        data:
+          entity_id: cover.office
 
   - alias: "Flic B2: Start bedtime script on single button press"
     initial_state: true
