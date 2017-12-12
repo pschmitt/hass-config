@@ -35,26 +35,55 @@ automation:
       - service: light.turn_off
         entity_id: light.bedroom_light
 
-  - alias: Hue Master Switch ON pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: zhue_switch_master_button_INITIAL_PRESSED_4
-      - platform: event
-        event_type: zhue_switch_master_button_SHORT_RELEASED_4
-    action:
-      - service: script.hue_master_switch_off
-
   - alias: Hue Master Switch OFF pressed
     initial_state: true
     trigger:
       - platform: event
-        event_type: zhue_switch_master_button_INITIAL_PRESSED_1
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Master dimmer switch"
+          button_name: "off"
+    action:
+      - service: script.hue_master_switch_off
+
+  - alias: Hue Master Switch ON pressed
+    initial_state: true
+    trigger:
       - platform: event
-        event_type: zhue_switch_master_button_SHORT_RELEASED_1
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Master dimmer switch"
+          button_name: "on"
     action:
       - service: script.hue_master_switch_on
-      - service: script.lock_n_go
+
+  - alias: Hue Living Room Switch OFF pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Living room dimmer switch"
+          button_name: "off"
+          click_type: long_released
+    action:
+      - service: cover.close_cover
+        data:
+          entity_id: cover.living_room_table
+
+  - alias: Hue Living Room Switch ON pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Living room dimmer switch"
+          button_name: "on"
+          click_type: long_released
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.living_room_table
 
   - alias: Hue Motion Sensor battery is low
     initial_state: true
@@ -278,7 +307,8 @@ script:
   hue_master_switch_on:
     alias: 'Hue Master Dimmer Switch ON pressed'
     sequence:
-      - service: script.watch_tv
+      - service: script.open_all_covers
+      # - service: script.watch_tv
 
   hue_master_switch_off:
     alias: 'Hue Master Dimmer Switch OFF pressed'
