@@ -6,7 +6,7 @@ zone:
     radius: 30
     icon: mdi:home
 
-  - name: work
+  - name: Work
     latitude: !secret work_latitude
     longitude: !secret work_longitude
     elevation: !secret work_elevation
@@ -16,7 +16,7 @@ zone:
 proximity:
   home:
     ignored_zones:
-      - work
+      - Work
     devices:
       - device_tracker.g4p_zanzito
     tolerance: 10
