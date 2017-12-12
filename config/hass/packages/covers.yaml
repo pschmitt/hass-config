@@ -3,34 +3,104 @@ cover:
     name: "Living Room Table"
     command_topic: "hassistant/states/cover/living_room_table/command"
     state_topic: "hassistant/states/cover/living_room_table/state"
+    qos: 2
 
   - platform: mqtt
     name: "Living Room Door"
     command_topic: "hassistant/states/cover/living_room_door/command"
     state_topic: "hassistant/states/cover/living_room_door/state"
+    qos: 2
 
   - platform: mqtt
     name: "Kitchen"
     command_topic: "hassistant/states/cover/kitchen/command"
     state_topic: "hassistant/states/cover/kitchen/state"
+    qos: 2
 
   - platform: mqtt
     name: "Bedroom"
     command_topic: "hassistant/states/cover/bedroom/command"
     state_topic: "hassistant/states/cover/bedroom/state"
+    qos: 2
 
   - platform: mqtt
     name: "Bedroom door"
     command_topic: "hassistant/states/cover/bedroom_door/command"
     state_topic: "hassistant/states/cover/bedroom_door/state"
+    qos: 2
 
   - platform: mqtt
     name: "Office"
     command_topic: "hassistant/states/cover/office/command"
     state_topic: "hassistant/states/cover/office/state"
+    qos: 2
+
+
+group:
+  main_covers:
+    name: Main Covers
+    view: no
+    entities:
+      - cover.living_room_table
+      - cover.kitchen
+      - cover.bedroom
+      - cover.bedroom_door
+      - cover.office
+
+
+script:
+  open_all_covers:
+    alias: 'Open all covers'
+    sequence:
+      - service: cover.open_cover
+        entity_id: group.all_covers
+  open_main_covers:
+    alias: 'Open main covers'
+    sequence:
+      - service: cover.open_cover
+        entity_id: group.main_covers
+  close_all_covers:
+    alias: 'Close all covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id: group.all_covers
+  close_main_covers:
+    alias: 'Close main covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id: group.main_covers
+
+
+automation:
+  - alias: Shut the covers when the sun sets
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      - service: cover.close_cover
+        data:
+          entity_id: group.main_covers
+
+  - alias: Open kitchen cover 15min before sun rises
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: "-00:15:00"
+    # condition:
+    #   condition: state
+    #   entity_id: group.main_mobile_devices
+    #   state: home
+    action:
+      - service: cover.open_cover
+        data:
+          entity_id: cover.kitchen
+
 
 homeassistant:
   customize:
     group.all_covers:
       hidden: False
+
 # vim: set filetype=yaml et sw=2 ts=2 :
