@@ -35,9 +35,6 @@ automation:
         for:
           minutes: 15
     action:
-      - service: notify.html5
-        data:
-          message: "Doorpi screen has been on for 15 minutes. Turning it off."
       - service: script.turn_off_doorpi_screen
 
 
