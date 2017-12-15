@@ -6,6 +6,12 @@ cover:
     qos: 2
 
   - platform: mqtt
+    name: "Living Room TV"
+    command_topic: "hassistant/states/cover/living_room_tv/command"
+    state_topic: "hassistant/states/cover/living_room_tv/state"
+    qos: 2
+
+  - platform: mqtt
     name: "Living Room Door"
     command_topic: "hassistant/states/cover/living_room_door/command"
     state_topic: "hassistant/states/cover/living_room_door/state"
@@ -42,9 +48,27 @@ group:
     view: no
     entities:
       - cover.living_room_table
+      - cover.living_room_tv
       - cover.kitchen
       - cover.bedroom
       - cover.bedroom_door
+      - cover.office
+
+  living_room_covers:
+    name: Living Room Covers
+    view: no
+    entities:
+      - cover.living_room_table
+      - cover.living_room_door
+      - cover.living_room_tv
+
+  auto_covers:
+    name: Automated Covers
+    view: no
+    entities:
+      - cover.kitchen
+      - cover.living_room_table
+      - cover.living_room_tv
       - cover.office
 
 
@@ -54,21 +78,48 @@ script:
     sequence:
       - service: cover.open_cover
         entity_id: group.all_covers
+
   open_main_covers:
     alias: 'Open main covers'
     sequence:
       - service: cover.open_cover
         entity_id: group.main_covers
+
+  open_living_room_covers:
+    alias: 'Open living room covers'
+    sequence:
+      - service: cover.open_cover
+        entity_id: group.living_room_covers
+
+  open_auto_covers:
+    alias: 'Open automated covers'
+    sequence:
+      - service: cover.open_cover
+        entity_id: group.auto_covers
+
   close_all_covers:
     alias: 'Close all covers'
     sequence:
       - service: cover.close_cover
         entity_id: group.all_covers
+
   close_main_covers:
     alias: 'Close main covers'
     sequence:
       - service: cover.close_cover
         entity_id: group.main_covers
+
+  close_living_room_covers:
+    alias: 'Close living room covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id: group.living_room_covers
+
+  close_auto_covers:
+    alias: 'Open automated covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id: group.auto_covers
 
 
 automation:
@@ -78,11 +129,9 @@ automation:
       platform: sun
       event: sunset
     action:
-      - service: cover.close_cover
-        data:
-          entity_id: group.main_covers
+      - service: script.close_main_covers
 
-  - alias: Open kitchen cover 15min before sun rises
+  - alias: Open some covers 15min before sun rises
     initial_state: true
     trigger:
       platform: sun
@@ -93,9 +142,7 @@ automation:
     #   entity_id: group.main_mobile_devices
     #   state: home
     action:
-      - service: cover.open_cover
-        data:
-          entity_id: cover.kitchen
+      - service: script.open_auto_covers
 
 
 homeassistant:
