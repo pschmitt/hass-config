@@ -54,6 +54,14 @@ group:
       - cover.bedroom_door
       - cover.office
 
+  bedroom_covers:
+    name: Bedroom Covers
+    view: no
+    entities:
+      - cover.bedroom_table
+      - cover.bedroom_door
+      - cover.bedroom_tv
+
   living_room_covers:
     name: Living Room Covers
     view: no
@@ -91,6 +99,12 @@ script:
       - service: cover.open_cover
         entity_id: group.living_room_covers
 
+  open_bedroom_covers:
+    alias: 'Open bedroom covers'
+    sequence:
+      - service: cover.open_cover
+        entity_id: group.bedroom_covers
+
   open_auto_covers:
     alias: 'Open automated covers'
     sequence:
@@ -114,6 +128,12 @@ script:
     sequence:
       - service: cover.close_cover
         entity_id: group.living_room_covers
+
+  close_bedroom_covers:
+    alias: 'Open bedroom covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id: group.bedroom_covers
 
   close_auto_covers:
     alias: 'Open automated covers'
@@ -143,6 +163,18 @@ automation:
     #   state: home
     action:
       - service: script.open_auto_covers
+
+  - alias: Open bedroom covers at 10:00
+    initial_state: true
+    trigger:
+      platform: time
+      at: "10:00:00"
+    # condition:
+    #   condition: state
+    #   entity_id: group.main_mobile_devices
+    #   state: home
+    action:
+      - service: script.open_bedroom_covers
 
 
 homeassistant:
