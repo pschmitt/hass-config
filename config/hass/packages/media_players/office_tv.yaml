@@ -35,6 +35,7 @@ media_player:
           source: '{{ source }}'
     attributes:
       is_volume_muted: media_player.sony_office_speaker|is_volume_muted
+      # media_player.office_tv is the chromecast
       state: media_player.office_tv
       volume_level: media_player.sony_office_speaker|volume_level
       source: media_player.sony_office_speaker|source
@@ -98,10 +99,26 @@ automation:
       entity_id: media_player.emby__emby_for_chromecast__office_tv
       to: 'playing'
     action:
+      - service: script.turn_on_office_tv
       - service: media_player.turn_on
         data:
           entity_id: media_player.sony_office_speaker
       - service: script.set_office_speaker_to_aux
-      - service: script.turn_on_office_tv
+      - delay: '00:00:02'
+      - service: script.set_office_speaker_to_aux
+
+  - alias: Switch off office TV after 30 minutes of inactivity
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: media_player.office_tv
+      to: 'off'
+      for:
+        minutes: 30
+    action:
+      - service: script.turn_off_office_tv
+      - service: media_player.turn_off
+        data:
+          entity_id: media_player.sony_office_speaker
 
 # vim: set filetype=yaml et sw=2 ts=2 :
