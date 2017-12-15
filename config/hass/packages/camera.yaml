@@ -34,6 +34,25 @@ camera:
     username: !secret cam_winpi_username
     password: !secret cam_winpi_password
 
+  # - platform: generic
+  #   name: centre_pompidou
+  #   still_image_url: "http://metz.fr/pages/webcams/images/amphitheatre.jpg?{{ as_timestamp(now()) }}015"
+  #   limit_refetch_to_url_change: False
+
+  - platform: generic
+    name: Weather
+    still_image_url: https://www.yr.no/place/France/Lorraine/Metz/meteogram.svg
+    content_type: 'image/svg+xml'
+
+  - platform: generic
+    name: centre_pompidou
+    still_image_url: "http://metz.fr/pages/webcams/images/amphitheatre.jpg?{{ as_timestamp(now()) * 1000 }}"
+    referer: "http://metz.fr/pages/webcams/quartier_amphitheatre.php"
+
+  - platform: generic
+    name: centre_congres
+    still_image_url: http://www.monsuividechantier.com/image_live.php?cam=61b090972bd1a396a83a8202aecbf793&1513176422947
+
 
 zoneminder:
   host: nasteanas.lan:10080

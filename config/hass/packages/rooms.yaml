@@ -97,6 +97,9 @@ group:
       - binary_sensor.plant_data_outdated
       - script.refresh_plant_data
       - camera.winpi
+      - camera.weather
+      - camera.centre_pompidou
+      - camera.centre_congres
       - light.terrace_light
       - script.smoke_break
       - group.terrace_doors
