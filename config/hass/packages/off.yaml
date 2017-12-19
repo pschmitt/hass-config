@@ -27,6 +27,7 @@ script:
       - service: light.turn_off
         data:
           entity_id: group.office_lights
+      - service: script.close_bedroom_covers
 
   turn_off_mushu:
     alias: Turn off mushu via SSH
