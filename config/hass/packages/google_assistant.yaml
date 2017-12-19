@@ -2,6 +2,7 @@ google_assistant:
   project_id: !secret google_assistant_project_id
   client_id: !secret google_assistant_client_id
   access_token: !secret google_assistant_access_token
+  api_key: !secret google_assistant_api_key
   exposed_domains:
     - cover
     - light
