@@ -1,7 +1,7 @@
 secrets.yaml
 known_devices.yaml*
 trusted_networks.yaml*
-phue.conf
+phue-*.conf
 deps/
 www/
 zwave/
