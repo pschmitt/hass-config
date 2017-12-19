@@ -47,18 +47,17 @@ group:
     name: Main Covers
     view: no
     entities:
+      - group.bedroom_covers
       - cover.living_room_table
       - cover.living_room_tv
       - cover.kitchen
-      - cover.bedroom
-      - cover.bedroom_door
       - cover.office
 
   bedroom_covers:
     name: Bedroom Covers
     view: no
     entities:
-      - cover.bedroom_table
+      - cover.bedroom
       - cover.bedroom_door
       - cover.bedroom_tv
 
@@ -74,13 +73,34 @@ group:
     name: Automated Covers
     view: no
     entities:
-      - cover.kitchen
-      - cover.living_room_table
-      - cover.living_room_tv
+      - group.living_room_covers
       - cover.office
+      - cover.kitchen
 
 
 script:
+  cover_winpi:
+    sequence:
+      - service: cover.close_cover
+        entity_id: cover.living_room_table
+      - delay: '00:00:25'
+      - service: cover.open_cover
+        entity_id: cover.living_room_table
+      - delay: '00:00:05'
+      - service: cover.stop_cover
+        entity_id: cover.living_room_table
+
+  cover_set_favorite_position:
+    sequence:
+      - service: cover.stop_cover
+        data_template:
+          entity_id: '{{ entity_id }}'
+      - delay: '00:00:30'
+      - service: cover.stop_cover
+        data_template:
+          entity_id: '{{ entity_id }}'
+
+
   open_all_covers:
     alias: 'Open all covers'
     sequence:
