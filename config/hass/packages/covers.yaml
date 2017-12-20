@@ -59,7 +59,6 @@ group:
     entities:
       - cover.bedroom
       - cover.bedroom_door
-      - cover.bedroom_tv
 
   living_room_covers:
     name: Living Room Covers
