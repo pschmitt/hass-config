@@ -47,7 +47,8 @@ camera:
   - platform: generic
     name: centre_pompidou
     still_image_url: "http://metz.fr/pages/webcams/images/amphitheatre.jpg?{{ as_timestamp(now()) * 1000 }}"
-    referer: "http://metz.fr/pages/webcams/quartier_amphitheatre.php"
+    headers:
+      referer: "http://metz.fr/pages/webcams/quartier_amphitheatre.php"
 
   - platform: generic
     name: centre_congres
