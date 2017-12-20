@@ -85,7 +85,7 @@ script:
   im_home:
     alias: 'I am home'
     sequence:
-      - service: notifiy.html5
+      - service: notify.html5
         data:
           message: "You've just entered the 'Home' zone"
 
