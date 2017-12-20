@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
+set -e
+
 cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
-HUE_CONFIG_FILE=/config/phue.conf
-if [[ -r ../config/hass/phue.conf ]]
+HUE_CONFIG_FILE=$(find /config -type f -iname "phue*.conf" 2>/dev/null | head -1)
+HUE_CONFIG_FILE_ALT=$(find ../config -type f -iname "phue*.conf" 2>/dev/null | head -1)
+if [[ -r "$HUE_CONFIG_FILE_ALT" ]]
 then
-    HUE_CONFIG_FILE="../config/hass/phue.conf"
+    HUE_CONFIG_FILE="$HUE_CONFIG_FILE_ALT"
 fi
 HUE_HOSTNAME=philips-hue.lan
 HUE_PORT=80
-HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' $HUE_CONFIG_FILE)
+HUE_USERNAME=$(sed -r 's/.*"username": "(.+)".+/\1/' "$HUE_CONFIG_FILE")
 
 declare -A SENSOR_BATTERY=( [bathroom]=9 [hallway]=3 [kitchen]=12 [toilet]=6 )
 declare -A SENSOR_TEMPERATURE=( [bathroom]=8 [hallway]=2 [kitchen]=11 [toilet]=5 )
