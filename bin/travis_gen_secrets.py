@@ -21,6 +21,8 @@ with open(HASS_SECRETS_FILE, 'r') as stream:
 travis_config = {}
 
 mac_addr_re = re.compile(r'([0-9a-fA-F]{2}[:]){5}([0-9a-fA-F]{2})')
+url_re = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|'
+                     '(?:%[0-9a-fA-F][0-9a-fA-F]))+')
 
 for k, v in hass_config.items():
     t = type(v)
@@ -33,6 +35,8 @@ for k, v in hass_config.items():
             travis_val = TRAVIS_FILE
         elif re.match(mac_addr_re, v):
             travis_val = '00:01:02:03:04:05'
+        elif re.match(url_re, v):
+            travis_val = 'http://localhost:8080/index.html'
         else:
             travis_val = TRAVIS_STR
     travis_config[k] = travis_val
