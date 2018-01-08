@@ -30,8 +30,8 @@ group:
       - light.yeelight_office
       - switch.wemo_insight__nasteanas
       - switch.office_tv
-      - camera.doorpi
       - camera.hassistant
+      - camera.octoprint
       - media_player.sony_office_speaker
       - media_player.office_tv
       - cover.office

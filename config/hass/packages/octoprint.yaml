@@ -1,0 +1,55 @@
+octoprint:
+  host: !secret octoprint_host
+  api_key: !secret octoprint_api_key
+  bed: true
+  number_of_tools: 1
+
+
+sensor:
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+
+
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+
+
+camera:
+  - platform: mjpeg
+    name: octoprint
+    mjpeg_url: !secret octoprint_camera_url
+
+
+automation:
+  - alias: Notify when the current 3D print has finished
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing
+      from: "on"
+      to: "off"
+    action:
+      service: notify.html5
+      data:
+        message: "The 3D print has finised!"
+
+  - alias: Notify when the current 3D print has errored out
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing_error
+      from: "off"
+      to: "on"
+    action:
+      service: notify.html5
+      data:
+        message: "Woops! The 3D print has failed..."
+
+# vim: set filetype=yaml et sw=2 ts=2 :
