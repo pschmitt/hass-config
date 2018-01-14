@@ -35,6 +35,8 @@ group:
       - media_player.sony_office_speaker
       - media_player.office_tv
       - cover.office
+      - binary_sensor.door_window_sensor_158d0001de7941
+      - binary_sensor.door_window_sensor_158d0001de8caa
 
   office_lights:
     name: All Office Lights
@@ -115,5 +117,6 @@ group:
       - light.kitchen_light
       - group.fridge
       - cover.kitchen
+      - binary_sensor.door_window_sensor_158d0001de8c01
 
 # vim: set filetype=yaml et sw=2 ts=2 :

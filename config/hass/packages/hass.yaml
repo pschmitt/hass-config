@@ -112,6 +112,7 @@ group:
       # - group.media_players
       - group.zwave
       - group.battery_devices
+      - group.windows
 
 
 homeassistant:

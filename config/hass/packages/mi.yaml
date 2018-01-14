@@ -71,6 +71,16 @@ group:
       - binary_sensor.door_window_sensor_158d0001a1ec56
       - binary_sensor.door_window_sensor_158d00016572aa
 
+  windows:
+    name: Windows
+    view: no
+    icon: mdi:glassdoor
+    entities:
+      - binary_sensor.door_window_sensor_158d0001de8c01
+      - binary_sensor.door_window_sensor_158d0001de7941
+      - binary_sensor.door_window_sensor_158d0001de8caa
+      - binary_sensor.door_window_sensor_158d0001de639e
+
 
 automation:
   - alias: Mi Sensor battery is low
@@ -156,7 +166,6 @@ automation:
             tag: 'water-leak-{{ trigger.to_state.entity_id }}'
 
 
-
 homeassistant:
   customize:
     light.gateway_light_34ce008d7aba:
@@ -171,6 +180,14 @@ homeassistant:
       friendly_name: Fridge Door
     binary_sensor.door_window_sensor_158d0001a1ec56:
       friendly_name: Terrace Door
+    binary_sensor.door_window_sensor_158d0001de8c01:
+      friendly_name: Kitchen Window
+    binary_sensor.door_window_sensor_158d0001de7941:
+      friendly_name: "Office Window (large)"
+    binary_sensor.door_window_sensor_158d0001de8caa:
+      friendly_name: "Office Window (small)"
+    binary_sensor.door_window_sensor_158d0001de639e:
+      friendly_name: "Bedroom Window"
     binary_sensor.door_window_sensor_158d00016572aa:
       friendly_name: "Terrace Door (Bedroom)"
     binary_sensor.door_window_sensor_158d00016d7083:
