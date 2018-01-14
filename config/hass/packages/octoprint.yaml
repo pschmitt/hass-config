@@ -36,9 +36,12 @@ automation:
       from: "on"
       to: "off"
     action:
-      service: notify.html5
-      data:
-        message: "The 3D print has finised!"
+      - service: script.tts_say
+        data:
+          message: "3D Print finished"
+      - service: notify.zanzito_tts
+        data:
+          message: "3D Print finished"
 
   - alias: Notify when the current 3D print has errored out
     initial_state: true
