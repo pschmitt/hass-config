@@ -1,10 +1,12 @@
 device_tracker:
-  - platform: luci
+  - platform: ubus
     host: 10.7.0.1
     username: !secret owrt_username
     password: !secret owrt_password
-    track_new_devices: false
     consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
 
   - platform: mqtt_json
     devices:
@@ -19,7 +21,7 @@ group:
     icon: mdi:cellphone-android
     entities:
       - device_tracker.g4p_zanzito
-      - device_tracker.g4p_arp
+      # - device_tracker.g4p_arp
       # - device_tracker.n5x_zanzito
       # - device_tracker.n5x_arp
 
@@ -29,7 +31,7 @@ group:
     icon: mdi:cellphone-android
     entities:
       - device_tracker.g4p_zanzito
-      - device_tracker.g4p_arp
+      # - device_tracker.g4p_arp
       # - device_tracker.n5x_zanzito
       # - device_tracker.n5x_arp
       - device_tracker.her_phone
