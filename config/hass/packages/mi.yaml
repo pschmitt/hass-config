@@ -165,6 +165,70 @@ automation:
           data:
             tag: 'water-leak-{{ trigger.to_state.entity_id }}'
 
+  - alias: React to single button press on aqara wall switch
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_left_158d0001e0f920
+        click_type: single
+    action:
+      - service: notify.html5
+        data:
+          message: 'Wall switch button pressed'
+
+  - alias: React to single (right) button press on aqara wall switch
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_right_158d0001e0f920
+        click_type: single
+    action:
+      - service: notify.html5
+        data:
+          message: 'Wall switch button RIGHT pressed'
+
+  - alias: React to single (both) button press on aqara wall switch
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.wall_switch_both_158d0001e0f920
+        click_type: both
+    action:
+      - service: notify.html5
+        data:
+          message: 'Wall switch button *BOTH* pressed'
+
+  - alias: React to single button press on aqara button
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0002132e08
+        click_type: single
+    action:
+      service: script.bedtime
+
+  - alias: React to double button press on aqara button
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.switch_158d0002132e08
+        click_type: double
+    action:
+      service: script.all_off
+      # - service: notify.html5
+      #   data:
+      #     message: 'Mi button DOUBLE pressed'
+
 
 homeassistant:
   customize:
