@@ -28,6 +28,7 @@ group:
     entities:
       - light.office_light
       - light.yeelight_office
+      - light.3d_printer_led
       - switch.wemo_insight__nasteanas
       - switch.office_tv
       - camera.hassistant
