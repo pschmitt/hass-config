@@ -41,5 +41,7 @@ script:
         data_template:
           entity_id: media_player.home_group
           message: '{{ message }}'
+      - delay: '00:00:15'
+      - service: script.set_office_speaker_to_aux
 
 # vim: set filetype=yaml et sw=2 ts=2 :
