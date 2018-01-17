@@ -38,6 +38,13 @@ group:
 
 
 sensor:
+  - platform: rest
+    resource: http://10.7.0.216:8003/location?group=comreset.io&user=g4play
+    value_template: '{{ value_json.users.g4play[0].location }}'
+    method: GET
+    name: g4p_find
+    scan_interval: 3
+
   - platform: template
     sensors:
       g4p_battery:
