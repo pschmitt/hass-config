@@ -34,7 +34,7 @@ automation:
         data_template:
           message: >
             {{ trigger.to_state.attributes.friendly_name }}
-            on has been opened
+            has been opened
 
   - alias: Hue Motion Detector triggered
     initial_state: true
