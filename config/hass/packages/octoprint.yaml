@@ -21,6 +21,30 @@ binary_sensor:
       - Printing Error
 
 
+switch:
+  - platform: command_line
+    switches:
+      3d_printer_led:
+        friendly_name: "3D Printer LED"
+        command_on: !secret octoprint_led_on_cmd
+        command_off: !secret octoprint_led_off_cmd
+
+
+light:
+  - platform: template
+    lights:
+      3d_printer_led:
+        friendly_name: "3D Printer LED"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.3d_printer_led
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.3d_printer_led
+
+
 camera:
   - platform: mjpeg
     name: octoprint
@@ -54,5 +78,28 @@ automation:
       service: notify.html5
       data:
         message: "Woops! The 3D print has failed..."
+
+  - alias: Turn on lights if the sun goes down and there is an ongoing print
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-00:45:00"
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.octoprint_printing
+          state: "on"
+        - condition: state
+          entity_id: light.yeelight_office
+          state: "off"
+    action:
+      - service: notify.html5
+        data:
+          message: "Turning office lights on so that the timelapse does not get fucked."
+      - service: light.turn_on
+        data:
+          entity_id: light.yeelight_office
 
 # vim: set filetype=yaml et sw=2 ts=2 :
