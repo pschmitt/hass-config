@@ -17,6 +17,7 @@ group:
     entities:
       - device_tracker.her_phone
       - device_tracker.g4p_zanzito
+      - sensor.g4p_find
       # - group.pschmitt_location
       - sensor.ip_location_short
       - sensor.exchange_rate_1_btc
