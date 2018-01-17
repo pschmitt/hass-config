@@ -86,7 +86,6 @@ switch:
     switches:
       living_room_tv:
         friendly_name: Living Room TV
-        entity_id: media_player.living_room_tv
         value_template: '{{ not is_state("media_player.living_room_tv", "off") }}'
         turn_on:
           service: script.turn_on_living_room_tv

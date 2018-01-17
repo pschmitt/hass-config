@@ -13,7 +13,6 @@ binary_sensor:
           minutes: 2
         device_class: power
         value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.state_detail == "on" }}'
-        entity_id: switch.wemo_insight__washing_machine
 
 
 sensor:

@@ -52,7 +52,6 @@ binary_sensor:
       plant_data_outdated:
         value_template: '{{ is_state("binary_sensor.aloe_vera_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.mint_data_outdated", "on") }}'
         friendly_name: 'Mi Flora Data Outdated'
-        entity_id: binary_sensor.aloe_vera_data_outdated, binary_sensor.basil_data_outdated, binary_sensor.chive_data_outdated, binary_sensor.ficus_data_outdated, binary_sensor.lemon_data_outdated, binary_sensor.mint_data_outdated
       aloe_vera_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.aloe_vera_last_updated.state) > 86400 }}'
         friendly_name: 'Aloe Vera Data Outdated'

@@ -11,7 +11,6 @@ binary_sensor:
         friendly_name: Nuki Lock Critical Battery Level
         device_class: power
         value_template: '{{ states.lock.home.attributes.battery_critical }}'
-        entity_id: lock.home
 
 
 script:
