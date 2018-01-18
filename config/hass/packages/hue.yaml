@@ -43,6 +43,7 @@ automation:
         event_data:
           switch_name: "Master dimmer switch"
           button_name: "off"
+          # click_type: long_released
     action:
       - service: script.hue_master_switch_off
 
@@ -54,10 +55,11 @@ automation:
         event_data:
           switch_name: "Master dimmer switch"
           button_name: "on"
+          # click_type: long_released
     action:
       - service: script.hue_master_switch_on
 
-  - alias: Hue Living Room Switch ON pressed
+  - alias: Hue Living Room Switch ON long pressed
     initial_state: true
     trigger:
       - platform: event
@@ -304,7 +306,7 @@ script:
     alias: 'Hue Master Dimmer Switch ON pressed'
     sequence:
       - service: script.open_all_covers
-      # - service: script.watch_tv
+      - service: script.watch_tv
 
   hue_master_switch_off:
     alias: 'Hue Master Dimmer Switch OFF pressed'
