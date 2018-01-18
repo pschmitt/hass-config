@@ -108,7 +108,7 @@ script:
       - service: script.alarm_disarm
       - service: script.unlock_door
       - delay:
-          minutes: 5
+          minutes: 15
       - service: script.lock_door
 
   morning_front_door_light:
@@ -143,6 +143,12 @@ script:
   homecoming_lights:
     alias: "Turn on homecoming lights if it is dark"
     sequence:
+      - condition: sun
+        after: sunset
+        before_offset: '-00:45:00'
+      - service: notify.html5
+        data:
+          message: "Turning on the homecoming light scene"
       - service: scene.turn_on
         entity_id: scene.homecoming_lights
 
