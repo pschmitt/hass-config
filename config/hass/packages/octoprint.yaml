@@ -20,14 +20,21 @@ binary_sensor:
       - Printing
       - Printing Error
 
+  - platform: command_line
+    name: Rendering timelapse
+    device_class: moving
+    command: !secret cmd_octoprint_timelapse_rendering
+    payload_on: "running"
+    payload_off: "not running"
+
 
 switch:
   - platform: command_line
     switches:
       3d_printer_led:
         friendly_name: "3D Printer LED"
-        command_on: !secret octoprint_led_on_cmd
-        command_off: !secret octoprint_led_off_cmd
+        command_on: !secret cmd_octoprint_led_on
+        command_off: !secret cmd_octoprint_led_off
 
 
 light:
@@ -61,6 +68,7 @@ group:
       - light.3d_printer_led
       - camera.octoprint
       - binary_sensor.octoprint_printing
+      - binary_sensor.rendering_timelapse
       - sensor.octoprint_job_percentage
 
 
