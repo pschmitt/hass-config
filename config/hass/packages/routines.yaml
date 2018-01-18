@@ -5,15 +5,15 @@ input_boolean:
 
 
 automation:
-  - alias: React to my homecoming
-    initial_state: false
-    trigger:
-      - platform: state
-        entity_id: device_tracker.g4p_zanzito
-        from: not_home
-        to: home
-    action:
-      - service: script.im_home
+  # - alias: React to my homecoming
+  #   initial_state: false
+  #   trigger:
+  #     - platform: state
+  #       entity_id: device_tracker.g4p_zanzito
+  #       from: not_home
+  #       to: home
+  #   action:
+  #     - service: script.im_home
 
   - alias: Talk to my wife when she gets home
     initial_state: false
@@ -26,7 +26,7 @@ automation:
       - service: script.she_is_home
 
   - alias: "Ask to buzz door open when approaching home"
-    initial_state: false
+    initial_state: true
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
@@ -52,6 +52,7 @@ automation:
         action: buzz_open
     action:
       - service: script.buzz_door_open_multiple
+      - service: script.unlock_door
 
   - alias: Turn on front door light when I get up in the morning
     initial_state: true
