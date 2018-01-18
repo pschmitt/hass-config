@@ -57,20 +57,6 @@ automation:
     action:
       - service: script.hue_master_switch_on
 
-  - alias: Hue Living Room Switch OFF pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Living room dimmer switch"
-          button_name: "off"
-          click_type: long_released
-    action:
-      - service: cover.close_cover
-        data:
-          entity_id: cover.living_room_table
-
   - alias: Hue Living Room Switch ON pressed
     initial_state: true
     trigger:
@@ -81,9 +67,19 @@ automation:
           button_name: "on"
           click_type: long_released
     action:
-      - service: cover.open_cover
-        data:
-          entity_id: cover.living_room_table
+      - service: script.hue_living_room_switch_long_on
+
+  - alias: Hue Living Room Switch OFF long pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Living room dimmer switch"
+          button_name: "off"
+          click_type: long_released
+    action:
+      - service: script.hue_living_room_switch_long_off
 
   - alias: Hue Motion Sensor battery is low
     initial_state: true
@@ -314,6 +310,16 @@ script:
     alias: 'Hue Master Dimmer Switch OFF pressed'
     sequence:
       - service: script.all_off
+
+  hue_living_room_switch_long_on:
+    alias: 'Hue Living room Dimmer Switch ON pressed'
+    sequence:
+      - service: script.open_living_room_covers
+
+  hue_living_room_switch_long_off:
+    alias: 'Hue Living room Dimmer Switch OFF pressed'
+    sequence:
+      - service: script.close_living_room_covers
 
   flash_office_lights:
     alias: Flash Office Lights
