@@ -51,6 +51,19 @@ camera:
     mjpeg_url: !secret octoprint_camera_url
 
 
+group:
+  3d_printer:
+    name: 3D Printer
+    view: no
+    control: hidden
+    entities:
+      - switch.3d_printer
+      - light.3d_printer_led
+      - camera.octoprint
+      - binary_sensor.octoprint_printing
+      - sensor.octoprint_job_percentage
+
+
 automation:
   - alias: Notify when the current 3D print has finished
     initial_state: true

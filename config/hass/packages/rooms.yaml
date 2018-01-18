@@ -32,10 +32,10 @@ group:
       - switch.wemo_insight__nasteanas
       - switch.office_tv
       - camera.hassistant
-      - camera.octoprint
       - media_player.sony_office_speaker
       - media_player.office_tv
       - group.office_windows
+      - group.3d_printer
 
   office_lights:
     name: All Office Lights
@@ -52,16 +52,6 @@ group:
       - binary_sensor.door_window_sensor_158d0001de7941
       - binary_sensor.door_window_sensor_158d0001de8caa
       - cover.office
-
-  3d_printer:
-    name: 3D Printer
-    view: no
-    entities:
-      - switch.3d_printer
-      - light.3d_printer_led
-      - camera.octoprint
-      - binary_sensor.octoprint_printing
-      - sensor.octoprint_job_percentage
 
   living_room:
     name: Living Room
