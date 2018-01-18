@@ -86,6 +86,17 @@ script:
 
 
 automation:
+  - alias: Switch back to aux in when TTS message has finished playing
+    initial_state: false
+    trigger:
+      platform: state
+      entity_id: media_player.sony_office_speaker
+      to: 'idle'
+    action:
+      - service: script.set_office_speaker_to_aux
+      - service: automation.turn_off
+        entity_id: automation.switch_back_to_aux_in_when_tts_message_has_finished_playing
+
   - alias: Switch office Sony speaker input to AUX when playing something on office_tv
     initial_state: true
     trigger:

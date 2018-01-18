@@ -33,15 +33,13 @@ script:
 
   tts_say:
     sequence:
-      # - service: media_player.turn_on
-      #   data:
-      #     entity_id: media_player.home_group
       - service: script.reset_tts_volume
       - service: tts.google_say
         data_template:
           entity_id: media_player.home_group
           message: '{{ message }}'
-      - delay: '00:00:15'
-      - service: script.set_office_speaker_to_aux
+          language: '{{ language|default("fr") }}'
+      - service: automation.turn_on
+        entity_id: automation.switch_back_to_aux_in_when_tts_message_has_finished_playing
 
 # vim: set filetype=yaml et sw=2 ts=2 :
