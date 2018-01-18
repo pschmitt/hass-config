@@ -84,6 +84,7 @@ automation:
       - service: script.tts_say
         data:
           message: "3D Print finished"
+          language: 'en'
       - service: notify.zanzito_tts
         data:
           message: "3D Print finished"
@@ -104,6 +105,7 @@ automation:
       - service: notify.html5
         data:
           message: "Woops! The 3D print has failed..."
+          language: 'en'
       - service: group.set_visibility
         entity_id: group.3d_printer
         data:
