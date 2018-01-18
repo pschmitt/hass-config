@@ -53,6 +53,7 @@ automation:
     action:
       - service: script.buzz_door_open_multiple
       - service: script.unlock_door
+      - service: script.turn_on_homecoming_lights
 
   - alias: Turn on front door light when I get up in the morning
     initial_state: true
@@ -138,5 +139,25 @@ script:
       - service: light.turn_off
         data:
           entity_id: light.front_door_light
+
+  homecoming_lights:
+    alias: "Turn on homecoming lights if it is dark"
+    sequence:
+      - service: scene.turn_on
+        entity_id: scene.homecoming_lights
+
+scene:
+  - name: Homecoming lights
+    entities:
+      light.front_door:
+        state: on
+        transition: 3
+        brightness: 150
+        xy_color: [ 0.4448, 0.4066 ]
+      light.living_room:
+        state: on
+        transition: 3
+        brightness: 150
+        xy_color: [ 0.4448, 0.4066 ]
 
 # vim: set filetype=yaml et sw=2 ts=2 :
