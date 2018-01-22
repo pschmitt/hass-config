@@ -1,3 +1,11 @@
+input_datetime:
+  bedtime:
+    name: Bedtime
+    has_date: false
+    has_time: true
+    # initial: '00:05'
+
+
 automation:
   - alias: Train reminder
     initial_state: true
@@ -27,10 +35,12 @@ automation:
   - alias: Time to go to bed
     initial_state: true
     trigger:
-      - platform: time
-        hours: 21
-        minutes: 50
-        seconds: 0
+      # - platform: time
+      #   hours: 21
+      #   minutes: 50
+      #   seconds: 0
+      platform: template
+      value_template: '{{ states.sensor.time.state == (states.input_datetime.bedtime.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
     condition:
       condition: and
       conditions:

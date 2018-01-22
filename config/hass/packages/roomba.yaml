@@ -7,6 +7,13 @@ vacuum:
     continuous: True
 
 
+input_datetime:
+  roomba_autostart_time:
+    name: Roomba autostart time
+    has_date: false
+    has_time: true
+
+
 binary_sensor:
   - platform: template
     sensors:
@@ -55,8 +62,10 @@ automation:
   - alias: Schedule cleaning when nobody is home
     initial_state: true
     trigger:
-      - platform: time
-        at: '14:00:00'
+      # - platform: time
+      #   at: '14:00:00'
+      platform: template
+      value_template: '{{ states.sensor.time.state == (states.input_datetime.roomba_autostart_time.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
     condition:
       - condition: state
         entity_id: group.main_mobile_devices

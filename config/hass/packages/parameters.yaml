@@ -1,0 +1,13 @@
+group:
+  settings:
+    name: Settings
+    view: yes
+    icon: mdi:pencil
+    entities:
+      - input_datetime.bedtime
+      - input_datetime.smoke_break_duration
+      - input_datetime.roomba_autostart_time
+      - input_boolean.sleepover
+      - input_boolean.dnd
+
+# vim: set filetype=yaml et sw=2 ts=2 :

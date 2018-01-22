@@ -27,19 +27,11 @@ group:
     control: hidden
     view: no
     entities:
-      - input_boolean.sleepover
-      - input_boolean.dnd
-      - switch.doorpi_screen
       - alarm_control_panel.ha_alarm
       - script.buzz_door_open
-      - script.buzz_door_open_multiple
       - binary_sensor.door_window_sensor_158d00016d7083
       - lock.home
-      - vacuum.nimbus
       - script.all_off
-      - script.smoke_break
-      - scene.living_room_dim
-      - scene.bedtime
 
 
 homeassistant:
