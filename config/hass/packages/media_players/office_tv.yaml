@@ -90,7 +90,8 @@ automation:
     initial_state: false
     trigger:
       platform: state
-      entity_id: media_player.sony_office_speaker
+      entity_id: media_player.home_group, media_player.office_speaker
+      from: 'playing'
       to: 'idle'
     action:
       - service: script.set_office_speaker_to_aux
