@@ -301,6 +301,14 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
 
 
+input_datetime:
+  smoke_break_duration:
+    name: Smoke Break Duration
+    has_date: false
+    has_time: true
+    # initial: '00:05'
+
+
 script:
   hue_master_switch_on:
     alias: 'Hue Master Dimmer Switch ON pressed'
@@ -364,10 +372,9 @@ script:
           entity_id: script.smoke_break_timer_off
 
   smoke_break_timer_off:
-    alias: "Smoke break: Turn off lamp after 5 minutes"
+    alias: "Smoke break: Turn off lamp after X minutes"
     sequence:
-      - delay:
-          minutes: 5
+      - delay: '{{ states.input_datetime.smoke_break_duration.state }}'
       - service: light.turn_off
         data:
           entity_id: light.terrace
