@@ -10,6 +10,16 @@ group:
       - cover.bedroom_table
       - cover.bedroom_door
 
+  appliances:
+    name: Appliances
+    view: no
+    icon: mdi:robot
+    control: hidden
+    entities:
+      - binary_sensor.washing_machine
+      - switch.wemo_insight__washing_machine
+      - vacuum.nimbus
+
   misc:
     name: Misc
     view: yes
@@ -18,8 +28,7 @@ group:
       - light.bedroom
       - light.toilet
       - light.bathroom
-      - binary_sensor.washing_machine
-      - switch.wemo_insight__washing_machine
+      - group.appliances
 
   office:
     name: Office
@@ -114,6 +123,7 @@ group:
       - group.terrace_doors
       - cover.living_room_door
       - cover.bedroom_door
+      - input_datetime.smoke_break_duration
 
   kitchen:
     name: Kitchen
@@ -123,6 +133,12 @@ group:
       - camera.c2
       - light.kitchen_light
       - group.fridge
+      - group.kitchen_window
+
+  kitchen_window:
+    name: Kitchen Window
+    view: no
+    entities:
       - cover.kitchen
       - binary_sensor.door_window_sensor_158d0001de8c01
 
