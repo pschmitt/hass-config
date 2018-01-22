@@ -42,6 +42,8 @@ automation:
 
 
 sensor:
+  - platform: time_date
+
   - platform: min_max
     name: 'Home Temperature'
     type: mean
