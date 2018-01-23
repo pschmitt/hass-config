@@ -8,5 +8,44 @@ google_assistant:
     - light
     - scene
     - switch
+  expose_by_default: true
+  entity_config:
+    switch.doorpi_state:
+      expose: false
+    switch.foscam_c1_state:
+      expose: false
+    switch.foscam_c2_state:
+      expose: false
+    switch.hassistant_state:
+      expose: false
+    switch.winpi_state:
+      expose: false
+    switch.modect:
+      expose: false
+    light.yeelight_office:
+      name: Desk Light
+    light.yeelight_rgb_34ce00824709:
+      expose: false
+    light.all_hue_lights:
+      expose: false
+    light.bathroom:
+      expose: false
+    light.bedroom:
+      expose: false
+    light.front_door:
+      expose: false
+    light.hallway:
+      expose: false
+    light.kitchen:
+      expose: false
+    light.living_room:
+      expose: false
+    light.office:
+      expose: false
+    light.terrace:
+      expose: false
+    light.toilet:
+      expose: false
+
 
 # vim: set filetype=yaml et sw=2 ts=2 :

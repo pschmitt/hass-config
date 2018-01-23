@@ -317,16 +317,6 @@ group:
 homeassistant:
   customize:
     # Switches
-    switch.doorpi_state:
-      google_assistant: false
-    switch.foscam_c1_state:
-      google_assistant: false
-    switch.foscam_c2_state:
-      google_assistant: false
-    switch.hassistant_state:
-      google_assistant: false
-    switch.winpi_state:
-      google_assistant: false
     switch.c1_ir:
       icon: mdi:weather-night
     switch.c2_ir:
@@ -341,7 +331,6 @@ homeassistant:
       icon: mdi:surround-sound
     switch.modect:
       icon: mdi:camera-enhance
-      google_assistant: false
     # Scripts
     script.smoke_break:
       icon: mdi:smoking
