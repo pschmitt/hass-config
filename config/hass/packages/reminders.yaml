@@ -3,7 +3,7 @@ input_datetime:
     name: Bedtime
     has_date: false
     has_time: true
-    # initial: '00:05'
+    initial: '21:50'
 
 
 automation:
