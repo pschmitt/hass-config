@@ -15,6 +15,53 @@ automation:
   #   action:
   #     - service: script.im_home
 
+  - alias: Turn on lights before sunset
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-00:45:00"
+    condition:
+      condition: state
+      entity_id: group.main_mobile_devices
+      state: home
+    action:
+      - service: light.turn_on
+        entity_id: light.living_room
+        data:
+          color_name: white
+          brightness: 150
+          transition: 10
+
+  - alias: Open some covers 15min before sun rises
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: "-00:15:00"
+    condition:
+      condition: state
+      entity_id: input_boolean.sleepover
+      state: 'off'
+    condition:
+      condition: state
+      entity_id: group.main_mobile_devices
+      state: home
+    action:
+      - service: script.open_auto_covers
+
+  - alias: Open bedroom covers at 10:00
+    initial_state: true
+    trigger:
+      platform: time
+      at: "10:00:00"
+    condition:
+      condition: state
+      entity_id: group.main_mobile_devices
+      state: home
+    action:
+      - service: script.open_bedroom_covers
+
   - alias: Talk to my wife when she gets home
     initial_state: false
     trigger:
@@ -30,14 +77,14 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
-        below: 100
+        below: 30
     action:
       - service: notify.html5
         data:
           message: "You are approaching home. Wanna make me buzz you in?"
           data:
             tag: 'buzz-open-query'
-            renotify: False
+            renotify: true
             actions:
               - action: buzz_open
                 icon: https://materialdesignicons.com/api/download/icon/png/E357D5CD-7E42-463B-899A-7D7B038A3E31/48
@@ -54,6 +101,7 @@ automation:
       - service: script.buzz_door_open_multiple
       - service: script.unlock_door
       - service: script.turn_on_homecoming_lights
+      - service: script.alarm_disarm
 
   - alias: Turn on front door light when I get up in the morning
     initial_state: true
@@ -145,12 +193,16 @@ script:
     sequence:
       - condition: sun
         after: sunset
-        before_offset: '-00:45:00'
+        after_offset: '-00:45:00'
+      # - condition: state
+      #   entity_id: sun.sun
+      #   state: 'below_horizon'
       - service: notify.html5
         data:
           message: "Turning on the homecoming light scene"
       - service: scene.turn_on
         entity_id: scene.homecoming_lights
+
 
 scene:
   - name: Homecoming lights
