@@ -73,7 +73,7 @@ automation:
       - service: script.she_is_home
 
   - alias: "Ask to buzz door open when approaching home"
-    initial_state: true
+    initial_state: false
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
