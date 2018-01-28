@@ -54,15 +54,14 @@ script:
     alias: Buzz door open repeatedly
     sequence:
       - service: script.buzz_door_open
-      - delay: 00:00:05
+      - delay: 00:00:02
       - service: script.buzz_door_open
-      - delay: 00:00:05
+      - delay: 00:00:02
       - service: script.buzz_door_open
-      - delay: 00:00:05
+      - delay: 00:00:02
       - service: script.buzz_door_open
-      - delay: 00:00:05
+      - delay: 00:00:02
       - service: script.buzz_door_open
-      - delay: 00:00:05
 
 
 homeassistant:
