@@ -174,9 +174,8 @@ automation:
         entity_id: binary_sensor.wall_switch_left_158d0001e0f920
         click_type: single
     action:
-      - service: notify.html5
-        data:
-          message: 'Wall switch button pressed'
+      - service: light.toggle
+        entity_id: light.yeelight_office
 
   - alias: React to single (right) button press on aqara wall switch
     initial_state: true
@@ -187,9 +186,8 @@ automation:
         entity_id: binary_sensor.wall_switch_right_158d0001e0f920
         click_type: single
     action:
-      - service: notify.html5
-        data:
-          message: 'Wall switch button RIGHT pressed'
+      - service: light.toggle
+        entity_id: light.office
 
   - alias: React to single (both) button press on aqara wall switch
     initial_state: true
@@ -200,9 +198,10 @@ automation:
         entity_id: binary_sensor.wall_switch_both_158d0001e0f920
         click_type: both
     action:
-      - service: notify.html5
-        data:
-          message: 'Wall switch button *BOTH* pressed'
+      - service: light.turn_off
+        entity_id: light.office, light.yeelight_office
+      - service: cover.close_cover
+        entity_id: cover.office
 
   - alias: React to single button press on aqara button
     initial_state: true
