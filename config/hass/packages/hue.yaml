@@ -17,6 +17,18 @@ automation:
       - service: light.turn_off
         entity_id: light.bedroom_light
 
+  - alias: Turn off front door lights after 30 minutes
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: light.front_door_light
+        to: 'on'
+        for:
+          minutes: 30
+    action:
+      - service: light.turn_off
+        entity_id: light.front_door_light
+
   - alias: Hue Master Switch OFF pressed
     initial_state: true
     trigger:
