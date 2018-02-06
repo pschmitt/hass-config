@@ -80,6 +80,7 @@ group:
       - binary_sensor.door_window_sensor_158d0001de7941
       - binary_sensor.door_window_sensor_158d0001de8caa
       - binary_sensor.door_window_sensor_158d0001de639e
+      - binary_sensor.door_window_sensor_158d0001de8cb8
 
 
 automation:
@@ -228,6 +229,19 @@ automation:
       #   data:
       #     message: 'Mi button DOUBLE pressed'
 
+  - alias: Turn on front door light when motion is detected on the front door
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_158d000224f5b8
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.front_door
+      data:
+        brightness: 150
+        color_name: white
+
 
 homeassistant:
   customize:
@@ -237,34 +251,52 @@ homeassistant:
       friendly_name: Mi Gateway Light Level
     binary_sensor.door_window_sensor_158d0001a1eb5b:
       friendly_name: Fridge Door
+      device_class: door
     binary_sensor.door_window_sensor_158d0001a1ec56:
       friendly_name: Terrace Door
+      device_class: door
     binary_sensor.door_window_sensor_158d0001de8c01:
       friendly_name: Kitchen Window
+      device_class: window
     binary_sensor.door_window_sensor_158d0001de7941:
       friendly_name: "Office Window (large)"
+      device_class: window
     binary_sensor.door_window_sensor_158d0001de8caa:
       friendly_name: "Office Window (small)"
+      device_class: window
     binary_sensor.door_window_sensor_158d0001de639e:
       friendly_name: "Bedroom Window"
+      device_class: window
     binary_sensor.door_window_sensor_158d00016572aa:
       friendly_name: "Terrace Door (Bedroom)"
+      device_class: door
     binary_sensor.door_window_sensor_158d00016d7083:
       friendly_name: "Front Door"
+      device_class: door
     binary_sensor.water_leak_sensor_158d0001d7668e:
       friendly_name: "Bathroom Sink"
     binary_sensor.water_leak_sensor_158d0001df1cc3:
       friendly_name: "Kitchen Sink"
+    binary_sensor.door_window_sensor_158d0001de8cb8:
+      friendly_name: "Living Room Window"
+      device_class: window
+    binary_sensor.motion_sensor_158d000224f5b8:
+      friendly_name: "Front door motion sensor"
+      # device_class: motion
     sensor.humidity_158d0001d6f4da:
       friendly_name: Fridge Humidity
+      icon: water-percent
     sensor.pressure_158d0001d6f4da:
       friendly_name: Fridge Pressure
+      icon: mdi:arrow-collapse-all
     sensor.temperature_158d0001d6f4da:
       friendly_name: Fridge Temperature
     sensor.humidity_158d0001d6f4e5:
       friendly_name: Freezer Humidity
+      icon: mdi:water-percent
     sensor.pressure_158d0001d6f4e5:
       friendly_name: Freezer Pressure
+      icon: mdi:arrow-collapse-all
     sensor.temperature_158d0001d6f4e5:
       friendly_name: Freezer Temperature
 
