@@ -107,5 +107,7 @@ homeassistant:
       icon: mdi:lock
     script.unlock_door:
       icon: mdi:lock-open-outline
+    lock.home:
+      friendly_name: Front Door Lock
 
 # vim: set filetype=yaml et sw=2 ts=2 :
