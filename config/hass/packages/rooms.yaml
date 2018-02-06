@@ -19,6 +19,7 @@ group:
       - binary_sensor.washing_machine
       - switch.wemo_insight__washing_machine
       - vacuum.nimbus
+      - group.fridge
 
   misc:
     name: Misc
@@ -68,6 +69,16 @@ group:
     icon: mdi:sofa
     entities:
       - group.living_room_media_player_scripts
+      - switch.wall_socket
+      - camera.c1
+      - group.living_room_media_players
+      - group.living_room_windows
+      - group.living_room_lights
+
+  living_room_lights:
+    name: Living Room Lights
+    view: no
+    entities:
       - light.living_room_tv_light
       - light.living_room_table_light
       - light.gateway_light_34ce008d7aba
@@ -75,11 +86,18 @@ group:
       - light.terrace
       - scene.living_room_normal
       - scene.living_room_dim
-      - switch.wall_socket
-      - camera.c1
-      - group.living_room_media_players
+
+  living_room_windows:
+    name: Living Room Windows
+    view: no
+    control: hidden
+    entities:
+      - binary_sensor.door_window_sensor_158d0001a1ec56
+      - binary_sensor.door_window_sensor_158d0001de8cb8
       - cover.living_room_door
       - cover.living_room_table
+      - cover.living_room_tv
+
 
   living_room_media_players:
     name: Media Players
