@@ -48,6 +48,8 @@ group:
     view: no
     entities:
       - group.bedroom_covers
+      # group.living_room_covers is voluntarily omitted here, since we do not
+      # want to close the door's cover
       - cover.living_room_table
       - cover.living_room_tv
       - cover.kitchen
@@ -159,16 +161,6 @@ script:
     sequence:
       - service: cover.close_cover
         entity_id: group.auto_covers
-
-
-automation:
-  - alias: Shut the covers when the sun sets
-    initial_state: true
-    trigger:
-      platform: sun
-      event: sunset
-    action:
-      - service: script.close_main_covers
 
 
 homeassistant:

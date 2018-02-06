@@ -40,13 +40,14 @@ automation:
       event: sunrise
       offset: "-00:15:00"
     condition:
-      condition: state
-      entity_id: input_boolean.sleepover
-      state: 'off'
-    condition:
-      condition: state
-      entity_id: group.main_mobile_devices
-      state: home
+      condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.sleepover
+            state: 'off'
+          - condition: state
+            entity_id: group.main_mobile_devices
+            state: home
     action:
       - service: script.open_auto_covers
 
@@ -61,6 +62,15 @@ automation:
       state: home
     action:
       - service: script.open_bedroom_covers
+
+  - alias: Shut the covers when the sun sets
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '+01:00:00'
+    action:
+      - service: script.close_main_covers
 
   - alias: Talk to my wife when she gets home
     initial_state: false
