@@ -30,6 +30,7 @@ group:
       - alarm_control_panel.ha_alarm
       - script.buzz_door_open
       - binary_sensor.door_window_sensor_158d00016d7083
+      - binary_sensor.motion_sensor_158d000224f5b8
       - lock.home
       - script.all_off
 
