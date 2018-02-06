@@ -37,7 +37,7 @@ automation:
         event_data:
           switch_name: "Master dimmer switch"
           button_name: "off"
-          # click_type: long_released
+          click_type: long_released
     action:
       - service: script.hue_master_switch_off
 
@@ -49,7 +49,7 @@ automation:
         event_data:
           switch_name: "Master dimmer switch"
           button_name: "on"
-          # click_type: long_released
+          click_type: long_released
     action:
       - service: script.hue_master_switch_on
 
