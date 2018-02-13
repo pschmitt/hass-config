@@ -15,37 +15,69 @@ light:
 sensor:
   - platform: template
     sensors:
-      mi_front_door_battery:
-        friendly_name: "Mi Front Door Sensor Battery"
+      aqara_front_door_battery:
+        friendly_name: "Aqara Front Door Sensor Battery"
         value_template: '{{ states.binary_sensor.door_window_sensor_158d00016d7083.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_fridge_door_battery:
-        friendly_name: Mi Fridge Door Sensor Battery
+      aqara_fridge_door_battery:
+        friendly_name: "Aqara Fridge Door Sensor Battery"
         value_template: '{{ states.binary_sensor.door_window_sensor_158d0001a1eb5b.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_terrace_door_battery:
-        friendly_name: Mi Terrace Door Sensor Battery
+      aqara_terrace_door_battery:
+        friendly_name: "Aqara Terrace Door Sensor Battery"
         value_template: '{{ states.binary_sensor.door_window_sensor_158d0001a1ec56.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_terrace_door_bedroom_battery:
-        friendly_name: "Mi Terrace Door (Bedroom) Sensor Battery"
+      aqara_terrace_door_bedroom_battery:
+        friendly_name: "Aqara Terrace Door (Bedroom) Sensor Battery"
         value_template: '{{ states.binary_sensor.door_window_sensor_158d00016572aa.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_fridge_temp_battery:
-        friendly_name: Mi Fridge Temperature Sensor Battery
+      aqara_bedroom_window_battery:
+        friendly_name: "Aqara Bedroom Window Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001de639e.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_living_room_window_battery:
+        friendly_name: "Aqara Living Room Window Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001de8cb8.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_office_window_small_battery:
+        friendly_name: "Aqara Office Window (Small) Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001de8caa.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_office_window_large_battery:
+        friendly_name: "Aqara Office Window (Large) Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001de7941.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_kitchen_window_battery:
+        friendly_name: "Aqara Kitchen Window Sensor Battery"
+        value_template: '{{ states.binary_sensor.door_window_sensor_158d0001de8c01.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_fridge_temp_battery:
+        friendly_name: "Aqara Fridge Temperature Sensor Battery"
         value_template: '{{ states.sensor.temperature_158d0001d6f4da.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_freezer_temp_battery:
-        friendly_name: Mi Freezer Temperature Sensor Battery
+      aqara_freezer_temp_battery:
+        friendly_name: "Aqara Freezer Temperature Sensor Battery"
         value_template: '{{ states.sensor.temperature_158d0001d6f4e5.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_water_leak_bathroom_battery:
-        friendly_name: Mi Bathroom Water Leak Sensor Battery
+      aqara_water_leak_bathroom_battery:
+        friendly_name: "Aqara Bathroom Water Leak Sensor Battery"
         value_template: '{{ states.binary_sensor.water_leak_sensor_158d0001d7668e.attributes.battery_level }}'
         unit_of_measurement: '%'
-      mi_water_leak_kitchen_battery:
-        friendly_name: Mi Kitchen Water Leak Sensor Battery
+      aqara_water_leak_kitchen_battery:
+        friendly_name: "Aqara Kitchen Water Leak Sensor Battery"
         value_template: '{{ states.binary_sensor.water_leak_sensor_158d0001df1cc3.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_front_door_motion_sensor_battery:
+        friendly_name: "Aqara Front Door Motion Sensor Battery"
+        value_template: '{{ states.binary_sensor.motion_sensor_158d000224f5b8.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_button_battery:
+        friendly_name: "Aqara button battery"
+        value_template: '{{ states.binary_sensor.switch_158d0002132e08.attributes.battery_level }}'
+        unit_of_measurement: '%'
+      aqara_wall_switch_office_battery:
+        friendly_name: "Aqara wall switch office battery"
+        value_template: '{{ states.binary_sensor.wall_switch_both_158d0001e0f920.attributes.battery_level }}'
         unit_of_measurement: '%'
 
 
@@ -76,26 +108,25 @@ group:
     view: no
     icon: mdi:glassdoor
     entities:
-      - binary_sensor.door_window_sensor_158d0001de8c01
-      - binary_sensor.door_window_sensor_158d0001de7941
-      - binary_sensor.door_window_sensor_158d0001de8caa
+      - binary_sensor.door_window_sensor_158d00016572aa
+      - binary_sensor.door_window_sensor_158d00016d7083
+      - binary_sensor.door_window_sensor_158d0001a1ec56
       - binary_sensor.door_window_sensor_158d0001de639e
+      - binary_sensor.door_window_sensor_158d0001de7941
+      - binary_sensor.door_window_sensor_158d0001de8c01
+      - binary_sensor.door_window_sensor_158d0001de8caa
       - binary_sensor.door_window_sensor_158d0001de8cb8
+
+  aqara_buttons:
+    name: Aqara buttons
+    view: no
+    icon: mdi:button
+    entities:
+      - binary_sensor.wall_switch_both_158d0001e0f920
+      - binary_sensor.switch_158d0002132e08
 
 
 automation:
-  - alias: Mi Sensor battery is low
-    initial_state: true
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.mi_front_door_battery, sensor.mi_fridge_door_battery, sensor.mi_terrace_door_battery, sensor.mi_terrace_door_bedroom_battery, sensor.mi_fridge_door_battery, sensor.mi_freezer_temp_battery
-        below: 15
-    action:
-      - service: notify.html5
-        data_template:
-          message: "Mi sensor battery is low on {{ trigger.to_state.attributes.friendly_name }}"
-          tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
-
   - alias: Turn on the terrace light when door opened during nighttime
     initial_state: true
     trigger:
@@ -157,7 +188,9 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.water_leak_sensor_158d0001d7668e, binary_sensor.water_leak_sensor_158d0001df1cc3
+        entity_id: >-
+          binary_sensor.water_leak_sensor_158d0001d7668e,
+          binary_sensor.water_leak_sensor_158d0001df1cc3
         to: 'on'
     action:
       - service: notify.html5

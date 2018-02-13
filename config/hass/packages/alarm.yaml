@@ -1,8 +1,9 @@
 alarm_control_panel:
   platform: manual
   code: !secret alarm_code
-  pending_time: 30
-  trigger_time: 60
+  pending_time: 0
+  trigger_time: 20
+  delay_time: 30
   disarm_after_trigger: false
 
 
@@ -22,7 +23,16 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.door_window_sensor_158d0001a1eb5b, binary_sensor.door_window_sensor_158d0001a1ec56, binary_sensor.door_window_sensor_158d00016572aa, binary_sensor.door_window_sensor_158d00016d7083, binary_sensor.motion_sensor_158d000224f5b8
+        entity_id:
+          - binary_sensor.door_window_sensor_158d00016572aa
+          - binary_sensor.door_window_sensor_158d00016d7083
+          - binary_sensor.door_window_sensor_158d0001a1eb5b
+          - binary_sensor.door_window_sensor_158d0001a1ec56
+          - binary_sensor.door_window_sensor_158d0001de639e
+          - binary_sensor.door_window_sensor_158d0001de7941
+          - binary_sensor.door_window_sensor_158d0001de8c01
+          - binary_sensor.door_window_sensor_158d0001de8caa
+          - binary_sensor.door_window_sensor_158d0001de8cb8
         to: 'on'
     condition:
       - condition: state
@@ -37,11 +47,16 @@ automation:
             {{ trigger.to_state.attributes.friendly_name }}
             has been opened
 
-  - alias: Hue Motion Detector triggered
+  - alias: Motion Detector triggered
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.toilet_presence, binary_sensor.hallway_presence, binary_sensor.kitchen_presence, binary_sensor.bathroom_presence
+        entity_id:
+          - binary_sensor.toilet_presence
+          - binary_sensor.hallway_presence
+          - binary_sensor.kitchen_presence
+          - binary_sensor.bathroom_presence
+          - binary_sensor.motion_sensor_158d000224f5b8
         to: 'on'
     condition:
       - condition: state
@@ -53,7 +68,7 @@ automation:
       - service: notify.get_to_me
         data_template:
           message: >
-            {{ trigger.to_state.attributes.friendly_name }}
+            {{ trigger.to_state.attributes.friendly_name }}:
             Motion has been detected
 
   - alias: Trigger an alert when zoneminder picks up a new event
@@ -64,7 +79,11 @@ automation:
       - platform: state
         entity_id: sensor.c2_events
       - platform: state
-        entity_id: sensor.octopi_events
+        entity_id: sensor.doorpi_events
+      - platform: state
+        entity_id: sensor.winpi_events
+      - platform: state
+        entity_id: sensor.hassistant_events
     condition:
       condition: and
       conditions:
@@ -132,8 +151,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.her_phone, group.pschmitt_location
-        from: not_home
+        entity_id: group.main_mobile_devices
         to: home
     condition:
       - condition: state
@@ -228,19 +246,32 @@ script:
   alarm_triggered:
     alias: 'Alarm triggered'
     sequence:
-      # - service: notify.get_to_me
-      #   data:
-      #     message: "Home Assistant: SECURITY BREACH DETECTED"
-      #     target: me
-      # - service: notify.smsr
-      #   data:
-      #     message: "Home Assistant: SECURITY BREACH DETECTED"
-      #     target: her
+      - service: script.tts_say
+        data:
+          message: "Alarm triggered"
+          language: "en"
       - event: LOGBOOK_ENTRY
         event_data:
           name: Alarm
           message: has been triggered
           domain: alarm
+
+  alarm_arm_if_away:
+    alias: 'Arm alarm if we are away'
+    sequence:
+      - condition: state
+        entity_id: group.main_mobile_devices
+        state: 'not_home'
+      - service: script.alarm_arm_away
+
+  alarm_disarm_if_home:
+    alias: 'Disarm alarm if we are home'
+    sequence:
+      - condition: state
+        entity_id: group.main_mobile_devices
+        state: 'home'
+      - service: script.alarm_disarm
+      - service: script.alarm_disarmed
 
 
 homeassistant:
