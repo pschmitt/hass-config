@@ -9,15 +9,23 @@ group:
       - sensor.hue_hallway_battery
       - sensor.hue_hue_kitchen_battery
       - sensor.hue_toilet_battery
-      # Mi
-      - sensor.mi_front_door_battery
-      - sensor.mi_fridge_door_battery
-      - sensor.mi_terrace_door_battery
-      - sensor.mi_terrace_door_bedroom_battery
-      - sensor.mi_fridge_door_battery
-      - sensor.mi_freezer_temp_battery
-      - sensor.mi_water_leak_bathroom_battery
-      - sensor.mi_water_leak_kitchen_battery
+      # Aqara
+      - sensor.aqara_front_door_battery
+      - sensor.aqara_fridge_door_battery
+      - sensor.aqara_terrace_door_battery
+      - sensor.aqara_terrace_door_bedroom_battery
+      - sensor.aqara_bedroom_window_battery
+      - sensor.aqara_living_room_window_battery
+      - semsor.aqara_office_window_small_battery
+      - sensor.aqara_office_window_large_battery
+      - sensor.aqara_kitchen_window_battery
+      - sensor.aqara_fridge_door_battery
+      - sensor.aqara_freezer_temp_battery
+      - sensor.aqara_water_leak_bathroom_battery
+      - sensor.aqara_water_leak_kitchen_battery
+      - sensor.aqara_front_door_motion_sensor_battery
+      - sensor.aqara_button_battery
+      - sensor.aqara_wall_switch_office_battery
       # Mi Flora
       - sensor.lemon_battery
       - sensor.aloe_vera_battery
@@ -32,14 +40,56 @@ group:
       - sensor.n5x_battery
 
 
-# intent_script:
-#   HomeTemperature:
-#     speech:
-#       text: >
-#         {% for entity_id in states.group.battery_devices.attributes.entity_id %}
-#           {%- for state in states.sensor if state.entity_id == entity_id -%}
-#             {{ state.attributes.friendly_name }}
-#           {%- endfor %} is {{ states(entity_id) }}
-#         {%- endfor -%}
+automation:
+  - alias: Aqara sensor battery is low
+    initial_state: true
+    trigger:
+      - platform: numeric_state
+        entity_id:
+          - sensor.aqara_bedroom_window_battery
+          - sensor.aqara_button_battery
+          - sensor.aqara_freezer_temp_battery
+          - sensor.aqara_fridge_door_battery
+          - sensor.aqara_fridge_door_battery
+          - sensor.aqara_front_door_battery
+          - sensor.aqara_front_door_motion_sensor_battery
+          - sensor.aqara_kitchen_window_battery
+          - sensor.aqara_living_room_window_battery
+          - sensor.aqara_office_window_large_battery
+          - sensor.aqara_office_window_small_battery
+          - sensor.aqara_terrace_door_battery
+          - sensor.aqara_terrace_door_bedroom_battery
+          - sensor.aqara_wall_switch_office_battery
+          - sensor.aqara_water_leak_bathroom_battery
+          - sensor.aqara_water_leak_kitchen_battery
+          - sensor.hue_bathroom_battery
+          - sensor.hue_hallway_battery
+          - sensor.hue_hue_kitchen_battery
+          - sensor.hue_toilet_battery
+          - sensor.smoke_sensor_battery
+        below: 15
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Battery is low on {{ trigger.to_state.attributes.friendly_name }}"
+          tag: "sensor-battery-low-{{ trigger.to_state.entity_id }}"
+
+  # - alias: Aqara sensor battery is low
+  #   initial_state: true
+  #   trigger_template:
+  #     - platform: numeric_state
+  #       entity_id:
+  #         {% for entity_id in states.group.battery_devices.attributes.entity_id %}
+  #         - {{ entity_id }}
+  #         {%- endfor %}
+  #       below: 15
+  #   action:
+  #     - service: notify.html5
+  #       data_template:
+  #         message: "Battery is low on {{ trigger.to_state.attributes.friendly_name }}"
+  #         tag: "mi-battery-low-{{ trigger.to_state.entity_id }}"
+
+
+# alert:
 
 # vim: set filetype=yaml et sw=2 ts=2 :
