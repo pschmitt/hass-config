@@ -3,6 +3,8 @@ homeassistant:
   time_zone: Europe/Paris
   customize: !include customize.yaml
   packages: !include_dir_named packages
+  whitelist_external_dirs:
+    - /tmp
 
 http:
   base_url: !secret base_url
@@ -20,6 +22,7 @@ group: !include_dir_merge_named groups
 history:
 ifttt: !include ifttt.yaml
 logbook:
+map:
 prometheus:
 recorder:
   purge_interval: 3
