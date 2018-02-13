@@ -27,7 +27,10 @@ automation:
           topic: zanzito/g4play/cmd/send_heartbeat
           qos: 0
           retain: 0
-      - delay: 00:05:00
+      - delay: 00:00:30
+      - service: script.alarm_arm_if_away
+      - service: script.alarm_disarm_if_home
+      - delay: 00:04:30
       - service: script.enable_annoying_automations
 
   - alias: Update notifications
