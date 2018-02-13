@@ -63,8 +63,6 @@ automation:
   - alias: Schedule cleaning when nobody is home
     initial_state: true
     trigger:
-      # - platform: time
-      #   at: '14:00:00'
       platform: template
       value_template: '{{ states.sensor.time.state == (states.input_datetime.roomba_autostart_time.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
     condition:
@@ -76,17 +74,43 @@ automation:
         data:
           entity_id: vacuum.nimbus
 
-  - alias: "Stop cleaning procedure if any of use comes home"
+  - alias: Ask whether to start cleaning if somebody is home at the programmed time
+    initial_state: true
+    trigger:
+      platform: template
+      value_template: '{{ states.sensor.time.state == (states.input_datetime.roomba_autostart_time.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
+    condition:
+      - condition: state
+        entity_id: group.main_mobile_devices
+        state: home
+    action:
+      - service: notify.html5
+        data:
+          message: "Start the roomba anyway? (someone is home)"
+          data:
+            tag: 'roomba-force-start'
+            actions:
+              - action: roomba_force_start
+                icon: https://materialdesignicons.com/api/download/icon/png/E091C285-7AA8-4907-9398-EBFDAC7A179D/48
+                title: "Start cleaning"
+
+  - alias: "HTML5 notification: Roomba force start"
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: roomba_force_start
+    action:
+      - service: vacuum.turn_on
+        data:
+          entity_id: vacuum.nimbus
+
+  - alias: "Stop cleaning procedure if any of us comes home"
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.g4p_zanzito
-        to: home
-      - platform: state
-        entity_id: device_tracker.g4p_arp
-        to: home
-      - platform: state
-        entity_id: device_tracker.her_phone
+        entity_id: group.main_mobile_devices
         to: home
     condition:
       - condition: state
