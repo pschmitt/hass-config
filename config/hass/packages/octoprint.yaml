@@ -67,6 +67,7 @@ group:
       - switch.3d_printer
       - light.3d_printer_led
       - camera.octoprint
+      - sensor.octoprint_current_state
       - binary_sensor.octoprint_printing
       - binary_sensor.rendering_timelapse
       - sensor.octoprint_job_percentage
@@ -80,19 +81,18 @@ automation:
       entity_id: binary_sensor.octoprint_printing
       from: "on"
       to: "off"
+    condition:
+      condition: template
+      value_template: "{{ not is_state('sensor.octoprint_current_state', 'Paused') }}"
     action:
-      - service: script.tts_say
-        data:
-          message: "3D Print finished"
-          language: 'en'
       - service: notify.zanzito_tts
         data:
           message: "3D Print finished"
-      - delay: '00:05:00'
-      - service: group.set_visibility
-        entity_id: group.3d_printer
-        data:
-          visible: False
+      # - delay: '00:05:00'
+      # - service: group.set_visibility
+      #   entity_id: group.3d_printer
+      #   data:
+      #     visible: False
 
   - alias: Notify when the current 3D print has errored out
     initial_state: true
@@ -105,11 +105,13 @@ automation:
       - service: notify.html5
         data:
           message: "Woops! The 3D print has failed..."
-          language: 'en'
-      - service: group.set_visibility
-        entity_id: group.3d_printer
+      - service: notify.zanzito_tts
         data:
-          visible: True
+          message: "Awww jeez the 3D print has failed"
+      # - service: group.set_visibility
+      #   entity_id: group.3d_printer
+      #   data:
+      #     visible: True
 
   - alias: Turn on lights if the sun goes down and there is an ongoing print
     initial_state: true
@@ -133,5 +135,20 @@ automation:
       - service: light.turn_on
         data:
           entity_id: light.yeelight_office
+
+  - alias: Notify when the timelapse has finished rendering
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.rendering_timelapse
+      from: "on"
+      to: "off"
+    action:
+      - service: notify.html5
+        data:
+          message: "3D printing timelapse rendering has ended"
+      - service: notify.zanzito_tts
+        data:
+          message: "Timelapse rendered"
 
 # vim: set filetype=yaml et sw=2 ts=2 :
