@@ -2,6 +2,7 @@ remote:
   - platform: harmony
     name: Harmony Hub
     host: harmonyhub.lan
+    activity: "Watch TV"
     scan_interval: 30
 
 
