@@ -1,11 +1,11 @@
 media_player:
   - platform: universal
-    name: Office TV (Universal)
+    name: Office TV
     children:
-      - media_player.emby__emby_for_chromecast__office_tv
-      - media_player.office_tv
       - media_player.office_speaker
-      - media_player.sony_office_speaker
+      - media_player.cast_office_tv
+      - media_player.cast_office_speaker
+      - media_player.emby__emby_for_chromecast__office_tv
     commands:
       turn_on:
         service: script.turn_on_office_media_players
@@ -14,44 +14,41 @@ media_player:
       volume_set:
         service: media_player.volume_set
         data_template:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
           volume_level: '{{ volume_level }}'
       volume_up:
         service: media_player.volume_up
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
       volume_down:
         service: media_player.volume_down
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
       volume_mute:
         service: media_player.volume_mute
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
       select_source:
         service: media_player.select_source
         data_template:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
           source: '{{ source }}'
     attributes:
-      is_volume_muted: media_player.sony_office_speaker|is_volume_muted
-      # media_player.office_tv is the chromecast
-      state: media_player.office_tv
-      volume_level: media_player.sony_office_speaker|volume_level
-      source: media_player.sony_office_speaker|source
-      source_list: media_player.sony_office_speaker|source_list
+      is_volume_muted: media_player.office_speaker|is_volume_muted
+      # state: media_player.cast_office_tv
+      state: switch.office_tv
+      volume_level: media_player.office_speaker|volume_level
+      source: media_player.office_speaker|source
+      source_list: media_player.office_speaker|source_list
 
 
 script:
   turn_on_office_media_players:
     sequence:
       - service: script.turn_on_office_tv
-      # - service: media_player.turn_on
-      #   data:
-      #     entity_id: media_player.office_tv
       - service: media_player.turn_on
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
 
   turn_off_office_media_players:
     sequence:
@@ -61,7 +58,7 @@ script:
           entity_id: media_player.office_tv
       - service: media_player.turn_off
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
 
   turn_on_office_tv:
     alias: "Turn on the office TV"
@@ -98,26 +95,20 @@ automation:
       - service: automation.turn_off
         entity_id: automation.switch_back_to_aux_in_when_tts_message_has_finished_playing
 
-  - alias: Switch office Sony speaker input to AUX when playing something on office_tv
+  - alias: Switch office speaker input to AUX when playing something on Office TV
     initial_state: true
     trigger:
-    # - platform: state
-    #   entity_id: media_player.office_tv
-    #   to: 'playing'
     - platform: state
       entity_id: media_player.office_tv
-      to: 'playing'
-    - platform: state
-      entity_id: media_player.emby__emby_for_chromecast__office_tv
       to: 'playing'
     action:
       - service: script.turn_on_office_tv
       - service: media_player.turn_on
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
       - service: script.set_office_speaker_to_aux
-      - delay: '00:00:02'
-      - service: script.set_office_speaker_to_aux
+      # - delay: '00:00:02'
+      # - service: script.set_office_speaker_to_aux
 
   - alias: Switch off office TV after 30 minutes of inactivity
     initial_state: true
@@ -131,6 +122,6 @@ automation:
       - service: script.turn_off_office_tv
       - service: media_player.turn_off
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
 
 # vim: set filetype=yaml et sw=2 ts=2 :

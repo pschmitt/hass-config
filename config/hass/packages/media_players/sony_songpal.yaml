@@ -1,0 +1,27 @@
+media_player:
+  # - platform: sonyavr
+  #   host: sony-living-room-speaker.lan
+  #   name: Sony Living Room Speaker
+  #
+  # - platform: sonyavr
+  #   host: sony-office-speaker.lan
+  #   name: Sony Office Speaker
+
+  - platform: songpal
+    name: Living Room Speaker
+    endpoint: http://sony-living-room-speaker.lan:54480/sony
+
+  - platform: songpal
+    name: Office Speaker
+    endpoint: http://sony-office-speaker.lan:54480/sony
+
+
+script:
+  set_office_speaker_to_aux:
+    sequence:
+      service: media_player.select_source
+      data:
+        entity_id: media_player.office_speaker
+        source: "Audio in"
+
+# vim: set filetype=yaml et sw=2 ts=2 :
