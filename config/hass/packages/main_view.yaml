@@ -8,6 +8,7 @@ group:
       - group.weather_shortcut
       - group.light_groups
       - media_player.home_group
+      - covers.all_covers
       - group.all_covers
 
   info:
@@ -15,8 +16,11 @@ group:
     control: hidden
     view: no
     entities:
-      - device_tracker.her_phone
-      - device_tracker.g4p_zanzito
+      # - device_tracker.op3t_arp
+      # - device_tracker.op3t_ping
+      # - device_tracker.g4p_arp
+      # - device_tracker.g4p_zanzito
+      - group.main_mobile_devices
       - sensor.g4p_find
       # - group.pschmitt_location
       - sensor.ip_location_short
@@ -27,11 +31,12 @@ group:
     control: hidden
     view: no
     entities:
-      - alarm_control_panel.ha_alarm
+      - alarm_control_panel.ha_alarm_mqtt
+      - alarm_control_panel.arlomio
       - script.buzz_door_open
-      - binary_sensor.door_window_sensor_158d00016d7083
+      - binary_sensor.door_window_sensor_front_door
       - binary_sensor.motion_sensor_158d000224f5b8
-      - lock.home
+      - lock.front_door
       - script.all_off
 
 
