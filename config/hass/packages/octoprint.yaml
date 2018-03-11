@@ -73,6 +73,16 @@ group:
       - sensor.octoprint_job_percentage
 
 
+script:
+  turn_off_3d_printer:
+    sequence:
+      - condition: state
+        entity_id: binary_sensor.octoprint_printing
+        state: 'off'
+      - service: switch.turn_off
+        entity_id: switch.3d_printer
+
+
 automation:
   - alias: Notify when the current 3D print has finished
     initial_state: true

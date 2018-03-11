@@ -12,6 +12,8 @@ script:
           entity_id: group.all_lights
       - service: script.close_all_covers
       - service: script.turn_off_doorpi_screen
+      - delay: '00:00:10'
+      - service: script.turn_off_3d_printer
 
   bedtime:
     alias: Bedtime
