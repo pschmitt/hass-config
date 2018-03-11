@@ -1,0 +1,92 @@
+camera:
+  - platform: foscam
+    name: C1
+    ip: !secret foscam_c1_hostname
+    username: !secret foscam_c1_username
+    password: !secret foscam_c1_password
+
+  - platform: foscam
+    name: C2
+    ip: !secret foscam_c2_hostname
+    username: !secret foscam_c2_username
+    password: !secret foscam_c2_password
+
+
+group:
+  c1:
+    name: Foscam C1
+    control: hidden
+    entities:
+      - camera.c1
+      - switch.c1_ir
+      - switch.c1_modect
+      - switch.c1_sodect
+      - switch.foscam_c1_state
+      - sensor.foscam_c1_events
+      - sensor.c1_status
+
+  c2:
+    name: Foscam C2
+    control: hidden
+    entities:
+      - camera.c2
+      - switch.c2_ir
+      - switch.c2_modect
+      - switch.c2_sodect
+      - switch.foscam_c2_state
+      - sensor.foscam_c2_events
+      - sensor.c2_status
+
+
+switch:
+  - platform: command_line
+    switches:
+      c1_ir:
+        command_on: /scripts/foscam.sh c1 ir on
+        command_off: /scripts/foscam.sh c1 ir off
+        command_state: /scripts/foscam.sh c1 ir state
+        friendly_name: "C1 Night Mode"
+      c2_ir:
+        command_on: /scripts/foscam.sh c2 ir on
+        command_off: /scripts/foscam.sh c2 ir off
+        command_state: /scripts/foscam.sh c2 ir state
+        friendly_name: "C2 Night Mode"
+      c1_modect:
+        command_on: /scripts/foscam.sh c1 modect on
+        command_off: /scripts/foscam.sh c1 modect off
+        command_state: /scripts/foscam.sh c1 modect state
+        friendly_name: "C1 Foscam Motion Detection"
+      c2_modect:
+        command_on: /scripts/foscam.sh c2 modect on
+        command_off: /scripts/foscam.sh c2 modect off
+        command_state: /scripts/foscam.sh c2 modect state
+        friendly_name: "C2 Foscam Motion Detection"
+      c1_sodect:
+        command_on: /scripts/foscam.sh c1 sodect on
+        command_off: /scripts/foscam.sh c1 sodect off
+        command_state: /scripts/foscam.sh c1 sodect state
+        friendly_name: "C1 Foscam Audio Detection"
+      c2_sodect:
+        command_on: /scripts/foscam.sh c2 sodect on
+        command_off: /scripts/foscam.sh c2 sodect off
+        command_state: /scripts/foscam.sh c2 sodect state
+        friendly_name: "C2 Foscam Audio Detection"
+
+
+homeassistant:
+  customize:
+    # Switches
+    switch.c1_ir:
+      icon: mdi:weather-night
+    switch.c2_ir:
+      icon: mdi:weather-night
+    switch.c1_modect:
+      icon: mdi:run
+    switch.c2_modect:
+      icon: mdi:run
+    switch.c1_sodect:
+      icon: mdi:surround-sound
+    switch.c2_sodect:
+      icon: mdi:surround-sound
+
+# vim: set filetype=yaml et sw=2 ts=2 :

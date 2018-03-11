@@ -1,0 +1,28 @@
+arlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+
+
+alarm_control_panel:
+  platform: arlo
+
+
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+
+
+camera:
+  - platform: arlo
+    ffmpeg_arguments: '-pred 1 -q:v 2'
+
+
+sensor:
+  - platform: arlo
+    monitored_conditions:
+      - captured_today
+      - last_capture
+      - total_cameras
+      - battery_level
+      - signal_strength
+
+# vim: set filetype=yaml et sw=2 ts=2 :

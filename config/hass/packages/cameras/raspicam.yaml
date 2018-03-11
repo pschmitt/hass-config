@@ -1,0 +1,52 @@
+camera:
+  - platform: mjpeg
+    name: doorpi
+    mjpeg_url: http://doorpi.lan:8089/stream.mjpg
+    authentication: basic
+    username: !secret cam_doorpi_username
+    password: !secret cam_doorpi_password
+
+  - platform: mjpeg
+    name: hassistant
+    mjpeg_url: http://hassistant.lan:8089/stream.mjpg
+    authentication: basic
+    username: !secret cam_hassistant_username
+    password: !secret cam_hassistant_password
+
+  - platform: mjpeg
+    name: winpi
+    mjpeg_url: http://winpi.lan:8089/stream.mjpg
+    authentication: basic
+    username: !secret cam_winpi_username
+    password: !secret cam_winpi_password
+
+
+group:
+  raspicam_doorpi:
+    name: Raspberry Pi Camera (doorpi)
+    control: hidden
+    entities:
+      - camera.doorpi
+      - switch.doorpi_state
+      - sensor.doorpi_status
+      - sensor.doorpi_events
+
+  raspicam_hassistant:
+    name: Raspberry Pi Camera (hassistant)
+    control: hidden
+    entities:
+      - camera.hassistant
+      - switch.hassistant_state
+      - sensor.hassistant_status
+      - sensor.hassistant_events
+
+  raspicam_winpi:
+    name: Raspberry Pi Camera (winpi)
+    control: hidden
+    entities:
+      - camera.winpi
+      - switch.winpi_state
+      - sensor.winpi_status
+      - sensor.winpi_events
+
+# vim: set filetype=yaml et sw=2 ts=2 :

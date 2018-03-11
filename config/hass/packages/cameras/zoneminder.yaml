@@ -1,0 +1,20 @@
+zoneminder:
+  host: nasteanas.lan:10080
+  path: /zm/
+  ssl: false
+  # username: !secret zm_username
+  # password: !secret zm_password
+
+
+# camera:
+#   platform: zoneminder
+
+
+sensor:
+  - platform: zoneminder
+
+
+switch:
+  - platform: zoneminder
+    command_on: Modect
+    command_off: Monitor
