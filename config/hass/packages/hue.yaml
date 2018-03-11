@@ -427,5 +427,7 @@ homeassistant:
       icon: mdi:grid-off
     script.flash_living_room_lights:
       icon: mdi:spotlight
+    script.smoke_break:
+      icon: mdi:smoking
 
 # vim: set filetype=yaml et sw=2 ts=2 :
