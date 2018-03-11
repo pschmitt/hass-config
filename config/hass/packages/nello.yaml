@@ -2,10 +2,11 @@ lock:
   - platform: nello
     username: !secret nello_username
     password: !secret nello_password
+    scan_interval: 15
 
 
 automation:
-  - alias: Notify when the door bell has been rung
+  - alias: Nello events
     initial_state: true
     trigger:
       - platform: event
@@ -14,8 +15,42 @@ automation:
           short_id: e414cae5
     action:
       - service: notify.html5
+        data_template:
+          message: 'Nello event: {{ trigger.event.data.type }}'
+          # data:
+          #   tag: 'nello-ring'
+
+  - alias: Notify when the door bell has been rung
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: nello_bell_ring
+        event_data:
+          short_id: e414cae5
+          type: 'bell.ring.denied'
+      - platform: event
+        event_type: nello_bell_ring
+        event_data:
+          short_id: e414cae5
+          type: 'bell.ring.denied'
+      - platform: event
+        event_type: nello_bell_ring
+        event_data:
+          short_id: e414cae5
+          type: 'door.open.one.tw'
+      - platform: event
+        event_type: nello_bell_ring
+        event_data:
+          short_id: e414cae5
+          type: 'door.open.one.geoloc'
+    action:
+      - service: notify.zanzito_tts
         data:
-          message: 'Nello: The door bell rung.'
+          message: "Ding Dong"
+      - service: script.tts_say
+        data:
+          message: "Ding Dong. Ding Dong. Ding Dong."
+      - service: script.buzz_door_open
 
   - alias: "Buzz door open when ringing and I'm home"
     initial_state: true
