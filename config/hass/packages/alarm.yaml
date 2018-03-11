@@ -1,10 +1,15 @@
 alarm_control_panel:
-  platform: manual
-  code: !secret alarm_code
-  pending_time: 0
-  trigger_time: 20
-  delay_time: 30
-  disarm_after_trigger: false
+  - platform: manual_mqtt
+    name: HA Alarm (MQTT)
+    state_topic: homeassistant/alarm
+    command_topic: homeassistant/alarm/set
+    code: !secret alarm_code
+    pending_time: 0
+    trigger_time: 20
+    delay_time: 30
+    disarm_after_trigger: false
+    disarmed:
+      trigger_time: 0
 
 
 automation:
@@ -24,23 +29,23 @@ automation:
     trigger:
       - platform: state
         entity_id:
-          - binary_sensor.door_window_sensor_158d00016572aa
-          - binary_sensor.door_window_sensor_158d00016d7083
-          - binary_sensor.door_window_sensor_158d0001a1eb5b
-          - binary_sensor.door_window_sensor_158d0001a1ec56
-          - binary_sensor.door_window_sensor_158d0001de639e
-          - binary_sensor.door_window_sensor_158d0001de7941
-          - binary_sensor.door_window_sensor_158d0001de8c01
-          - binary_sensor.door_window_sensor_158d0001de8caa
-          - binary_sensor.door_window_sensor_158d0001de8cb8
+          - binary_sensor.door_window_sensor_bedroom_terrace_door
+          - binary_sensor.door_window_sensor_front_door
+          - binary_sensor.door_window_sensor_fridge_door
+          - binary_sensor.door_window_sensor_terrace_door
+          - binary_sensor.door_window_sensor_bedroom_window
+          - binary_sensor.door_window_sensor_office_window_large
+          - binary_sensor.door_window_sensor_kitchen_window
+          - binary_sensor.door_window_sensor_office_window_small
+          - binary_sensor.door_window_sensor_living_room_window
         to: 'on'
     condition:
       - condition: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         state: armed_away
     action:
       - service: alarm_control_panel.alarm_trigger
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
       - service: notify.get_to_me
         data_template:
           message: >
@@ -60,11 +65,11 @@ automation:
         to: 'on'
     condition:
       - condition: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         state: armed_away
     action:
       - service: alarm_control_panel.alarm_trigger
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
       - service: notify.get_to_me
         data_template:
           message: >
@@ -88,18 +93,20 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: alarm_control_panel.ha_alarm
+          entity_id: alarm_control_panel.ha_alarm_mqtt
           state: armed_away
         - condition: template
           value_template: >
             {% if trigger.from_state.state == 'unknown' %}
+              false
+            {% elif trigger.to_state.state == 'unknown' %}
               false
             {% else %}
               {{ trigger.from_state.state | int < trigger.to_state.state | int }}
             {% endif %}
     action:
       - service: alarm_control_panel.alarm_trigger
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
       - service: notify.get_to_me
         data_template:
           message: >
@@ -120,7 +127,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         to: armed_away
     action:
       - service: script.alarm_armed_away
@@ -129,7 +136,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         to: disarmed
     action:
       - service: script.alarm_disarmed
@@ -138,12 +145,8 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         to: triggered
-    # condition:
-    #     - condition: state
-    #       entity_id: alarm_control_panel.ha_alarm
-    #       state: not_disarmed
     action:
       - service: script.alarm_triggered
 
@@ -151,11 +154,14 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: group.main_mobile_devices
+        entity_id: group.pschmitt_location
+        to: home
+      - platform: state
+        entity_id: group.mbiver_location
         to: home
     condition:
       - condition: state
-        entity_id: alarm_control_panel.ha_alarm
+        entity_id: alarm_control_panel.ha_alarm_mqtt
         state: armed_away
     action:
       - service: notify.html5
@@ -224,9 +230,16 @@ script:
   alarm_armed_away:
     alias: 'Away alarm activated'
     sequence:
+      - service: mqtt.publish
+        data:
+          topic: homeassistant/alarm/set
+          payload: ARM_AWAY
+          retain: True
       - service: homeassistant.turn_on
         data:
           entity_id: group.modect
+      - service: alarm_control_panel.alarm_arm_away
+        entity_id: alarm_control_panel.arlomio
       - service: notify.smsr
         data:
           message: "Home Assistant: Alarm armed (away)"
@@ -235,6 +248,11 @@ script:
   alarm_disarmed:
     alias: 'Alarm disarmed'
     sequence:
+      - service: mqtt.publish
+        data:
+          topic: homeassistant/alarm/set
+          payload: DISARM
+          retain: True
       - service: homeassistant.turn_off
         data:
           entity_id: group.modect
@@ -242,6 +260,8 @@ script:
         data:
           message: "Home Assistant: Alarm disarmed"
           target: me
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.arlomio
 
   alarm_triggered:
     alias: 'Alarm triggered'
@@ -255,23 +275,6 @@ script:
           name: Alarm
           message: has been triggered
           domain: alarm
-
-  alarm_arm_if_away:
-    alias: 'Arm alarm if we are away'
-    sequence:
-      - condition: state
-        entity_id: group.main_mobile_devices
-        state: 'not_home'
-      - service: script.alarm_arm_away
-
-  alarm_disarm_if_home:
-    alias: 'Disarm alarm if we are home'
-    sequence:
-      - condition: state
-        entity_id: group.main_mobile_devices
-        state: 'home'
-      - service: script.alarm_disarm
-      - service: script.alarm_disarmed
 
 
 homeassistant:
