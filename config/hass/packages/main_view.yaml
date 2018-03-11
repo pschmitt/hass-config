@@ -35,7 +35,7 @@ group:
       - alarm_control_panel.arlomio
       - script.buzz_door_open
       - binary_sensor.door_window_sensor_front_door
-      - binary_sensor.motion_sensor_158d000224f5b8
+      - binary_sensor.motion_sensor_front_door
       - lock.front_door
       - script.all_off
 

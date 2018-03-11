@@ -61,7 +61,7 @@ automation:
           - binary_sensor.hallway_presence
           - binary_sensor.kitchen_presence
           - binary_sensor.bathroom_presence
-          - binary_sensor.motion_sensor_158d000224f5b8
+          - binary_sensor.motion_sensor_front_door
         to: 'on'
     condition:
       - condition: state

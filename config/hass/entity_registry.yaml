@@ -162,7 +162,7 @@ binary_sensor.door_window_sensor_kitchen_window:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001de8c01
-binary_sensor.motion_sensor_158d000224f5b8:
+binary_sensor.motion_sensor_front_door:
   name:
   platform: xiaomi_aqara
   unique_id: status158d000224f5b8
