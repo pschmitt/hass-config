@@ -105,10 +105,6 @@ sensor:
         friendly_name: Moto G4 Play Battery
         value_template: ' {{ states.device_tracker.g4p_zanzito.attributes.battery }}'
         unit_of_measurement: '%'
-      n5x_battery:
-        friendly_name: Nexus 5X Battery
-        value_template: ' {{ states.device_tracker.n5x_zanzito.attributes.battery }}'
-        unit_of_measurement: '%'
 
 
 automation:
