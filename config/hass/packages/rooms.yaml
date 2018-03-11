@@ -42,7 +42,7 @@ group:
       - switch.wemo_insight__nasteanas
       - switch.office_tv
       - camera.hassistant
-      - media_player.sony_office_speaker
+      - media_player.office_speaker
       - media_player.office_tv
       - group.office_windows
       - group.3d_printer
@@ -59,8 +59,8 @@ group:
     name: Office Windows
     view: no
     entities:
-      - binary_sensor.door_window_sensor_158d0001de7941
-      - binary_sensor.door_window_sensor_158d0001de8caa
+      - binary_sensor.door_window_sensor_office_window_large
+      - binary_sensor.door_window_sensor_office_window_small
       - cover.office
 
   living_room:
@@ -92,8 +92,8 @@ group:
     view: no
     control: hidden
     entities:
-      - binary_sensor.door_window_sensor_158d0001a1ec56
-      - binary_sensor.door_window_sensor_158d0001de8cb8
+      - binary_sensor.door_window_sensor_terrace_door
+      - binary_sensor.door_window_sensor_living_room_window
       - cover.living_room_door
       - cover.living_room_table
       - cover.living_room_tv
@@ -158,6 +158,6 @@ group:
     view: no
     entities:
       - cover.kitchen
-      - binary_sensor.door_window_sensor_158d0001de8c01
+      - binary_sensor.door_window_sensor_kitchen_window
 
 # vim: set filetype=yaml et sw=2 ts=2 :
