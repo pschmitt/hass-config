@@ -1,102 +1,344 @@
 switch.wemo_insight__washing_machine:
+  name:
   platform: wemo
   unique_id: 221517K1200027
 switch.wemo_insight__nasteanas:
+  name:
   platform: wemo
   unique_id: 221623K1200499
 media_player.emby__dlna__shield_android_tves1070241:
+  name:
   platform: emby
   unique_id: uuid:11dbdbf7-e4af-7676-0000-000038b27980.DLNA
 media_player.emby__dlna__living_room_speaker:
+  name:
   platform: emby
   unique_id: uuid:00000000-0000-1010-8000-8c579b3def7f.DLNA
 media_player.emby__dlna__office_speaker:
+  name:
   platform: emby
   unique_id: uuid:00000000-0000-1010-8000-8c579b4d09fc.DLNA
 media_player.emby__emby_for_android_mobile__nexus_7:
+  name:
   platform: emby
   unique_id: 69091b9de168a2.Emby for Android Mobile
 binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor:
+  name:
   platform: zwave
   unique_id: 8-72057594177126400
 sensor.fibaro_system_fgsd002_smoke_sensor_temperature:
+  name:
   platform: zwave
   unique_id: 8-72057594177142802
 sensor.fibaro_system_fgsd002_smoke_sensor_alarm_type:
+  name:
   platform: zwave
   unique_id: 8-72057594178191361
 sensor.fibaro_system_fgsd002_smoke_sensor_alarm_level:
+  name:
   platform: zwave
   unique_id: 8-72057594178191377
 sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid:
+  name:
   platform: zwave
   unique_id: 8-72057594178191393
 sensor.fibaro_system_fgsd002_smoke_sensor_smoke:
+  name:
   platform: zwave
   unique_id: 8-72057594178191425
 sensor.fibaro_system_fgsd002_smoke_sensor_heat:
+  name:
   platform: zwave
   unique_id: 8-72057594178191473
 sensor.fibaro_system_fgsd002_smoke_sensor_burglar:
+  name:
   platform: zwave
   unique_id: 8-72057594178191521
 sensor.fibaro_system_fgsd002_smoke_sensor_power_management:
+  name:
   platform: zwave
   unique_id: 8-72057594178191537
 sensor.fibaro_system_fgsd002_smoke_sensor_system:
+  name:
   platform: zwave
   unique_id: 8-72057594178191553
 sensor.fibaro_system_fgsd002_smoke_sensor_general:
+  name:
   platform: zwave
   unique_id: 8-72057594178895873
 sensor.fibaro_system_fgsd002_smoke_sensor_smoke_2:
+  name:
   platform: zwave
   unique_id: 8-72057594178895889
 sensor.fibaro_system_fgsd002_smoke_sensor_heat_2:
+  name:
   platform: zwave
   unique_id: 8-72057594178895937
 light.toilet_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:3c:cc:eb-0b
 light.office_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:55:61:4c-0b
 light.bathroom_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:31:6b:66-0b
 light.hallway_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:31:6d:22-0b
 light.terrace_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:00:ee:cc:52-0b
 light.kitchen_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:4d:19:cc-0b
 light.front_door_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:47:17:d9-0b
 light.living_room_tv_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:00:d8:f2:08-0b
 light.bedroom_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:10:55:37:50-0b
 light.living_room_table_light:
+  name:
   platform: hue
   unique_id: 00:17:88:01:00:ec:a1:39-0b
 media_player.emby__dlna__lg_webos_tv_oled55b6v:
+  name:
   platform: emby
   unique_id: uuid:29fdfaee-3874-fddf-3ae6-233b97de7229.DLNA
 media_player.emby__android__moto_g_play:
+  name:
   platform: emby
   unique_id: acb13a928ee387a8.Android
 media_player.emby__emby_for_android_mobile__moto_g_play:
+  name:
   platform: emby
   unique_id: acb13a928ee387a8.Emby for Android Mobile
 media_player.emby__emby_mobile__chrome:
+  name:
   platform: emby
   unique_id: 315ef9cc091715ada1b8d2c4cffa445ec3a7bba0.Emby Mobile
 media_player.emby__emby_for_chromecast__nvidia_shield_tv:
+  name:
   platform: emby
   unique_id: 3e53ffff2c6ae6550fb3530803332b146b066d25.Emby for Chromecast
+media_player.emby__emby_mobile__chrome_2:
+  name:
+  platform: emby
+  unique_id: 90dc8dab531c69d61954dadc9f8319b742a6d829.Emby Mobile
+media_player.emby__emby_for_chromecast__office_tv:
+  name:
+  platform: emby
+  unique_id: 583d4306d0aa1dad157235e77ac5e66725f97efc.Emby for Chromecast
+media_player.emby__emby_mobile__chrome_android:
+  name:
+  platform: emby
+  unique_id: b834ea37502fe02e396b7307fc72bc4d46583a83.Emby Mobile
+media_player.emby__dlna__shield_android_tves1070241_2:
+  name:
+  platform: emby
+  unique_id: uuid:d000cbcf-72ff-0f07-0000-000038b27980.DLNA
+binary_sensor.door_window_sensor_terrace_door:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a1ec56
+binary_sensor.door_window_sensor_office_window_large:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de7941
+binary_sensor.door_window_sensor_kitchen_window:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de8c01
+binary_sensor.motion_sensor_158d000224f5b8:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000224f5b8
+binary_sensor.door_window_sensor_bedroom_terrace_door:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00016572aa
+binary_sensor.wall_switch_both_158d00016404f4:
+  name:
+  platform: xiaomi_aqara
+  unique_id: dual_channel158d00016404f4
+binary_sensor.door_window_sensor_office_window_small:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de8caa
+binary_sensor.water_leak_sensor_bathroom:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d7668e
+binary_sensor.wall_switch_both_158d0001e0f920:
+  name:
+  platform: xiaomi_aqara
+  unique_id: dual_channel158d0001e0f920
+binary_sensor.door_window_sensor_bedroom_window:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de639e
+binary_sensor.water_leak_sensor_kitchen:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001df1cc3
+binary_sensor.wall_switch_left_158d0001e0f920:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_0158d0001e0f920
+binary_sensor.wall_switch_right_158d00016404f4:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_1158d00016404f4
+binary_sensor.wall_switch_left_158d00016404f4:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_0158d00016404f4
+binary_sensor.door_window_sensor_living_room_window:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001de8cb8
+binary_sensor.switch_158d0002132e08:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0002132e08
+binary_sensor.door_window_sensor_fridge_door:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a1eb5b
+binary_sensor.wall_switch_right_158d0001e0f920:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_1158d0001e0f920
+binary_sensor.door_window_sensor_front_door:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00016d7083
+sensor.illumination_34ce008d7aba:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination34ce008d7aba
+sensor.pressure_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressurefridge
+sensor.illumination_158d000224f5b8:
+  name:
+  platform: xiaomi_aqara
+  unique_id: lux158d000224f5b8
+sensor.temperature_freezer:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperaturefreezer
+sensor.pressure_freezer:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressurefreezer
+sensor.humidity_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidityfridge
+sensor.temperature_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperaturefridge
+sensor.humidity_freezer:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidityfreezer
+media_player.cast_office_tv:
+  name:
+  platform: cast
+  unique_id: 87bcfe24-ecf7-0376-d1c5-fb67d3eda623
+media_player.cast_office_speaker:
+  name:
+  platform: cast
+  unique_id: 896d643e-90cf-c1f7-e37b-11cd5b6efba2
+media_player.cast_nvidia_shield_tv:
+  name:
+  platform: cast
+  unique_id: 648bc1b3-4172-fe95-41dc-3c9bd6ce128e
+media_player.cast_living_room_speaker:
+  name:
+  platform: cast
+  unique_id: f6d1e511-8e5e-d1ab-a485-6fb7b7c01ad9
+media_player.cast_home_group:
+  name:
+  platform: cast
+  unique_id: 3409096f-da2a-420f-a423-9bf807389881
+light.gateway_light_34ce008d7aba:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb34ce008d7aba
+media_player.emby__dlna__shield_android_tves1070241_3:
+  name:
+  platform: emby
+  unique_id: uuid:72907f47-b824-b6c8-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_4:
+  name:
+  platform: emby
+  unique_id: uuid:65a643f8-6f80-61c4-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_5:
+  name:
+  platform: emby
+  unique_id: uuid:697d655f-51f9-edf4-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_6:
+  name:
+  platform: emby
+  unique_id: uuid:ea8af96e-4d9f-2b86-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_7:
+  name:
+  platform: emby
+  unique_id: uuid:73cd0762-b525-b9b8-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_8:
+  name:
+  platform: emby
+  unique_id: uuid:7b32bbd0-add1-5501-0000-000038b27980.DLNA
+media_player.emby__emby_mobile__chrome_3:
+  name:
+  platform: emby
+  unique_id: 8e51e6e679839dbd2c32617272d61aefd17cd368.Emby Mobile
+media_player.office_speaker:
+  name:
+  platform: songpal
+  unique_id: 10-4f-a8-ac-46-76
+media_player.living_room_speaker:
+  name:
+  platform: songpal
+  unique_id: 10-4f-a8-81-4b-1d
+sensor.temperature_158d0001d6f4e5:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001d6f4e5
+sensor.humidity_158d0001d6f4e5:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001d6f4e5
+sensor.pressure_158d0001d6f4e5:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001d6f4e5
+sensor.temperature_158d0001d6f4da:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001d6f4da
+sensor.humidity_158d0001d6f4da:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001d6f4da
+sensor.pressure_158d0001d6f4da:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001d6f4da
