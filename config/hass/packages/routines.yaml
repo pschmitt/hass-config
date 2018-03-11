@@ -5,15 +5,28 @@ input_boolean:
 
 
 automation:
-  # - alias: React to my homecoming
-  #   initial_state: false
-  #   trigger:
-  #     - platform: state
-  #       entity_id: device_tracker.g4p_zanzito
-  #       from: not_home
-  #       to: home
-  #   action:
-  #     - service: script.im_home
+  - alias: React to my homecoming
+    initial_state: false
+    trigger:
+      - platform: state
+        entity_id: device_tracker.g4p_zanzito
+        from: not_home
+        to: home
+    action:
+      - service: script.im_home
+
+  - alias: We left
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: group.main_mobile_devices
+        to: not_home
+    action:
+      - service: notify.html5
+        data:
+          message: "You (all) left. Should I turn everything off?"
+          data:
+            tag: "all-left-query"
 
   - alias: Turn on lights before sunset
     initial_state: true
@@ -76,7 +89,7 @@ automation:
     initial_state: false
     trigger:
       - platform: state
-        entity_id: device_tracker.her_phone
+        entity_id: device_tracker.op3t_arp
         from: not_home
         to: home
     action:
@@ -87,7 +100,7 @@ automation:
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
-        below: 30
+        below: 60
     action:
       - service: notify.html5
         data:
@@ -148,6 +161,8 @@ script:
       - service: notify.html5
         data:
           message: "You've just entered the 'Home' zone"
+          data:
+            tag: "homed"
 
   she_is_home:
     alias: 'She is home'
@@ -165,6 +180,8 @@ script:
     sequence:
       - service: script.alarm_disarm
       - service: script.unlock_door
+      - service: cover.open_cover
+        entity_id: cover.living_room_door
       - delay:
           minutes: 15
       - service: script.lock_door
