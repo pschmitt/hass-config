@@ -60,7 +60,7 @@ LocateDevice:
     text: >
       Philipp is {{ states.device_tracker.g4p_zanzito }}
 
-      She is {{ states.device_tracker.her_phone }}
+      She is {{ states.device_tracker.op3t }}
   async_action: False
 
 DoorLock:

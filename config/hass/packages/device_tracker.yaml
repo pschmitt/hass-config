@@ -1,40 +1,94 @@
 device_tracker:
-  - platform: ubus
+  - platform: luci
     host: 10.7.0.1
     username: !secret owrt_username
     password: !secret owrt_password
-    consider_home: 180
+    consider_home: 60
     new_device_defaults:
       track_new_devices: false
       hide_if_away: false
 
+  # - platform: ubus
+  #   host: 10.7.0.3
+  #   username: !secret turris_username
+  #   password: !secret turris_password
+  #   consider_home: 60
+  #   new_device_defaults:
+  #     track_new_devices: false
+  #     hide_if_away: false
+
+  - platform: ping
+    count: 3
+    hosts:
+      op3t_ping: oneplus_3t.lan
+      g4p_ping: g4p.lan
+      macbook_ping: 10.7.0.231
+
+  # - platform: nmap_tracker
+  #   hosts: oneplus_3t.lan
+  #   home_interval: 3
+
   - platform: mqtt_json
     devices:
-      n5x_zanzito: zanzito/nexus5x/location
+      # n5x_zanzito: zanzito/nexus5x/location
       g4p_zanzito: zanzito/g4play/location
+
+  - platform: mqtt
+    devices:
+      g4p_hassistant: hassistant/states/device_tracker/g4p/state
+      op3t_hassistant: hassistant/states/device_tracker/op3t/state
 
 
 group:
-  pschmitt_location:
-    name: "My location"
-    view: no
-    icon: mdi:cellphone-android
-    entities:
-      - device_tracker.g4p_zanzito
-      # - device_tracker.g4p_arp
-      # - device_tracker.n5x_zanzito
-      # - device_tracker.n5x_arp
-
   main_mobile_devices:
     name: Main Devices
     view: no
     icon: mdi:cellphone-android
     entities:
-      - device_tracker.g4p_zanzito
+      - group.pschmitt_location
+      - group.mbiver_location
+
+  pschmitt_location:
+    name: "pschmitt location"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - group.g4p
+
+  mbiver_location:
+    name: "mbiver location"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - group.op3t
+      - group.macbook
+
+  g4p:
+    name: "g4p"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
       # - device_tracker.g4p_arp
-      # - device_tracker.n5x_zanzito
-      # - device_tracker.n5x_arp
-      - device_tracker.her_phone
+      # - device_tracker.g4p_ping
+      - device_tracker.g4p_hassistant
+      - device_tracker.g4p_zanzito
+
+  op3t:
+    name: "op3t"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.op3t_hassistant
+      # - device_tracker.op3t_arp
+      # - device_tracker.op3t_ping
+
+  macbook:
+    name: "macbook"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.macbook_arp
+      - device_tracker.macbook_ping
 
 
 sensor:
