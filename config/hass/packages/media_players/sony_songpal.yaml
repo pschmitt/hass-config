@@ -1,12 +1,4 @@
 media_player:
-  # - platform: sonyavr
-  #   host: sony-living-room-speaker.lan
-  #   name: Sony Living Room Speaker
-  #
-  # - platform: sonyavr
-  #   host: sony-office-speaker.lan
-  #   name: Sony Office Speaker
-
   - platform: songpal
     name: Living Room Speaker
     endpoint: http://sony-living-room-speaker.lan:54480/sony

@@ -87,7 +87,7 @@ automation:
     initial_state: false
     trigger:
       platform: state
-      entity_id: media_player.home_group, media_player.office_speaker
+      entity_id: media_player.cast_home_group, media_player.office_speaker
       from: 'playing'
       to: 'idle'
     action:

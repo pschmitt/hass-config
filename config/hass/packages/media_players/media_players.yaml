@@ -7,7 +7,7 @@ group:
       - media_player.tv
       - media_player.living_room_tv
       - media_player.kodi
-      - media_player.home_group
+      - media_player.cast_home_group
       - media_player.livebox_play
       - media_player.living_room_speaker
       - media_player.office_speaker

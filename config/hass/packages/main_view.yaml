@@ -7,7 +7,7 @@ group:
       - group.shortcuts
       - group.weather_shortcut
       - group.light_groups
-      - media_player.home_group
+      - media_player.cast_home_group
       - covers.all_covers
       - group.all_covers
 

@@ -16,19 +16,19 @@ script:
     sequence:
       - service: media_player.volume_mute
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
           is_volume_muted: False
       - service: media_player.volume_set
         data:
-          entity_id: media_player.sony_office_speaker
+          entity_id: media_player.office_speaker
           volume_level: 0.4
       - service: media_player.volume_mute
         data:
-          entity_id: media_player.sony_living_room_speaker
+          entity_id: media_player.living_room_speaker
           is_volume_muted: False
       - service: media_player.volume_set
         data:
-          entity_id: media_player.sony_living_room_speaker
+          entity_id: media_player.living_room_speaker
           volume_level: 0.4
 
   tts_say:
@@ -36,7 +36,7 @@ script:
       - service: script.reset_tts_volume
       - service: tts.google_say
         data_template:
-          entity_id: media_player.home_group
+          entity_id: media_player.cast_home_group
           message: '{{ message }}'
           language: '{{ language|default("fr") }}'
       - service: automation.turn_on
