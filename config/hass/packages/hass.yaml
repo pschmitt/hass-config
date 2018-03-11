@@ -27,10 +27,7 @@ automation:
           topic: zanzito/g4play/cmd/send_heartbeat
           qos: 0
           retain: 0
-      - delay: 00:00:30
-      - service: script.alarm_arm_if_away
-      - service: script.alarm_disarm_if_home
-      - delay: 00:04:30
+      - delay: 00:05:00
       - service: script.enable_annoying_automations
 
   - alias: Update notifications
@@ -107,9 +104,11 @@ group:
       # - group.all
       - group.hass_infrastructure
       - group.all_devices
+      - group.pschmitt_location
+      - group.mbiver_location
       - group.flic_buttons
       - group.media_players
-      - group.all_scripts
+      # - group.all_scripts
       - group.all_lights
       - group.all_sensors
       - group.all_switches
