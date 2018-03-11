@@ -87,7 +87,7 @@ automation:
     initial_state: false
     trigger:
       platform: state
-      entity_id: media_player.cast_home_group, media_player.office_speaker
+      entity_id: media_player.cast_home_group, media_player.cast_office_speaker
       from: 'playing'
       to: 'idle'
     action:
@@ -99,7 +99,7 @@ automation:
     initial_state: true
     trigger:
     - platform: state
-      entity_id: media_player.office_tv
+      entity_id: media_player.cast_office_tv
       to: 'playing'
     action:
       - service: script.turn_on_office_tv
@@ -114,7 +114,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: media_player.office_tv
+      entity_id: media_player.cast_office_tv
       to: 'off'
       for:
         minutes: 30
