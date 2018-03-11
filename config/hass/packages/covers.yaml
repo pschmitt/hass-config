@@ -1,4 +1,16 @@
 cover:
+  - platform: template
+    covers:
+      all_covers:
+        friendly_name: "All covers"
+        open_cover:
+          service: script.open_all_covers
+        close_cover:
+          service: script.close_all_covers
+        stop_cover:
+          service: script.stop_all_covers
+        position_template: 50
+
   - platform: mqtt
     name: "Living Room Table"
     command_topic: "hassistant/states/cover/living_room_table/command"
@@ -161,6 +173,12 @@ script:
     sequence:
       - service: cover.close_cover
         entity_id: group.auto_covers
+
+  stop_all_covers:
+    alias: 'Stop all covers'
+    sequence:
+      - service: cover.stop_cover
+        entity_id: group.all_covers
 
 
 homeassistant:
