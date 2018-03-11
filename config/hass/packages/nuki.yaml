@@ -10,7 +10,7 @@ binary_sensor:
       nuki_battery_critical:
         friendly_name: Nuki Lock Critical Battery Level
         device_class: power
-        value_template: '{{ states.lock.home.attributes.battery_critical }}'
+        value_template: '{{ states.lock.front_door.attributes.battery_critical }}'
 
 
 script:
@@ -19,21 +19,21 @@ script:
     sequence:
       - service: lock.lock
         data:
-          entity_id: lock.home
+          entity_id: lock.front_door
 
   unlock_door:
     alias: Unlock door
     sequence:
       - service: lock.unlock
         data:
-          entity_id: lock.home
+          entity_id: lock.front_door
 
   lock_n_go:
     alias: Lock'n'go
     sequence:
       - service: lock.nuki_lock_n_go
         data:
-          entity_id: lock.home
+          entity_id: lock.front_door
 
 
 automation:
@@ -41,7 +41,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: lock.home
+      entity_id: lock.front_door
       to: 'unlocked'
       for:
         minutes: 15
@@ -62,7 +62,7 @@ automation:
 alert:
   door_open:
     name: "The door is unlocked. Want me to lock it?"
-    entity_id: lock.home
+    entity_id: lock.front_door
     state: 'unlocked'
     repeat: 60
     can_acknowledge: True
@@ -107,7 +107,7 @@ homeassistant:
       icon: mdi:lock
     script.unlock_door:
       icon: mdi:lock-open-outline
-    lock.home:
+    lock.front_door:
       friendly_name: Front Door Lock
 
 # vim: set filetype=yaml et sw=2 ts=2 :
