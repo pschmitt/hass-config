@@ -10,28 +10,28 @@ group:
       - sensor.hue_hue_kitchen_battery
       - sensor.hue_toilet_battery
       # Aqara
-      - sensor.aqara_front_door_battery
+      - sensor.aqara_bedroom_window_battery
+      - sensor.aqara_button_battery
+      - sensor.aqara_freezer_temp_battery
       - sensor.aqara_fridge_door_battery
+      - sensor.aqara_fridge_door_battery
+      - sensor.aqara_front_door_battery
+      - sensor.aqara_front_door_motion_sensor_battery
+      - sensor.aqara_kitchen_window_battery
+      - sensor.aqara_living_room_window_battery
+      - sensor.aqara_office_window_large_battery
+      - sensor.aqara_office_window_small_battery
       - sensor.aqara_terrace_door_battery
       - sensor.aqara_terrace_door_bedroom_battery
-      - sensor.aqara_bedroom_window_battery
-      - sensor.aqara_living_room_window_battery
-      - semsor.aqara_office_window_small_battery
-      - sensor.aqara_office_window_large_battery
-      - sensor.aqara_kitchen_window_battery
-      - sensor.aqara_fridge_door_battery
-      - sensor.aqara_freezer_temp_battery
+      - sensor.aqara_wall_switch_office_battery
       - sensor.aqara_water_leak_bathroom_battery
       - sensor.aqara_water_leak_kitchen_battery
-      - sensor.aqara_front_door_motion_sensor_battery
-      - sensor.aqara_button_battery
-      - sensor.aqara_wall_switch_office_battery
       # Mi Flora
-      - sensor.lemon_battery
       - sensor.aloe_vera_battery
-      - sensor.mint_battery
-      - sensor.ficus_battery
       - sensor.chive_battery
+      - sensor.ficus_battery
+      - sensor.lemon_battery
+      - sensor.mint_battery
       # zwave
       - sensor.smoke_sensor_battery
       # nuki
@@ -41,7 +41,7 @@ group:
 
 
 automation:
-  - alias: Aqara sensor battery is low
+  - alias: Device is low on battery
     initial_state: true
     trigger:
       - platform: numeric_state
