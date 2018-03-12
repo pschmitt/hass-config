@@ -284,12 +284,13 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
 
 
-input_datetime:
+input_number:
   smoke_break_duration:
-    name: Smoke Break Duration
-    has_date: false
-    has_time: true
-    initial: '00:05'
+    name: Smoke break duration
+    icon: mdi:smoking
+    mode: slider
+    min: 5
+    max: 480
 
 
 script:
@@ -357,7 +358,7 @@ script:
   smoke_break_timer_off:
     alias: "Smoke break: Turn off lamp after X minutes"
     sequence:
-      - delay: '{{ states.input_datetime.smoke_break_duration.state }}'
+      - delay: '00:{{ states.input_number.smoke_break_duration.state|int }}:00'
       - service: light.turn_off
         data:
           entity_id: light.terrace
