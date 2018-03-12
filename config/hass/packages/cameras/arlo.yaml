@@ -5,6 +5,7 @@ arlo:
 
 alarm_control_panel:
   platform: arlo
+  home_mode_name: Home
 
 
 ffmpeg:
