@@ -20,6 +20,7 @@ group:
       - switch.wemo_insight__washing_machine
       - vacuum.nimbus
       - group.fridge
+      - group.3d_printer
 
   misc:
     name: Misc
@@ -30,6 +31,7 @@ group:
       - light.toilet
       - light.bathroom
       - group.appliances
+      - group.3d_printer
 
   office:
     name: Office
@@ -45,7 +47,6 @@ group:
       - media_player.office_speaker
       - media_player.office_tv
       - group.office_windows
-      - group.3d_printer
 
   office_lights:
     name: All Office Lights
