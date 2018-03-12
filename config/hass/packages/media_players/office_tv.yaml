@@ -2,10 +2,10 @@ media_player:
   - platform: universal
     name: Office TV
     children:
-      - media_player.office_speaker
       - media_player.cast_office_tv
-      - media_player.cast_office_speaker
       - media_player.emby__emby_for_chromecast__office_tv
+      - media_player.cast_office_speaker
+      - media_player.office_speaker
     commands:
       turn_on:
         service: script.turn_on_office_media_players
