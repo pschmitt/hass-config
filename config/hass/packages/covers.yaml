@@ -120,6 +120,14 @@ script:
       - service: cover.open_cover
         entity_id: group.all_covers
 
+  open_all_covers_if_sun_is_up:
+    alias: 'Open all covers (only if the sun is up)'
+    sequence:
+      - condition: sun
+        before: sunset
+      - service: cover.open_cover
+        entity_id: group.all_covers
+
   open_main_covers:
     alias: 'Open main covers'
     sequence:
