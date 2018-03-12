@@ -230,10 +230,6 @@ sensor.illumination_34ce008d7aba:
   name:
   platform: xiaomi_aqara
   unique_id: illumination34ce008d7aba
-sensor.pressure_fridge:
-  name:
-  platform: xiaomi_aqara
-  unique_id: pressurefridge
 sensor.illumination_158d000224f5b8:
   name:
   platform: xiaomi_aqara
@@ -241,23 +237,27 @@ sensor.illumination_158d000224f5b8:
 sensor.temperature_freezer:
   name:
   platform: xiaomi_aqara
-  unique_id: temperaturefreezer
-sensor.pressure_freezer:
-  name:
-  platform: xiaomi_aqara
-  unique_id: pressurefreezer
-sensor.humidity_fridge:
-  name:
-  platform: xiaomi_aqara
-  unique_id: humidityfridge
-sensor.temperature_fridge:
-  name:
-  platform: xiaomi_aqara
-  unique_id: temperaturefridge
+  unique_id: temperature158d0001d6f4e5
 sensor.humidity_freezer:
   name:
   platform: xiaomi_aqara
-  unique_id: humidityfreezer
+  unique_id: humidity158d0001d6f4e5
+sensor.pressure_freezer:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001d6f4e5
+sensor.temperature_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d0001d6f4da
+sensor.humidity_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d0001d6f4da
+sensor.pressure_fridge:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d0001d6f4da
 media_player.cast_office_tv:
   name:
   platform: cast
@@ -318,27 +318,3 @@ media_player.living_room_speaker:
   name:
   platform: songpal
   unique_id: 10-4f-a8-81-4b-1d
-sensor.temperature_158d0001d6f4e5:
-  name:
-  platform: xiaomi_aqara
-  unique_id: temperature158d0001d6f4e5
-sensor.humidity_158d0001d6f4e5:
-  name:
-  platform: xiaomi_aqara
-  unique_id: humidity158d0001d6f4e5
-sensor.pressure_158d0001d6f4e5:
-  name:
-  platform: xiaomi_aqara
-  unique_id: pressure158d0001d6f4e5
-sensor.temperature_158d0001d6f4da:
-  name:
-  platform: xiaomi_aqara
-  unique_id: temperature158d0001d6f4da
-sensor.humidity_158d0001d6f4da:
-  name:
-  platform: xiaomi_aqara
-  unique_id: humidity158d0001d6f4da
-sensor.pressure_158d0001d6f4da:
-  name:
-  platform: xiaomi_aqara
-  unique_id: pressure158d0001d6f4da

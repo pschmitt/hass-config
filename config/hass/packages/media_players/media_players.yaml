@@ -13,7 +13,7 @@ group:
       - media_player.office_speaker
       - media_player.blindcast
       - media_player.brightcast
-      - media_player.nvidia_shield_tv
+      - media_player.cast_nvidia_shield_tv
       - media_player.sony_living_room_speaker
       - media_player.sony_office_speaker
       - media_player.emby__emby_for_chromecast__brightcast

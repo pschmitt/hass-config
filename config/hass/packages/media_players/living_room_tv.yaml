@@ -15,7 +15,7 @@ media_player:
     children:
       - media_player.emby__emby_for_chromecast__nvidia_shield_tv
       - media_player.kodi
-      - media_player.nvidia_shield_tv
+      - media_player.cast_nvidia_shield_tv
       - media_player.livebox_play
       - media_player.living_room_tv
     commands:
