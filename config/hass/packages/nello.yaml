@@ -6,28 +6,9 @@ lock:
 
 
 automation:
-  - alias: Nello events
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: nello_bell_ring
-        event_data:
-          short_id: e414cae5
-    action:
-      - service: notify.html5
-        data_template:
-          message: 'Nello event: {{ trigger.event.data.type }}'
-          # data:
-          #   tag: 'nello-ring'
-
   - alias: Notify when the door bell has been rung
     initial_state: true
     trigger:
-      - platform: event
-        event_type: nello_bell_ring
-        event_data:
-          short_id: e414cae5
-          type: 'bell.ring.denied'
       - platform: event
         event_type: nello_bell_ring
         event_data:
