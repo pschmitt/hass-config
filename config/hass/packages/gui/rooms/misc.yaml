@@ -1,0 +1,25 @@
+group:
+  appliances:
+    name: Appliances
+    view: no
+    icon: mdi:robot
+    control: hidden
+    entities:
+      - binary_sensor.washing_machine
+      - switch.wemo_insight__washing_machine
+      - vacuum.nimbus
+      - group.fridge
+      - group.3d_printer
+
+  misc:
+    name: Misc
+    view: yes
+    icon: mdi:square-inc
+    entities:
+      - light.bedroom
+      - light.toilet
+      - light.bathroom
+      - group.appliances
+      - group.3d_printer
+
+# vim: set filetype=yaml et sw=2 ts=2 :

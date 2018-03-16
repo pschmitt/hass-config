@@ -1,0 +1,39 @@
+group:
+  office:
+    name: Office
+    view: yes
+    icon: mdi:book-open
+    entities:
+      - light.office_light
+      - light.yeelight_office
+      - light.3d_printer_led
+      - camera.hassistant
+      - media_player.office_speaker
+      - media_player.office_tv
+      - group.office_windows
+      - group.office_misc
+
+  office_lights:
+    name: All Office Lights
+    view: no
+    icon: mdi:lightbulb
+    entities:
+      - light.office_light
+      - light.yeelight_office
+
+  office_windows:
+    name: Office Windows
+    view: no
+    entities:
+      - binary_sensor.door_window_sensor_office_window_large
+      - binary_sensor.door_window_sensor_office_window_small
+      - cover.office
+
+  office_misc:
+    name: Misc.
+    view: no
+    entities:
+      - switch.office_tv
+      - sensor.power_consumption_nasteanas
+
+# vim: set filetype=yaml et sw=2 ts=2 :
