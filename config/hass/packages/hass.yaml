@@ -1,9 +1,3 @@
-input_boolean:
-  dnd:
-    name: DND Mode
-    icon: mdi:volume-off
-
-
 automation:
   - alias: HASS startup automation
     initial_state: true

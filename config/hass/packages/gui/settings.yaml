@@ -1,3 +1,13 @@
+input_boolean:
+  dnd:
+    name: DND Mode
+    icon: mdi:volume-off
+
+  vacation:
+    name: Vacation Mode
+    icon: mdi:airplane-takeoff
+
+
 group:
   settings:
     name: Settings
@@ -5,6 +15,7 @@ group:
     icon: mdi:pencil
     entities:
       - input_boolean.dnd
+      - input_boolean.vacation
       - input_boolean.sleepover
       - input_datetime.bedtime
       - input_datetime.roomba_autostart_time

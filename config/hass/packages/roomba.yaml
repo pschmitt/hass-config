@@ -66,9 +66,14 @@ automation:
       platform: template
       value_template: '{{ states.sensor.time.state == (states.input_datetime.roomba_autostart_time.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
     condition:
-      - condition: state
-        entity_id: group.main_mobile_devices
-        state: not_home
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: group.main_mobile_devices
+            state: not_home
+          - condition: state
+            entity_id: input_boolean.vacation
+            state: 'off'
     action:
       - service: vacuum.turn_on
         data:
