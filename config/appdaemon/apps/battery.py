@@ -22,14 +22,53 @@ class Battery(hass.Hass):
             return 'unknown'
         if isinstance(battery_level, bool):
             return battery_level
+        if battery_level.lower() == 'true':
+            return True
+        if battery_level.lower() == 'false':
+            return False
         try:
             return int(battery_level)
         except ValueError:
             return int(float(battery_level))
 
+    def clear_low_battery_device(self, entity):
+        low_battery_group = self.get_state('group.low_battery_devices',
+                                           attribute='all')
+        members = low_battery_group.get('attributes', {}).get('entity_id')
+        if entity not in members:
+            return
+        members.remove(entity)
+        self.set_state(
+            'group.low_battery_devices',
+            state='on',
+            attributes={
+                'view': False,
+                'hidden': False,
+                'icon': 'mdi:battery',
+                'assumed_state': False,
+                'friendly_name': 'Low battery devices',
+                'entity_id': members
+            })
+
+    def add_low_battery_device(self, device):
+        low_battery_group = self.get_state('group.low_battery_devices',
+                                           attribute='all')
+        members = low_battery_group.get('attributes', {}).get('entity_id')
+        self.set_state(
+            'group.low_battery_devices',
+            state='on',
+            attributes={
+                'view': False,
+                'hidden': False,
+                'icon': 'mdi:battery-alert',
+                'assumed_state': False,
+                'friendly_name': 'Low battery devices',
+                'entity_id': members + [device]
+            })
+
     def update_battery_device(self, entity, attribute, old, new, kwargs):
         if new == old:
-            self.log('Battery level unchanged for {}: {}%'.format(entity, old))
+            self.log('Battery level unchanged for {}: {}'.format(entity, old))
             return
         self.log('Battery level updated: {} -> {}%'.format(old, new))
         threshold = self.args.get('threshold')
@@ -41,51 +80,33 @@ class Battery(hass.Hass):
         else:
             self.create_battery_device(entity, battery_level)
         # Update groups
-        low_battery_group = self.get_state('group.low_battery_devices',
-                                           attribute='all')
-        members = low_battery_group.get('attributes', {}).get('entity_id')
-        if battery_level is not None:
-            if battery_level < threshold:
-                self.set_state(
-                    'group.low_battery_devices',
-                    state='on',
-                    attributes={
-                        'view': False,
-                        'hidden': False,
-                        'icon': 'mdi:battery-alert',
-                        'assumed_state': False,
-                        'friendly_name': 'Low battery devices',
-                        'entity_id': members + [bat_entity]
-                    })
-                if battery_level_old >= threshold:
-                    self.log("Battery of {} is getting low.".format(entity))
-                    event = self.fire_event(
-                        'battery_low',
-                        battery_level=battery_level,
-                        entity_id=entity)
-                    self.log('Fired event: {}'.format(event))
-            elif battery_level >= threshold and bat_entity in members:
-                members.remove(bat_entity)
-                self.set_state(
-                    'group.low_battery_devices',
-                    state='on',
-                    attributes={
-                        'view': False,
-                        'hidden': False,
-                        'icon': 'mdi:battery',
-                        'assumed_state': False,
-                        'friendly_name': 'Low battery devices',
-                        'entity_id': members
-                    })
-                if battery_level_old < threshold:
-                    self.log('Battery of {} is okay again (above '
-                             'threshold).'.format(entity))
-                    event = self.fire_event(
-                        'battery_okay',
-                        battery_level=battery_level,
-                        entity_id=entity,
-                        unit_of_measurement='%')
-                    self.log('Fired event: {}'.format(event))
+        if battery_level is None:
+            return
+        if isinstance(battery_level, bool):
+            if battery_level:
+                self.add_low_battery_device(bat_entity)
+            else:
+                self.clear_low_battery_device(bat_entity)
+        elif battery_level < threshold:
+            self.add_low_battery_device(bat_entity)
+            if battery_level_old >= threshold:
+                self.log("Battery of {} is getting low.".format(entity))
+                event = self.fire_event(
+                    'battery_low',
+                    battery_level=battery_level,
+                    entity_id=entity)
+                self.log('Fired event: {}'.format(event))
+        elif battery_level >= threshold:
+            self.clear_low_battery_device(bat_entity)
+            if battery_level_old < threshold:
+                self.log('Battery of {} is okay again (above '
+                         'threshold).'.format(entity))
+                event = self.fire_event(
+                    'battery_okay',
+                    battery_level=battery_level,
+                    entity_id=entity,
+                    unit_of_measurement='%')
+                self.log('Fired event: {}'.format(event))
 
     def create_battery_groups(self, battery_devices):
         # Create groups
@@ -196,7 +217,7 @@ class Battery(hass.Hass):
                 state=battery_critical,
                 attributes={
                     'friendly_name': '{} battery'.format(entity),
-                    'icon': 'mdi:battery-outline' if battery_critical else
+                    'icon': 'mdi:battery-alert' if battery_critical else
                             'mdi:battery',
                     'monitored_entity': entity,
                     'monitored_attribute': 'battery_critical',
