@@ -19,19 +19,15 @@ class BatteryWatcher(hass.Hass):
     def battery_level_value(self, battery_level):
         if battery_level is None:
             return 'unknown'
-
-        # FIXME Is this unreachable?
-        if isinstance(battery_level, bool):
-            return battery_level
-
-        if battery_level.lower() == 'true':
-            return True
-        if battery_level.lower() == 'false':
-            return False
-        try:
-            return int(battery_level)
-        except ValueError:
-            return int(float(battery_level))
+        if isinstance(battery_level, str):
+            try:
+                return int(battery_level)
+            except ValueError:
+                return int(float(battery_level))
+            if battery_level.lower() == 'true':
+                return True
+            if battery_level.lower() == 'false':
+                return False
 
     def set_low_battery_devices(self, members):
         return self.set_state(
@@ -65,17 +61,21 @@ class BatteryWatcher(hass.Hass):
                 'icon': 'mdi:battery',
                 'assumed_state': False,
                 'friendly_name': 'All battery devices',
-                'entity_id': [x.get('entity_id') for x in devices]
+                'entity_id': devices
             })
 
     def register_low_battery_devices(self, devices):
         low_battery_group = self.get_state('group.low_battery_devices',
                                            attribute='all')
-        members = low_battery_group.get('attributes', {}).get('entity_id', [])
-        if isinstance(devices, list):
-            new_members = members + devices
+        if low_battery_group:
+            attrs = low_battery_group.get('attributes', {})
+            members = attrs.get('entity_id', [])
+            if isinstance(devices, list):
+                new_members = members + devices
+            else:
+                new_members = members + [devices]
         else:
-            new_members = members + [devices]
+            new_members = devices
         return self.set_low_battery_devices(new_members)
 
     def update_battery_device(self, entity, attribute, old, new, kwargs):
@@ -102,7 +102,7 @@ class BatteryWatcher(hass.Hass):
         elif battery_level < threshold:
             self.register_low_battery_devices(bat_entity)
             if battery_level_old >= threshold:
-                self.log("Battery of {} is getting low.".format(entity))
+                self.log('Battery of {} is getting low.'.format(entity))
                 event = self.fire_event(
                     'battery_low',
                     battery_level=battery_level,
