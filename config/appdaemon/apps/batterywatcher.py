@@ -19,8 +19,11 @@ class BatteryWatcher(hass.Hass):
     def battery_level_value(self, battery_level):
         if battery_level is None:
             return 'unknown'
+
+        # FIXME Is this unreachable?
         if isinstance(battery_level, bool):
             return battery_level
+
         if battery_level.lower() == 'true':
             return True
         if battery_level.lower() == 'false':
@@ -52,14 +55,27 @@ class BatteryWatcher(hass.Hass):
         members.remove(entity)
         return self.set_low_battery_devices(members)
 
-    def register_low_battery_devices(self, device):
+    def register_battery_devices(self, devices):
+        return self.set_state(
+            'group.all_battery_devices',
+            state='on',
+            attributes={
+                'view': False,
+                'hidden': False,
+                'icon': 'mdi:battery',
+                'assumed_state': False,
+                'friendly_name': 'All battery devices',
+                'entity_id': [x.get('entity_id') for x in devices]
+            })
+
+    def register_low_battery_devices(self, devices):
         low_battery_group = self.get_state('group.low_battery_devices',
                                            attribute='all')
         members = low_battery_group.get('attributes', {}).get('entity_id', [])
-        if isinstance(device, list):
-            new_members = members + device
+        if isinstance(devices, list):
+            new_members = members + devices
         else:
-            new_members = members + [device]
+            new_members = members + [devices]
         return self.set_low_battery_devices(new_members)
 
     def update_battery_device(self, entity, attribute, old, new, kwargs):
@@ -107,17 +123,8 @@ class BatteryWatcher(hass.Hass):
     def create_battery_groups(self, battery_devices):
         # Create groups
         try:
-            group_all = self.set_state(
-                'group.all_battery_devices',
-                state='on',
-                attributes={
-                    'view': False,
-                    'hidden': False,
-                    'icon': 'mdi:battery',
-                    'assumed_state': False,
-                    'friendly_name': 'All battery devices',
-                    'entity_id': [x.get('entity_id') for x in battery_devices]
-                })
+            group_all = self.register_battery_devices(
+                [x.get('entity_id') for x in battery_devices])
             low_battery_devices = []
             for dev in battery_devices:
                 attrs = dev.get('attributes', {})
