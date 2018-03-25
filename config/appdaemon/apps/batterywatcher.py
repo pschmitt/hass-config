@@ -1,7 +1,7 @@
 import appdaemon.plugins.hass.hassapi as hass
 
 
-class Battery(hass.Hass):
+class BatteryWatcher(hass.Hass):
 
     def initialize(self):
         devices = self.create_battery_devices()

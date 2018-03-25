@@ -1,6 +1,6 @@
 battery_check:
-  module: battery
-  class: Battery
+  module: batterywatcher
+  class: BatteryWatcher
   threshold: 20
   # ignored_entities:
   #   - sensor.humidity_freezer
