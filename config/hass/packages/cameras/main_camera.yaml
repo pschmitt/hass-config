@@ -63,18 +63,6 @@ script:
 
 
 group:
-  cameras:
-    name: Cameras
-    view: yes
-    icon: mdi:camera
-    entities:
-      - switch.modect
-      - group.cameras_living_room
-      - group.cameras_misc
-      - group.cameras_office
-      - group.cameras_terrace
-      - group.cameras_front_door
-
   cameras_front_door:
     name: Front door cameras
     view: no

@@ -1,0 +1,15 @@
+group:
+  cameras:
+    name: Cameras
+    view: yes
+    icon: mdi:camera
+    entities:
+      - switch.modect
+      - group.cameras_living_room
+      - group.cameras_misc
+      - group.cameras_office
+      - group.cameras_terrace
+      - group.cameras_front_door
+      - camera.g4p
+
+# vim: set filetype=yaml et sw=2 ts=2 :

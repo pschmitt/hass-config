@@ -1,0 +1,6 @@
+camera:
+  - platform: mqtt
+    name: g4p
+    topic: zanzito/shared_pictures/g4play
+
+# vim: set filetype=yaml et sw=2 ts=2 :
