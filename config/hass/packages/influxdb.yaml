@@ -1,0 +1,7 @@
+influxdb:
+  host: !secret influxdb_host
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  database: !secret influxdb_db
+  tags:
+    source: homeassistant
