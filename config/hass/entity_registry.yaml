@@ -230,7 +230,7 @@ sensor.illumination_34ce008d7aba:
   name:
   platform: xiaomi_aqara
   unique_id: illumination34ce008d7aba
-sensor.illumination_158d000224f5b8:
+sensor.motion_sensor_illumination_front_door:
   name:
   platform: xiaomi_aqara
   unique_id: lux158d000224f5b8

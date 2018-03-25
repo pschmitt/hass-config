@@ -293,6 +293,9 @@ homeassistant:
     binary_sensor.motion_sensor_front_door:
       friendly_name: "Front door motion sensor"
       # device_class: motion
+    sensor.motion_sensor_illumination_front_door:
+      friendly_name: "Front door illumination sensor"
+      battery_ignore: true
     binary_sensor.wall_switch_bedroom_left:
       friendly_name: "Bedroom wall switch (L)"
       battery_ignore: true
