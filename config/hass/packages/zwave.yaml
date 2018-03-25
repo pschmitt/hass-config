@@ -92,7 +92,7 @@ automation:
 
 homeassistant:
   customize:
-    # Fibaro FGSD002
+    # Fibaro FGSD-002
     binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor:
       friendly_name: Main Smoke Sensor
     sensor.fibaro_system_fgsd002_smoke_sensor_alarm_level:
