@@ -413,6 +413,14 @@ homeassistant:
       icon: mdi:white-balance-sunny
     sensor.home_temperature:
       icon: mdi:temperature-celsius
+    sensor.hue_bathroom_battery:
+      battery_device: true
+    sensor.hue_hallway_battery:
+      battery_device: true
+    sensor.hue_kitchen_battery:
+      battery_device: true
+    sensor.hue_toilet_battery:
+      battery_device: true
     # Scenes
     scene.bedtime:
       icon: mdi:weather-night

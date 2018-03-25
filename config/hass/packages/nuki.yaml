@@ -4,19 +4,13 @@ lock:
     token: !secret nuki_token
 
 
-binary_sensor:
-  - platform: template
-    sensors:
-      nuki_battery_critical:
-        friendly_name: Nuki Lock Critical Battery Level
-        device_class: power
-        value_template: '{{ states.lock.front_door.attributes.battery_critical }}'
-
-
 script:
   lock_door:
     alias: Lock door
     sequence:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_front_door
+        state: 'off'
       - service: lock.lock
         data:
           entity_id: lock.front_door
@@ -44,7 +38,7 @@ automation:
       entity_id: lock.front_door
       to: 'unlocked'
       for:
-        minutes: 15
+        minutes: 10
     action:
       - service: script.lock_door
 
@@ -69,17 +63,6 @@ alert:
     skip_first: True
     notifiers:
       - door_is_open
-
-  nuki_battery_critical:
-    name: "The Nuki lock is running out of batteries"
-    done_message: "Nuki lock battery level: OK!"
-    entity_id: binary_sensor.nuki_battery_critical
-    state: 'on'
-    repeat: 7200
-    can_acknowledge: True
-    skip_first: False
-    notifiers:
-      - html5
 
 
 notify:

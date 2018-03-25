@@ -11,4 +11,11 @@ sensor:
     unit_of_measurement: '%'
     scan_interval: 300
 
+
+homeassistant:
+  customize:
+    # Lights
+    sensor.ups_pico_battery_level:
+      battery_device: true
+
 # vim: set filetype=yaml et sw=2 ts=2 :

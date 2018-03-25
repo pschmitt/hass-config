@@ -170,7 +170,7 @@ binary_sensor.door_window_sensor_bedroom_terrace_door:
   name:
   platform: xiaomi_aqara
   unique_id: status158d00016572aa
-binary_sensor.wall_switch_both_158d00016404f4:
+binary_sensor.wall_switch_bedroom_both:
   name:
   platform: xiaomi_aqara
   unique_id: dual_channel158d00016404f4
@@ -182,7 +182,7 @@ binary_sensor.water_leak_sensor_bathroom:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001d7668e
-binary_sensor.wall_switch_both_158d0001e0f920:
+binary_sensor.wall_switch_office_both:
   name:
   platform: xiaomi_aqara
   unique_id: dual_channel158d0001e0f920
@@ -194,15 +194,15 @@ binary_sensor.water_leak_sensor_kitchen:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001df1cc3
-binary_sensor.wall_switch_left_158d0001e0f920:
+binary_sensor.wall_switch_office_left:
   name:
   platform: xiaomi_aqara
   unique_id: channel_0158d0001e0f920
-binary_sensor.wall_switch_right_158d00016404f4:
+binary_sensor.wall_switch_bedroom_right:
   name:
   platform: xiaomi_aqara
   unique_id: channel_1158d00016404f4
-binary_sensor.wall_switch_left_158d00016404f4:
+binary_sensor.wall_switch_bedroom_left:
   name:
   platform: xiaomi_aqara
   unique_id: channel_0158d00016404f4
@@ -218,7 +218,7 @@ binary_sensor.door_window_sensor_fridge_door:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001a1eb5b
-binary_sensor.wall_switch_right_158d0001e0f920:
+binary_sensor.wall_switch_office_right:
   name:
   platform: xiaomi_aqara
   unique_id: channel_1158d0001e0f920
@@ -318,3 +318,23 @@ media_player.living_room_speaker:
   name:
   platform: songpal
   unique_id: 10-4f-a8-81-4b-1d
+media_player.emby__emby_for_chromecast__nvidia_shield_tv_2:
+  name:
+  platform: emby
+  unique_id: TnZpZGlhIFNoaWVsZCBUVg==.Emby for Chromecast
+media_player.emby__androidtv__nvidia_shield_android_tv:
+  name:
+  platform: emby
+  unique_id: ec6d495b495d9c9a.AndroidTv
+media_player.emby__dlna__shield_android_tves1070241_9:
+  name:
+  platform: emby
+  unique_id: uuid:5302a122-422a-0e76-0000-000038b27980.DLNA
+media_player.emby__emby_for_chromecast__living_room_tv:
+  name:
+  platform: emby
+  unique_id: TGl2aW5nIFJvb20gVFY=.Emby for Chromecast
+media_player.emby__dlna__shield_android_tves1070241_10:
+  name:
+  platform: emby
+  unique_id: uuid:be1589c8-bccc-4ee5-0000-000038b27980.DLNA

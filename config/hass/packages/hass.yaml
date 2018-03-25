@@ -109,7 +109,6 @@ group:
       # - group.all_automations
       # - group.media_players
       - group.zwave
-      - group.battery_devices
       - group.windows
 
 

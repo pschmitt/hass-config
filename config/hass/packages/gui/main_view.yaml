@@ -20,11 +20,14 @@ group:
       # - device_tracker.op3t_ping
       # - device_tracker.g4p_arp
       # - device_tracker.g4p_zanzito
+      - device_tracker.google_maps_111748235994603810778
       - group.main_mobile_devices
       - sensor.g4p_find
       # - group.pschmitt_location
       - sensor.ip_location_short
       - sensor.exchange_rate_1_btc
+      - sensor.weather_indoor
+      - sensor.smappee_home_active_power
 
   shortcuts:
     name: Shortcuts
@@ -62,5 +65,7 @@ homeassistant:
       order: 6
     group.cctv:
       order: 7
+    group.batteries:
+      order: 98
 
 # vim: set filetype=yaml et sw=2 ts=2 :

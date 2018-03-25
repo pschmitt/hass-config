@@ -12,79 +12,6 @@ light:
         name: YeeLight Office
 
 
-sensor:
-  - platform: template
-    sensors:
-      aqara_front_door_battery:
-        friendly_name: "Aqara Front Door Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_front_door.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_fridge_door_battery:
-        friendly_name: "Aqara Fridge Door Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_fridge_door.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_terrace_door_battery:
-        friendly_name: "Aqara Terrace Door Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_terrace_door.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_terrace_door_bedroom_battery:
-        friendly_name: "Aqara Terrace Door (Bedroom) Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_bedroom_terrace_door.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_bedroom_window_battery:
-        friendly_name: "Aqara Bedroom Window Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_bedroom_window.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_living_room_window_battery:
-        friendly_name: "Aqara Living Room Window Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_living_room_window.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_office_window_small_battery:
-        friendly_name: "Aqara Office Window (Small) Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_office_window_small.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_office_window_large_battery:
-        friendly_name: "Aqara Office Window (Large) Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_office_window_large.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_kitchen_window_battery:
-        friendly_name: "Aqara Kitchen Window Sensor Battery"
-        value_template: '{{ states.binary_sensor.door_window_sensor_kitchen_window.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_fridge_temp_battery:
-        friendly_name: "Aqara Fridge Temperature Sensor Battery"
-        value_template: '{{ states.sensor.temperature_fridge.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_freezer_temp_battery:
-        friendly_name: "Aqara Freezer Temperature Sensor Battery"
-        value_template: '{{ states.sensor.temperature_freezer.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_water_leak_bathroom_battery:
-        friendly_name: "Aqara Bathroom Water Leak Sensor Battery"
-        value_template: '{{ states.binary_sensor.water_leak_sensor_bathroom.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_water_leak_kitchen_battery:
-        friendly_name: "Aqara Kitchen Water Leak Sensor Battery"
-        value_template: '{{ states.binary_sensor.water_leak_sensor_kitchen.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_front_door_motion_sensor_battery:
-        friendly_name: "Aqara Front Door Motion Sensor Battery"
-        value_template: '{{ states.binary_sensor.motion_sensor_front_door.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_button_battery:
-        friendly_name: "Aqara button battery"
-        value_template: '{{ states.binary_sensor.switch_158d0002132e08.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_wall_switch_office_battery:
-        friendly_name: "Aqara wall switch office battery"
-        value_template: '{{ states.binary_sensor.wall_switch_both_158d0001e0f920.attributes.battery_level }}'
-        unit_of_measurement: '%'
-      aqara_wall_switch_bedroom_battery:
-        friendly_name: "Aqara wall switch bedroom battery"
-        value_template: '{{ states.binary_sensor.wall_switch_both_158d00016404f4.attributes.battery_level }}'
-        unit_of_measurement: '%'
-
-
 group:
   fridge:
     name: Fridge
@@ -127,7 +54,7 @@ group:
     view: no
     icon: mdi:button
     entities:
-      - binary_sensor.wall_switch_both_158d0001e0f920
+      - binary_sensor.wall_switch_office_both
       - binary_sensor.switch_158d0002132e08
 
 
@@ -210,7 +137,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_left_158d0001e0f920
+        entity_id: binary_sensor.wall_switch_office_left
         click_type: single
     action:
       - service: light.toggle
@@ -222,7 +149,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_right_158d0001e0f920
+        entity_id: binary_sensor.wall_switch_office_right
         click_type: single
     action:
       - service: light.toggle
@@ -234,7 +161,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_both_158d0001e0f920
+        entity_id: binary_sensor.wall_switch_office_both
         click_type: both
     action:
       - service: light.turn_off
@@ -248,7 +175,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_left_158d00016404f4
+        entity_id: binary_sensor.wall_switch_bedroom_left
         click_type: single
     action:
       - service: notify.zanzito_tts
@@ -262,7 +189,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_right_158d00016404f4
+        entity_id: binary_sensor.wall_switch_bedroom_right
         click_type: single
     action:
       - service: notify.zanzito_tts
@@ -277,7 +204,7 @@ automation:
       platform: event
       event_type: click
       event_data:
-        entity_id: binary_sensor.wall_switch_both_158d00016404f4
+        entity_id: binary_sensor.wall_switch_bedroom_both
         click_type: both
     action:
       - service: notify.zanzito_tts
@@ -318,11 +245,12 @@ automation:
       entity_id: binary_sensor.motion_sensor_front_door
       to: 'on'
     action:
-      service: light.turn_on
-      entity_id: light.front_door
-      data:
-        brightness: 150
-        color_name: white
+      - service: light.turn_on
+        entity_id: light.front_door
+        data:
+          brightness: 150
+          color_name: white
+      - service: script.turn_on_doorpi_screen
 
 
 homeassistant:
@@ -365,32 +293,40 @@ homeassistant:
     binary_sensor.motion_sensor_front_door:
       friendly_name: "Front door motion sensor"
       # device_class: motion
-    binary_sensor.wall_switch_left_158d00016404f4:
-      friendly_name: "Bedroom wall switch left"
-    binary_sensor.wall_switch_right_158d00016404f4:
-      friendly_name: "Bedroom wall switch right"
-    binary_sensor.wall_switch_both_158d00016404f4:
-      friendly_name: "Bedroom wall switch both"
-    binary_sensor.wall_switch_left_158d0001e0f920:
-      friendly_name: "Office wall switch left"
-    binary_sensor.wall_switch_right_158d0001e0f920:
-      friendly_name: "Office wall switch right"
-    binary_sensor.wall_switch_both_158d0001e0f920:
-      friendly_name: "Office wall switch both"
+    binary_sensor.wall_switch_bedroom_left:
+      friendly_name: "Bedroom wall switch (L)"
+      battery_ignore: true
+    binary_sensor.wall_switch_bedroom_right:
+      friendly_name: "Bedroom wall switch (R)"
+      battery_ignore: true
+    binary_sensor.wall_switch_bedroom_both:
+      friendly_name: "Bedroom wall switch (L+R)"
+    binary_sensor.wall_switch_office_left:
+      friendly_name: "Office wall switch (L)"
+      battery_ignore: true
+    binary_sensor.wall_switch_office_right:
+      friendly_name: "Office wall switch (R)"
+      battery_ignore: true
+    binary_sensor.wall_switch_office_both:
+      friendly_name: "Office wall switch (L+R)"
     sensor.humidity_fridge:
       friendly_name: Fridge Humidity
       icon: water-percent
+      battery_ignore: true
     sensor.pressure_fridge:
       friendly_name: Fridge Pressure
       icon: mdi:arrow-collapse-all
+      battery_ignore: true
     sensor.temperature_fridge:
       friendly_name: Fridge Temperature
     sensor.humidity_freezer:
       friendly_name: Freezer Humidity
       icon: mdi:water-percent
+      battery_ignore: true
     sensor.pressure_freezer:
       friendly_name: Freezer Pressure
       icon: mdi:arrow-collapse-all
+      battery_ignore: true
     sensor.temperature_freezer:
       friendly_name: Freezer Temperature
 

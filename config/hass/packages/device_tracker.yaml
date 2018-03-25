@@ -1,4 +1,8 @@
 device_tracker:
+  - platform: google_maps
+    username: !secret google_maps_username
+    password: !secret google_maps_password
+
   - platform: luci
     host: 10.7.0.1
     username: !secret owrt_username
@@ -98,13 +102,6 @@ sensor:
     method: GET
     name: g4p_find
     scan_interval: 3
-
-  - platform: template
-    sensors:
-      g4p_battery:
-        friendly_name: Moto G4 Play Battery
-        value_template: ' {{ states.device_tracker.g4p_zanzito.attributes.battery }}'
-        unit_of_measurement: '%'
 
 
 automation:

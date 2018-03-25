@@ -1,0 +1,11 @@
+group:
+  batteries:
+    name: Batteries
+    view: yes
+    icon: mdi:battery
+    entities:
+      - group.all_battery_devices
+      - group.low_battery_devices
+
+
+# vim: set filetype=yaml et sw=2 ts=2 :

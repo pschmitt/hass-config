@@ -1,4 +1,12 @@
-hello_world:
-  module: hello
-  class: HelloWorld
+battery_check:
+  module: battery
+  class: Battery
+  threshold: 20
+  # ignored_entities:
+  #   - sensor.humidity_freezer
+  #   - sensor.humidity_fridge
+  #   - sensor.pressure_fridge
+  #   - sensor.pressure_freezer
 
+
+# vim: set ft=yaml et ts=2 sw=2 :

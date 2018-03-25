@@ -19,3 +19,4 @@ packages/test.yaml
 webostv.conf
 downloads/*
 __pycache__/
+.google_maps_location_sharing.cookies
