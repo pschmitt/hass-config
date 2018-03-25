@@ -14,8 +14,7 @@ class Battery(hass.Hass):
                 self.listen_state(self.update_battery_device, entity)
             else:
                 self.listen_state(
-                    self.update_battery_device,
-                    entity, attribute=attr)
+                    self.update_battery_device, entity, attribute=attr)
 
     def battery_level_value(self, battery_level):
         if battery_level is None:
@@ -31,14 +30,8 @@ class Battery(hass.Hass):
         except ValueError:
             return int(float(battery_level))
 
-    def clear_low_battery_device(self, entity):
-        low_battery_group = self.get_state('group.low_battery_devices',
-                                           attribute='all')
-        members = low_battery_group.get('attributes', {}).get('entity_id')
-        if entity not in members:
-            return
-        members.remove(entity)
-        self.set_state(
+    def set_low_battery_devices(self, members):
+        return self.set_state(
             'group.low_battery_devices',
             state='on',
             attributes={
@@ -50,21 +43,24 @@ class Battery(hass.Hass):
                 'entity_id': members
             })
 
-    def add_low_battery_device(self, device):
+    def clear_low_battery_device(self, entity):
         low_battery_group = self.get_state('group.low_battery_devices',
                                            attribute='all')
         members = low_battery_group.get('attributes', {}).get('entity_id')
-        self.set_state(
-            'group.low_battery_devices',
-            state='on',
-            attributes={
-                'view': False,
-                'hidden': False,
-                'icon': 'mdi:battery-alert',
-                'assumed_state': False,
-                'friendly_name': 'Low battery devices',
-                'entity_id': members + [device]
-            })
+        if entity not in members:
+            return
+        members.remove(entity)
+        return self.set_low_battery_devices(members)
+
+    def register_low_battery_devices(self, device):
+        low_battery_group = self.get_state('group.low_battery_devices',
+                                           attribute='all')
+        members = low_battery_group.get('attributes', {}).get('entity_id', [])
+        if isinstance(device, list):
+            new_members = members + device
+        else:
+            new_members = members + [device]
+        return self.set_low_battery_devices(new_members)
 
     def update_battery_device(self, entity, attribute, old, new, kwargs):
         if new == old:
@@ -84,11 +80,11 @@ class Battery(hass.Hass):
             return
         if isinstance(battery_level, bool):
             if battery_level:
-                self.add_low_battery_device(bat_entity)
+                self.register_low_battery_devices(bat_entity)
             else:
                 self.clear_low_battery_device(bat_entity)
         elif battery_level < threshold:
-            self.add_low_battery_device(bat_entity)
+            self.register_low_battery_devices(bat_entity)
             if battery_level_old >= threshold:
                 self.log("Battery of {} is getting low.".format(entity))
                 event = self.fire_event(
@@ -128,19 +124,8 @@ class Battery(hass.Hass):
                 critical = attrs.get('battery_level_low')
                 if critical is True:
                     low_battery_devices.append(dev)
-
-            group_low = self.set_state(
-                'group.low_battery_devices',
-                state='on',
-                attributes={
-                    'view': False,
-                    'hidden': False,
-                    'icon': 'mdi:battery-alert',
-                    'assumed_state': False,
-                    'friendly_name': 'Low battery devices',
-                    'entity_id': [x.get('entity_id') for x in
-                                  low_battery_devices]
-                })
+            group_low = self.register_low_battery_devices(
+                [x.get('entity_id') for x in low_battery_devices])
             return [group_all, group_low]
         except Exception as exc:
             self.log('Failed to set group state: {}'.format(exc))
