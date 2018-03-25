@@ -1,0 +1,15 @@
+smappee:
+  host: !secret smappee_host
+  host_password: !secret smappee_local_password
+  client_id: !secret smappee_client_id
+  client_secret: !secret smappee_secret
+  username: !secret smappee_username
+  password: !secret smappee_password
+
+
+homeassistant:
+  customize:
+    sensor.smappee_home_active_power:
+      friendly_name: Home Power Consumption
+
+# vim: set filetype=yaml et sw=2 ts=2 :
