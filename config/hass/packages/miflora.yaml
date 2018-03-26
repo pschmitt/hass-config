@@ -366,5 +366,17 @@ homeassistant:
       hidden: false
     script.refresh_plant_data:
       icon: mdi:flower
+    plant.aloe_vera:
+      battery_friendly_name: "Miflora - Aloe Vera"
+    plant.mint:
+      battery_friendly_name: "Miflora - Mint"
+    plant.basil:
+      battery_friendly_name: "Miflora - Basil"
+    plant.chive:
+      battery_friendly_name: "Miflora - Chive"
+    plant.ficus_microcarpa:
+      battery_friendly_name: "Miflora - Ficus"
+    plant.lemon_tree:
+      battery_friendly_name: "Miflora - Lemon Tree"
 
 # vim: set filetype=yaml et sw=2 ts=2 :

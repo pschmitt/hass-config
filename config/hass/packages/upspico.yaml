@@ -14,8 +14,8 @@ sensor:
 
 homeassistant:
   customize:
-    # Lights
     sensor.ups_pico_battery_level:
       battery_device: true
+      friendly_battery_device: UPS Pico
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -118,4 +118,10 @@ automation:
         data_template:
           message: "A new device has been detected: {{ trigger.event }}"
 
+
+homeassistant:
+  customize:
+    device_tracker.g4p_zanzito:
+      battery_friendly_name: Moto G4 Play
+
 # vim: set filetype=yaml et sw=2 ts=2 :

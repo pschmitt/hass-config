@@ -176,9 +176,13 @@ class BatteryWatcher(hass.Hass):
     def create_battery_device(self, entity, battery_level):
         bat_entity = self.battery_entity_name(entity)
         attrs = self.get_state(entity, attribute='all').get('attributes', {})
-        entity_friendly_name = attrs.get('friendly_name')
-        friendly_name = entity_friendly_name if entity_friendly_name else \
-            '{} battery'.format(entity)
+        custom_friendly_name = attrs.get('battery_friendly_name')
+        if custom_friendly_name:
+            friendly_name = custom_friendly_name
+        else:
+            entity_friendly_name = attrs.get('friendly_name')
+            friendly_name = entity_friendly_name if entity_friendly_name else \
+                '{} battery'.format(entity)
         bat_prop = 'state'
         if 'battery_level' in attrs:
             bat_prop = 'battery_level'

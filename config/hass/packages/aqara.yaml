@@ -306,6 +306,7 @@ homeassistant:
       battery_ignore: true
     binary_sensor.wall_switch_bedroom_both:
       friendly_name: "Bedroom wall switch (L+R)"
+      battery_friendly_name: "Bedroom wall switch"
     binary_sensor.wall_switch_office_left:
       friendly_name: "Office wall switch (L)"
       battery_ignore: true
@@ -314,6 +315,7 @@ homeassistant:
       battery_ignore: true
     binary_sensor.wall_switch_office_both:
       friendly_name: "Office wall switch (L+R)"
+      battery_friendly_name: "Office wall switch"
     sensor.humidity_fridge:
       friendly_name: Fridge Humidity
       icon: water-percent
