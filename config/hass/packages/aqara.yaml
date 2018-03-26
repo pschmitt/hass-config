@@ -12,6 +12,14 @@ light:
         name: YeeLight Office
 
 
+script:
+  aqara_add_device:
+    sequence:
+      service: xiaomi_aqara.add_device
+      data:
+        gw_mac: !secret mi_gw_mac
+
+
 group:
   fridge:
     name: Fridge
@@ -120,9 +128,10 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: >-
-          binary_sensor.water_leak_sensor_bathroom,
-          binary_sensor.water_leak_sensor_kitchen
+        entity_id:
+          - binary_sensor.water_leak_sensor_bathroom_sink
+          - binary_sensor.water_leak_sensor_bathtub
+          - binary_sensor.water_leak_sensor_kitchen_sink
         to: 'on'
     action:
       - service: notify.html5
@@ -238,7 +247,7 @@ automation:
       #   data:
       #     message: 'Mi button DOUBLE pressed'
 
-  - alias: Turn on front door light when motion is detected on the front door
+  - alias: Turn on front door light when motion is detected
     initial_state: True
     trigger:
       platform: state
@@ -251,6 +260,25 @@ automation:
           brightness: 150
           color_name: white
       - service: script.turn_on_doorpi_screen
+
+  - alias: Turn on terrace light when motion is detected
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_terrace
+      to: 'on'
+    action:
+      - service: script.smoke_break
+
+  - alias: Turn on office light when motion is detected
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: binary_sensor.motion_sensor_terrace
+      to: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.office
 
 
 homeassistant:
@@ -285,16 +313,35 @@ homeassistant:
     binary_sensor.door_window_sensor_front_door:
       friendly_name: "Front Door"
       device_class: door
-    binary_sensor.water_leak_sensor_bathroom:
+    binary_sensor.water_leak_sensor_bathroom_sink:
       friendly_name: "Bathroom Sink"
-    binary_sensor.water_leak_sensor_kitchen:
+    binary_sensor.water_leak_sensor_kitchen_sink:
       friendly_name: "Kitchen Sink"
+    binary_sensor.water_leak_sensor_bathtub:
+      friendly_name: "Bathtub"
     binary_sensor.door_window_sensor_living_room_window:
       friendly_name: "Living Room Window"
       device_class: window
     binary_sensor.motion_sensor_front_door:
       friendly_name: "Front door motion sensor"
+    binary_sensor.motion_sensor_terrace:
+      friendly_name: "Terrace motion sensor"
       # device_class: motion
+    sensor.motion_sensor_illumination_terrace:
+      friendly_name: "Terrace illumination sensor"
+      battery_ignore: true
+    binary_sensor.motion_sensor_office:
+      friendly_name: "Office motion sensor"
+      # device_class: motion
+    sensor.motion_sensor_illumination_office:
+      friendly_name: "Office illumination sensor"
+      battery_ignore: true
+    binary_sensor.motion_sensor_living_room:
+      friendly_name: "Living Room motion sensor"
+      # device_class: motion
+    sensor.motion_sensor_illumination_living_room:
+      friendly_name: "Living Room illumination sensor"
+      battery_ignore: true
     sensor.motion_sensor_illumination_front_door:
       friendly_name: "Front door illumination sensor"
       battery_ignore: true
@@ -336,5 +383,35 @@ homeassistant:
       battery_ignore: true
     sensor.temperature_freezer:
       friendly_name: Freezer Temperature
+    sensor.humidity_terrace:
+      friendly_name: Terrace Humidity
+      icon: mdi:water-percent
+      battery_ignore: true
+    sensor.pressure_terrace:
+      friendly_name: Terrace Pressure
+      icon: mdi:arrow-collapse-all
+      battery_ignore: true
+    sensor.temperature_terrace:
+      friendly_name: Terrace Temperature
+    sensor.humidity_bedroom:
+      friendly_name: Bedroom Humidity
+      icon: mdi:water-percent
+      battery_ignore: true
+    sensor.pressure_bedroom:
+      friendly_name: Bedroom Pressure
+      icon: mdi:arrow-collapse-all
+      battery_ignore: true
+    sensor.temperature_bedroom:
+      friendly_name: Bedroom Temperature
+    sensor.humidity_living_room:
+      friendly_name: Living Room Humidity
+      icon: mdi:water-percent
+      battery_ignore: true
+    sensor.pressure_living_room:
+      friendly_name: Living Room Pressure
+      icon: mdi:arrow-collapse-all
+      battery_ignore: true
+    sensor.temperature_living_room:
+      friendly_name: Living Room Temperature
 
 # vim: set filetype=yaml et sw=2 ts=2 :

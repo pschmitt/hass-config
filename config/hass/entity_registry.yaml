@@ -178,7 +178,7 @@ binary_sensor.door_window_sensor_office_window_small:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001de8caa
-binary_sensor.water_leak_sensor_bathroom:
+binary_sensor.water_leak_sensor_bathroom_sink:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001d7668e
@@ -190,7 +190,7 @@ binary_sensor.door_window_sensor_bedroom_window:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001de639e
-binary_sensor.water_leak_sensor_kitchen:
+binary_sensor.water_leak_sensor_kitchen_sink:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001df1cc3
@@ -338,3 +338,55 @@ media_player.emby__dlna__shield_android_tves1070241_10:
   name:
   platform: emby
   unique_id: uuid:be1589c8-bccc-4ee5-0000-000038b27980.DLNA
+sensor.temperature_terrace:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00022cbbf0
+sensor.humidity_terrace:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00022cbbf0
+sensor.pressure_terrace:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d00022cbbf0
+binary_sensor.water_leak_sensor_bathtub:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001c32be7
+binary_sensor.motion_sensor_terrace:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a92ad8
+sensor.temperature_living_room:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00022cbbc8
+sensor.humidity_living_room:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00022cbbc8
+sensor.pressure_living_room:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d00022cbbc8
+binary_sensor.motion_sensor_living_room:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a92ccf
+sensor.temperature_bedroom:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00022cbbbb
+sensor.humidity_bedroom:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00022cbbbb
+sensor.pressure_bedroom:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d00022cbbbb
+binary_sensor.motion_sensor_office:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a915ca
