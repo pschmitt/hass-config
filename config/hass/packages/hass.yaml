@@ -46,6 +46,8 @@ sensor:
       - sensor.hue_hallway_temperature
       - sensor.hue_kitchen_temperature
       - sensor.hue_toilet_temperature
+      - sensor.living_room_temperature
+      - sensor.bedroom_temperature
       - sensor.aloe_vera_temperature
       - sensor.basil_temperature
       - sensor.chive_temperature
@@ -95,6 +97,7 @@ group:
     view: yes
     icon: mdi:home-assistant
     entities:
+      - script.aqara_add_device
       # - group.all
       - group.hass_infrastructure
       - group.all_devices

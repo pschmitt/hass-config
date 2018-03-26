@@ -243,9 +243,6 @@ automation:
         click_type: double
     action:
       service: script.all_off
-      # - service: notify.html5
-      #   data:
-      #     message: 'Mi button DOUBLE pressed'
 
   - alias: Turn on front door light when motion is detected
     initial_state: True

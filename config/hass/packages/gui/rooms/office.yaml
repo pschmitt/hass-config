@@ -12,6 +12,7 @@ group:
       - media_player.office_tv
       - group.office_windows
       - group.office_misc
+      - group.office_sensors
 
   office_lights:
     name: All Office Lights
@@ -35,5 +36,12 @@ group:
     entities:
       - switch.office_tv
       - sensor.power_consumption_nasteanas
+
+  office_sensors:
+    name: Office Sensors
+    view: no
+    entities:
+      - binary_sensor.motion_sensor_office
+      - sensor.motion_sensor_illumination_office
 
 # vim: set filetype=yaml et sw=2 ts=2 :
