@@ -28,6 +28,7 @@ group:
       - sensor.exchange_rate_1_btc
       - sensor.weather_indoor
       - sensor.smappee_home_active_power
+      - sensor.smappee_local_active_power
 
   shortcuts:
     name: Shortcuts

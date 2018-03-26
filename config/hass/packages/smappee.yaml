@@ -11,5 +11,7 @@ homeassistant:
   customize:
     sensor.smappee_home_active_power:
       friendly_name: Home Power Consumption
+    sensor.smappee_local_active_power:
+      friendly_name: Home Power Consumption (local)
 
 # vim: set filetype=yaml et sw=2 ts=2 :
