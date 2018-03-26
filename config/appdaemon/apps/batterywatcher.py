@@ -82,7 +82,7 @@ class BatteryWatcher(hass.Hass):
         if new == old:
             self.log('Battery level unchanged for {}: {}'.format(entity, old))
             return
-        self.log('Battery level updated: {} -> {}%'.format(old, new))
+        self.log('Battery level of {} updated: {} -> {}%'.format(entity, old, new))
         threshold = self.args.get('threshold')
         bat_entity = self.battery_entity_name(entity)
         battery_level = self.battery_level_value(new)
