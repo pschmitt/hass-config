@@ -226,7 +226,7 @@ binary_sensor.door_window_sensor_front_door:
   name:
   platform: xiaomi_aqara
   unique_id: status158d00016d7083
-sensor.illumination_34ce008d7aba:
+sensor.illumination_gateway:
   name:
   platform: xiaomi_aqara
   unique_id: illumination34ce008d7aba
@@ -278,7 +278,7 @@ media_player.cast_home_group:
   name:
   platform: cast
   unique_id: 3409096f-da2a-420f-a423-9bf807389881
-light.gateway_light_34ce008d7aba:
+light.gateway_light_gateway:
   name:
   platform: xiaomi_aqara
   unique_id: rgb34ce008d7aba

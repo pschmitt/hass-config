@@ -280,9 +280,9 @@ automation:
 
 homeassistant:
   customize:
-    light.gateway_light_34ce008d7aba:
+    light.gateway_light_gateway:
       friendly_name: Mi Gateway Light
-    sensor.illumination_34ce008d7aba:
+    sensor.illumination_gateway:
       friendly_name: Mi Gateway Light Level
     binary_sensor.bedroom_switch:
       friendly_name: "Bedroom switch (small)"
