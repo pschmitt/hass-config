@@ -40,4 +40,11 @@ script:
 shell_command:
   turn_off_mushu: !secret cmd_shutdown_mushu
 
+
+homeassistant:
+  customize:
+    script.all_off:
+      can_cancel: False
+      icon: mdi:nuke
+
 # vim: set filetype=yaml et sw=2 ts=2 :

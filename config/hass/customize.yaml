@@ -3,8 +3,6 @@ sensor.transmission_down_speed:
   icon: mdi:download
 
 # Scripts
-script.all_off:
-  icon: mdi:nuke
 script.turn_off_media_players:
   icon: mdi:laptop-off
 script.im_home:
