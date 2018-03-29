@@ -46,5 +46,7 @@ homeassistant:
     script.all_off:
       can_cancel: False
       icon: mdi:nuke
+    script.turn_off_media_players:
+      icon: mdi:laptop-off
 
 # vim: set filetype=yaml et sw=2 ts=2 :

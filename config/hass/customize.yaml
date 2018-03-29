@@ -1,13 +1,4 @@
-# Sensors
 sensor.transmission_down_speed:
   icon: mdi:download
-
-# Scripts
-script.turn_off_media_players:
-  icon: mdi:laptop-off
-script.im_home:
-  icon: mdi:home-map-marker
-script.she_is_home:
-  icon: mdi:home-map-marker
 
 # vim: set filetype=yaml et sw=2 ts=2

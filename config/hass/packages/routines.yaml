@@ -21,6 +21,8 @@ automation:
       - platform: state
         entity_id: group.main_mobile_devices
         to: not_home
+        for:
+          minutes: 3
     action:
       - service: notify.html5
         data:
@@ -210,5 +212,13 @@ scene:
         transition: 3
         brightness: 150
         xy_color: [ 0.4448, 0.4066 ]
+
+
+homeassistant:
+  customize:
+    script.im_home:
+      icon: mdi:home-map-marker
+    script.she_is_home:
+      icon: mdi:home-map-marker
 
 # vim: set filetype=yaml et sw=2 ts=2 :
