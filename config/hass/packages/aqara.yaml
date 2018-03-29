@@ -271,7 +271,7 @@ automation:
     initial_state: True
     trigger:
       platform: state
-      entity_id: binary_sensor.motion_sensor_terrace
+      entity_id: binary_sensor.motion_sensor_office
       to: 'on'
     action:
       - service: light.turn_on
