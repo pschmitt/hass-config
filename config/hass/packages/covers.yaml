@@ -36,7 +36,7 @@ cover:
     qos: 2
 
   - platform: mqtt
-    name: "Bedroom"
+    name: "Bedroom window"
     command_topic: "hassistant/states/cover/bedroom/command"
     state_topic: "hassistant/states/cover/bedroom/state"
     qos: 2
@@ -53,13 +53,23 @@ cover:
     state_topic: "hassistant/states/cover/office/state"
     qos: 2
 
-
-group:
-  main_covers:
-    name: Main Covers
-    view: no
+  - platform: group
+    name: Bedroom
     entities:
-      - group.bedroom_covers
+      - cover.bedroom_window
+      - cover.bedroom_door
+
+  - platform: group
+    name: Living Room
+    entities:
+      - cover.living_room_table
+      - cover.living_room_door
+      - cover.living_room_tv
+
+  - platform: group
+    name: Main Covers
+    entities:
+      - cover.bedroom
       # group.living_room_covers is voluntarily omitted here, since we do not
       # want to close the door's cover
       - cover.living_room_table
@@ -67,26 +77,10 @@ group:
       - cover.kitchen
       - cover.office
 
-  bedroom_covers:
-    name: Bedroom Covers
-    view: no
-    entities:
-      - cover.bedroom
-      - cover.bedroom_door
-
-  living_room_covers:
-    name: Living Room Covers
-    view: no
-    entities:
-      - cover.living_room_table
-      - cover.living_room_door
-      - cover.living_room_tv
-
-  auto_covers:
+  - platform: group
     name: Automated Covers
-    view: no
     entities:
-      - group.living_room_covers
+      - cover.living_room
       - cover.office
       - cover.kitchen
 
@@ -132,25 +126,25 @@ script:
     alias: 'Open main covers'
     sequence:
       - service: cover.open_cover
-        entity_id: group.main_covers
+        entity_id: cover.main_covers
 
   open_living_room_covers:
     alias: 'Open living room covers'
     sequence:
       - service: cover.open_cover
-        entity_id: group.living_room_covers
+        entity_id: cover.living_room_covers
 
   open_bedroom_covers:
     alias: 'Open bedroom covers'
     sequence:
       - service: cover.open_cover
-        entity_id: group.bedroom_covers
+        entity_id: cover.bedroom_covers
 
   open_auto_covers:
     alias: 'Open automated covers'
     sequence:
       - service: cover.open_cover
-        entity_id: group.auto_covers
+        entity_id: cover.auto_covers
 
   close_all_covers:
     alias: 'Close all covers'
@@ -162,25 +156,25 @@ script:
     alias: 'Close main covers'
     sequence:
       - service: cover.close_cover
-        entity_id: group.main_covers
+        entity_id: cover.main_covers
 
   close_living_room_covers:
     alias: 'Close living room covers'
     sequence:
       - service: cover.close_cover
-        entity_id: group.living_room_covers
+        entity_id: cover.living_room_covers
 
   close_bedroom_covers:
     alias: 'Open bedroom covers'
     sequence:
       - service: cover.close_cover
-        entity_id: group.bedroom_covers
+        entity_id: cover.bedroom_covers
 
   close_auto_covers:
     alias: 'Open automated covers'
     sequence:
       - service: cover.close_cover
-        entity_id: group.auto_covers
+        entity_id: cover.auto_covers
 
   stop_all_covers:
     alias: 'Stop all covers'
