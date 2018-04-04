@@ -13,7 +13,6 @@ http:
   # login_attempts_threshold: -1
   use_x_forwarded_for: True
 
-automation: !include_dir_merge_list automations
 config:
 conversation:
 discovery:
