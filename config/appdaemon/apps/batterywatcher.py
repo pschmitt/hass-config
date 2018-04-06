@@ -80,9 +80,11 @@ class BatteryWatcher(hass.Hass):
 
     def update_battery_device(self, entity, attribute, old, new, kwargs):
         if new == old:
-            self.log('Battery level unchanged for {}: {}'.format(entity, old))
+            self.log('Battery level unchanged for {}: {}'.format(entity, old),
+                     level='DEBUG')
             return
-        self.log('Battery level of {} updated: {} -> {}%'.format(entity, old, new))
+        self.log('Battery level of {} updated: {} -> {}%'.format(
+            entity, old, new))
         threshold = self.args.get('threshold')
         bat_entity = self.battery_entity_name(entity)
         battery_level = self.battery_level_value(new)
@@ -92,7 +94,9 @@ class BatteryWatcher(hass.Hass):
         else:
             self.create_battery_device(entity, battery_level)
         # Update groups
-        if battery_level is None:
+        if battery_level in [None, 'unknown']:
+            self.log('Unknown battery level for entity: {}'.format(entity),
+                     level='WARNING')
             return
         if isinstance(battery_level, bool):
             if battery_level:
@@ -235,7 +239,7 @@ class BatteryWatcher(hass.Hass):
             attrs = devices.get(device, {}).get('attributes')
             if attrs.get('battery_ignore'):
                 self.log('Skip entity {} for having `battery_ignore` set '
-                         'to true.'.format(device))
+                         'to true.'.format(device), level='DEBUG')
                 continue
             if 'battery' in attrs:
                 battery_level = attrs.get('battery')
