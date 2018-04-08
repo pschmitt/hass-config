@@ -6,6 +6,7 @@ arlo:
 alarm_control_panel:
   platform: arlo
   home_mode_name: Home
+  # scan_interval: 120
 
 
 ffmpeg:
@@ -13,17 +14,56 @@ ffmpeg:
 
 
 camera:
-  - platform: arlo
-    ffmpeg_arguments: '-pred 1 -q:v 2'
+  platform: arlo
+  ffmpeg_arguments: '-pred 1 -q:v 2'
+  scan_interval: 120
 
 
 sensor:
-  - platform: arlo
-    monitored_conditions:
-      - captured_today
-      - last_capture
-      - total_cameras
-      - battery_level
-      - signal_strength
+  platform: arlo
+  monitored_conditions:
+    - captured_today
+    - last_capture
+    - total_cameras
+    - battery_level
+    - signal_strength
+  scan_interval: 360
+
+
+shell_command:
+  arlo_mode: '/scripts/arlo-mode.py "{{ mode }}"'
+
+
+script:
+  arlo_arm:
+    sequence:
+      service: shell_command.arlo_mode
+      data:
+        mode: armed
+  arlo_disarm:
+    sequence:
+      service: shell_command.arlo_mode
+      data:
+        mode: disarmed
+  arlo_home:
+    sequence:
+      service: shell_command.arlo_mode
+      data:
+        mode: Home
+  arlo_roomba:
+    sequence:
+      service: shell_command.arlo_mode
+      data:
+        mode: Roomba
+
+
+homeassistant:
+  customize:
+    camera.front_door:
+      battery_friendly_name: Arlo - Front Door
+    camera.terrace:
+      battery_friendly_name: Arlo - Terrace
+    camera.hallway:
+      battery_friendly_name: Arlo - Hallway
 
 # vim: set filetype=yaml et sw=2 ts=2 :

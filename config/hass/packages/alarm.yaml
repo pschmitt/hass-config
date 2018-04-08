@@ -66,9 +66,19 @@ automation:
           - binary_sensor.motion_sensor_office
         to: 'on'
     condition:
-      - condition: state
-        entity_id: alarm_control_panel.ha_alarm_mqtt
-        state: armed_away
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.ha_alarm_mqtt
+          state: armed_away
+        - condition: template
+          value_template: >
+            {# Ignore all but the terrace motion sensor when the roomba is running #}
+            {% if states.vacuum.nimbus.state == "on" %}
+              {% if trigger.entity_id != "binary_sensor.motion_sensor_terrace" %}
+                false
+              {% endif %}
+            {% endif %}
     action:
       - service: alarm_control_panel.alarm_trigger
         entity_id: alarm_control_panel.ha_alarm_mqtt
@@ -99,12 +109,19 @@ automation:
           state: armed_away
         - condition: template
           value_template: >
+            {# Skip if new or old state  is unknown #}
             {% if trigger.from_state.state == 'unknown' %}
               false
             {% elif trigger.to_state.state == 'unknown' %}
               false
             {% else %}
-              {{ trigger.from_state.state | int < trigger.to_state.state | int }}
+              {# Ignore when the roomba is running #}
+              {% if states.vacuum.nimbus.state == 'on' %}
+                false
+              {% else %}
+                {# Event count increased #}
+                {{ trigger.from_state.state | int < trigger.to_state.state | int }}
+              {% endif %}
             {% endif %}
     action:
       - service: alarm_control_panel.alarm_trigger
@@ -113,6 +130,12 @@ automation:
         data_template:
           message: >
             ALERT: Camera {{ trigger.to_state.attributes.friendly_name | replace("Events", "", 1) }} has detected motion
+      - service: script.send_snapshot
+        data_template:
+          # sensor.hassistant_events -> hassistant
+          camera: >
+            {{ trigger.entity_id | replace("sensor.", "", 1) | replace("_events", "", 1) }}
+
 
   - alias: Notify when a new platform has been discovered
     initial_state: true
@@ -237,6 +260,8 @@ script:
           topic: homeassistant/alarm/set
           payload: ARM_AWAY
           retain: True
+      # Ensure Arlo base station is in armed mode
+      - service: script.arlo_arm
       - service: homeassistant.turn_on
         data:
           entity_id: group.modect
@@ -255,6 +280,8 @@ script:
           topic: homeassistant/alarm/set
           payload: DISARM
           retain: True
+      # Ensure Arlo base station is disarmed
+      - service: script.arlo_disarm
       - service: homeassistant.turn_off
         data:
           entity_id: group.modect
@@ -277,6 +304,20 @@ script:
           name: Alarm
           message: has been triggered
           domain: alarm
+
+  send_snapshot:
+    alias: Send a picture of a camera to zanzito
+    sequence:
+      - service: camera.snapshot
+        data_template:
+          entity_id: 'camera.{{ camera }}'
+          filename: '/tmp/snap_{{ camera }}.jpg'
+      - service: notify.zanzito
+        data_template:
+          message: 'Movement detected on {{ camera }}'
+          data:
+            photo:
+              - file: '/tmp/snap_{{ camera }}.jpg'
 
 
 homeassistant:
