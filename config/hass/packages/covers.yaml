@@ -138,13 +138,13 @@ script:
     alias: 'Open bedroom covers'
     sequence:
       - service: cover.open_cover
-        entity_id: cover.bedroom_covers
+        entity_id: cover.bedroom
 
   open_auto_covers:
     alias: 'Open automated covers'
     sequence:
       - service: cover.open_cover
-        entity_id: cover.auto_covers
+        entity_id: cover.automated_covers
 
   close_all_covers:
     alias: 'Close all covers'
@@ -168,13 +168,13 @@ script:
     alias: 'Open bedroom covers'
     sequence:
       - service: cover.close_cover
-        entity_id: cover.bedroom_covers
+        entity_id: cover.bedroom
 
   close_auto_covers:
     alias: 'Open automated covers'
     sequence:
       - service: cover.close_cover
-        entity_id: cover.auto_covers
+        entity_id: cover.automated_covers
 
   stop_all_covers:
     alias: 'Stop all covers'
