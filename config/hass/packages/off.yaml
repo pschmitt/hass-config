@@ -36,6 +36,16 @@ script:
     sequence:
       - service: shell_command.turn_off_mushu
 
+  turn_off_lights_if_we_are_away:
+    alias: Turn off lights if we are away
+    sequence:
+      - condition: state
+        entity_id: group.main_mobile_devices
+        state: "not_home"
+      - service: light.turn_off
+        data:
+          entity_id: group.all_lights
+
 
 shell_command:
   turn_off_mushu: !secret cmd_shutdown_mushu

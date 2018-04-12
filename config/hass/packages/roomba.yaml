@@ -60,6 +60,32 @@ alert:
 
 
 automation:
+  - alias: Set Arlo to Roomba mode when cleaning is in progress
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: vacuum.nimbus
+      to: "on"
+    action:
+      service: script.arlo_roomba
+
+  - alias: Reset arlo mode when roomba has finished cleaning
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: vacuum.nimbus
+      to: "off"
+    action:
+      - service_template: >
+          {% if is_state('alarm_control_panel.ha_alarm_mqtt', 'disarmed') %}
+            script.arlo_disarm
+          {% elif is_state('alarm_control_panel.ha_alarm_mqtt', 'armed_away') %}
+            script.arlo_arm
+          {% elif is_state('alarm_control_panel.ha_alarm_mqtt', 'armed_home') %}
+            script.arlo_home
+          {% endif %}
+      - service: script.turn_off_lights_if_we_are_away
+
   - alias: Schedule cleaning when nobody is home
     initial_state: true
     trigger:
