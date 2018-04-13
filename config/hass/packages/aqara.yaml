@@ -244,38 +244,14 @@ automation:
     action:
       service: script.all_off
 
-  - alias: Turn on front door light when motion is detected
+  - alias: Turn on doorpi screen when motion is detected
     initial_state: True
     trigger:
       platform: state
       entity_id: binary_sensor.motion_sensor_front_door
       to: 'on'
     action:
-      - service: light.turn_on
-        entity_id: light.front_door
-        data:
-          brightness: 150
-          color_name: white
       - service: script.turn_on_doorpi_screen
-
-  - alias: Turn on terrace light when motion is detected
-    initial_state: True
-    trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_terrace
-      to: 'on'
-    action:
-      - service: script.smoke_break
-
-  - alias: Turn on office light when motion is detected
-    initial_state: True
-    trigger:
-      platform: state
-      entity_id: binary_sensor.motion_sensor_office
-      to: 'on'
-    action:
-      - service: light.turn_on
-        entity_id: light.office
 
 
 homeassistant:

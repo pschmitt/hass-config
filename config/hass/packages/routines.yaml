@@ -158,6 +158,26 @@ automation:
       - service: cover.open_cover
         entity_id: cover.living_room_door
 
+  - alias: "HTML5 notification: Bedtime - all off"
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: bedtime_all_off
+    action:
+      - service: script.all_off
+
+  - alias: "HTML5 notification: Bedtime - bedtime"
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: bedtime_bedtime
+    action:
+      - service: script.bedtime
+
   - alias: Having friends sleeping on the couch
     initial_state: true
     trigger:
@@ -265,6 +285,19 @@ script:
 
   bedtime_reminder:
     sequence:
+      - service: notify.html5
+        data:
+          message: "It's bedtime. Turn it all off?"
+          data:
+            tag: 'bedtime-query'
+            renotify: True
+            actions:
+              - action: bedtime_all_off
+                icon: https://materialdesignicons.com/api/download/icon/png/DB44684C-B1E7-4039-8BAA-C7C0BC4EB075/48
+                title: "All off"
+              - action: bedtime_bedtime
+                icon: https://materialdesignicons.com/api/download/icon/png/EA62EF73-ACC7-4E54-87EF-D5E1683BE58F/48
+                title: "Bedtime"
       - service: script.tts_say
         data:
           message: "C'est l'heure!"

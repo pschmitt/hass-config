@@ -1,0 +1,76 @@
+input_boolean:
+  motion_light_terrace:
+    name: "Motion Light: Terrace"
+    icon: mdi:run-fast
+
+  motion_light_living_room:
+    name: "Motion Light: Living room"
+    icon: mdi:run-fast
+
+  motion_light_office:
+    name: "Motion Light: Office"
+    icon: mdi:run-fast
+
+  motion_light_front_door:
+    name: "Motion Light: Front door"
+    icon: mdi:run-fast
+
+
+automation:
+  - alias: Enable light motion sensors at night
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunset
+      offset: "-00:15:00"
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.motion_light_front_door
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.motion_light_living_room
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.motion_light_terrace
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.motion_light_office
+
+  - alias: Disable light motion sensors at night
+    initial_state: true
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: "+00:00:00"
+    action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_front_door
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_living_room
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_terrace
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_office
+
+#   - id: front_door_timer
+#     alias: Front door light timer
+#     hide_entity: False
+#     trigger:
+#       platform: state
+#       entity_id: light.front_door
+#       from: 'off'
+#       to: 'on'
+#       for:
+#         seconds: 5
+#     action:
+#       service: homeassistant.turn_off
+#       entity_id: light.front_door
+
+
+# script:
+#   light_timer:
+#     sequence:
+#       - service: light.turn_on
+#         data_template:
+#           entity_id: '{{ light }}'
+#       - delay: '{{ delay | default("00:05:00") }}'
+#       - service: light.turn_off
+#         data_template:
+#           entity_id: '{{ light }}'
