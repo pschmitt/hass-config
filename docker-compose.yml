@@ -40,7 +40,7 @@ services:
       - ./data/caddy/certs:/caddy
       - ./config/caddy:/config:ro
     entrypoint: /usr/local/bin/caddy
-    command: --conf /config/Caddyfile
+    command: --conf /config/Caddyfile --agree
     healthcheck:
       test: "curl -kLf https://localhost:443"
 
