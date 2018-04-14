@@ -390,3 +390,19 @@ binary_sensor.motion_sensor_office:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001a915ca
+switch.wall_switch_bathroom_left:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_0158d0002238c8a
+switch.wall_switch_bathroom_right:
+  name:
+  platform: xiaomi_aqara
+  unique_id: channel_1158d0002238c8a
+media_player.emby__dlna__shield_android_tves1070241_11:
+  name:
+  platform: emby
+  unique_id: uuid:ccb0042c-1d8d-2648-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_12:
+  name:
+  platform: emby
+  unique_id: uuid:00663054-313f-12fb-0000-000038b27980.DLNA

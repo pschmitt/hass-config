@@ -11,6 +11,18 @@ light:
       "yeelight-office.lan":
         name: YeeLight Office
 
+  - platform: template
+    lights:
+        bathroom_ceiling:
+          friendly_name: "Bathroom ceiling light"
+          value_template: '{{ is_state("switch.wall_switch_bathroom_right", "on" )}}'
+          turn_on:
+            service: switch.turn_on
+            entity_id: switch.wall_switch_bathroom_right
+          turn_off:
+            service: switch.turn_off
+            entity_id: switch.wall_switch_bathroom_right
+
 
 script:
   aqara_add_device:
@@ -253,6 +265,15 @@ automation:
     action:
       - service: script.turn_on_doorpi_screen
 
+  - alias: Toggle bathroom light when pressing bathroom switch (L)
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: switch.wall_switch_bathroom_left
+    action:
+      - service: light.toggle
+        entity_id: light.bathroom_light
+
 
 homeassistant:
   customize:
@@ -386,5 +407,9 @@ homeassistant:
       battery_ignore: true
     sensor.temperature_living_room:
       friendly_name: Living Room Temperature
+    switch.wall_switch_bathroom_left:
+      friendly_name: Bathroom wall switch (L)
+    switch.wall_switch_bathroom_right:
+      friendly_name: Bathroom wall switch (R)
 
 # vim: set filetype=yaml et sw=2 ts=2 :
