@@ -12,7 +12,7 @@ group:
   settings:
     name: Settings
     view: yes
-    icon: mdi:pencil
+    icon: mdi:settings
     entities:
       - input_boolean.dnd
       - input_boolean.vacation
