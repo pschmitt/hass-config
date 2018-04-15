@@ -85,7 +85,12 @@ class BatteryWatcher(hass.Hass):
             return
         self.log('Battery level of {} updated: {} -> {}%'.format(
             entity, old, new))
-        threshold = self.args.get('threshold')
+        attrs = self.get_state(entity, attribute='all').get('attributes', {})
+        custom_battery_threshold = attrs.get('battery_threshold')
+        if custom_battery_threshold:
+            threshold = custom_battery_threshold
+        else:
+            threshold = self.args.get('threshold')
         bat_entity = self.battery_entity_name(entity)
         battery_level = self.battery_level_value(new)
         battery_level_old = self.battery_level_value(old)
@@ -166,8 +171,11 @@ class BatteryWatcher(hass.Hass):
         namespace, entity_name = entity.split('.')
         return 'battery.{}_{}'.format(namespace, entity_name)
 
-    def battery_critical(self, battery_level):
-        threshold = self.args.get('threshold', 20)
+    def battery_critical(self, battery_level, custom_threshold=None):
+        if custom_threshold:
+            threshold = custom_threshold
+        else:
+            threshold = self.args.get('threshold', 20)
         if battery_level is None:
             return
         if isinstance(battery_level, bool):
@@ -187,6 +195,7 @@ class BatteryWatcher(hass.Hass):
             entity_friendly_name = attrs.get('friendly_name')
             friendly_name = entity_friendly_name if entity_friendly_name else \
                 '{} battery'.format(entity)
+        custom_battery_threshold = attrs.get('battery_threshold')
         bat_prop = 'state'
         if 'battery_level' in attrs:
             bat_prop = 'battery_level'
@@ -203,7 +212,8 @@ class BatteryWatcher(hass.Hass):
                     'monitored_entity': entity,
                     'monitored_attribute': bat_prop,
                     'unit_of_measurement': '%',
-                    'battery_level_low': self.battery_critical(battery_level)
+                    'battery_level_low': self.battery_critical(
+                        battery_level, custom_battery_threshold)
                 })
         except Exception as exc:
             self.log('Failed to set state: {}'.format(exc))
