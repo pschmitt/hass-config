@@ -74,10 +74,6 @@ script:
       - service: script.buzz_door_open
       - delay: 00:00:02
       - service: script.buzz_door_open
-      - delay: 00:00:02
-      - service: script.buzz_door_open
-      - delay: 00:00:02
-      - service: script.buzz_door_open
 
 
 homeassistant:
