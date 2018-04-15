@@ -1,20 +1,47 @@
+import datetime
+import traceback
+
 import appdaemon.plugins.hass.hassapi as hass
 
 
 class BatteryWatcher(hass.Hass):
 
     def initialize(self):
+        self.listeners = {}
         devices = self.create_battery_devices()
         self.create_battery_groups(devices)
         entities = [(x.get('attributes', {}).get('monitored_entity'),
                      x.get('attributes', {}).get('monitored_attribute'))
                     for x in devices]
         for entity, attr in entities:
-            if attr == 'state':
-                self.listen_state(self.update_battery_device, entity)
-            else:
-                self.listen_state(
-                    self.update_battery_device, entity, attribute=attr)
+            self.subscribe_to_entity(entity, attr)
+        interval = 60 * 5  # every 5 minutes
+        start = datetime.datetime.now() + datetime.timedelta(seconds=interval)
+        self.cronjob = self.run_every(
+            self.check_for_new_devices, start, interval)
+
+    def subscribe_to_entity(self, entity, attribute):
+        self.log('Monitor {} - {}'.format(entity, attribute), level='DEBUG')
+        if attribute == 'state':
+            listener = self.listen_state(self.update_battery_device, entity)
+        else:
+            listener = self.listen_state(
+                self.update_battery_device, entity, attribute=attribute)
+        self.listeners[entity] = listener
+
+    def check_for_new_devices(self, kwargs):
+        self.log('Checking for new devices', level='DEBUG')
+        devices = self.get_state()
+        for device in [x for x in devices if x not in self.listeners.keys()]:
+            bat_dev = self.process_entity(devices, device)
+            if bat_dev:
+                self.log('New battery device: {}'.format(bat_dev))
+                attrs = bat_dev.get('attributes', {})
+                entity_id = attrs.get('monitored_entity')
+                attr = attrs.get('monitored_attribute')
+                battery_level = self.battery_level_value(bat_dev.get('state'))
+                self.subscribe_to_entity(entity_id, attr)
+                self.update_battery_groups(entity_id, battery_level)
 
     def battery_level_value(self, battery_level):
         if battery_level is None:
@@ -103,31 +130,47 @@ class BatteryWatcher(hass.Hass):
             self.log('Unknown battery level for entity: {}'.format(entity),
                      level='WARNING')
             return
-        if isinstance(battery_level, bool):
-            if battery_level:
-                self.register_low_battery_devices(bat_entity)
-            else:
-                self.clear_low_battery_device(bat_entity)
-        elif battery_level < threshold:
-            self.register_low_battery_devices(bat_entity)
-            if battery_level_old >= threshold:
-                self.log('Battery of {} is getting low.'.format(entity))
-                event = self.fire_event(
-                    'battery_low',
-                    battery_level=battery_level,
-                    entity_id=entity)
-                self.log('Fired event: {}'.format(event))
-        elif battery_level >= threshold:
-            self.clear_low_battery_device(bat_entity)
-            if battery_level_old < threshold:
-                self.log('Battery of {} is okay again (above '
-                         'threshold).'.format(entity))
-                event = self.fire_event(
-                    'battery_okay',
-                    battery_level=battery_level,
-                    entity_id=entity,
-                    unit_of_measurement='%')
-                self.log('Fired event: {}'.format(event))
+        self.update_battery_groups(entity, battery_level, battery_level_old)
+
+    def update_battery_groups(self, entity_id, battery_level,
+                              previous_battery_level=None):
+        bat_entity_id = self.battery_entity_name(entity_id)
+        attrs = self.get_state(bat_entity_id, attribute='all').get('attributes', {})
+        custom_battery_threshold = attrs.get('battery_threshold')
+        if custom_battery_threshold:
+            threshold = custom_battery_threshold
+        else:
+            threshold = self.args.get('threshold')
+        self.log('DEBUG: {} / {}'.format(battery_level, threshold))
+        try:
+            if isinstance(battery_level, bool):
+                if battery_level:
+                    self.register_low_battery_devices(bat_entity_id)
+                else:
+                    self.clear_low_battery_device(bat_entity_id)
+            elif battery_level < threshold:
+                self.register_low_battery_devices(bat_entity_id)
+                if previous_battery_level and previous_battery_level >= threshold:
+                    self.log('Battery of {} is getting low.'.format(bat_entity_id))
+                    event = self.fire_event(
+                        'battery_low',
+                        battery_level=battery_level,
+                        bat_entity_id=bat_entity_id)
+                    self.log('Fired event: {}'.format(event))
+            elif battery_level >= threshold:
+                self.clear_low_battery_device(bat_entity_id)
+                if previous_battery_level and previous_battery_level < threshold:
+                    self.log('Battery of {} is okay again (above '
+                             'threshold).'.format(bat_entity_id))
+                    event = self.fire_event(
+                        'battery_okay',
+                        battery_level=battery_level,
+                        bat_entity_id=bat_entity_id,
+                        unit_of_measurement='%')
+                    self.log('Fired event: {}'.format(event))
+        except Exception as exc:
+            self.log('Failed to update groups: {}'.format(exc), level='ERROR')
+            traceback.print_exc()
 
     def create_battery_groups(self, battery_devices):
         # Create groups
@@ -144,7 +187,17 @@ class BatteryWatcher(hass.Hass):
                 [x.get('entity_id') for x in low_battery_devices])
             return [group_all, group_low]
         except Exception as exc:
-            self.log('Failed to set group state: {}'.format(exc))
+            self.log('Failed to set group state: {}'.format(exc), level='ERROR')
+            traceback.print_exc()
+
+    def battery_level(self, level):
+        if level is None:
+            return
+        if isinstance(level, str):
+            try:
+                return int(level)
+            except ValueError:
+                return int(float())
 
     def battery_icon(self, battery_level, charging=False):
         icon = 'mdi:battery'
@@ -216,7 +269,8 @@ class BatteryWatcher(hass.Hass):
                         battery_level, custom_battery_threshold)
                 })
         except Exception as exc:
-            self.log('Failed to set state: {}'.format(exc))
+            self.log('Failed to set state: {}'.format(exc), level='ERROR')
+            traceback.print_exc()
 
     def create_binary_battery_device(self, entity, battery_critical):
         bat_entity = self.battery_entity_name(entity)
@@ -235,38 +289,39 @@ class BatteryWatcher(hass.Hass):
                         battery_critical)
                 })
         except Exception as exc:
-            self.log('Failed to set state: {}'.format(exc))
+            self.log('Failed to set state: {}'.format(exc), level='ERROR')
+            traceback.print_exc()
+
+    def process_entity(self, devices, entity_id):
+        # Skip groups and ignored entities
+        if (entity_id.startswith('group.') or
+                entity_id in self.args.get('ignored_entities', [])):
+            return
+        battery_level = None
+        attrs = devices.get(entity_id, {}).get('attributes')
+        if attrs.get('battery_ignore'):
+            self.log('Skip entity {} for having `battery_ignore` set '
+                     'to true.'.format(entity_id), level='DEBUG')
+            return
+        if 'battery' in attrs:
+            battery_level = attrs.get('battery')
+            return self.create_battery_device(entity_id, battery_level)
+        elif 'battery_level' in attrs:
+            battery_level = attrs.get('battery_level')
+            return self.create_battery_device(entity_id, battery_level)
+        elif 'battery_critical' in attrs:
+            battery_critical = attrs.get('battery_critical')
+            return self.create_binary_battery_device(entity_id,
+                                                     battery_critical)
+        elif attrs.get('battery_device'):
+            state = devices.get(entity_id, {}).get('state')
+            return self.create_battery_device(entity_id, state)
 
     def create_battery_devices(self):
         devices = self.get_state()
         battery_devices = []
-        for device in devices:
-            # Skip groups and ignored entities
-            if (device.startswith('group.') or
-                    device in self.args.get('ignored_entities', [])):
-                continue
-            battery_level = None
-            attrs = devices.get(device, {}).get('attributes')
-            if attrs.get('battery_ignore'):
-                self.log('Skip entity {} for having `battery_ignore` set '
-                         'to true.'.format(device), level='DEBUG')
-                continue
-            if 'battery' in attrs:
-                battery_level = attrs.get('battery')
-                bat_dev = self.create_battery_device(device, battery_level)
-            elif 'battery_level' in attrs:
-                battery_level = attrs.get('battery_level')
-                bat_dev = self.create_battery_device(device, battery_level)
-            elif 'battery_critical' in attrs:
-                battery_critical = attrs.get('battery_critical')
-                bat_dev = self.create_binary_battery_device(device,
-                                                            battery_critical)
-            elif attrs.get('battery_device'):
-                state = devices.get(device, {}).get('state')
-                bat_dev = self.create_battery_device(device, state)
-            else:
-                # No battery attribute. Skip.
-                continue
+        for entity_id in devices:
+            bat_dev = self.process_entity(devices, entity_id)
             if bat_dev:
                 battery_devices.append(bat_dev)
         return battery_devices

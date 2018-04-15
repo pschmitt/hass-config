@@ -119,5 +119,7 @@ homeassistant:
       friendly_name: System Sensor
     sensor.fibaro_system_fgsd002_smoke_sensor_temperature:
       friendly_name: Smoke Sensor Temperature
+    zwave.fibaro_system_fgsd002_smoke_sensor:
+      battery_threshold: 30
 
 # vim: set filetype=yaml et sw=2 ts=2 :
