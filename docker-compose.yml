@@ -32,7 +32,7 @@ services:
     restart: always
     network_mode: host
     ports:
-      # - 80:80/tcp
+      - 80:80/tcp
       - 443:443/tcp
     environment:
       - CADDYPATH=/caddy
