@@ -20,3 +20,4 @@ webostv.conf
 downloads/*
 __pycache__/
 .google_maps_location_sharing.cookies
+.config_entries.json
