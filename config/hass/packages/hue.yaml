@@ -2,6 +2,7 @@ light:
   - platform: hue
     host: philips-hue.lan
     allow_unreachable: true
+    scan_interval: 10
 
 
 automation:
