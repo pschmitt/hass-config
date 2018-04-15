@@ -2,6 +2,8 @@ battery_check:
   module: batterywatcher
   class: BatteryWatcher
   threshold: 20
+  all_battery_group: "All battery devices"
+  low_battery_group: "Low battery devices"
   # ignored_entities:
   #   - sensor.humidity_freezer
   #   - sensor.humidity_fridge
@@ -9,4 +11,46 @@ battery_check:
   #   - sensor.pressure_freezer
 
 
-# vim: set ft=yaml et ts=2 sw=2 :
+motion_lights:
+  module: motionlights
+  class: MotionLights
+  config:
+    - name: front_door
+      sensors:
+        - binary_sensor.motion_sensor_front_door
+      lights:
+        - light.front_door_light
+      constraints:
+        state: input_boolean.motion_light_front_door
+      duration: 300
+    - name: office
+      sensors:
+        - binary_sensor.motion_sensor_office
+      lights:
+        - light.office_light
+      constraints:
+        # start: sunrise
+        # stop: sunset - 00:45:00
+        state: input_boolean.motion_light_office
+      duration: 300
+    - name: terrace
+      sensors:
+        - binary_sensor.motion_sensor_terrace
+      lights:
+        - light.terrace_light
+      constraints:
+        # start: sunrise
+        # stop: sunset - 00:45:00
+        state: input_boolean.motion_light_terrace
+      duration: 300
+    - name: living_room
+      constraints:
+        # start: sunrise
+        # stop: sunset - 00:45:00
+        state: input_boolean.motion_light_living_room
+      sensors:
+        - binary_sensor.motion_sensor_living_room
+      lights:
+        # - light.living_room
+        - light.living_room
+      duration: 1200
