@@ -77,6 +77,8 @@ automation:
             {% if states.vacuum.nimbus.state == "on" %}
               {% if trigger.entity_id != "binary_sensor.motion_sensor_terrace" %}
                 false
+              {% else %}
+                true
               {% endif %}
             {% endif %}
     action:
