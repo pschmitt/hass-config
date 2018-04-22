@@ -1,9 +1,9 @@
 zoneminder:
-  host: nasteanas.lan:10080
+  host: !secret zm_host
   path: /zm/
-  ssl: false
-  # username: !secret zm_username
-  # password: !secret zm_password
+  ssl: true
+  username: !secret zm_username
+  password: !secret zm_password
 
 
 # camera:
