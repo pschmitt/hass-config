@@ -70,6 +70,11 @@ services:
         ipv4_address: 172.92.92.94
     env_file:
       - grafana.env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=grafana"
+      - "traefik.frontend.rule=Host:graphs.home.comreset.io"
+      - "traefik.port=3000"
 
   mqtt-proxy:
     image: pschmitt/stunnel
