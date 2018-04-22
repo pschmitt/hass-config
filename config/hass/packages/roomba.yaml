@@ -72,7 +72,7 @@ automation:
         data:
           entity_id: group.modect
 
-  - alias: Reset arlo mode when roomba has finished cleaning
+  - alias: Reset arlo mode and motion detection when roomba has finished cleaning
     initial_state: true
     trigger:
       platform: state
