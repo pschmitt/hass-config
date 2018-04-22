@@ -12,6 +12,12 @@ zone:
     elevation: !secret work_elevation
     icon: mdi:worker
 
+  - name: Work (hers)
+    latitude: !secret mbiver_work_latitude
+    longitude: !secret mbiver_work_longitude
+    elevation: !secret mbiver_work_elevation
+    icon: mdi:worker
+
 
 proximity:
   home:
