@@ -1,4 +1,7 @@
 media_player:
   - platform: emby
-    host: nasteanas.lan
+    host: !secret emby_host
+    ssl: True
+    port: 443
     api_key: !secret emby_api_key
+    auto_hide: True
