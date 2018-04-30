@@ -32,11 +32,12 @@ device_tracker:
   #   hosts: oneplus_3t.lan
   #   home_interval: 3
 
+  # Zanzito devices
   - platform: mqtt_json
     devices:
-      # n5x_zanzito: zanzito/nexus5x/location
       g4p_zanzito: zanzito/g4play/location
 
+  # Remote luci devices
   - platform: mqtt
     devices:
       g4p_hassistant: hassistant/states/device_tracker/g4p/state
@@ -64,8 +65,9 @@ group:
     view: no
     icon: mdi:cellphone-android
     entities:
+      - device_tracker.google_maps_105543397094537443482
       - group.op3t
-      - group.macbook
+      # - group.macbook
 
   g4p:
     name: "g4p"
@@ -82,9 +84,9 @@ group:
     view: no
     icon: mdi:cellphone-android
     entities:
-      - device_tracker.op3t_hassistant
+      # - device_tracker.op3t_hassistant
       # - device_tracker.op3t_arp
-      # - device_tracker.op3t_ping
+      - device_tracker.op3t_ping
 
   macbook:
     name: "macbook"
@@ -97,10 +99,10 @@ group:
 
 sensor:
   - platform: rest
-    resource: http://10.7.0.216:8003/location?group=comreset.io&user=g4play
-    value_template: '{{ value_json.users.g4play[0].location }}'
+    name: g4p_find3
+    resource: http://10.7.0.216:8003/api/v1/location_basic/comreset.io/g4p
+    value_template: '{{ value_json.data.loc }}'
     method: GET
-    name: g4p_find
     scan_interval: 3
 
 

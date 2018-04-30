@@ -254,7 +254,8 @@ automation:
         entity_id: binary_sensor.bedroom_switch
         click_type: double
     action:
-      service: script.all_off
+      - service: script.all_off
+      - service: script.arlo_home
 
   - alias: Turn on doorpi screen when motion is detected
     initial_state: True

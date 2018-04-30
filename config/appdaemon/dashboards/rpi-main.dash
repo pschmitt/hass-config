@@ -5,7 +5,7 @@ widget_margins: [2, 2]
 columns: 8
 global_parameters:
   use_comma: 0
-  precision: 1
+  precision: 0
   use_hass_icon: 1
   state_text: 0
 
@@ -31,7 +31,7 @@ device_tracker_her:
   icon_on: fa-female # fa-venus
   icon_off: fa-female # fa-venus
   icon_style_active: "color: #dad55e"
-  entity: device_tracker.her_phone
+  entity: device_tracker.op3t_ping
 
 all_lights:
   widget_type: light
@@ -68,12 +68,22 @@ buzz:
   entity: script.buzz_door_open
   title: "Buzz"
 
+btc:
+  widget_type: sensor
+  precision: 0
+  title: BTC
+  entity: sensor.exchange_rate_1_btc
+
+alarm:
+  widget_type: alarm
+  entity: alarm_control_panel.ha_alarm_mqtt
+
 
 layout:
   - clock(2x1), sensor.home_temperature, device_tracker_me, device_tracker_her, betterweather(3x2)
   - buzz, script.lock_n_go,             all_lights, script.all_off, roomba
-  - cam_doorpi(3x2), alarm(1x2), cam_foscam_c1(4x2)
-  - empty: 1
+  - cam_doorpi(3x2), alarm, cam_foscam_c1(4x2)
+  - btc
   - include: rpi_bottom_panel
 
 # vim: set ft=yaml et ts=2 sw=2 :

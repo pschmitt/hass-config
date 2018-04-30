@@ -406,3 +406,15 @@ media_player.emby__dlna__shield_android_tves1070241_12:
   name:
   platform: emby
   unique_id: uuid:00663054-313f-12fb-0000-000038b27980.DLNA
+media_player.emby__emby_mobile__chrome_4:
+  name:
+  platform: emby
+  unique_id: a725c07bcada5183bc4b362fc162aa6fa9ec6767.Emby Mobile
+media_player.emby__emby_mobile__chrome_5:
+  name:
+  platform: emby
+  unique_id: 88bc44636b3bc03a5bcca892bc1bd27c91df8098.Emby Mobile
+media_player.emby__radarr__nasteanas:
+  name:
+  platform: emby
+  unique_id: 9925a8802c374bd69ec2eb5674129f17.Radarr

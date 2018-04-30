@@ -1,0 +1,73 @@
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}} .state {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.widget-basebetteralarm-{{id}} .armed {
+    color: red !important;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .title {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .title2 {
+	position: absolute;
+	top: 23px;
+	width: 100%;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .code {
+	width: 100%;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .toggle-area {
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .container {
+    width: 275px;
+    display: inline-block;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .panel-state {
+    font-size: 100%;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .block {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    float: top;
+    font-size: 175%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 75px; 
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .block2 {
+    width: 165px;
+}
+
+/*noinspection ALL*/
+.widget-basebetteralarm-{{id}}  .block3 {
+    width: 255px;
+}

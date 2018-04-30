@@ -15,7 +15,7 @@ switch:
 shell_command:
   cam_snap: /scripts/hass.sh snap {{ cam }} /tmp/snap_{{ cam }}.jpg
   snap_upload: !secret snap_upload
-  snap_ldelete: "rm -f /tmp/snap_*.jpg"
+  snap_ldelete: "rm -f /tmp/snap*.jpg"
   snap_rdelete: !secret snap_rdelete
 
 
@@ -28,7 +28,7 @@ script:
       - service: shell_command.snap_ldelete
       - service: shell_command.snap_rdelete
 
-  snap_send:
+  snap_send_fb:
     alias: Send a CCTV picture
     sequence:
       # Disable ev. deletion job
@@ -37,19 +37,14 @@ script:
           entity_id: script.snap_delete
       - service: camera.snapshot
         data_template:
-          entity_id: "camera.{{ cam }}"
-          filename: "/tmp/snap_{{ cam }}.jpg"
-      - service_template: "script.snap_{{ cam }}"
+          entity_id: "camera.{{ camera }}"
+          filename: "/tmp/snap.jpg"
       - service: shell_command.snap_upload
-        data_template:
-          cam: "{{ cam }}"
-      - service: shell_command.fb_send_image
+      - service: notify.html5
         data:
-          filename: '/tmp/snap_{{ cam }}.jpg'
-          target: !secret fb_my_phone_number
-          token: !secret fb_page_token
+          message: Now facebook
       - service: notify.facebook
-        data_template:
+        data:
           target: !secret fb_my_phone_number
           message: Camera image
           data:
@@ -57,9 +52,10 @@ script:
               type: image
               payload:
                 url: !secret snap_public_url
+      - service: notify.html5
+        data:
+          message: delete snapshot now
       - service: script.snap_delete
-        data_template:
-          cam: "{{ cam }}"
 
 
 group:
@@ -75,6 +71,7 @@ group:
     view: no
     entities:
       - camera.terrace
+      - camera.winpi
 
   cameras_living_room:
     name: Living Room Cameras
@@ -93,9 +90,6 @@ group:
     view: no
     entities:
       - camera.c2
-      - camera.winpi
-      - camera.doorpi
-      - camera.front_door
       - camera.hallway
 
   cctv:

@@ -104,9 +104,9 @@ CameraSnapshot:
     text: "Hang on..."
   async_action: true
   action:
-    - service: script.snap_send
+    - service: script.snap_send_fb
       data_template:
-        cam: "{{ CameraName }}"
+        camera: "{{ CameraName }}"
 
 # CameraSnap:
 #   speech:

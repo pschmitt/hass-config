@@ -1,5 +1,5 @@
 widget_type: alarm
-entity: alarm_control_panel.ha_alarm
+entity: alarm_control_panel.ha_alarm_mqtt
 title: Alarm
 icon: mdi-danger
 

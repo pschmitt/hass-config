@@ -1,13 +1,8 @@
 logger:
   default: info
   logs:
-    homeassistant.components.http: critical
-    homeassistant.components.automation: critical
-    homeassistant.components.apiai: debug
-    homeassistant.components.intent_script: debug
-    homeassistant.components.sensor.command_line: critical
-    homeassistant.components.switch.command_line: critical
-    requests.packages.urllib3.connectionpool: critical
-    homeassistant.components.mqtt: debug
+    homeassistant.components.http: debug
+    homeassistant.components.vacuum.roomba: critical
+    homeassistant.components.notify.facebook: debug
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -243,6 +243,18 @@ automation:
     action:
       - service: script.bedtime_reminder
 
+  - alias: Alert when mbiver leaves home
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: device_tracker.google_maps_105543397094537443482
+      from: "home"
+      to: "away"
+    action:
+      service: notify.html5
+      data:
+        message: "Marine (GMAPS) left home."
+
 
 script:
   she_is_home:

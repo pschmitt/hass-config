@@ -1,0 +1,49 @@
+title: Main Panel
+widget_dimensions: [100, 85]
+widget_size: [1, 1]
+widget_margins: [9, 9]
+columns: 6
+scalable: 0
+global_parameters:
+  use_comma: 0
+  precision: 0
+  use_hass_icon: 1
+  state_text: 0
+
+
+clock:
+  widget_type: clock
+  time_format: 24hr
+
+weather:
+  widget_type: betterweather
+
+weather_hourly:
+  widget_type: sensor
+  entity: sensor.dark_sky_hourly_summary
+  text_style: "font-size: 180%"
+
+weather_daily:
+  widget_type: sensor
+  entity: sensor.dark_sky_daily_summary
+  text_style: "font-size: 180%"
+
+main_panel:
+  widget_type: navigate
+  title: Main
+  icon_inactive: fa-undo
+  dashboard: rpi-reboot
+
+reload:
+  widget_type: reload
+  title: Reload
+
+
+layout:
+  - clock
+  - weather_hourly(2x3), weather_daily(2x4), weather(2x2)
+  - spacer
+  - spacer
+  - reload(2x1), main_panel(2x1)
+
+# vim: set ft=yaml et ts=2 sw=2 :

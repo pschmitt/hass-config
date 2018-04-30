@@ -1,19 +1,24 @@
 <h1 class="title" data-bind="text: title, attr:{ style: title_style}"></h1>
 <div data-bind="attr: {style: main_style}">
-    <p class="primary-climacon" data-bind="html: dark_sky_icon"></p>
-    <p class="primary-info" data-bind="text: dark_sky_apparent_temperature"></p>
-    <p class="primary-unit" data-bind="html: unit, attr: {style: unit_style}"></p>
+  <p class="primary-climacon" data-bind="html: dark_sky_icon"></p>
+  <p class="primary-info" data-bind="text: dark_sky_apparent_temperature"></p>
+  <p class="primary-unit" data-bind="html: unit, attr: {style: unit_style}"></p>
 </div>
-<br>
 <div class="secondary-info-panel" data-bind="attr: {style: sub_style}">
-    <p class="secondary-info-title">Today:</p>
-    <p class="secondary-info" data-bind="text: dark_sky_daily_low_apparent_temperature"></p>
-    <p class="secondary-info temp-separator">-</p>
-    <p class="secondary-info" data-bind="text: dark_sky_daily_high_apparent_temperature"></p>
-    <p class="secondary-unit" data-bind="html: unit, attr: {style: secondary_unit_style}"></p>
-    <br>
-    <p class="secondary-info-title">Rain:</p>
-    <p class="secondary-info" data-bind="text: dark_sky_precip_probability"></p>
-    <p class="secondary-unit">%</p>
-    <br>
+  <!-- <i class="secondary&#45;info fa fa&#45;line&#45;chart" aria&#45;hidden="true" data&#45;bind="attr: {style: temp_amp_icon_style}"></i> -->
+  <!-- <p class="secondary&#45;info" data&#45;bind="text: dark_sky_daily_low_apparent_temperature, attr: {style: temp_amp_min_style}"></p> -->
+  <!-- <p class="secondary&#45;info temp&#45;separator">&#45;</p> -->
+  <!-- <p class="secondary&#45;info" data&#45;bind="text: dark_sky_daily_high_apparent_temperature, , attr: {style: temp_amp_max_style}"></p> -->
+  <!-- <p class="secondary&#45;unit" data&#45;bind="html: unit, attr: {style: secondary_unit_style}"></p> -->
+  <i class="secondary-info fa fa-thermometer-empty" aria-hidden="true" data-bind="attr: {style: temp_amp_min_icon_style}"></i>
+  <p class="secondary-info" data-bind="text: dark_sky_daily_low_apparent_temperature, attr: {style: temp_amp_min_style}"></p>
+  <p class="secondary-unit" data-bind="html: unit, attr: {style: secondary_unit_style}"></p>
+  <i class="secondary-info fa fa-thermometer-full" aria-hidden="true" data-bind="attr: {style: temp_amp_max_icon_style}"></i>
+  <p class="secondary-info" data-bind="text: dark_sky_daily_high_apparent_temperature, attr: {style: temp_amp_max_style}"></p>
+  <p class="secondary-unit" data-bind="html: unit, attr: {style: secondary_unit_style}"></p>
+  <br>
+  <i class="secondary-info fa fa-tint" aria-hidden="true" data-bind="attr: {style: precip_icon_style}"></i>
+  <p class="secondary-info" data-bind="text: dark_sky_precip_probability, attr: {style: precip_style}"></p>
+  <p class="secondary-unit" data-bind="attr: {style: secondary_unit_style}">%</p>
+  <br>
 </div>

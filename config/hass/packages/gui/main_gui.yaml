@@ -8,8 +8,13 @@ group:
       - group.weather_shortcut
       - group.light_groups
       - media_player.cast_home_group
-      - covers.all_covers
-      - group.all_covers
+      - cover.all_covers
+      - cover.bedroom
+      - cover.kitchen
+      - cover.living_room
+      - light.bathroom_ceiling
+      - switch.wall_switch_bathroom_left
+      - switch.wall_switch_bathroom_right
 
   info:
     name: Info
@@ -20,10 +25,11 @@ group:
       # - device_tracker.op3t_ping
       # - device_tracker.g4p_arp
       # - device_tracker.g4p_zanzito
-      - device_tracker.google_maps_111748235994603810778
-      - group.main_mobile_devices
-      - sensor.g4p_find
       # - group.pschmitt_location
+      - device_tracker.google_maps_111748235994603810778
+      - device_tracker.google_maps_105543397094537443482
+      - group.main_mobile_devices
+      - sensor.g4p_find3
       - sensor.ip_location_short
       - sensor.exchange_rate_1_btc
       - sensor.weather_indoor

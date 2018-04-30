@@ -1,0 +1,80 @@
+title: Main Panel
+widget_dimensions: [100, 85]
+widget_size: [1, 1]
+widget_margins: [9, 9]
+columns: 6
+scalable: 0
+global_parameters:
+  use_comma: 0
+  precision: 0
+  use_hass_icon: 1
+  state_text: 0
+
+
+clock:
+  widget_type: clock
+  time_format: 24hr
+
+alarm:
+  widget_type: betteralarm
+  entity: alarm_control_panel.ha_alarm_mqtt
+  # state_style: "color: $red"
+
+# if ($("#default-alarm > h2.value").text().toLowerCase() != "disarmed") {
+#   $("#default-alarm > h2.value").addClass("armed");
+#  }
+
+weather:
+  widget_type: betterweather
+  secondary_unit_style: "margin-top: -2px"
+  dashboard: rpi-reboot-weather
+  args:
+    timeout: 30
+    return: rpi-reboot
+
+buzz:
+  widget_type: script
+  entity: script.buzz_door_open
+  title: "Buzz"
+
+home_temperature:
+  widget_type: sensor
+  entity: sensor.home_temperature
+
+reload:
+  widget_type: reload
+  title: Reload
+
+covers:
+  widget_type: cover
+  entity: cover.all_covers
+
+all_off:
+  widget_type: script
+  entity: script.bedtime
+  icon_on: fa-power-off
+  icon_off: fa-power-off
+  icon_style_active: "color: $red"
+  icon_style_inactive: "color: $red"
+
+btc:
+  widget_type: sensor
+  precision: 0
+  title: BTC
+  entity: sensor.exchange_rate_1_btc
+
+info:
+  widget_type: navigate
+  dashboard: "rpi-reboot"
+  icon_active: "fa-info-circle"
+  icon_inactive: "fa-info-circle"
+
+
+layout:
+  - clock
+  - home_temperature(2x1), btc(2x1), weather(2x2)
+  - covers(2x2), alarm(2x2)
+  - info(2x1)
+  - reload(2x1), all_off(2x1), buzz(2x1)
+
+# vim: set ft=yaml et ts=2 sw=2 :

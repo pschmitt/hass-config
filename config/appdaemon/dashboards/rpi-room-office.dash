@@ -17,10 +17,10 @@ office_lights:
 
 
 layout:
-  - cam_hassistant(5x4), light.yeelight_office, light.office_light, office_lights
-  - sensor.power_consumption_nasteanas, spacer, script.toggle_office_tv
-  - media_player.office_tv(2x2), script.turn_on_office_tv
-  - script.turn_off_office_tv
+  - cam_hassistant(6x4), light.yeelight_office, light.office_light
+  - sensor.power_consumption_nasteanas, script.toggle_office_tv
+  - media_player.office_tv(2x2)
+  - empty: 1
   - include: rpi_bottom_panel
 
 # vim: set ft=yaml et ts=2 sw=2 :

@@ -18,6 +18,12 @@ static_css:
   title_style: $weather_sub_style
   unit_style: $weather_unit_style
   secondary_unit_style: $weather_secondary_unit_style
+  temp_amp_min_icon_style: $weather_temp_amp_min_icon_style
+  temp_amp_max_icon_style: $weather_temp_amp_max_icon_style
+  temp_amp_min_style: $weather_temp_amp_min_style
+  temp_amp_max_style: $weather_temp_amp_max_style
+  precip_icon_style: $weather_precip_icon_style
+  precip_style: $weather_precip_style
   main_style: $weather_main_style
   sub_style: $weather_sub_style
   widget_style: $weather_widget_style

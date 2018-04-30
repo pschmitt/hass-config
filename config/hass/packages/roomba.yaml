@@ -213,8 +213,10 @@ notify:
 
 homeassistant:
   customize:
+    vacuum.nimbus:
+      icon: mdi:robot-vacuum
     script.roomba_start:
-      icon: mdi:roomba
+      icon: mdi:robot-vacuum
     script.roomba_stop:
       icon: mdi:stop
 

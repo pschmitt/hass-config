@@ -27,7 +27,8 @@ motion_lights:
       sensors:
         - binary_sensor.motion_sensor_office
       lights:
-        - light.office_light
+        # - light.office_light
+        - light.yeelight_office
       constraints:
         # start: sunrise
         # stop: sunset - 00:45:00
