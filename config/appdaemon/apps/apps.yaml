@@ -23,6 +23,7 @@ motion_lights:
       constraints:
         state: input_boolean.motion_light_front_door
       duration: 300
+
     - name: office
       sensors:
         - binary_sensor.motion_sensor_office
@@ -34,6 +35,7 @@ motion_lights:
         # stop: sunset - 00:45:00
         state: input_boolean.motion_light_office
       duration: 300
+
     - name: terrace
       sensors:
         - binary_sensor.motion_sensor_terrace
@@ -44,6 +46,7 @@ motion_lights:
         # stop: sunset - 00:45:00
         state: input_boolean.motion_light_terrace
       duration: 300
+
     - name: living_room
       constraints:
         # start: sunrise
@@ -55,6 +58,7 @@ motion_lights:
         # - light.living_room
         - light.living_room
       duration: 1200
+
     - name: bathroom
       sensors:
         - binary_sensor.bathroom_presence
