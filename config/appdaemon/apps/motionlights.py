@@ -27,11 +27,12 @@ class MotionLights(hass.Hass):
                 self.log('Listen for state changes on {}'.format(sensor_enable))
                 self.listen_state(self.toggle_motion_sensor, sensor_enable,
                                   config=entry)
-            if sensor_enable_state == 'on':
-                self.enable_motion_sensor(sensor_enable, entry)
-                # for sensor in sensors:
-                #     self.log('Listen for changes on {}'.format(sensor))
-                #     self.listen_state(self.motion, sensor, config=entry)
+                if sensor_enable_state == 'on':
+                    self.enable_motion_sensor(sensor_enable, entry)
+            else:
+                for sensor in sensors:
+                    self.log('Listen for changes on {}'.format(sensor))
+                    self.listen_state(self.motion, sensor, config=entry)
 
     def enable_motion_sensor(self, entity, config):
         self.log('Enable motion sensor: {} - {}'.format(entity, config))
