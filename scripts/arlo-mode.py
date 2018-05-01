@@ -42,5 +42,6 @@ if __name__ == '__main__':
     if not PASSWORD:
         print("Credentials are required, set them either via -u "
               "and -p or a secrets file (-c)", file=sys.stderr)
+        sys.exit(2)
     else:
         arlo_mode(USERNAME, PASSWORD, ARGS.MODE)
