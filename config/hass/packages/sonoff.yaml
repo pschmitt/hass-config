@@ -38,4 +38,26 @@ light:
           service: switch.turn_off
           entity_id: switch.sonoff_bathroom
 
+
+automation:
+  - alias: Sync state of bathroom mirror light with bathroom light (ON)
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: light.bathroom_light
+        to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.bathroom_mirror
+
+  - alias: Sync state of bathroom mirror light with bathroom light (OFF)
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: light.bathroom_light
+        to: 'off'
+    action:
+      service: light.turn_off
+      entity_id: light.bathroom_mirror
+
 # vim: set filetype=yaml et sw=2 ts=2 :
