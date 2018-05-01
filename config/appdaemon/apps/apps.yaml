@@ -55,3 +55,9 @@ motion_lights:
         # - light.living_room
         - light.living_room
       duration: 1200
+    - name: bathroom
+      sensors:
+        - binary_sensor.bathroom_presence
+      lights:
+        - light.bathroom_mirror
+      duration: 900
