@@ -4,8 +4,6 @@ services:
   hass:
     image: homeassistant/home-assistant:latest
     container_name: hass
-    labels:
-      com.centurylinklabs.watchtower.enable: "false"
     restart: always
     depends_on:
       - database
@@ -26,6 +24,7 @@ services:
     healthcheck:
       test: "curl -Lf http://localhost:8123"
     labels:
+      - "com.centurylinklabs.watchtower.enable=false"
       - "traefik.enable=true"
       - "traefik.backend=home-assistant"
       - "traefik.docker.network=host"
