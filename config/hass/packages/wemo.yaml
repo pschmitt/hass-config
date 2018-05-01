@@ -41,9 +41,22 @@ automation:
       from: "on"
       to: "off"
     action:
-      service: notify.html5
-      data:
-        message: "The Washing Machine has finished its cycle"
+      - service: notify.html5
+        data:
+          message: "The Washing Machine has finished its cycle"
+      - delay: '01:00:00'
+      - service: script.turn_off_washing_maching_if_not_running
+
+
+script:
+  turn_off_washing_maching_if_not_running:
+    alias: 'Turn off washing if not running'
+    sequence:
+      - condition: state
+        entity_id: binary_sensor.washing_machine
+        state: "off"
+      - service: switch.turn_off
+        entity_id: switch.wemo_insight__washing_machine
 
 
 homeassistant:
