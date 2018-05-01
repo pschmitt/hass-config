@@ -24,7 +24,7 @@ automation:
     initial_state: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.lemon_battery, sensor.aloe_vera_battery, sensor.mint_battery, sensor.ficus_battery, sensor.chive_battery
+        entity_id: sensor.lemon_battery, sensor.capsicum_anuum_battery, sensor.citrus_mitis_calamondin_battery, sensor.ficus_battery, sensor.chive_battery
         below: 15
     action:
       - service: notify.html5
@@ -50,11 +50,11 @@ binary_sensor:
   - platform: template
     sensors:
       plant_data_outdated:
-        value_template: '{{ is_state("binary_sensor.aloe_vera_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.mint_data_outdated", "on") }}'
+        value_template: '{{ is_state("binary_sensor.capsicum_anuum_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.citrus_mitis_calamondin_data_outdated", "on") }}'
         friendly_name: 'Mi Flora Data Outdated'
-      aloe_vera_data_outdated:
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.aloe_vera_last_updated.state) > 86400 }}'
-        friendly_name: 'Aloe Vera Data Outdated'
+      capsicum_anuum_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.capsicum_anuum_last_updated.state) > 86400 }}'
+        friendly_name: 'Capsicum Anuum Data Outdated'
       basil_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.basil_last_updated.state) > 86400 }}'
         friendly_name: 'Basil Data Outdated'
@@ -67,24 +67,24 @@ binary_sensor:
       lemon_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.lemon_last_updated.state) > 86400 }}'
         friendly_name: 'Lemon Data Outdated'
-      mint_data_outdated:
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.mint_last_updated.state) > 86400 }}'
-        friendly_name: 'Mint Data Outdated'
+      citrus_mitis_calamondin_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.citrus_mitis_calamondin_last_updated.state) > 86400 }}'
+        friendly_name: 'Citrus Mitis Calamondin Data Outdated'
 
 
 plant:
-  Aloe Vera:
+  Capsicum Anuum:
     sensors:
-      moisture: sensor.aloe_vera_moisture
-      battery: sensor.aloe_vera_battery
-      temperature: sensor.aloe_vera_temperature
-      conductivity: sensor.aloe_vera_conductivity
-      brightness: sensor.aloe_vera_brightness
+      moisture: sensor.capsicum_anuum_moisture
+      battery: sensor.capsicum_anuum_battery
+      temperature: sensor.capsicum_anuum_temperature
+      conductivity: sensor.capsicum_anuum_conductivity
+      brightness: sensor.capsicum_anuum_brightness
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
     min_conductivity: 10
-    min_temperature: 12
+    min_temperature: 15
   Basil:
     sensors:
       moisture: sensor.basil_moisture
@@ -133,54 +133,54 @@ plant:
     min_battery: 15
     min_conductivity: 10
     min_temperature: 0
-  Mint:
+  Citrus Mitis Calamondin:
     sensors:
-      moisture: sensor.mint_moisture
-      battery: sensor.mint_battery
-      temperature: sensor.mint_temperature
-      conductivity: sensor.mint_conductivity
-      brightness: sensor.mint_brightness
+      moisture: sensor.citrus_mitis_calamondin_moisture
+      battery: sensor.citrus_mitis_calamondin_battery
+      temperature: sensor.citrus_mitis_calamondin_temperature
+      conductivity: sensor.citrus_mitis_calamondin_conductivity
+      brightness: sensor.citrus_mitis_calamondin_brightness
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
     min_conductivity: 10
-    min_temperature: 15
+    min_temperature: 5
 
 
 sensor:
   - platform: mqtt
-    name: aloe_vera_moisture
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_moisture
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.moisture }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: aloe_vera_battery
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_battery
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.battery }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: aloe_vera_temperature
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_temperature
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.temperature }}'
     unit_of_measurement: '°C'
 
   - platform: mqtt
-    name: aloe_vera_conductivity
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_conductivity
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.conductivity }}'
     unit_of_measurement: 'us/cm'
 
   - platform: mqtt
-    name: aloe_vera_brightness
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_brightness
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
 
   - platform: mqtt
-    name: aloe_vera_last_updated
-    state_topic: 'plants/mi/aloe_vera/'
+    name: capsicum_anuum_last_updated
+    state_topic: 'plants/mi/capsicum_anuum/'
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
@@ -323,37 +323,37 @@ sensor:
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
-    name: mint_last_updated
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_last_updated
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
-    name: mint_moisture
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_moisture
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.moisture }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: mint_battery
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_battery
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.battery }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: mint_temperature
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_temperature
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.temperature }}'
     unit_of_measurement: '°C'
 
   - platform: mqtt
-    name: mint_conductivity
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_conductivity
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.conductivity }}'
     unit_of_measurement: 'us/cm'
 
   - platform: mqtt
-    name: mint_brightness
-    state_topic: 'plants/mi/mint/'
+    name: citrus_mitis_calamondin_brightness
+    state_topic: 'plants/mi/citrus_mitis_calamondin/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
 
@@ -366,10 +366,10 @@ homeassistant:
       hidden: false
     script.refresh_plant_data:
       icon: mdi:flower
-    plant.aloe_vera:
-      battery_friendly_name: "Miflora - Aloe Vera"
-    plant.mint:
-      battery_friendly_name: "Miflora - Mint"
+    plant.capsicum_anuum:
+      battery_friendly_name: "Miflora - Capsicum Anuum"
+    plant.citrus_mitis_calamondin:
+      battery_friendly_name: "Miflora - Citrus Mitis Calamondin"
     plant.basil:
       battery_friendly_name: "Miflora - Basil"
     plant.chive:
