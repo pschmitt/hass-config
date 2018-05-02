@@ -24,7 +24,7 @@ automation:
     initial_state: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.lemon_battery, sensor.capsicum_anuum_battery, sensor.citrus_mitis_calamondin_battery, sensor.ficus_battery, sensor.chive_battery
+        entity_id: sensor.lemon_battery, sensor.capsicum_annuum_battery, sensor.citrus_mitis_calamondin_battery, sensor.ficus_battery, sensor.chive_battery
         below: 15
     action:
       - service: notify.html5
@@ -50,11 +50,11 @@ binary_sensor:
   - platform: template
     sensors:
       plant_data_outdated:
-        value_template: '{{ is_state("binary_sensor.capsicum_anuum_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.citrus_mitis_calamondin_data_outdated", "on") }}'
+        value_template: '{{ is_state("binary_sensor.capsicum_annuum_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.citrus_mitis_calamondin_data_outdated", "on") }}'
         friendly_name: 'Mi Flora Data Outdated'
-      capsicum_anuum_data_outdated:
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.capsicum_anuum_last_updated.state) > 86400 }}'
-        friendly_name: 'Capsicum Anuum Data Outdated'
+      capsicum_annuum_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.capsicum_annuum_last_updated.state) > 86400 }}'
+        friendly_name: 'Capsicum Annuum Data Outdated'
       basil_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.basil_last_updated.state) > 86400 }}'
         friendly_name: 'Basil Data Outdated'
@@ -73,13 +73,13 @@ binary_sensor:
 
 
 plant:
-  Capsicum Anuum:
+  Capsicum Annuum:
     sensors:
-      moisture: sensor.capsicum_anuum_moisture
-      battery: sensor.capsicum_anuum_battery
-      temperature: sensor.capsicum_anuum_temperature
-      conductivity: sensor.capsicum_anuum_conductivity
-      brightness: sensor.capsicum_anuum_brightness
+      moisture: sensor.capsicum_annuum_moisture
+      battery: sensor.capsicum_annuum_battery
+      temperature: sensor.capsicum_annuum_temperature
+      conductivity: sensor.capsicum_annuum_conductivity
+      brightness: sensor.capsicum_annuum_brightness
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
@@ -149,38 +149,38 @@ plant:
 
 sensor:
   - platform: mqtt
-    name: capsicum_anuum_moisture
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_moisture
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.moisture }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: capsicum_anuum_battery
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_battery
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.battery }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: capsicum_anuum_temperature
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_temperature
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.temperature }}'
     unit_of_measurement: '°C'
 
   - platform: mqtt
-    name: capsicum_anuum_conductivity
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_conductivity
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.conductivity }}'
     unit_of_measurement: 'us/cm'
 
   - platform: mqtt
-    name: capsicum_anuum_brightness
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_brightness
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
 
   - platform: mqtt
-    name: capsicum_anuum_last_updated
-    state_topic: 'plants/mi/capsicum_anuum/'
+    name: capsicum_annuum_last_updated
+    state_topic: 'plants/mi/capsicum_annuum/'
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
@@ -366,8 +366,8 @@ homeassistant:
       hidden: false
     script.refresh_plant_data:
       icon: mdi:flower
-    plant.capsicum_anuum:
-      battery_friendly_name: "Miflora - Capsicum Anuum"
+    plant.capsicum_annuum:
+      battery_friendly_name: "Miflora - Capsicum Annuum"
     plant.citrus_mitis_calamondin:
       battery_friendly_name: "Miflora - Citrus Mitis Calamondin"
     plant.basil:
