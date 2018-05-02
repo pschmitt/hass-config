@@ -4,7 +4,7 @@ services:
   hass:
     image: homeassistant/home-assistant:latest
     container_name: hass
-    restart: always
+    restart: unless-stopped
     depends_on:
       - database
     network_mode: host
@@ -34,7 +34,7 @@ services:
   database:
     image: postgres:9
     container_name: hass-db
-    restart: always
+    restart: unless-stopped
     networks:
       backend:
         ipv4_address: 172.92.92.92
@@ -48,6 +48,7 @@ services:
   influxdb:
     image: influxdb
     container_name: hass-influxdb
+    restart: unless-stopped
     networks:
       backend:
         ipv4_address: 172.92.92.93
@@ -59,6 +60,7 @@ services:
   grafana:
     image: grafana/grafana
     container_name: hass-grafana
+    restart: unless-stopped
     volumes:
       - ./data/grafana:/var/lib/grafana
       - /etc/localtime:/etc/localtime:ro
@@ -78,7 +80,7 @@ services:
   mqtt-proxy:
     image: pschmitt/stunnel
     container_name: mqtt-proxy
-    restart: always
+    restart: unless-stopped
     ports:
       - 1883:1883
     volumes:
@@ -86,7 +88,7 @@ services:
 
   appdaemon:
     image: acockburn/appdaemon
-    restart: always
+    restart: unless-stopped
     ports:
       - 5050:5050
     volumes:
