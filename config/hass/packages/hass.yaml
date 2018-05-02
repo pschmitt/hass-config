@@ -23,6 +23,9 @@ automation:
           retain: 0
       - delay: 00:05:00
       - service: script.enable_annoying_automations
+      # Purge DB
+      - delay: 00:10:00
+      - service: recorder.purge
 
   - alias: Update notifications
     initial_state: true
