@@ -15,7 +15,7 @@ body {
 }
 
 body::after {
-  background-image: url(/custom_css/dark1/img/gradient-background-_edited.png);
+  background-image: url(/custom_css/darkpi/img/gradient-background-_edited.png);
   /* background: #000;
      background-image: -webkit-radial-gradient(80% 10%, circle, #4d6776, transparent), -webkit-radial-gradient(80% 50%, circle, #27282a, transparent), -webkit-radial-gradient(20% 80%, 40em 40em, #161d23, transparent), -webkit-radial-gradient(10% 10%, circle, #212d3d, transparent);
      */
