@@ -5,11 +5,11 @@ script:
       - service: notify.zanzito_tts
         data:
           message: "Shutdown initiated."
-      - service: script.turn_off_media_players
-      - service: script.turn_off_office_tv
       - service: light.turn_off
         data:
           entity_id: group.all_lights
+      - service: script.turn_off_media_players
+      - service: script.turn_off_office_tv
       - service: script.close_all_covers
       - service: script.turn_off_doorpi_screen
       - delay: '00:00:10'
