@@ -24,7 +24,7 @@ automation:
     initial_state: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.lemon_battery, sensor.capsicum_annuum_battery, sensor.citrus_mitis_calamondin_battery, sensor.ficus_battery, sensor.chive_battery
+        entity_id: sensor.lemon_battery, sensor.capsicum_annuum_battery, sensor.citrus_mitis_calamondin_battery, sensor.ficus_battery, sensor.croton_battery
         below: 15
     action:
       - service: notify.html5
@@ -50,17 +50,17 @@ binary_sensor:
   - platform: template
     sensors:
       plant_data_outdated:
-        value_template: '{{ is_state("binary_sensor.capsicum_annuum_data_outdated", "on") and is_state("binary_sensor.basil_data_outdated", "on") and is_state("binary_sensor.chive_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.citrus_mitis_calamondin_data_outdated", "on") }}'
+        value_template: '{{ is_state("binary_sensor.capsicum_annuum_data_outdated", "on") and is_state("binary_sensor.pilea_data_outdated", "on") and is_state("binary_sensor.croton_data_outdated", "on") and is_state("binary_sensor.ficus_data_outdated", "on") and is_state("binary_sensor.lemon_data_outdated", "on") and is_state("binary_sensor.citrus_mitis_calamondin_data_outdated", "on") }}'
         friendly_name: 'Mi Flora Data Outdated'
       capsicum_annuum_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.capsicum_annuum_last_updated.state) > 86400 }}'
         friendly_name: 'Capsicum Annuum Data Outdated'
-      basil_data_outdated:
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.basil_last_updated.state) > 86400 }}'
-        friendly_name: 'Basil Data Outdated'
-      chive_data_outdated:
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.chive_last_updated.state) > 86400 }}'
-        friendly_name: 'Chive Data Outdated'
+      pilea_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.pilea_last_updated.state) > 86400 }}'
+        friendly_name: 'Pilea Data Outdated'
+      croton_data_outdated:
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.croton_last_updated.state) > 86400 }}'
+        friendly_name: 'Croton Data Outdated'
       ficus_data_outdated:
         value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.ficus_last_updated.state) > 86400 }}'
         friendly_name: 'Ficus Data Outdated'
@@ -85,25 +85,25 @@ plant:
     min_battery: 15
     min_conductivity: 10
     min_temperature: 15
-  Basil:
+  Pilea:
     sensors:
-      moisture: sensor.basil_moisture
-      battery: sensor.basil_battery
-      temperature: sensor.basil_temperature
-      conductivity: sensor.basil_conductivity
-      brightness: sensor.basil_brightness
+      moisture: sensor.pilea_moisture
+      battery: sensor.pilea_battery
+      temperature: sensor.pilea_temperature
+      conductivity: sensor.pilea_conductivity
+      brightness: sensor.pilea_brightness
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
     min_conductivity: 10
     min_temperature: 15
-  Chive:
+  Croton:
     sensors:
-      moisture: sensor.chive_moisture
-      battery: sensor.chive_battery
-      temperature: sensor.chive_temperature
-      conductivity: sensor.chive_conductivity
-      brightness: sensor.chive_brightness
+      moisture: sensor.croton_moisture
+      battery: sensor.croton_battery
+      temperature: sensor.croton_temperature
+      conductivity: sensor.croton_conductivity
+      brightness: sensor.croton_brightness
     min_moisture: 20
     max_moisture: 60
     min_battery: 15
@@ -184,73 +184,73 @@ sensor:
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
-    name: basil_moisture
-    state_topic: 'plants/mi/basil/'
+    name: pilea_moisture
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.moisture }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: basil_battery
-    state_topic: 'plants/mi/basil/'
+    name: pilea_battery
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.battery }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: basil_temperature
-    state_topic: 'plants/mi/basil/'
+    name: pilea_temperature
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.temperature }}'
     unit_of_measurement: '°C'
 
   - platform: mqtt
-    name: basil_conductivity
-    state_topic: 'plants/mi/basil/'
+    name: pilea_conductivity
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.conductivity }}'
     unit_of_measurement: 'us/cm'
 
   - platform: mqtt
-    name: basil_brightness
-    state_topic: 'plants/mi/basil/'
+    name: pilea_brightness
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
 
   - platform: mqtt
-    name: basil_last_updated
-    state_topic: 'plants/mi/basil/'
+    name: pilea_last_updated
+    state_topic: 'plants/mi/pilea/'
     value_template: '{{ value_json.timestamp }}'
 
   - platform: mqtt
-    name: chive_moisture
-    state_topic: 'plants/mi/chive/'
+    name: croton_moisture
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.moisture }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: chive_battery
-    state_topic: 'plants/mi/chive/'
+    name: croton_battery
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.battery }}'
     unit_of_measurement: '%'
 
   - platform: mqtt
-    name: chive_temperature
-    state_topic: 'plants/mi/chive/'
+    name: croton_temperature
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.temperature }}'
     unit_of_measurement: '°C'
 
   - platform: mqtt
-    name: chive_conductivity
-    state_topic: 'plants/mi/chive/'
+    name: croton_conductivity
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.conductivity }}'
     unit_of_measurement: 'us/cm'
 
   - platform: mqtt
-    name: chive_brightness
-    state_topic: 'plants/mi/chive/'
+    name: croton_brightness
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.brightness }}'
     unit_of_measurement: 'lux'
 
   - platform: mqtt
-    name: chive_last_updated
-    state_topic: 'plants/mi/chive/'
+    name: croton_last_updated
+    state_topic: 'plants/mi/croton/'
     value_template: '{{ value_json.timestamp }}'
   - platform: mqtt
     name: ficus_last_updated
@@ -370,10 +370,10 @@ homeassistant:
       battery_friendly_name: "Miflora - Capsicum Annuum"
     plant.citrus_mitis_calamondin:
       battery_friendly_name: "Miflora - Citrus Mitis Calamondin"
-    plant.basil:
-      battery_friendly_name: "Miflora - Basil"
-    plant.chive:
-      battery_friendly_name: "Miflora - Chive"
+    plant.pilea:
+      battery_friendly_name: "Miflora - Pilea"
+    plant.croton:
+      battery_friendly_name: "Miflora - Croton"
     plant.ficus_microcarpa:
       battery_friendly_name: "Miflora - Ficus"
     plant.lemon_tree:
