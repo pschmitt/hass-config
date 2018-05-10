@@ -10,7 +10,8 @@ automation:
         message: >
           Battery low on device: {{ trigger.event.data.entity_id }}
           ({{ trigger.event.data.battery_level }})
-        tag: "battery-low-{{ trigger.event.data.entity_id }}"
+        data:
+          tag: "battery-low-{{ trigger.event.data.entity_id }}"
 
   - alias: "Battery okay notifications"
     initial_state: true
@@ -21,7 +22,8 @@ automation:
       service: notify.html5
       data_template:
         message: "Battery okay on device: {{ trigger.event.data.entity_id }}"
-        tag: "battery-okay-{{ trigger.event.data.entity_id }}"
+        data:
+          tag: "battery-okay-{{ trigger.event.data.entity_id }}"
 
 
 # vim: set filetype=yaml et sw=2 ts=2 :
