@@ -51,7 +51,7 @@ covers:
 
 all_off:
   widget_type: script
-  entity: script.bedtime
+  entity: script.all_off
   icon_on: fa-power-off
   icon_off: fa-power-off
   icon_style_active: "color: $red"
