@@ -114,13 +114,6 @@ class BatteryWatcher(hass.Hass):
             return
         self.log('Battery level of {} updated: {} -> {}%'.format(
             entity, old, new))
-        attrs = self.get_state(entity, attribute='all').get('attributes', {})
-        custom_battery_threshold = attrs.get('battery_threshold')
-        if custom_battery_threshold:
-            threshold = custom_battery_threshold
-        else:
-            threshold = self.args.get('threshold')
-        bat_entity = self.battery_entity_name(entity)
         battery_level = self.battery_level_value(new)
         battery_level_old = self.battery_level_value(old)
         if isinstance(battery_level, bool):
@@ -143,7 +136,6 @@ class BatteryWatcher(hass.Hass):
             threshold = custom_battery_threshold
         else:
             threshold = self.args.get('threshold')
-        self.log('DEBUG: {} / {}'.format(battery_level, threshold))
         try:
             if isinstance(battery_level, bool):
                 if battery_level:
