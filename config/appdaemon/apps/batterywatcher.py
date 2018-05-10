@@ -74,8 +74,10 @@ class BatteryWatcher(hass.Hass):
                                            attribute='all')
         members = low_battery_group.get('attributes', {}).get('entity_id')
         if entity not in members:
+            self.log("Unknown battery device: {}".format(entity),
+                     level='WARNING')
             return
-        members.remove(entity)
+        members = [x for x in members if x != entity]
         return self.set_low_battery_devices(members)
 
     def register_battery_devices(self, devices):
@@ -146,16 +148,36 @@ class BatteryWatcher(hass.Hass):
             if isinstance(battery_level, bool):
                 if battery_level:
                     self.register_low_battery_devices(bat_entity_id)
-                else:
-                    self.clear_low_battery_device(bat_entity_id)
-            elif battery_level < threshold:
-                self.register_low_battery_devices(bat_entity_id)
-                if previous_battery_level and previous_battery_level >= threshold:
-                    self.log('Battery of {} is getting low.'.format(bat_entity_id))
                     event = self.fire_event(
                         'battery_low',
                         battery_level=battery_level,
-                        bat_entity_id=bat_entity_id)
+                        entity_id=entity_id,
+                        friendly_name=attrs.get('friendly_name'),
+                        bat_entity_id=bat_entity_id,
+                        unit_of_measurement='')
+                    self.log('Fired event: {}'.format(event))
+                else:
+                    self.clear_low_battery_device(bat_entity_id)
+                    event = self.fire_event(
+                        'battery_okay',
+                        battery_level=battery_level,
+                        entity_id=entity_id,
+                        friendly_name=attrs.get('friendly_name'),
+                        bat_entity_id=bat_entity_id,
+                        unit_of_measurement='')
+                    self.log('Fired event: {}'.format(event))
+            elif battery_level < threshold:
+                self.register_low_battery_devices(bat_entity_id)
+                if previous_battery_level and previous_battery_level >= threshold:
+                    self.log('Battery of {} is getting low: {}. Entity: {}'.format(
+                        bat_entity_id, battery_level, entity_id))
+                    event = self.fire_event(
+                        'battery_low',
+                        battery_level=battery_level,
+                        entity_id=entity_id,
+                        friendly_name=attrs.get('friendly_name'),
+                        bat_entity_id=bat_entity_id,
+                        unit_of_measurement='%')
                     self.log('Fired event: {}'.format(event))
             elif battery_level >= threshold:
                 self.clear_low_battery_device(bat_entity_id)
@@ -165,6 +187,8 @@ class BatteryWatcher(hass.Hass):
                     event = self.fire_event(
                         'battery_okay',
                         battery_level=battery_level,
+                        entity_id=entity_id,
+                        friendly_name=attrs.get('friendly_name'),
                         bat_entity_id=bat_entity_id,
                         unit_of_measurement='%')
                     self.log('Fired event: {}'.format(event))
