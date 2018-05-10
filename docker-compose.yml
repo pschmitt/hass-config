@@ -27,7 +27,6 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
       - "traefik.enable=true"
       - "traefik.backend=home-assistant"
-      - "traefik.docker.network=host"
       - "traefik.frontend.rule=Host:home.comreset.io"
       - "traefik.port=8123"
 
