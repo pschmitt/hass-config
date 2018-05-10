@@ -167,8 +167,8 @@ lock_title2_style: $style_title2
 lock_widget_style: $background_style
 lock_state_text_style: "color: $gray_medium_dark"
 
-cover_icon_on: fa-arrow-circle-o-up
-cover_icon_off: fa-arrow-circle-o-down
+cover_icon_on: fa-arrow-circle-o-down
+cover_icon_off: fa-arrow-circle-o-up
 cover_icon_style_active: "font-size: 250%; $style_active"
 cover_icon_style_inactive: "font-size: 250%; $style_inactive"
 cover_title_style: $style_title
