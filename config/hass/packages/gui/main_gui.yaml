@@ -11,6 +11,7 @@ group:
       - cover.all_covers
       - cover.bedroom
       - cover.kitchen
+      - cover.living_room_main
       - cover.living_room
       - light.bathroom_ceiling
       - switch.wall_switch_bathroom_left

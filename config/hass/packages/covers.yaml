@@ -60,6 +60,12 @@ cover:
       - cover.bedroom_door
 
   - platform: group
+    name: Living Room Main
+    entities:
+      - cover.living_room_table
+      - cover.living_room_tv
+
+  - platform: group
     name: Living Room
     entities:
       - cover.living_room_table
