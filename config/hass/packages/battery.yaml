@@ -9,7 +9,7 @@ automation:
       data_template:
         message: >
           Battery low on device: {{ trigger.event.data.entity_id }}
-          ({{ trigger.event.data.battery_level }})
+          ({{ trigger.event.data.battery_level }}{{ trigger.event.data.unit_of_measurement}})
         data:
           tag: "battery-low-{{ trigger.event.data.entity_id }}"
 
@@ -21,7 +21,9 @@ automation:
     action:
       service: notify.html5
       data_template:
-        message: "Battery okay on device: {{ trigger.event.data.entity_id }}"
+        message: >
+          Battery okay on device: {{ trigger.event.data.entity_id }}
+          ({{ trigger.event.data.battery_level }}{{ trigger.event.data.unit_of_measurement}})
         data:
           tag: "battery-okay-{{ trigger.event.data.entity_id }}"
 
