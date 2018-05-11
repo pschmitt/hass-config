@@ -52,6 +52,7 @@ covers:
 all_off:
   widget_type: script
   entity: script.all_off
+  use_hass_icon: 0
   icon_on: fa-power-off
   icon_off: fa-power-off
   icon_style_active: "color: $red"
