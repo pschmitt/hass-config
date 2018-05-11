@@ -34,6 +34,7 @@ group:
     entities:
       - binary_sensor.door_window_sensor_terrace_door
       - binary_sensor.door_window_sensor_living_room_window
+      - cover.living_room_main
       - cover.living_room_door
       - cover.living_room_table
       - cover.living_room_tv
