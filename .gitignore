@@ -1,3 +1,4 @@
 data/
 *.env
 config/google-assistant/
+*.bak
