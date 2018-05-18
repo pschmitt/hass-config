@@ -81,7 +81,7 @@ plant:
       conductivity: sensor.capsicum_annuum_conductivity
       brightness: sensor.capsicum_annuum_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 15
@@ -93,7 +93,7 @@ plant:
       conductivity: sensor.pilea_conductivity
       brightness: sensor.pilea_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 15
@@ -105,7 +105,7 @@ plant:
       conductivity: sensor.croton_conductivity
       brightness: sensor.croton_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 15
@@ -117,7 +117,7 @@ plant:
       conductivity: sensor.ficus_conductivity
       brightness: sensor.ficus_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 12
@@ -129,7 +129,7 @@ plant:
       conductivity: sensor.lemon_conductivity
       brightness: sensor.lemon_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 0
@@ -141,7 +141,7 @@ plant:
       conductivity: sensor.citrus_mitis_calamondin_conductivity
       brightness: sensor.citrus_mitis_calamondin_brightness
     min_moisture: 20
-    max_moisture: 60
+    max_moisture: 80
     min_battery: 15
     min_conductivity: 10
     min_temperature: 5
