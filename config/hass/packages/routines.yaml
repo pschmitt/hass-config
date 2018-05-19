@@ -84,6 +84,25 @@ automation:
     condition:
       condition: and
       conditions:
+        - condition: time
+          after: '07:30:00'  # else: go to next automation
+        - condition: state
+          entity_id: input_boolean.sleepover
+          state: 'off'
+        - condition: state
+          entity_id: group.main_mobile_devices
+          state: home
+    action:
+      - service: script.open_auto_covers
+
+  - alias: Open some covers at 07:30
+    initial_state: true
+    trigger:
+      platform: time
+      at: '07:30:00'
+    condition:
+      condition: and
+      conditions:
         - condition: state
           entity_id: input_boolean.sleepover
           state: 'off'
