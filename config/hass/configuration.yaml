@@ -16,6 +16,7 @@ http:
 config:
 conversation:
 discovery:
+  ignore: philips_hue
 downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
 history:
