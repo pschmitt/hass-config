@@ -42,6 +42,19 @@ media_player:
       source_list: media_player.office_speaker|source_list
 
 
+switch:
+  - platform: mqtt
+    name: Office TV
+    state_topic: "hassistant/states/switch/office_tv/state"
+    value_template: '{{ value == "on" }}'
+    command_topic: "hassistant/states/switch/office_tv/command"
+    payload_on: "ON"
+    payload_off: "OFF"
+    assumed_state: true
+    optimistic: true
+    qos: 2
+
+
 script:
   turn_on_office_media_players:
     sequence:

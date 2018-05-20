@@ -7,17 +7,17 @@ pilight:
 switch:
   - platform: pilight
     switches:
-      Office TV:
-        on_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'on': 1
-        off_code:
-          protocol: pollin
-          systemcode: 1
-          unitcode: 1
-          'off': 1
+      # Office TV:
+      #   on_code:
+      #     protocol: pollin
+      #     systemcode: 1
+      #     unitcode: 1
+      #     'on': 1
+      #   off_code:
+      #     protocol: pollin
+      #     systemcode: 1
+      #     unitcode: 1
+      #     'off': 1
       3D Printer:
         on_code:
           protocol: pollin
