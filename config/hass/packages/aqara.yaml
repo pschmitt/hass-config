@@ -5,12 +5,15 @@ xiaomi_aqara:
       key: !secret mi_gw_api_key
 
 
-light:
-  - platform: yeelight
-    devices:
-      "yeelight-office.lan":
-        name: YeeLight Office
+script:
+  aqara_add_device:
+    sequence:
+      service: xiaomi_aqara.add_device
+      data:
+        gw_mac: !secret mi_gw_mac
 
+
+light:
   - platform: template
     lights:
         bathroom_ceiling:
@@ -22,14 +25,6 @@ light:
           turn_off:
             service: switch.turn_off
             entity_id: switch.wall_switch_bathroom_right
-
-
-script:
-  aqara_add_device:
-    sequence:
-      service: xiaomi_aqara.add_device
-      data:
-        gw_mac: !secret mi_gw_mac
 
 
 group:
@@ -266,14 +261,32 @@ automation:
     action:
       - service: script.turn_on_doorpi_screen
 
-  - alias: Toggle bathroom light when pressing bathroom switch (L)
+  - alias: Turn on bathroom light when motion is detected
     initial_state: True
     trigger:
       platform: state
-      entity_id: switch.wall_switch_bathroom_left
+      entity_id: binary_sensor.bathroom_presence
+      to: 'on'
+    action:
+      - service: script.turn_on_bathroom_light_switch
+
+  # - alias: Toggle bathroom light when pressing bathroom switch (L)
+  #   initial_state: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.wall_switch_bathroom_left
+  #   action:
+  #     - service: light.toggle
+  #       entity_id: light.bathroom_light
+
+  - alias: Toggle bathroom lights when pressing bathroom switch (R)
+    initial_state: True
+    trigger:
+      platform: state
+      entity_id: switch.wall_switch_bathroom_right
     action:
       - service: light.toggle
-        entity_id: light.bathroom_light
+        entity_id: light.bathroom_lights
 
 
 homeassistant:

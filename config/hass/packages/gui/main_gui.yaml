@@ -6,13 +6,15 @@ group:
       - group.info
       - group.shortcuts
       - group.weather_shortcut
-      - group.light_groups
+      - group.main_lights
       - media_player.cast_home_group
+      # Covers
       - cover.all_covers
       - cover.bedroom
       - cover.kitchen
       - cover.living_room_main
       - cover.living_room
+      # Temp
       - light.bathroom_ceiling
       - switch.wall_switch_bathroom_left
       - switch.wall_switch_bathroom_right
@@ -22,11 +24,6 @@ group:
     control: hidden
     view: no
     entities:
-      # - device_tracker.op3t_arp
-      # - device_tracker.op3t_ping
-      # - device_tracker.g4p_arp
-      # - device_tracker.g4p_zanzito
-      # - group.pschmitt_location
       - device_tracker.google_maps_111748235994603810778
       - device_tracker.google_maps_105543397094537443482
       - group.main_mobile_devices

@@ -49,28 +49,4 @@ automation:
       - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_office
 
-#   - id: front_door_timer
-#     alias: Front door light timer
-#     hide_entity: False
-#     trigger:
-#       platform: state
-#       entity_id: light.front_door
-#       from: 'off'
-#       to: 'on'
-#       for:
-#         seconds: 5
-#     action:
-#       service: homeassistant.turn_off
-#       entity_id: light.front_door
-
-
-# script:
-#   light_timer:
-#     sequence:
-#       - service: light.turn_on
-#         data_template:
-#           entity_id: '{{ light }}'
-#       - delay: '{{ delay | default("00:05:00") }}'
-#       - service: light.turn_off
-#         data_template:
-#           entity_id: '{{ light }}'
+# vim: set filetype=yaml et sw=2 ts=2 :

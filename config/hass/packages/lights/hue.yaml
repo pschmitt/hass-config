@@ -1,176 +1,17 @@
-light:
-  - platform: hue
-    host: philips-hue.lan
-    allow_unreachable: true
-    scan_interval: 10
+hue:
+  bridges:
+    - host: 10.7.0.145
+      allow_unreachable: true
+      allow_hue_groups: false
 
 
-automation:
-  - alias: Turn off bedroom lights after 30 minutes
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: light.bedroom_light
-        to: 'on'
-        for:
-          minutes: 30
-    action:
-      - service: light.turn_off
-        entity_id: light.bedroom_light
-
-  - alias: Turn off front door lights after 30 minutes
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: light.front_door_light
-        to: 'on'
-        for:
-          minutes: 30
-    action:
-      - service: light.turn_off
-        entity_id: light.front_door_light
-
-  - alias: Hue Master Switch OFF pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Master dimmer switch"
-          button_name: "off"
-          click_type: long_released
-    action:
-      - service: script.hue_master_switch_off
-
-  - alias: Hue Master Switch ON pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Master dimmer switch"
-          button_name: "on"
-          click_type: long_released
-    action:
-      - service: script.hue_master_switch_on
-
-  - alias: Hue Living Room Switch ON long pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Living room dimmer switch"
-          button_name: "on"
-          click_type: long_released
-    action:
-      - service: script.hue_living_room_switch_long_on
-
-  - alias: Hue Living Room Switch OFF long pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Living room dimmer switch"
-          button_name: "off"
-          click_type: long_released
-    action:
-      - service: script.hue_living_room_switch_long_off
-
-
-group:
-  light_groups:
-    name: Lights
-    view: no
-    entities:
-      - light.front_door
-      - light.living_room
-      - light.terrace
-      - light.office
-      - light.bedroom
-      - light.toilet
-      - light.bathroom
-      - light.kitchen
-      - light.hallway
-
-  light_bulbs:
-    name: Light bulbs
-    view: no
-    entities:
-      - light.front_door_light
-      - light.living_room_tv_light
-      - light.living_room_table_light
-      - light.terrace_light
-      - light.office_light
-      - light.bedroom_light
-      - light.toilet_light
-      - light.bathroom_light
-      - light.kitchen_light
-      - light.hallway_light
-
-
-scene:
-  - name: Living Room Normal
-    entities:
-      light.living_room:
-        state: on
-        transition: 3
-        brightness: 150
-        xy_color: [ 0.4448, 0.4066 ]
-
-  - name: Living Room Dim
-    entities:
-      light.living_room:
-        state: on
-        transition: 3
-        brightness: 75
-        xy_color: [ 0.5926, 0.3814 ]
-      light.entrance:
-        state: off
-        transition: 1
-      light.terrace:
-        state: off
-        transition: 1
-      light.kitchen:
-        state: off
-        transition: 1
-
-  - name: Flash Living Room Lights
-    entities:
-      light.living_room:
-        state: on
-        flash: short
-
-  - name: Flash Office Lights
-    entities:
-      light.office:
-        state: on
-        flash: short
-
-  - name: Flash Lights
-    entities:
-      light.office:
-        state: on
-        flash: short
-      light.living_room:
-        state: on
-        flash: short
-
-  - name: Bedtime
-    entities:
-      light.terrace:
-        state: off
-      light.hallway:
-        state: off
-      light.toilet:
-        state: off
-      light.bathroom:
-        state: off
-      light.office:
-        state: off
-      light.bedroom:
-        state: off
+input_number:
+  smoke_break_duration:
+    name: Smoke break duration
+    icon: mdi:smoking
+    mode: slider
+    min: 5
+    max: 480
 
 
 sensor:
@@ -258,12 +99,6 @@ sensor:
     unit_of_measurement: °C
     scan_interval: 600
 
-  - platform: command_line
-    name: 'DEBUG Bathroom Presence'
-    device_class: motion
-    command: /scripts/zhue.sh presence bathroom
-    value_template: '{{ value_json.state.presence }}'
-
 
 binary_sensor:
   - platform: command_line
@@ -273,7 +108,7 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
     payload_on: "True"
     payload_off: "False"
-    scan_interval: 5
+    scan_interval: 1
 
   - platform: command_line
     name: 'Hallway Presence'
@@ -282,7 +117,7 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
     payload_on: "True"
     payload_off: "False"
-    scan_interval: 5
+    scan_interval: 1
 
   - platform: command_line
     name: 'Kitchen Presence'
@@ -291,7 +126,7 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
     payload_on: "True"
     payload_off: "False"
-    scan_interval: 5
+    scan_interval: 1
 
   - platform: command_line
     name: 'Bathroom Presence'
@@ -300,16 +135,87 @@ binary_sensor:
     value_template: '{{ value_json.state.presence }}'
     payload_on: "True"
     payload_off: "False"
-    scan_interval: 5
+    scan_interval: 1
 
 
-input_number:
-  smoke_break_duration:
-    name: Smoke break duration
-    icon: mdi:smoking
-    mode: slider
-    min: 5
-    max: 480
+group:
+  hue_lights:
+    name: Hue Lights
+    view: no
+    entities:
+      - light.hue_bathroom
+      - light.hue_bedroom
+      - light.hue_front_door
+      - light.hue_hallway
+      - light.hue_kitchen
+      - light.hue_living_room_table
+      - light.hue_living_room_tv
+      - light.hue_office
+      - light.hue_terrace
+      - light.hue_toilet
+
+
+scene:
+  - name: Living Room Normal
+    entities:
+      light.living_room:
+        state: on
+        transition: 3
+        brightness: 150
+        xy_color: [ 0.4448, 0.4066 ]
+
+  - name: Living Room Dim
+    entities:
+      light.living_room:
+        state: on
+        transition: 3
+        brightness: 75
+        xy_color: [ 0.5926, 0.3814 ]
+      light.hue_front_door:
+        state: off
+        transition: 1
+      light.hue_terrace:
+        state: off
+        transition: 1
+      light.hue_kitchen:
+        state: off
+        transition: 1
+
+  - name: Flash Living Room Lights
+    entities:
+      light.living_room:
+        state: on
+        flash: short
+
+  - name: Flash Office Lights
+    entities:
+      light.hue_office:
+        state: on
+        flash: short
+
+  - name: Flash Lights
+    entities:
+      light.hue_office:
+        state: on
+        flash: short
+      light.living_room:
+        state: on
+        flash: short
+
+  - name: Bedtime
+    entities:
+      light.terrace:
+        state: off
+      light.hallway:
+        state: off
+      light.toilet:
+        state: off
+      light.bathroom:
+        state: off
+      light.office:
+        state: off
+      light.bedroom:
+        state: off
 
 
 script:
@@ -383,42 +289,110 @@ script:
           entity_id: light.terrace
 
 
+automation:
+  - alias: Turn off bedroom lights after 30 minutes
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: light.hue_bedroom
+        to: 'on'
+        for:
+          minutes: 30
+    action:
+      - service: light.turn_off
+        entity_id: light.hue_bedroom
+
+  - alias: Turn off front door lights after 30 minutes
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: light.hue_front_door
+        to: 'on'
+        for:
+          minutes: 30
+    action:
+      - service: light.turn_off
+        entity_id: light.hue_front_door
+
+  - alias: Hue Master Switch OFF pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Master dimmer switch"
+          button_name: "off"
+          click_type: long_released
+    action:
+      - service: script.hue_master_switch_off
+
+  - alias: Hue Master Switch ON pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Master dimmer switch"
+          button_name: "on"
+          click_type: long_released
+    action:
+      - service: script.hue_master_switch_on
+
+  - alias: Hue Living Room Switch ON long pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Living room dimmer switch"
+          button_name: "on"
+          click_type: long_released
+    action:
+      - service: script.hue_living_room_switch_long_on
+
+  - alias: Hue Living Room Switch OFF long pressed
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: hue_dimmer_switch_pressed
+        event_data:
+          switch_name: "Living room dimmer switch"
+          button_name: "off"
+          click_type: long_released
+    action:
+      - service: script.hue_living_room_switch_long_off
+
 
 homeassistant:
   customize:
     # Lights
-    light.all_hue_lights:
-      google_assistant: false
-    light.bathroom:
-      # icon: mdi:hot-tub
+    light.hue_bathroom:
       icon: mdi:water-pump
       google_assistant: false
-    light.bedroom:
+    light.hue_bedroom:
       icon: mdi:hotel
       google_assistant: false
-    light.front_door:
+    light.hue_front_door:
       icon: mdi:home-modern
       google_assistant: false
-    light.hallway:
+    light.hue_hallway:
       icon: mdi:vector-square
       google_assistant: false
-    light.kitchen:
+    light.hue_kitchen:
       icon: mdi:pot-mix
       google_assistant: false
-    light.living_room:
+    light.hue_living_room_tv:
       icon: mdi:sofa
       google_assistant: false
-    light.living_room_table_light:
+    light.hue_living_room_table:
       icon: mdi:food
-    light.living_room_tv_light:
-      icon: mdi:television
-    light.office:
+    light.hue_office:
       icon: mdi:book-open
       google_assistant: false
-    light.terrace:
+    light.hue_terrace:
       icon: mdi:tree
       google_assistant: false
-    light.toilet:
+    light.hue_toilet:
       icon: mdi:human-male-female
       google_assistant: false
     # Hue sensors

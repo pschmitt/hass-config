@@ -12,7 +12,7 @@ group:
       - camera.weather
       - camera.centre_pompidou
       - camera.centre_congres
-      - light.terrace_light
+      - light.hue_terrace
       - script.smoke_break
       - group.terrace_doors
       - cover.living_room_door

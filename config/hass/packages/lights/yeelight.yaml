@@ -1,0 +1,7 @@
+light:
+  - platform: yeelight
+    devices:
+      "yeelight-office.lan":
+        name: YeeLight Office
+
+# vim: set filetype=yaml et sw=2 ts=2 :

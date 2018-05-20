@@ -5,7 +5,7 @@ group:
     icon: mdi:pot-mix
     entities:
       - camera.c2
-      - light.kitchen_light
+      - light.hue_kitchen
       - group.fridge
       - group.kitchen_window
 

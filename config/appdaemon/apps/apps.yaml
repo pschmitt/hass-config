@@ -19,7 +19,7 @@ motion_lights:
       sensors:
         - binary_sensor.motion_sensor_front_door
       lights:
-        - light.front_door_light
+        - light.hue_front_door
       constraints:
         state: input_boolean.motion_light_front_door
       duration: 300
@@ -40,7 +40,7 @@ motion_lights:
       sensors:
         - binary_sensor.motion_sensor_terrace
       lights:
-        - light.terrace_light
+        - light.hue_terrace
       constraints:
         # start: sunrise
         # stop: sunset - 00:45:00
@@ -55,7 +55,6 @@ motion_lights:
       sensors:
         - binary_sensor.motion_sensor_living_room
       lights:
-        # - light.living_room
         - light.living_room
       duration: 1200
 

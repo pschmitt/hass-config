@@ -74,43 +74,43 @@ sensor.fibaro_system_fgsd002_smoke_sensor_heat_2:
   name:
   platform: zwave
   unique_id: 8-72057594178895937
-light.toilet_light:
+light.hue_toilet:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:3c:cc:eb-0b
-light.office_light:
+light.hue_office:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:55:61:4c-0b
-light.bathroom_light:
+light.hue_bathroom:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:31:6b:66-0b
-light.hallway_light:
+light.hue_hallway:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:31:6d:22-0b
-light.terrace_light:
+light.hue_terrace:
   name:
   platform: hue
   unique_id: 00:17:88:01:00:ee:cc:52-0b
-light.kitchen_light:
+light.hue_kitchen:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:4d:19:cc-0b
-light.front_door_light:
+light.hue_front_door:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:47:17:d9-0b
-light.living_room_tv_light:
+light.hue_living_room_tv:
   name:
   platform: hue
   unique_id: 00:17:88:01:00:d8:f2:08-0b
-light.bedroom_light:
+light.hue_bedroom:
   name:
   platform: hue
   unique_id: 00:17:88:01:10:55:37:50-0b
-light.living_room_table_light:
+light.hue_living_room_table:
   name:
   platform: hue
   unique_id: 00:17:88:01:00:ec:a1:39-0b
@@ -418,3 +418,75 @@ media_player.emby__radarr__nasteanas:
   name:
   platform: emby
   unique_id: 9925a8802c374bd69ec2eb5674129f17.Radarr
+media_player.emby__sonarr__nasteanas:
+  name:
+  platform: emby
+  unique_id: 9925a8802c374bd69ec2eb5674129f17.Sonarr
+media_player.emby__dlna__shield_android_tves1070241_13:
+  name:
+  platform: emby
+  unique_id: uuid:bb5d954e-c03b-274f-0000-000038b27980.DLNA
+sensor.pws_precip_1d:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,precip_1d'
+sensor.pws_weather_2d_metric:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,weather_2d_metric'
+sensor.pws_precip_today_metric:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,precip_today_metric'
+sensor.pws_wind_string:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,wind_string'
+sensor.pws_alerts:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,alerts'
+sensor.pws_precip_today_string:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,precip_today_string'
+sensor.pws_temp_c:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,temp_c'
+sensor.pws_feelslike_c:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,feelslike_c'
+sensor.pws_weather:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,weather'
+sensor.pws_feelslike_string:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,feelslike_string'
+sensor.pws_weather_1d_metric:
+  name:
+  platform: wunderground
+  unique_id: '@6.172700,49.119100,weather_1d_metric'
+zwave.sigma_designs_uzb_zwave_usb_adapter:
+  name:
+  platform: zwave
+  unique_id: node-1
+zwave.fibaro_system_fgsd002_smoke_sensor:
+  name:
+  platform: zwave
+  unique_id: node-8
+media_player.emby__emby_mobile__chrome_6:
+  name:
+  platform: emby
+  unique_id: c39e762677870158c74bf39db4fd23c2b843ab39.Emby Mobile
+media_player.emby__dlna__network_device:
+  name:
+  platform: emby
+  unique_id: uuid:0c1c62de-209c-906f-0000-000038b27980.DLNA
+media_player.emby__dlna__shield_android_tves1070241_14:
+  name:
+  platform: emby
+  unique_id: uuid:1a5344e6-5c15-34fa-0000-000038b27980.DLNA

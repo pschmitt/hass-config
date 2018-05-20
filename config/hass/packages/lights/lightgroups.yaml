@@ -1,0 +1,90 @@
+light:
+  - platform: group
+    name: Living Room
+    entities:
+      - light.hue_living_room_table
+      - light.hue_living_room_tv
+
+  - platform: group
+    name: Office
+    entities:
+      - light.hue_office
+      - light.yeelight_office
+
+  - platform: group
+    name: Bathroom
+    entities:
+      - light.bathroom_ceiling
+      - light.bathroom_mirror
+      - light.hue_bathroom
+
+  # - platform: group
+  #   name: Terrace
+  #   entities:
+  #     - light.hue_terrace
+  #
+  # - platform: group
+  #   name: Kitchen
+  #   entities:
+  #     - light.hue_kitchen
+  #
+  # - platform: group
+  #   name: Hallway
+  #   entities:
+  #     - light.hue_hallway
+  #
+  # - platform: group
+  #   name: Hallway
+  #   entities:
+  #     - light.hue_hallway
+
+
+group:
+  misc_lights:
+    name: Misc Lights
+    view: no
+    entities:
+      - light.hue_bedroom
+      - light.hue_front_door
+      - light.hue_hallway
+      - light.hue_kitchen
+      - light.hue_toilet
+
+  main_lights:
+    name: Main Lights
+    view: no
+    icon: mdi:home
+    entities:
+      # Light groups
+      - light.bathroom
+      - light.living_room
+      - light.office
+      - group.misc_lights
+      # Individual lights
+      - light.hue_front_door
+      - light.hue_terrace
+
+
+
+script:
+  turn_on_bathroom_light_switch:
+    alias: 'Enable bathroom switch'
+    sequence:
+      - condition: state
+        entity_id: switch.wall_switch_bathroom_left
+        state: "off"
+      - service: switch.turn_on
+        entity_id: switch.wall_switch_bathroom_left
+
+
+homeassistant:
+  customize:
+    # Lights
+    light.living_room:
+      icon: mdi:sofa
+    light.office:
+      icon: mdi:anvil
+    light.bathroom:
+      icon: mdi:water-pump
+
+# vim: set filetype=yaml et sw=2 ts=2 :

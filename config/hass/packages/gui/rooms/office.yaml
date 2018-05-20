@@ -2,9 +2,10 @@ group:
   office:
     name: Office
     view: yes
-    icon: mdi:book-open
+    icon: mdi:anvil
     entities:
-      - light.office_light
+      - light.office
+      - light.hue_office
       - light.yeelight_office
       - light.3d_printer_led
       - camera.hassistant
@@ -13,14 +14,6 @@ group:
       - group.office_windows
       - group.office_misc
       - group.office_sensors
-
-  office_lights:
-    name: All Office Lights
-    view: no
-    icon: mdi:lightbulb
-    entities:
-      - light.office_light
-      - light.yeelight_office
 
   office_windows:
     name: Office Windows
