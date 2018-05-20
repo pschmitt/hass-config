@@ -15,7 +15,6 @@ group:
       - cover.living_room_main
       - cover.living_room
       # Temp
-      - light.bathroom_ceiling
       - switch.wall_switch_bathroom_left
       - switch.wall_switch_bathroom_right
 
