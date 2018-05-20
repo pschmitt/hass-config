@@ -4,7 +4,7 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
   certificate: !secret mqtt_cert
-  discovery: true
+  discovery: false
   discovery_prefix: homeassistant
 
 
