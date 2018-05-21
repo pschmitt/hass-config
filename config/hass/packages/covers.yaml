@@ -92,6 +92,27 @@ cover:
 
 
 script:
+  cover_privacy:
+    alias: Privacy Cover Mode
+    sequence:
+      - service: cover.close_cover
+        entity_id: cover.living_room_main
+      - delay: '00:00:22'
+      - service: cover.open_cover
+        entity_id: cover.living_room_main
+      - delay: '00:00:06'
+      - service: cover.stop_cover
+        entity_id: cover.living_room_main
+
+  cover_movie_smoke_break:
+    alias: "Cover: Movie Smoke Break"
+    sequence:
+      - service: cover.stop_cover
+        entity_id: cover.living_room_table
+      - delay: '00:00:10'
+      - service: cover.stop_cover
+        entity_id: cover.living_room_table
+
   cover_winpi:
     sequence:
       - service: cover.close_cover
@@ -193,5 +214,11 @@ homeassistant:
   customize:
     group.all_covers:
       hidden: False
+    script.cover_privacy:
+      can_cancel: False
+      icon: mdi:eye-off
+    script.cover_movie_smoke_break:
+      can_cancel: False
+      icon: mdi:smoking
 
 # vim: set filetype=yaml et sw=2 ts=2 :
