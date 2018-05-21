@@ -2,7 +2,7 @@ group:
   cameras:
     name: Cameras
     view: yes
-    icon: mdi:camera
+    icon: mdi:cctv
     entities:
       - switch.modect
       - group.cameras_living_room
