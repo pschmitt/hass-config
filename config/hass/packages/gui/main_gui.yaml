@@ -14,9 +14,6 @@ group:
       - cover.kitchen
       - cover.living_room_main
       - cover.living_room
-      # Temp
-      - switch.wall_switch_bathroom_left
-      - switch.wall_switch_bathroom_right
 
   info:
     name: Info
@@ -44,6 +41,8 @@ group:
       - binary_sensor.door_window_sensor_front_door
       - binary_sensor.motion_sensor_front_door
       - lock.front_door
+      - script.cover_privacy
+      - script.cover_movie_smoke_break
       - script.all_off
 
 
