@@ -98,6 +98,8 @@ automation:
       - service: notify.zanzito_tts
         data:
           message: "3D Print finished"
+          data:
+            tag: "3d_print_finished"
       # - delay: '00:05:00'
       # - service: group.set_visibility
       #   entity_id: group.3d_printer
@@ -115,13 +117,11 @@ automation:
       - service: notify.html5
         data:
           message: "Woops! The 3D print has failed..."
+          data:
+            tag: "3d_print_failed"
       - service: notify.zanzito_tts
         data:
           message: "Awww jeez the 3D print has failed"
-      # - service: group.set_visibility
-      #   entity_id: group.3d_printer
-      #   data:
-      #     visible: True
 
   - alias: Turn on lights if the sun goes down and there is an ongoing print
     initial_state: true
@@ -142,6 +142,8 @@ automation:
       - service: notify.html5
         data:
           message: "Turning office lights on so that the timelapse does not get fucked."
+          data:
+            tag: "3d_print_nighttime_light"
       - service: light.turn_on
         data:
           entity_id: light.yeelight_office
@@ -157,6 +159,8 @@ automation:
       - service: notify.html5
         data:
           message: "3D printing timelapse rendering has ended"
+          data:
+            tag: "3d_print_timelapse_rendered"
       - service: notify.zanzito_tts
         data:
           message: "Timelapse rendered"
