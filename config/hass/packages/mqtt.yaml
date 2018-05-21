@@ -5,7 +5,7 @@ mqtt:
   password: !secret mqtt_password
   certificate: !secret mqtt_cert
   discovery: false
-  discovery_prefix: homeassistant
+  # discovery_prefix: hassistant
 
 
 mqtt_statestream:
@@ -16,6 +16,8 @@ mqtt_statestream:
 
 mqtt_eventstream:
   publish_topic: homeassistant/events
-  subscribe_topic: hassistant/events/#
+  # subscribe_topic: hassistant/events/#
+  ignore_event:
+    - call_service
 
 # vim: set filetype=yaml et sw=2 ts=2 :
