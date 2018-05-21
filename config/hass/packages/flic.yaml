@@ -45,7 +45,7 @@ automation:
           click_type: single
     condition:
       - condition: state
-        entity_id: light.terrace_light
+        entity_id: light.hue_terrace
         state: 'off'
     action:
       - service: cover.open_cover
@@ -64,12 +64,12 @@ automation:
           click_type: single
     condition:
       - condition: state
-        entity_id: light.terrace_light
+        entity_id: light.hue_terrace
         state: 'on'
     action:
       - service: light.turn_off
         data:
-          entity_id: light.terrace_light
+          entity_id: light.hue_terrace
       - service: script.turn_off
         data:
           entity_id: script.smoke_break_timer_off
@@ -85,7 +85,7 @@ automation:
     action:
       - service: light.turn_off
         data:
-          entity_id: light.terrace_light
+          entity_id: light.hue_terrace
       - service: script.turn_off
         data:
           entity_id: script.smoke_break_timer_off
