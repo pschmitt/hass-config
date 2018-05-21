@@ -1,3 +1,9 @@
+weather:
+  - platform: darksky
+    name: darksky
+    api_key: !secret darksky_api_key
+
+
 sensor:
   - platform: yr
     monitored_conditions:
@@ -62,11 +68,8 @@ group:
   weather_shortcut:
     name: Weather
     entities:
-      - sensor.pws_weather_1d_metric
+      - weather.darksky
       - sensor.pws_weather_2d_metric
-      - sensor.pws_temp_c
-      # - sensor.dark_sky_temperature
-      # - sensor.yr_symbol
       - sensor.home_temperature
 
   weather_indoor:
