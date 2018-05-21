@@ -22,58 +22,6 @@ media_player.emby__emby_for_android_mobile__nexus_7:
   name:
   platform: emby
   unique_id: 69091b9de168a2.Emby for Android Mobile
-binary_sensor.fibaro_system_fgsd002_smoke_sensor_sensor:
-  name:
-  platform: zwave
-  unique_id: 8-72057594177126400
-sensor.fibaro_system_fgsd002_smoke_sensor_temperature:
-  name:
-  platform: zwave
-  unique_id: 8-72057594177142802
-sensor.fibaro_system_fgsd002_smoke_sensor_alarm_type:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191361
-sensor.fibaro_system_fgsd002_smoke_sensor_alarm_level:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191377
-sensor.fibaro_system_fgsd002_smoke_sensor_sourcenodeid:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191393
-sensor.fibaro_system_fgsd002_smoke_sensor_smoke:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191425
-sensor.fibaro_system_fgsd002_smoke_sensor_heat:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191473
-sensor.fibaro_system_fgsd002_smoke_sensor_burglar:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191521
-sensor.fibaro_system_fgsd002_smoke_sensor_power_management:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191537
-sensor.fibaro_system_fgsd002_smoke_sensor_system:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178191553
-sensor.fibaro_system_fgsd002_smoke_sensor_general:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178895873
-sensor.fibaro_system_fgsd002_smoke_sensor_smoke_2:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178895889
-sensor.fibaro_system_fgsd002_smoke_sensor_heat_2:
-  name:
-  platform: zwave
-  unique_id: 8-72057594178895937
 light.hue_toilet:
   name:
   platform: hue
@@ -474,10 +422,6 @@ zwave.sigma_designs_uzb_zwave_usb_adapter:
   name:
   platform: zwave
   unique_id: node-1
-zwave.fibaro_system_fgsd002_smoke_sensor:
-  name:
-  platform: zwave
-  unique_id: node-8
 media_player.emby__emby_mobile__chrome_6:
   name:
   platform: emby
