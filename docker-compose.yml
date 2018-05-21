@@ -19,8 +19,6 @@ services:
       - ./scripts:/scripts:ro
       - /etc/localtime:/etc/localtime:ro
       - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
-    devices:
-      - /dev/zwave:/dev/ttyACM0
     healthcheck:
       test: "curl -Lf http://localhost:8123"
     labels:
@@ -92,6 +90,21 @@ services:
       - 5050:5050
     volumes:
       - ./config/appdaemon:/conf
+
+  nodered:
+    image: nodered/node-red-docker:v8
+    restart: unless-stopped
+    ports:
+      - 1880:1880
+      - 9229:9229
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/nodered:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=nodered"
+      - "traefik.frontend.rule=Host:nodered.home.comreset.io"
+      - "traefik.port=1880"
 
 
 networks:
