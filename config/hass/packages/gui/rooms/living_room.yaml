@@ -23,7 +23,7 @@ group:
       - light.living_room_table_light
       - light.gateway_light_gateway
       - light.front_door
-      - light.terrace
+      - light.hue_terrace
       - scene.living_room_normal
       - scene.living_room_dim
 
