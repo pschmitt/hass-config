@@ -1,6 +1,6 @@
 hue:
   bridges:
-    - host: 10.7.0.145
+    - host: !secret hue_bridge
       allow_unreachable: true
       allow_hue_groups: false
 
@@ -204,17 +204,17 @@ scene:
 
   - name: Bedtime
     entities:
-      light.terrace:
+      light.hue_terrace:
         state: off
-      light.hallway:
+      light.hue_hallway:
         state: off
-      light.toilet:
+      light.hue_toilet:
         state: off
       light.bathroom:
         state: off
-      light.office:
+      light.hue_office:
         state: off
-      light.bedroom:
+      light.hue_bedroom:
         state: off
 
 
@@ -266,12 +266,12 @@ script:
         data:
           entity_id: script.smoke_break_timer_off
       - service_template: >
-          light.{% if is_state('light.terrace', 'on') %}turn_off{% else %}turn_on{% endif %}
+          light.{% if is_state('light.hue_terrace', 'on') %}turn_off{% else %}turn_on{% endif %}
         data:
-          entity_id: light.terrace
+          entity_id: light.hue_terrace
           color_name: white
           brightness: 217 # 85%
-          # {% if is_state('light.terrace', 'on') %}
+          # {% if is_state('light.hue_terrace', 'on') %}
           # color_name: white
           # brightness: 217 # 85%
           # {% endif %}
@@ -286,7 +286,7 @@ script:
       - delay: '00:{{ states.input_number.smoke_break_duration.state|int }}:00'
       - service: light.turn_off
         data:
-          entity_id: light.terrace
+          entity_id: light.hue_terrace
 
 
 automation:

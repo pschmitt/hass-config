@@ -61,7 +61,6 @@ group:
       - light.office
       - group.misc_lights
       # Individual lights
-      - light.hue_front_door
       - light.hue_terrace
 
 
