@@ -34,7 +34,6 @@ function basebetterweather(widget_id, url, skin, parameters) {
     }]
 
     var monitored_entities = [
-        {"entity": "sensor.dark_sky_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_humidity", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_precip_probability", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_precip_intensity", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
@@ -42,8 +41,8 @@ function basebetterweather(widget_id, url, skin, parameters) {
         {"entity": "sensor.dark_sky_pressure", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_wind_bearing", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
-        {"entity": "sensor.dark_sky_daily_low_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
-        {"entity": "sensor.dark_sky_daily_high_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
+        {"entity": "sensor.dark_sky_daytime_high_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
+        {"entity": "sensor.dark_sky_overnight_low_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_icon", "initial": self.OnStateAvailable, "update": self.OnStateUpdate}
     ]
 
@@ -55,7 +54,7 @@ function basebetterweather(widget_id, url, skin, parameters) {
     }
 
     function OnStateAvailable(self, state) {
-        if (state.entity_id == "sensor.dark_sky_temperature") {
+        if (state.entity_id == "sensor.dark_sky_apparent_temperature") {
             self.set_field(self, "unit", state.attributes.unit_of_measurement)
         }
         set_view(self, state)

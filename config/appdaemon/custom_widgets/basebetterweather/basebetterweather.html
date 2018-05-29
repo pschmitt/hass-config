@@ -5,16 +5,11 @@
   <p class="primary-unit" data-bind="html: unit, attr: {style: unit_style}"></p>
 </div>
 <div class="secondary-info-panel" data-bind="attr: {style: sub_style}">
-  <!-- <i class="secondary&#45;info fa fa&#45;line&#45;chart" aria&#45;hidden="true" data&#45;bind="attr: {style: temp_amp_icon_style}"></i> -->
-  <!-- <p class="secondary&#45;info" data&#45;bind="text: dark_sky_daily_low_apparent_temperature, attr: {style: temp_amp_min_style}"></p> -->
-  <!-- <p class="secondary&#45;info temp&#45;separator">&#45;</p> -->
-  <!-- <p class="secondary&#45;info" data&#45;bind="text: dark_sky_daily_high_apparent_temperature, , attr: {style: temp_amp_max_style}"></p> -->
-  <!-- <p class="secondary&#45;unit" data&#45;bind="html: unit, attr: {style: secondary_unit_style}"></p> -->
   <i class="secondary-info fa fa-thermometer-empty" aria-hidden="true" data-bind="attr: {style: temp_amp_min_icon_style}"></i>
-  <p class="secondary-info" data-bind="text: dark_sky_daily_low_apparent_temperature, attr: {style: temp_amp_min_style}"></p>
+  <p class="secondary-info" data-bind="text: dark_sky_overnight_low_apparent_temperature, attr: {style: temp_amp_min_style}"></p>
   <p class="secondary-unit" data-bind="html: unit, attr: {style: secondary_unit_style}"></p>
   <i class="secondary-info fa fa-thermometer-full" aria-hidden="true" data-bind="attr: {style: temp_amp_max_icon_style}"></i>
-  <p class="secondary-info" data-bind="text: dark_sky_daily_high_apparent_temperature, attr: {style: temp_amp_max_style}"></p>
+  <p class="secondary-info" data-bind="text: dark_sky_daytime_high_apparent_temperature, attr: {style: temp_amp_max_style}"></p>
   <p class="secondary-unit" data-bind="html: unit, attr: {style: secondary_unit_style}"></p>
   <br>
   <i class="secondary-info fa fa-tint" aria-hidden="true" data-bind="attr: {style: precip_icon_style}"></i>
