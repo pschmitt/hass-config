@@ -37,12 +37,6 @@ device_tracker:
     devices:
       g4p_zanzito: zanzito/g4play/location
 
-  # Remote luci devices
-  - platform: mqtt
-    devices:
-      g4p_hassistant: hassistant/states/device_tracker/g4p/state
-      op3t_hassistant: hassistant/states/device_tracker/op3t/state
-
 
 group:
   main_mobile_devices:
