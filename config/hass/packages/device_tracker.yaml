@@ -69,8 +69,7 @@ group:
     icon: mdi:cellphone-android
     entities:
       # - device_tracker.g4p_arp
-      # - device_tracker.g4p_ping
-      - device_tracker.g4p_hassistant
+      - device_tracker.g4p_ping
       - device_tracker.g4p_zanzito
 
   op3t:
@@ -78,7 +77,6 @@ group:
     view: no
     icon: mdi:cellphone-android
     entities:
-      # - device_tracker.op3t_hassistant
       # - device_tracker.op3t_arp
       - device_tracker.op3t_ping
 
