@@ -12,6 +12,7 @@ group:
       - cover.all_covers
       - cover.bedroom
       - cover.kitchen
+      - cover.office
       - cover.living_room_main
       - cover.living_room
 
