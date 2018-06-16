@@ -58,7 +58,7 @@ BuzzDoorOpen:
 LocateDevice:
   speech:
     text: >
-      Philipp is {{ states.device_tracker.g4p_zanzito }}
+      Philipp is {{ states.device_tracker.ph1_zanzito }}
 
       She is {{ states.device_tracker.op3t }}
   async_action: False

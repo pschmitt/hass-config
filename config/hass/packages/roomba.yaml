@@ -170,7 +170,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.g4p_zanzito
+        entity_id: device_tracker.ph1_zanzito
         to: home
     condition:
       - condition: template

@@ -26,6 +26,7 @@ device_tracker:
     hosts:
       op3t_ping: oneplus_3t.lan
       g4p_ping: g4p.lan
+      ph1_ping: ph1.lan
       macbook_ping: 10.7.0.231
 
   # - platform: nmap_tracker
@@ -36,6 +37,7 @@ device_tracker:
   - platform: mqtt_json
     devices:
       g4p_zanzito: zanzito/g4play/location
+      ph1_zanzito: zanzito/ph1/location
 
 
 group:
@@ -52,7 +54,8 @@ group:
     view: no
     icon: mdi:cellphone-android
     entities:
-      - group.g4p
+      - group.ph1
+      # - group.g4p
 
   mbiver_location:
     name: "mbiver location"
@@ -62,6 +65,15 @@ group:
       - device_tracker.google_maps_105543397094537443482
       - group.op3t
       # - group.macbook
+
+  ph1:
+    name: "ph1"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.ph1_arp
+      # - device_tracker.ph1_ping
+      - device_tracker.ph1_zanzito
 
   g4p:
     name: "g4p"
@@ -117,5 +129,7 @@ homeassistant:
   customize:
     device_tracker.g4p_zanzito:
       battery_friendly_name: Moto G4 Play
+    device_tracker.ph1_zanzito:
+      battery_friendly_name: Essential PH-1
 
 # vim: set filetype=yaml et sw=2 ts=2 :

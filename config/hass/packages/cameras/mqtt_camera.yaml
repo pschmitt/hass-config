@@ -3,4 +3,8 @@ camera:
     name: g4p
     topic: zanzito/shared_pictures/g4play
 
+  - platform: mqtt
+    name: ph1
+    topic: zanzito/shared_pictures/ph1
+
 # vim: set filetype=yaml et sw=2 ts=2 :

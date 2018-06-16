@@ -220,7 +220,7 @@ automation:
         seconds: 0
     condition:
       - condition: state
-        entity_id: device_tracker.g4p_zanzito
+        entity_id: device_tracker.ph1_zanzito
         state: work
     action:
       service: script.train_reminder
@@ -249,7 +249,7 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: device_tracker.g4p_zanzito
+          entity_id: device_tracker.ph1_zanzito
           state: home
         - condition: time
           after: '21:00:00'

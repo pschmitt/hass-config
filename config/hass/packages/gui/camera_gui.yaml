@@ -10,6 +10,6 @@ group:
       - group.cameras_office
       - group.cameras_terrace
       - group.cameras_front_door
-      - camera.g4p
+      - camera.ph1
 
 # vim: set filetype=yaml et sw=2 ts=2 :

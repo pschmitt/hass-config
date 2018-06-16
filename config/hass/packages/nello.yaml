@@ -44,10 +44,10 @@ automation:
       condition: and
       conditions:
         - condition: state
-          entity_id: device_tracker.g4p_zanzito
+          entity_id: device_tracker.ph1_zanzito
           state: home
         - condition: state
-          entity_id: device_tracker.g4p_arp
+          entity_id: device_tracker.ph1_arp
           state: not_home
     action:
       - service: notify.html5
