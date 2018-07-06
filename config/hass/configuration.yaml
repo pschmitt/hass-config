@@ -1,4 +1,8 @@
 homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
   unit_system: metric
   time_zone: Europe/Paris
   customize: !include customize.yaml

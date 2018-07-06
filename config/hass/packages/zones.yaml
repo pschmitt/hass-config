@@ -1,11 +1,4 @@
 zone:
-  - name: Home
-    latitude: !secret home_latitude
-    longitude: !secret home_longitude
-    elevation: !secret home_elevation
-    radius: 40
-    icon: mdi:home
-
   - name: Work
     latitude: !secret work_latitude
     longitude: !secret work_longitude
