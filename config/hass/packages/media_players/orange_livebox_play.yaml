@@ -68,7 +68,7 @@ script:
       - service: script.harmony_livebox_play_tv_send_return_key
       - service: media_player.select_source
         entity_id: media_player.livebox_play
-        data:
-          source: "BFM TV"
+        data_template:
+          source: '{{ tv_channel|default("TF1") }}'
 
 # vim: set filetype=yaml et sw=2 ts=2 :
