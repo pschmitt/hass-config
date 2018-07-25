@@ -2,7 +2,6 @@ lock:
   - platform: nello
     username: !secret nello_username
     password: !secret nello_password
-    scan_interval: 15
 
 
 automation:
@@ -10,21 +9,9 @@ automation:
     initial_state: true
     trigger:
       - platform: event
-        event_type: nello_bell_ring
-        event_data:
-          short_id: e414cae5
-          type: 'bell.ring.denied'
-      - platform: event
-        event_type: nello_bell_ring
-        event_data:
-          short_id: e414cae5
-          type: 'door.open.one.tw'
-      - platform: event
-        event_type: nello_bell_ring
-        event_data:
-          short_id: e414cae5
-          type: 'door.open.one.geoloc'
+        event_type: nello_ring
     action:
+      - service: script.aqara_ring_bell
       - service: notify.zanzito_tts
         data:
           message: "Ding Dong"
@@ -83,5 +70,8 @@ homeassistant:
     # Scripts
     script.buzz_door_open:
       icon: mdi:lock-open
+    script.buzz_door_open_multiple:
+      can_cancel: False
+      icon: mdi:lock-outline
 
 # vim: set filetype=yaml et sw=2 ts=2 :
