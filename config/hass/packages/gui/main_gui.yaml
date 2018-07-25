@@ -46,6 +46,28 @@ group:
       - script.cover_movie_smoke_break
       - script.all_off
 
+  hass:
+    name: hass
+    view: yes
+    icon: mdi:home-assistant
+    entities:
+      - script.aqara_add_device
+      # - group.all
+      - group.hass_infrastructure
+      - group.all_devices
+      - group.pschmitt_location
+      - group.mbiver_location
+      - group.flic_buttons
+      - group.media_players
+      # - group.all_scripts
+      - group.all_lights
+      - group.all_sensors
+      - group.all_switches
+      # - group.all_automations
+      # - group.media_players
+      - group.zwave
+      - group.windows
+
 
 homeassistant:
   customize:
@@ -69,7 +91,13 @@ homeassistant:
       order: 6
     group.cctv:
       order: 7
+    group.surveillance:
+      order: 8
     group.batteries:
+      order: 97
+    group.hass:
       order: 98
+    group.settings:
+      order: 99
 
 # vim: set filetype=yaml et sw=2 ts=2 :

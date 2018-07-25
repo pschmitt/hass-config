@@ -21,5 +21,6 @@ group:
       - light.bathroom
       - group.appliances
       - group.3d_printer
+      - switch.sonoff_fan
 
 # vim: set filetype=yaml et sw=2 ts=2 :
