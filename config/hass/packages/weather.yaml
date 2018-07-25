@@ -89,6 +89,32 @@ group:
       - sensor.owm_rain
 
 
+automation:
+  - alias: Exterior temperature is above home temperature
+    initial_state: true
+    trigger:
+      - platform: template
+        value_template: '{{ states("sensor.home_temperature") > states("sensor.temperature_terrace") }}'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: group.main_mobile_devices
+          state: "home"
+        - condition: numeric_state
+          entity_id: sensor.home_temperature
+          above: 21
+        - condition: time
+          after: '10:00:00'
+          before: '22:00:00'
+    action:
+      service: notify.html5
+      data_template:
+        message: 'You can open the windows now! Indoor: {{ states("sensor.home_temperature") }} - Outdoor: {{ states("sensor.temperature_terrace") }}'
+        data:
+          tag: "safe-to-open-window"
+
+
 homeassistant:
   customize:
     sensor.owm_rain:
