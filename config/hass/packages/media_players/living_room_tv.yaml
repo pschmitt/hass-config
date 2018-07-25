@@ -2,7 +2,7 @@ media_player:
   - platform: webostv
     host: lgwebostv.lan
     mac: !secret lg_tv_mac_addr
-    name: Living Room TV
+    name: LG living room TV
     customize:
       sources:
         - Nvidia Shield TV
@@ -11,43 +11,43 @@ media_player:
         - Sony Playstation 3
 
   - platform: universal
-    name: TV
+    name: Living room TV
     children:
       - media_player.emby__emby_for_chromecast__nvidia_shield_tv
       - media_player.kodi
       - media_player.cast_nvidia_shield_tv
       - media_player.livebox_play
-      - media_player.living_room_tv
+      - media_player.lg_living_room_tv
     commands:
       turn_on:
         service: script.harmony_turn_on_living_room_tv
       turn_off:
         service: media_player.turn_off
         data:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
       volume_up:
         service: media_player.volume_up
         data:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
       volume_down:
         service: media_player.volume_down
         data:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
       volume_mute:
         service: media_player.volume_mute
         data:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
       select_source:
         service: media_player.select_source
         data_template:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
           source: '{{ source }}'
     attributes:
-      is_volume_muted: media_player.living_room_tv|is_volume_muted
-      state: media_player.living_room_tv
-      volume_level: media_player.living_room_tv|volume_level
-      source: media_player.living_room_tv|source
-      source_list: media_player.living_room_tv|source_list
+      is_volume_muted: media_player.lg_living_room_tv|is_volume_muted
+      state: media_player.lg_living_room_tv
+      volume_level: media_player.lg_living_room_tv|volume_level
+      source: media_player.lg_living_room_tv|source
+      source_list: media_player.lg_living_room_tv|source_list
 
 
 notify:
@@ -60,7 +60,7 @@ sensor:
   - platform: template
     sensors:
       tv_source:
-        value_template: '{{ states.media_player.living_room_tv.attributes.source }}'
+        value_template: '{{ states.media_player.lg_living_room_tv.attributes.source }}'
         friendly_name: 'Current TV Media Source'
 
 
@@ -86,7 +86,7 @@ switch:
     switches:
       living_room_tv:
         friendly_name: Living Room TV
-        value_template: '{{ not is_state("media_player.living_room_tv", "off") }}'
+        value_template: '{{ not is_state("media_player.lg_living_room_tv", "off") }}'
         turn_on:
           service: script.turn_on_living_room_tv
         turn_off:
@@ -109,7 +109,7 @@ script:
       # Try using the built in component
       - service: media_player.turn_on
         data:
-          entity_id: media_player.tv
+          entity_id: media_player.living_room_tv
       # Harmony Hub fallback
       - service: script.harmony_turn_on_living_room_tv
 
@@ -126,7 +126,7 @@ script:
           seconds: 2
       - service: media_player.select_source
         data_template:
-          entity_id: media_player.living_room_tv
+          entity_id: media_player.lg_living_room_tv
           source: '{{ source }}'
       # Harmony Hub fallback
       - service: script.harmony_set_living_room_tv_input
@@ -151,16 +151,22 @@ script:
   tv_activity_watch_tv:
     alias: "TV activity: Watch TV"
     sequence:
+      # Set the channel right at the start in case the TV is already on
+      - service: script.livebox_play_tv_set_start_chanel
+        data_template:
+          tv_channel: '{{ tv_channel|default("TF1") }}'
       - service: script.turn_on_living_room_tv
       - service: script.turn_on_livebox_play
       - service: script.select_tv_source
         data:
           source: 'Orange Livebox Play'
       - service: script.livebox_play_tv_set_start_chanel
+        data_template:
+          tv_channel: '{{ tv_channel|default("TF1") }}'
       # Wait a bit in case the livebox play device was off due to the socket
-      - delay:
-          minutes: 3
-      - service: script.harmony_livebox_play_tv_send_return_key
+      # - delay:
+      #     minutes: 3
+      # - service: script.harmony_livebox_play_tv_send_return_key
 
   tv_activity_dolphin_emu:
     alias: "TV activity: dolphin-emu"
@@ -189,7 +195,7 @@ automation:
   #   initial_state: true
   #   trigger:
   #     - platform: state
-  #       entity_id: media_player.living_room_tv
+  #       entity_id: media_player.lg_living_room_tv
   #       to: 'idle'
   #       for:
   #         minutes: 15
@@ -205,7 +211,7 @@ automation:
   #   initial_state: true
   #   trigger:
   #     - platform: state
-  #       entity_id: media_player.living_room_tv
+  #       entity_id: media_player.lg_living_room_tv
   #       to: 'playing'
   #       for:
   #         seconds: 15
@@ -243,7 +249,7 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: media_player.living_room_tv
+      entity_id: media_player.lg_living_room_tv
       to: 'off'
       for:
         hours: 1

@@ -21,7 +21,7 @@ group:
     entities:
       - light.living_room_tv_light
       - light.living_room_table_light
-      - light.gateway_light_gateway
+      - light.aqara_gateway
       - light.front_door
       - light.hue_terrace
       - scene.living_room_normal
@@ -44,7 +44,7 @@ group:
     name: Media Players
     view: no
     entities:
-      - media_player.tv
+      - media_player.living_room_tv
       - media_player.living_room_speaker
 
   living_room_media_player_scripts:

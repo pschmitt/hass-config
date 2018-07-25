@@ -4,8 +4,8 @@ group:
     view: no
     icon: mdi:music-circle
     entities:
-      - media_player.tv
       - media_player.living_room_tv
+      - media_player.lg_living_room_tv
       - media_player.kodi
       - media_player.cast_home_group
       - media_player.livebox_play
@@ -27,7 +27,6 @@ input_select:
       - "None"
       - "TV"
       - "Shield TV"
-      - "Dolphin"
       - "PS3"
       - "OFF"
     icon: mdi:television
@@ -41,9 +40,6 @@ automation:
       entity_id: input_select.tv_activity
       to: "OFF"
     action:
-      - service: notify.html5
-        data:
-          message: "input select: TV OFF"
       - service: script.turn_off_media_players
 
   - alias: "TV activity: Watch TV"
@@ -53,9 +49,6 @@ automation:
       entity_id: input_select.tv_activity
       to: "TV"
     action:
-      - service: notify.html5
-        data:
-          message: "input select: Watch TV"
       - service: script.tv_activity_watch_tv
 
   - alias: "TV activity: Shield TV"
@@ -65,9 +58,6 @@ automation:
       entity_id: input_select.tv_activity
       to: "Shield TV"
     action:
-      - service: notify.html5
-        data:
-          message: "input select: Shield TV"
       - service: script.tv_activity_shield_tv
 
   - alias: "TV activity: PS3"
@@ -77,22 +67,7 @@ automation:
       entity_id: input_select.tv_activity
       to: "PS3"
     action:
-      - service: notify.html5
-        data:
-          message: "input select: PS3"
       - service: script.tv_activity_ps3
-
-  - alias: "TV activity: Dolphin"
-    initial_state: true
-    trigger:
-      platform: state
-      entity_id: input_select.tv_activity
-      to: "Dolphin"
-    action:
-      - service: notify.html5
-        data:
-          message: "input select: dolphin_emu"
-      - service: script.tv_activity_dolphin_emu
 
   - alias: 'Watching Téva'
     initial_state: false
