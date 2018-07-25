@@ -282,16 +282,90 @@ automation:
       platform: state
       entity_id: switch.wall_switch_bathroom_right
     action:
-      - service: light.toggle
-        entity_id: light.bathroom_lights
+      - service: script.bedtime
+      # - service: light.toggle
+      #   entity_id: light.bathroom_lights
+
+  - alias: Cube event flip90
+    initial_state: True
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: flip90
+    action:
+      - service: notify.html5
+        data:
+          message: "FLIP90"
+          data:
+            tag: "aqara-cube"
+
+  - alias: Cube event flip180
+    initial_state: True
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: flip180
+    action:
+      - service: notify.html5
+        data:
+          message: "FLIP180"
+          data:
+            tag: "aqara-cube"
+
+  - alias: Cube event move
+    initial_state: True
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: move
+    action:
+      - service: notify.html5
+        data:
+          message: "MOVE"
+          data:
+            tag: "aqara-cube"
+
+  - alias: Cube event tap_twice
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: tap_twice
+    action:
+      - service: notify.html5
+        data:
+          message: "TAP_TWICE"
+          data:
+            tag: "aqara-cube"
+
+  - alias: Cube event shake_air
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: shake_air
+    action:
+      - service: notify.html5
+        data:
+          message: "SHAKE"
+          data:
+            tag: "aqara-cube"
 
 
 homeassistant:
   customize:
-    light.gateway_light_gateway:
-      friendly_name: Mi Gateway Light
-    sensor.illumination_gateway:
-      friendly_name: Mi Gateway Light Level
+    light.aqara_gateway:
+      friendly_name: Aqara Gateway Light
+    sensor.aqara_gateway_illumination:
+      friendly_name: Aqara Gateway Light Level
     binary_sensor.bedroom_switch:
       friendly_name: "Bedroom switch (small)"
     binary_sensor.door_window_sensor_fridge_door:
@@ -314,6 +388,9 @@ homeassistant:
       device_class: window
     binary_sensor.door_window_sensor_bedroom_terrace_door:
       friendly_name: "Terrace Door (Bedroom)"
+      device_class: door
+    binary_sensor.door_window_sensor_bedroom_door:
+      friendly_name: "Bedroom Door"
       device_class: door
     binary_sensor.door_window_sensor_front_door:
       friendly_name: "Front Door"
