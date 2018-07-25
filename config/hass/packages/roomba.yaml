@@ -35,14 +35,14 @@ script:
   roomba_start:
     alias: 'Start Roomba'
     sequence:
-      - service: vacuum.start
+      - service: vacuum.turn_on
         data:
           entity_id: vacuum.nimbus
 
   roomba_stop:
     alias: 'Stop Roomba'
     sequence:
-      - service: vacuum.return_to_base
+      - service: vacuum.turn_off
         data:
           entity_id: vacuum.nimbus
 
