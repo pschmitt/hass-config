@@ -14,11 +14,11 @@ automation:
             renotify: True
       - service: frontend.set_theme
         data:
-          name: dark
+          name: dark_theme
       # Request zanzito update
       - service: mqtt.publish
         data:
-          topic: zanzito/g4play/cmd/send_heartbeat
+          topic: zanzito/ph1/cmd/send_heartbeat
           qos: 0
           retain: 0
       - delay: 00:05:00
