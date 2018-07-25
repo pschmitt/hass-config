@@ -1,34 +1,422 @@
-google_assistant:
-  project_id: !secret google_assistant_project_id
-  client_id: !secret google_assistant_client_id
-  access_token: !secret google_assistant_access_token
-  api_key: !secret google_assistant_api_key
-  exposed_domains:
-    - cover
-    - light
-    - scene
-    - switch
-  expose_by_default: true
-  entity_config:
-    switch.doorpi_state:
-      expose: false
-    switch.foscam_c1_state:
-      expose: false
-    switch.foscam_c2_state:
-      expose: false
-    switch.hassistant_state:
-      expose: false
-    switch.winpi_state:
-      expose: false
-    switch.modect:
-      expose: false
-    light.yeelight_office:
-      name: Desk Light
-    light.yeelight_rgb_34ce00824709:
-      expose: false
-    light.living_room:
-      expose: false
-    light.office:
-      expose: false
+cloud:
+  google_actions:
+    filter:
+      include_domains:
+        # - climate
+        - cover
+        # - fan
+        # - group
+        - input_boolean
+        - light
+        # - media_player
+        # - scene
+        # - script
+        # - switch
+      include_entities:
+        - media_player.living_room_tv
+        - media_player.office_tv
+        # - script.alarm_arm_away
+        # - script.alarm_disarm
+        - script.all_off
+        - script.bedtime
+        - script.buzz_door_open_multiple
+        - script.cover_movie_smoke_break
+        - script.cover_privacy
+        - script.watch_m6
+        - script.watch_tf1
+        - switch.alarm
+        - switch.front_door_lock
+        - switch.roomba
+        - switch.sonoff_fan
+      exclude_entities:
+        - cover.automated_covers
+        - cover.living_room_main
+        - cover.main_covers
+        - light.aqara_gateway
+        - light.yeelight_rgb_34ce00824709
+        - switch.wemo_insight__nasteanas
+        - switch.wemo_insight__washing_machine
+    entity_config:
+      cover.all_covers:
+        name: "All covers"
+        aliases:
+          - "All covers"
+          - volets
+          - all covers
+          - the covers
+        room: void
+
+      cover.bedroom:
+        name: "Bedroom covers"
+        aliases:
+          - Bedroom covers
+          - volets de la chambre
+          - volets de la chambre à coucher
+        room: Bedroom
+
+      cover.bedroom_door:
+        name: "Bedroom door cover"
+        aliases:
+          - Bedroom door cover
+          - volet de la porte de la chambre
+        room: Bedroom
+
+      cover.bedroom_window:
+        name: "Bedroom window cover"
+        aliases:
+          - Bedroom window cover
+          - volet de la fenêtre de la chambre
+        room: Bedroom
+
+      cover.office:
+        name: "Office covers"
+        aliases:
+          - Office covers
+          - Study covers
+          - Guest room covers
+          - "volets de la chambre d'amis"
+          - "volets du buro"
+        room: Office
+
+      cover.kitchen:
+        name: "Kitchen covers"
+        aliases:
+          - Kitchen covers
+          - volets de la cuisine
+        room: Kitchen
+
+      cover.living_room:
+        name: "Living room covers"
+        aliases:
+          - Living room covers
+          - volets du salon
+        room: Living Room
+
+      cover.living_room_tv:
+        name: "Living room TV covers"
+        aliases:
+          - Living room TV cover
+          - volet de la TV
+          - volet de la télé
+        room: Living Room
+
+      cover.living_room_table:
+        name: "Living room table covers"
+        aliases:
+          - Living room table cover
+          - volet de la table du salon
+          - volet de la table à manger
+        room: Living Room
+
+      input_boolean.dnd:
+        name: "DND Mode"
+        aliases:
+          - "DND Mode"
+          - "do not disturb mode"
+          - "mode silencieux"
+          - "ne me dérange pas"
+          - "ne me dérange plus"
+        room: void
+
+      input_boolean.motion_light_front_door:
+        name: "Motion sensor: Front door light"
+        aliases:
+          - "Motion sensor: Front door light"
+          - "front door motion sensor"
+          - "front door motion detector"
+          - "entrance motion detector"
+          - "détecteur de mouvement de l'entrée"
+          - "détecteur de mouvement de la porte d'entrée"
+          - "détecteur de présence de l'entrée"
+          - "détecteur de présence de la porte d'entrée"
+        room: Front Door
+
+      input_boolean.motion_light_office:
+        name: "Motion sensor: Office light"
+        aliases:
+          - "Motion sensor: Office light"
+          - "office motion detector"
+          - "office motion sensor"
+          - "détecteur de mouvement de la chambre d'amis"
+          - "détecteur de mouvement du bureau"
+          - "détecteur de présence de la chambre d'amis"
+          - "détecteur de présence du bureau"
+        room: Office
+
+      input_boolean.motion_light_living_room:
+        name: "Motion sensor: Living room light"
+        aliases:
+          - "Motion sensor: Living room light"
+          - "living room motion detector"
+          - "living room motion sensor"
+          - "détecteur de mouvement du salon"
+          - "détecteur de présence du salon"
+        room: Living Room
+
+      input_boolean.motion_light_terrace:
+        name: "Motion sensor: Terrace light"
+        aliases:
+          - "Motion sensor: Terrace light"
+          - "terrace motion detector"
+          - "détecteur de mouvement de la terrasse"
+        room: Terrace
+
+      light.hue_kitchen:
+        name: "Kitchen light"
+        aliases:
+          - Kitchen light
+          - lumière de la cuisine
+        room: Kitchen
+
+      light.living_room:
+        name: "Living room lights"
+        aliases:
+          - Living room lights
+          - lumière du salon
+          - lumières du salon
+        room: Living Room
+
+      light.hue_living_room_tv:
+        name: "Living room TV light"
+        aliases:
+          - Living room TV light
+          - lumière de la télé
+          - lumière de la TV
+        room: Living Room
+
+      light.hue_living_room_table:
+        name: "Living room table light"
+        aliases:
+          - Living room table lights
+          - lumière de la table
+          - lumière de la table à manger
+          - lumière de la table du salon
+        room: Living Room
+
+      light.office:
+        name: "Office lights"
+        aliases:
+          - Office lights
+          - "les lumières de la chambre d'amis"
+          - "les lumières du buro"
+        room: Office
+
+      light.hue_office:
+        name: "Office light"
+        aliases:
+          - Office light
+          - "la lumière de la chambre d'amis"
+          - "la lumière du buro"
+        room: Office
+
+      light.3d_printer_led:
+        name: "3D printer light"
+        aliases:
+          - 3D printer light
+          - "lumière de l'imprimante 3D"
+          - "lumière de l'imprimante"
+        room: Office
+
+      light.hue_bedroom:
+        name: "Bedroom light"
+        aliases:
+          - Bedroom light
+          - "lumière de la chambre"
+          - "lumière de la chambre à coucher"
+        room: Bedroom
+
+      light.bathroom:
+        name: "Bathroom light"
+        aliases:
+          - Bathroom light
+          - "lumières de la salle de bain"
+          - "lumières de la salle d'eau"
+        room: Bathroom
+
+      light.bathroom_mirror:
+        name: "Bathroom mirror light"
+        aliases:
+          - Bathroom mirror light
+          - "lumière du miroir"
+          - "lumière du miroir de la salle de bain"
+          - "lumière du miroir de la salle d'eau"
+        room: Bathroom
+
+      light.hue_terrace:
+        name: "Terrace light"
+        aliases:
+          - Terrace light
+          - outside light
+          - porch light
+          - balcony light
+          - "lumière de la terrasse"
+          - "lumière extérieure"
+          - "lumière du balcon"
+          - "lumière sur le balcon"
+          - "lumière dehors"
+          - "lumière de dehors"
+        room: Terrace
+
+      light.hue_toilet:
+        name: "Toilet light"
+        aliases:
+          - Toilet light
+          - crapper light
+          - WC light
+          - "lumière des chiottes"
+          - "lumière des toilettes"
+          - "lumière des WC"
+        room: Toilet
+
+      media_player.living_room_tv:
+        name: "Living Room TV (Universal)"
+        aliases:
+          - "Living Room TV (Universal)"
+          - "la télé du salon"
+          - "la TV du salon"
+        room: Living Room
+
+      media_player.office_tv:
+        name: "Office TV (Universal)"
+        aliases:
+          - "Office TV (Universal)"
+          - "la télé de la chambre d'amis"
+          - "la TV de la chambre d'amis"
+          - "la TV du bureau"
+          - "la télé du bureau"
+        room: Office
+
+      script.buzz_door_open_multiple:
+        name: Buzz open
+        aliases:
+          - Appartement door (Nuki)
+          - Appartement door
+          - outside door
+          - en bas
+          - "porte d'en bas"
+        room: void
+
+      script.all_off:
+        name: "All off"
+        aliases:
+          - "All off"
+          - tout
+          - everything
+        room: void
+
+      switch.front_door_lock:
+        name: "Front door lock"
+        aliases:
+          - Front door lock
+          - "Porte d'entrée"
+          - "la porte"
+        room: void
+
+      switch.roomba:
+        name: "Roomba"
+        aliases:
+          - Roomba
+          - le roomba
+          - nimbus
+          - "vacuum"
+          - "start cleaning"
+          - "fais le ménage"
+          - "nettoies le bordel"
+          - "aspires le sol"
+        room: void
+
+      switch.sonoff_fan:
+        name: "Sonoff fan"
+        aliases:
+          - Sonoff fan
+          - fan
+          - ventilateur
+          - le ventilo
+        room: void
+
+      switch.sonoff_kitchen_hood:
+        name: "Sonoff kitchen hood"
+        aliases:
+          - Sonoff kichen hood
+          - kitchen hood
+          - la hotte
+          - la hotte de cuisine
+          - la hotte aspirante
+        room: Kitchen
+
+      switch.alarm:
+        name: "Alarm"
+        aliases:
+          - Alarm
+          - the fucking alarm
+          - the bloody alarm
+          - "l'alarme"
+          - alarme de la maison
+          - alarme de l'appartement
+          - la putain d'alarme
+        room: void
+
+      script.cover_movie_smoke_break:
+        name: "Cover scene: Movie smoke break"
+        aliases:
+          - "Cover scene: Movie smoke break"
+          - smoke break
+          - smoke break scene
+          - pause clope
+        room: Living Room
+
+      script.cover_privacy:
+        name: "Cover scene: Privacy mode"
+        aliases:
+          - "Cover scene: Privacy mode"
+          - give me some privacy
+          - incognito mode
+          - mode privé
+          - baisses les volets
+        room: Living Room
+
+      script.watch_tf1:
+        name: "Watch TF1"
+        aliases:
+          - "Watch TF1"
+          - mets tf1
+          - mets la 1
+          - mets la un
+          - mets la une
+        room: Living Room
+
+      script.watch_m6:
+        name: "Watch M6"
+        aliases:
+          - "Watch M6"
+          - mets m6
+          - mets la 6
+          - mets la six
+        room: Living Room
+
+
+switch:
+  - platform: template
+    switches:
+      front_door_lock:
+        value_template: "{{ is_state('lock.front_door', 'off') }}"
+        turn_on:
+          service: script.unlock_door
+        turn_off:
+          service: script.lock_door
+
+      roomba:
+        value_template: "{{ is_state('vacuum.nimbus', 'on') }}"
+        turn_on:
+          service: script.roomba_start
+        turn_off:
+          service: script.roomba_stop
+
+      alarm:
+        value_template: "{{ not is_state('alarm_control_panel.ha_alarm_mqtt', 'disarmed') }}"
+        turn_on:
+          service: script.alarm_arm_away
+        turn_off:
+          service: script.alarm_disarm
 
 # vim: set filetype=yaml et sw=2 ts=2 :
