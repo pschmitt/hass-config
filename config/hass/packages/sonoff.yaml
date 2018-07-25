@@ -1,9 +1,33 @@
 switch:
   - platform: mqtt
-    name: "Sonoff Bathroom"
-    availability_topic: "tele/sonoff/LWT"
-    state_topic: "stat/sonoff/POWER"
-    command_topic: "cmnd/sonoff/POWER"
+    name: "Sonoff: Bathroom"
+    availability_topic: "tele/bathroom_mirror_light/LWT"
+    state_topic: "stat/bathroom_mirror_light/POWER"
+    command_topic: "cmnd/bathroom_mirror_light/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+    retain: true
+
+  - platform: mqtt
+    name: "Sonoff: Fan"
+    availability_topic: "tele/fan/LWT"
+    state_topic: "stat/fan/POWER"
+    command_topic: "cmnd/fan/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+    retain: true
+
+  - platform: mqtt
+    name: "Sonoff: Kitchen Hood"
+    availability_topic: "tele/kitchen_hood/LWT"
+    state_topic: "stat/kitchen_hood/POWER"
+    command_topic: "cmnd/kitchen_hood/POWER"
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
@@ -15,7 +39,7 @@ switch:
 binary_sensor:
   - platform: ping
     name: sonoff_bathroom
-    host: sonoff-4431.lan
+    host: sonoff-bathrom-mirror.lan
     count: 2
     scan_interval: 15
 
@@ -59,5 +83,17 @@ automation:
     action:
       service: light.turn_off
       entity_id: light.bathroom_mirror
+
+  - alias: Turn kitchen hood back on after 1 minute to avoid service interruption
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: switch.sonoff_kitchen_hood
+        to: 'off'
+        for:
+          minutes: 1
+    action:
+      service: switch.turn_on
+      entity_id: sonoff.kitchen_hood
 
 # vim: set filetype=yaml et sw=2 ts=2 :
