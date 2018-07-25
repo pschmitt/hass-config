@@ -24,8 +24,8 @@ automation:
       event: sunset
       offset: "-00:15:00"
     action:
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.motion_light_front_door
+      # - service: homeassistant.turn_on
+      #   entity_id: input_boolean.motion_light_front_door
       - service: homeassistant.turn_on
         entity_id: input_boolean.motion_light_living_room
       - service: homeassistant.turn_on
@@ -33,20 +33,40 @@ automation:
       - service: homeassistant.turn_on
         entity_id: input_boolean.motion_light_office
 
-  - alias: Disable light motion sensors at night
+  - alias: Disable light motion sensors during day
     initial_state: true
     trigger:
       platform: sun
       event: sunrise
       offset: "+00:00:00"
     action:
-      - service: homeassistant.turn_off
-        entity_id: input_boolean.motion_light_front_door
+      # - service: homeassistant.turn_off
+      #   entity_id: input_boolean.motion_light_front_door
       - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_living_room
       - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_terrace
       - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_office
+
+  - alias: Enable front door motion light if lux level is low
+    initial_state: true
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.motion_sensor_illumination_front_door
+      below: 5.0
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.motion_light_front_door
+
+  - alias: Disable front door motion light if lux level is high
+    initial_state: true
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.motion_sensor_illumination_front_door
+      above: 5.0
+    action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_front_door
 
 # vim: set filetype=yaml et sw=2 ts=2 :
