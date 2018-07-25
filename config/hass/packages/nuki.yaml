@@ -83,6 +83,9 @@ notify:
 
 homeassistant:
   customize:
+    lock.front_door:
+      icon: mdi:lock-smart
+      friendly_name: Front Door Lock
     # Scripts
     script.lock_n_go:
       icon: mdi:run-fast
@@ -90,7 +93,5 @@ homeassistant:
       icon: mdi:lock
     script.unlock_door:
       icon: mdi:lock-open-outline
-    lock.front_door:
-      friendly_name: Front Door Lock
 
 # vim: set filetype=yaml et sw=2 ts=2 :
