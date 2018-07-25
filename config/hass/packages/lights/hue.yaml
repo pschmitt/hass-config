@@ -365,36 +365,6 @@ automation:
 
 homeassistant:
   customize:
-    # Lights
-    light.hue_bathroom:
-      icon: mdi:water-pump
-      google_assistant: false
-    light.hue_bedroom:
-      icon: mdi:hotel
-      google_assistant: false
-    light.hue_front_door:
-      icon: mdi:home-modern
-      google_assistant: false
-    light.hue_hallway:
-      icon: mdi:vector-square
-      google_assistant: false
-    light.hue_kitchen:
-      icon: mdi:pot-mix
-      google_assistant: false
-    light.hue_living_room_tv:
-      icon: mdi:sofa
-      google_assistant: false
-    light.hue_living_room_table:
-      icon: mdi:food
-    light.hue_office:
-      icon: mdi:book-open
-      google_assistant: false
-    light.hue_terrace:
-      icon: mdi:tree
-      google_assistant: false
-    light.hue_toilet:
-      icon: mdi:human-male-female
-      google_assistant: false
     # Hue sensors
     sensor.hallway_lux:
       icon: mdi:white-balance-sunny
