@@ -362,8 +362,9 @@ sensor:
 homeassistant:
   customize:
     group.all_plants:
-      friendly_name: Plants
+      friendly_name: All plants
       hidden: false
+      icon: mdi:flower
     script.refresh_plant_data:
       icon: mdi:flower
     plant.capsicum_annuum:
