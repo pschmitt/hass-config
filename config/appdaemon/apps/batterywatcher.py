@@ -63,7 +63,7 @@ class BatteryWatcher(hass.Hass):
             attributes={
                 'view': False,
                 'hidden': False,
-                'icon': 'mdi:battery',
+                'icon': 'mdi:battery-10',
                 'assumed_state': False,
                 'friendly_name': 'Low battery devices',
                 'entity_id': members
