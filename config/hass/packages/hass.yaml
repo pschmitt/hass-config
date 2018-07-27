@@ -49,13 +49,11 @@ sensor:
       - sensor.hue_hallway_temperature
       - sensor.hue_kitchen_temperature
       - sensor.hue_toilet_temperature
-      - sensor.living_room_temperature
-      - sensor.bedroom_temperature
-      - sensor.aloe_vera_temperature
-      - sensor.basil_temperature
-      - sensor.chive_temperature
+      - sensor.temperature_living_room
+      - sensor.temperature_bedroom
+      - sensor.temperature_office
+      - sensor.pilea_temperature
       - sensor.ficus_temperature
-      - sensor.mint_temperature
 
 
 rest_command:
