@@ -12,49 +12,49 @@ cover:
 
   - platform: mqtt
     name: "Living Room Table"
-    command_topic: "hassistant/states/cover/living_room_table/command"
+    command_topic: "hassistant/remote/cover/living_room_table"
     state_topic: "hassistant/states/cover/living_room_table/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Living Room TV"
-    command_topic: "hassistant/states/cover/living_room_tv/command"
+    command_topic: "hassistant/remote/cover/living_room_tv"
     state_topic: "hassistant/states/cover/living_room_tv/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Living Room Door"
-    command_topic: "hassistant/states/cover/living_room_door/command"
+    command_topic: "hassistant/remote/cover/living_room_door"
     state_topic: "hassistant/states/cover/living_room_door/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Kitchen"
-    command_topic: "hassistant/states/cover/kitchen/command"
+    command_topic: "hassistant/remote/cover/kitchen"
     state_topic: "hassistant/states/cover/kitchen/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Bedroom window"
-    command_topic: "hassistant/states/cover/bedroom/command"
+    command_topic: "hassistant/remote/cover/bedroom"
     state_topic: "hassistant/states/cover/bedroom/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Bedroom door"
-    command_topic: "hassistant/states/cover/bedroom_door/command"
+    command_topic: "hassistant/remote/cover/bedroom_door"
     state_topic: "hassistant/states/cover/bedroom_door/state"
     optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Office"
-    command_topic: "hassistant/states/cover/office/command"
+    command_topic: "hassistant/remote/cover/office"
     state_topic: "hassistant/states/cover/office/state"
     optimistic: true
     qos: 2
@@ -225,8 +225,6 @@ script:
 
 homeassistant:
   customize:
-    group.all_covers:
-      hidden: False
     script.cover_privacy:
       can_cancel: False
       icon: mdi:eye-off

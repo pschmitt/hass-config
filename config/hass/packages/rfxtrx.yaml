@@ -1,0 +1,59 @@
+switch:
+  - platform: mqtt
+    name: "3D Printer PSU"
+    icon: mdi:printer-3d
+    # state_topic: hassistant/states/switch/pollin_s4u3/state
+    command_topic: hassistant/remote/switch/pollin
+    payload_on: >-
+      {"command": "on", "system_code": "4", "unit_code": "3" }
+    payload_off: >-
+      {"command": "off", "system_code": "4", "unit_code": "3" }
+
+  - platform: mqtt
+    name: "AC"
+    icon: mdi:ice-cream
+    # state_topic: hassistant/states/switch/pollin_s4u4/state
+    command_topic: hassistant/remote/switch/pollin
+    payload_on: >-
+      {"command": "on", "system_code": "4", "unit_code": "4" }
+    payload_off: >-
+      {"command": "off", "system_code": "4", "unit_code": "4" }
+
+
+#   - platform: template
+#     switches:
+#       3d_printer_psu:
+#         value_template: ""  # FIXME
+#         turn_on:
+#           service: script.toggle_pollin_switch
+#           data:
+#             command: "on"
+#             system_code: "4"
+#             unit_code: "3"
+#         turn_off:
+#           service: script.toggle_pollin_switch
+#           data:
+#             command: "off"
+#             system_code: "4"
+#             unit_code: "3"
+
+
+# script:
+#   toggle_pollin_switch:
+#     alias: 'Turn a pollin switch on or off'
+#     sequence:
+#       - service: mqtt.publish
+#         data_template:
+#           topic: hassistant/remote/switch/pollin
+#           payload: >-
+#             '{"command": "{{ payload }}", "system_code": "{{ system_code }}", "unit_code": "{{ unit_code}}" }'
+
+
+homeassistant:
+  customize:
+    switch.3d_printer_psu:
+      assumed_state: false
+    switch.ac:
+      assumed_state: false
+
+# vim: set filetype=yaml et sw=2 ts=2 :
