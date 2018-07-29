@@ -55,6 +55,11 @@ script:
       service: shell_command.arlo_mode
       data:
         mode: Roomba
+  arlo_night:
+    sequence:
+      service: shell_command.arlo_mode
+      data:
+        mode: Night
 
 
 homeassistant:
