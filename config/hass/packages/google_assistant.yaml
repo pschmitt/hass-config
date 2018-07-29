@@ -116,6 +116,7 @@ cloud:
           - "mode silencieux"
           - "ne me dérange pas"
           - "ne me dérange plus"
+          - "ne pas déranger"
         room: void
 
       input_boolean.motion_light_front_door:
@@ -330,8 +331,10 @@ cloud:
         aliases:
           - Sonoff fan
           - fan
-          - ventilateur
+          - le ventilateur
+          - le putain de ventilateur
           - le ventilo
+          - le putain de ventilo
         room: void
 
       switch.sonoff_kitchen_hood:
@@ -379,6 +382,7 @@ cloud:
         name: "Watch TF1"
         aliases:
           - "Watch TF1"
+          - TF1
           - mets tf1
           - mets la 1
           - mets la un
@@ -389,9 +393,22 @@ cloud:
         name: "Watch M6"
         aliases:
           - "Watch M6"
-          - mets m6
+          - M6
+          - mets M6
           - mets la 6
           - mets la six
+        room: Living Room
+
+      script.watch_bfmtv:
+        name: "Watch BFM TV"
+        aliases:
+          - "Watch BFM TV"
+          - BFM
+          - BFM TV
+          - mets BFM
+          - mets BFM TV
+          - mets la 15
+          - mets la quinze
         room: Living Room
 
 
