@@ -45,9 +45,25 @@ reload:
   widget_type: reload
   title: Reload
 
-covers:
-  widget_type: cover
-  entity: cover.all_covers
+# covers:
+#   widget_type: cover
+#   entity: cover.all_covers
+
+cover_open:
+  widget_type: script
+  entity: script.open_all_covers
+  icon_on: fa-arrow-circle-o-up
+  icon_off: fa-arrow-circle-o-up
+  icon_style_active: "color: $green"
+  # icon_style_inactive: "color: $green"
+
+cover_close:
+  widget_type: script
+  entity: script.close_all_covers
+  icon_on: fa-arrow-circle-o-down
+  icon_off: fa-arrow-circle-o-down
+  icon_style_active: "color: $red"
+  # icon_style_inactive: "color: $red"
 
 all_off:
   widget_type: script
@@ -74,8 +90,8 @@ info:
 layout:
   - clock
   - home_temperature(2x1), btc(2x1), weather(2x2)
-  - covers(2x2), alarm(2x2)
-  - info(2x1)
+  - cover_open(2x1), alarm(2x2)
+  - cover_close(2x1), info(2x1)
   - reload(2x1), all_off(2x1), buzz(2x1)
 
 # vim: set ft=yaml et ts=2 sw=2 :
