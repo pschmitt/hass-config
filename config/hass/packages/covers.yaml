@@ -244,10 +244,18 @@ script:
         entity_id: cover.living_room_covers
 
   close_bedroom_covers:
-    alias: 'Open bedroom covers'
+    alias: 'Close bedroom covers'
     sequence:
       - service: cover.close_cover
-        entity_id: cover.bedroom
+        entity_id: cover.bedroom_window
+      - service_template: >-
+          {% if is_state('input_boolean.ac_off_the_window', 'on') %}
+            script.cover_set_favorite_position
+          {% else %}
+            cover.close_cover
+          {% endif %}
+        data:
+          entity_id: cover.bedroom_door
 
   close_auto_covers:
     alias: 'Open automated covers'
