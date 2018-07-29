@@ -216,6 +216,7 @@ automation:
     action:
       - service: script.all_off
       - service: script.lock_door
+      - service: script.arlo_night
 
   - alias: React to single button press on aqara button
     initial_state: true
