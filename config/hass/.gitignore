@@ -22,3 +22,4 @@ __pycache__/
 .config_entries.json
 .cloud/
 .storage/
+options.xml
