@@ -3,6 +3,11 @@ weather:
     name: darksky
     api_key: !secret darksky_api_key
 
+  - platform: openweathermap
+    api_key: !secret openweathermap_api_key
+
+  - platform: yweather
+
 
 sensor:
   - platform: yr
