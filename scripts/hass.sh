@@ -3,7 +3,7 @@
 cd "$(readlink -f "$(dirname "$0")")" || exit 9
 
 HASS_SECRETS=/config/secrets.yaml
-if [[ -r ../config/hass/phue.conf ]]
+if [[ -r ../config/hass/secrets.yaml ]]
 then
     HASS_SECRETS="../config/hass/secrets.yaml"
 fi
@@ -72,7 +72,7 @@ rq_post() {
 
 # Shortcut actions
 script() {
-    rq POST "services/script/$1"
+    rq POST "services/script/$1" "$2"
 }
 
 event() {
@@ -166,7 +166,7 @@ case "$1" in
             echo "Missing script name." >&2
             exit 3
         fi
-        script "$2"
+        script "$2" "$3"
         ;;
     scene)
         if [[ -z "$2" ]]
