@@ -6,7 +6,7 @@ cover:
         open_cover:
           service: script.open_all_covers
         close_cover:
-          service: script.close_all_covers
+          service: script.respectfully_close_all_covers
         stop_cover:
           service: script.stop_all_covers
 
@@ -152,7 +152,14 @@ script:
     alias: 'Open all covers'
     sequence:
       - service: cover.open_cover
-        entity_id: group.all_covers
+        entity_id:
+          - cover.bedroom_door
+          - cover.bedroom_window
+          - cover.kitchen
+          - cover.living_room_door
+          - cover.living_room_table
+          - cover.living_room_tv
+          - cover.office
 
   open_all_covers_if_sun_is_up:
     alias: 'Open all covers (only if the sun is up)'
@@ -190,7 +197,39 @@ script:
     alias: 'Close all covers'
     sequence:
       - service: cover.close_cover
-        entity_id: group.all_covers
+        entity_id:
+          - cover.bedroom_door
+          - cover.bedroom_window
+          - cover.kitchen
+          - cover.living_room_door
+          - cover.living_room_table
+          - cover.living_room_tv
+          - cover.office
+
+  respectfully_close_all_covers:
+    alias: 'Close all covers (respecting the AC)'
+    sequence:
+      - service_template: >-
+          {% if is_state('input_boolean.ac_off_the_window', 'on') %}
+            script.close_all_covers_with_ac
+          {% else %}
+            script.close_all_covers
+          {% endif %}
+
+  close_all_covers_with_ac:
+    alias: 'Close all covers'
+    sequence:
+      - service: cover.close_cover
+        entity_id:
+          - cover.bedroom_window
+          - cover.living_room_door
+          - cover.living_room_table
+          - cover.living_room_tv
+          - cover.kitchen
+          - cover.office
+      - service: script.cover_set_favorite_position
+        data:
+          entity_id: cover.bedroom_door
 
   close_main_covers:
     alias: 'Close main covers'

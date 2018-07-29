@@ -7,6 +7,10 @@ input_boolean:
     name: Vacation Mode
     icon: mdi:airplane-takeoff
 
+  ac_off_the_window:
+    name: "AC hanging off the window"
+    icon: mdi:ice-cream
+
 
 group:
   settings:
@@ -25,6 +29,17 @@ group:
       - input_datetime.roomba_autostart_time
       - input_number.battery_alert_threshold_max
       - input_number.smoke_break_duration
+
+
+automation:
+  - alias: "Disable DND mode at 07:00"
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '07:00:00'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.dnd
 
 
 homeassistant:
