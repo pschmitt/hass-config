@@ -1,0 +1,23 @@
+script:
+  watch_tf1:
+    alias: Watch TF1
+    sequence:
+      - service: script.tv_activity_watch_tv
+        data:
+          tv_channel: TF1
+
+  watch_m6:
+    alias: Watch M6
+    sequence:
+      - service: script.tv_activity_watch_tv
+        data:
+          tv_channel: M6
+
+  watch_bfmtv:
+    alias: Watch BFM TV
+    sequence:
+      - service: script.tv_activity_watch_tv
+        data:
+          tv_channel: BFM TV
+
+# vim: set filetype=yaml et sw=2 ts=2 :
