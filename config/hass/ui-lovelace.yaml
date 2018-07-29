@@ -1,0 +1,430 @@
+name: Home Assistant
+views:
+  - title: Home
+    id: home
+    icon: mdi:home-modern
+    cards:
+      - type: map
+        aspect_ratio: 70%
+        entities:
+          - entity: device_tracker.ph1_zanzito
+          - entity: device_tracker.google_maps_105543397094537443482
+          # - zone.home
+          - zone.work
+          - zone.work_hers
+
+      - type: vertical-stack
+        cards:
+          - type: glance
+            show_name: false
+            entities:
+              - sensor.home_temperature
+              - sensor.smappee_home_active_power
+              - alarm_control_panel.ha_alarm_mqtt
+              - entity: lock.front_door
+                tap_action: toggle
+              - entity: script.buzz_door_open_multiple
+                tap_action: turn-on
+          - type: glance
+            show_name: false
+            show_state: false
+            entities:
+              - entity: script.cover_privacy
+                tap_action: turn-on
+              - entity: script.cover_movie_smoke_break
+                tap_action: turn-on
+              - entity: script.all_off
+                tap_action: turn-on
+              - entity: cover.all_covers
+              - entity: group.all_lights
+                tap_action: toggle
+          - type: glance
+            show_name: false
+            show_state: false
+            entities:
+              - entity: switch.sonoff_fan
+                tap_action: toggle
+              - entity: switch.sonoff_kitchen_hood
+                tap_action: toggle
+              - entity: switch.wemo_insight__washing_machine
+                tap_action: toggle
+              - entity: vacuum.nimbus
+                tap_action: toggle
+              - entity: switch.3d_printer_psu
+                tap_action: toggle
+              - entity: switch.ac
+                tap_action: toggle
+              - entity: group.fridge
+
+      - type: vertical-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.darksky
+
+          - type: picture-glance
+            camera_image: camera.c1
+            title: Living Room
+            entities:
+              - camera.c1
+              - cover.living_room
+              - light.hue_living_room_table
+              - light.hue_living_room_tv
+
+      - type: vertical-stack
+        cards:
+          - type: entity-filter
+            # title: Activity
+            entities:
+              # Users
+              - entity: device_tracker.google_maps_105543397094537443482
+                name: mbiver
+              - entity: device_tracker.ph1_zanzito
+                name: pschmitt
+              # Appliances
+              - entity: binary_sensor.octoprint_printing
+                name: 3D Printer
+              - binary_sensor.washing_machine
+              - media_player.living_room_tv
+              - media_player.office_tv
+              - media_player.livebox_play
+              # - binary_sensor.door_window_sensor_bedroom_door
+              - binary_sensor.door_window_sensor_bedroom_terrace_door
+              - binary_sensor.door_window_sensor_bedroom_window
+              - binary_sensor.door_window_sensor_front_door
+              - binary_sensor.door_window_sensor_kitchen_window
+              - binary_sensor.door_window_sensor_living_room_window
+              - binary_sensor.door_window_sensor_office_window_large
+              - binary_sensor.door_window_sensor_office_window_small
+              - binary_sensor.door_window_sensor_terrace_door
+              - binary_sensor.bathroom_presence
+              - binary_sensor.hallway_presence
+              - binary_sensor.kitchen_presence
+              - binary_sensor.toilet_presence
+              - binary_sensor.motion_sensor_front_door
+              - binary_sensor.motion_sensor_living_room
+              - binary_sensor.motion_sensor_office
+              - binary_sensor.motion_sensor_terrace
+              - entity: light.3d_printer_led
+                tap_action: toggle
+              - entity: light.aqara_gateway_light
+                tap_action: toggle
+              - entity: light.bathroom
+                tap_action: toggle
+              - entity: light.bathroom_ceiling
+                tap_action: toggle
+              - entity: light.bathroom_mirror
+                tap_action: toggle
+              - entity: light.hue_bathroom
+                tap_action: toggle
+              - entity: light.hue_bedroom
+                tap_action: toggle
+              - entity: light.hue_front_door
+                tap_action: toggle
+              - entity: light.hue_hallway
+                tap_action: toggle
+              - entity: light.hue_kitchen
+                tap_action: toggle
+              - entity: light.hue_living_room_table
+                tap_action: toggle
+              - entity: light.hue_living_room_tv
+                tap_action: toggle
+              - entity: light.hue_office
+                tap_action: toggle
+              - entity: light.hue_terrace
+                tap_action: toggle
+              - entity: light.hue_toilet
+                tap_action: toggle
+              - entity: light.living_room
+                tap_action: toggle
+              - entity: light.office
+                tap_action: toggle
+              - entity: light.yeelight_office
+                tap_action: toggle
+              - lock.front_door
+              - vacuum.nimbus
+            state_filter:
+              - 'on'
+              - 'unlocked'
+              - 'home'
+              - 'playing'
+            show_empty: false
+            card:
+              type: glance
+              title: Activity
+              show_state: false
+
+          - type: history-graph
+            hours_to_show: 240
+            refresh_interval: 60
+            entities:
+              - sensor.home_temperature
+
+          - type: history-graph
+            hours_to_show: 240
+            refresh_interval: 60
+            entities:
+              - sensor.smappee_home_active_power
+
+  - title: CCTV
+    id: cctv
+    icon: mdi:cctv
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            camera_image: camera.front_door
+            title: Front Door
+            entities:
+              - camera.front_door
+              - light.hue_front_door
+
+          - type: picture-glance
+            camera_image: camera.doorpi
+            title: Entrance
+            entities:
+              - camera.doorpi
+              - light.hue_front_door
+
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            camera_image: camera.c1
+            title: Living Room
+            entities:
+              - camera.c1
+              - light.hue_living_room_table
+              - light.hue_living_room_tv
+              - cover.living_room
+
+          - type: picture-glance
+            camera_image: camera.terrace
+            title: Terrace
+            entities:
+              - camera.terrace
+              - light.hue_terrace
+              - cover.bedroom
+
+          - type: picture-glance
+            camera_image: camera.winpi
+            title: Winpi
+            entities:
+              - camera.winpi
+              - cover.living_room_door
+
+      - type: vertical-stack
+        cards:
+          - type: picture-glance
+            camera_image: camera.c2
+            title: Kitchen
+            entities:
+              - camera.c2
+              - cover.kitchen
+              - light.hue_kitchen
+              - switch.sonoff_kitchen_hood
+
+          - type: picture-glance
+            camera_image: camera.hassistant_lq
+            title: Office
+            entities:
+              - camera.hassistant
+              - light.yeelight_office
+              - light.hue_office
+              - cover.office
+
+          - type: picture-glance
+            camera_image: camera.hallway
+            title: Hallway
+            entities:
+              - camera.hallway
+              - light.hue_hallway
+
+
+
+  - title: Media
+    id: media
+    icon: mdi:play-box-outline
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Living Room
+            entities:
+              - input_select.tv_activity
+          - type: entity-filter
+            entities:
+              - media_player.livebox_play
+            state_filter:
+              - 'playing'
+              - 'on'
+            show_empty: false
+            card:
+              type: media-control
+              entity: media_player.livebox_play
+          - type: media-control
+            entity: media_player.living_room_tv
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.office_tv
+          - type: media-control
+            entity: media_player.office_speaker
+
+  - title: Plants
+    id: plants
+    icon: mdi:flower
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.capsicum_annuum
+          - type: entity-filter
+            entities:
+              - binary_sensor.capsicum_annuum_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.croton
+          - type: entity-filter
+            entities:
+              - binary_sensor.croton_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.citrus_mitis_calamondin
+          - type: entity-filter
+            entities:
+              - binary_sensor.citrus_mitis_calamondin_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.ficus_microcarpa
+          - type: entity-filter
+            entities:
+              - binary_sensor.ficus_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.lemon_tree
+          - type: entity-filter
+            entities:
+              - binary_sensor.lemon_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+      - type: vertical-stack
+        cards:
+          - type: plant-status
+            entity: plant.pilea
+          - type: entity-filter
+            entities:
+              - binary_sensor.pilea_data_outdated
+            state_filter:
+              - 'on'
+            show_empty: false
+
+  - title: Data
+    id: data
+    icon: mdi:chart-bar-stacked
+    cards:
+      - type: vertical-stack
+        cards:
+        - type: entities
+          entities:
+            # Total
+            - sensor.home_temperature
+
+        - type: entities
+          title: Detail
+          entities:
+            - sensor.temperature_living_room
+            - sensor.temperature_bedroom
+            - sensor.temperature_office
+            - sensor.temperature_terrace
+            # Hue
+            - sensor.hue_bathroom_temperature
+            - sensor.hue_hallway_temperature
+            - sensor.hue_kitchen_temperature
+            - sensor.hue_toilet_temperature
+            # Aqarsa
+            - sensor.temperature_freezer
+            - sensor.temperature_fridge
+            # Plants
+            - sensor.pilea_temperature
+            - sensor.ficus_temperature
+            - sensor.fridge_temperature
+            - sensor.freezer_temperature
+
+      - type: vertical-stack
+        cards:
+          - type: weather-forecast
+            entity: weather.darksky
+
+          - type: weather-forecast
+            entity: weather.openweathermap
+
+          - type: weather-forecast
+            entity: weather.yweather
+
+
+  - title: DEBUG
+    id: debug
+    icon: mdi:bug
+    cards:
+      - type: entities
+        title: Debug
+        entities:
+          - sensor.motion_sensor_illumination_front_door
+          - input_boolean.motion_light_front_door
+          - light.hue_front_door
+
+      - type: glance
+        # title: Master groups
+        show_state: false
+        show_name: false
+        column_width: '20%'
+        entities:
+          - group.all_battery_devices
+          - group.low_battery_devices
+          - group.all_covers
+          - group.all_devices
+          - group.all_lights
+          - group.all_plants
+          - group.all_scripts
+          - group.all_switches
+
+  - title: Settings
+    id: settings
+    icon: mdi:settings
+    # panel: true
+    cards:
+      - type: entities
+        title: Settings
+        entities:
+          - input_boolean.dnd
+          - input_boolean.vacation
+          - input_boolean.ac_off_the_window
+          - input_boolean.sleepover
+          - input_boolean.motion_light_front_door
+          - input_boolean.motion_light_office
+          - input_boolean.motion_light_living_room
+          - input_boolean.motion_light_terrace
+          - input_datetime.bedtime
+          - input_datetime.roomba_autostart_time
+          - input_number.smoke_break_duration
+
+
+  # - title: Batteries
+  #   cards:
+  #     - type:
