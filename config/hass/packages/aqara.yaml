@@ -486,6 +486,16 @@ homeassistant:
       battery_ignore: true
     sensor.temperature_living_room:
       friendly_name: Living Room Temperature
+    sensor.humidity_office:
+      friendly_name: Office Humidity
+      icon: mdi:water-percent
+      battery_ignore: true
+    sensor.pressure_office:
+      friendly_name: Office Pressure
+      icon: mdi:arrow-collapse-all
+      battery_ignore: true
+    sensor.temperature_office:
+      friendly_name: Office Temperature
     switch.wall_switch_bathroom_left:
       friendly_name: Bathroom wall switch (L)
     switch.wall_switch_bathroom_right:
