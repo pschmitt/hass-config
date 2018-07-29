@@ -20,6 +20,24 @@ camera:
     username: !secret cam_winpi_username
     password: !secret cam_winpi_password
 
+  - platform: proxy
+    name: hassistant_lq
+    entity_id: camera.hassistant
+    max_stream_width: 600
+    stream_quality: 75
+
+  - platform: proxy
+    name: winpi_lq
+    entity_id: camera.winpi
+    max_stream_width: 600
+    stream_quality: 75
+
+  - platform: proxy
+    name: doorpi_lq
+    entity_id: camera.doorpi
+    max_stream_width: 600
+    stream_quality: 75
+
 
 group:
   raspicam_doorpi:
