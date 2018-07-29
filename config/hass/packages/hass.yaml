@@ -92,59 +92,46 @@ script:
         entity_id: automation.playing_ps3
 
 
-group:
-  hass:
-    name: hass
-    view: yes
-    icon: mdi:home-assistant
-    entities:
-      - script.aqara_add_device
-      # - group.all
-      - group.hass_infrastructure
-      - group.all_devices
-      - group.pschmitt_location
-      - group.mbiver_location
-      - group.flic_buttons
-      - group.media_players
-      # - group.all_scripts
-      - group.all_lights
-      - group.all_sensors
-      - group.all_switches
-      # - group.all_automations
-      # - group.media_players
-      - group.zwave
-      - group.windows
-
-
 homeassistant:
   customize:
-    # Groups
-    group.hass:
-      order: 99
     # Entities belonging to HASS tab
     group.hass_infrastructure:
       order: 1
     group.zwave:
       order: 3
+    # Master groups
     group.all:
       hidden: false
     group.all_automations:
       hidden: false
       order: 99
-    group.all_devices:
+    group.all_covers:
+      icon: mdi:window-open
       order: 2
       hidden: false
+      friendly_name: All covers
+    group.all_devices:
+      icon: mdi:cellphone-android
+      order: 2
+      hidden: false
+      friendly_name: All devices
     group.all_lights:
       hidden: false
+      icon: mdi:lightbulb
+      friendly_name: All lights
       order: 2
     group.all_scripts:
       control: hidden
       order: 1
       hidden: false
+      friendly_name: All scripts
+      icon: mdi:script
     group.all_switches:
       control: hidden
       hidden: false
+      friendly_name: All switches
       order: 4
+      icon: mdi:toggle-switch
     # Scripts
     script.ha_reload_config:
       icon: mdi:refresh
