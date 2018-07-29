@@ -5,7 +5,7 @@ views:
     icon: mdi:home-modern
     cards:
       - type: map
-        aspect_ratio: 70%
+        aspect_ratio: 62.5%
         entities:
           - entity: device_tracker.ph1_zanzito
           - entity: device_tracker.google_maps_105543397094537443482
