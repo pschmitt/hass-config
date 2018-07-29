@@ -2,8 +2,9 @@ switch:
   - platform: mqtt
     name: "Sonoff: Bathroom"
     availability_topic: "tele/bathroom_mirror_light/LWT"
-    state_topic: "stat/bathroom_mirror_light/POWER"
+    state_topic: "stat/bathroom_mirror_light/RESULT"
     command_topic: "cmnd/bathroom_mirror_light/POWER"
+    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
@@ -14,8 +15,9 @@ switch:
   - platform: mqtt
     name: "Sonoff: Fan"
     availability_topic: "tele/fan/LWT"
-    state_topic: "stat/fan/POWER"
+    state_topic: "stat/fan/RESULT"
     command_topic: "cmnd/fan/POWER"
+    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
@@ -26,8 +28,9 @@ switch:
   - platform: mqtt
     name: "Sonoff: Kitchen Hood"
     availability_topic: "tele/kitchen_hood/LWT"
-    state_topic: "stat/kitchen_hood/POWER"
+    state_topic: "stat/kitchen_hood/RESULT"
     command_topic: "cmnd/kitchen_hood/POWER"
+    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
@@ -64,6 +67,16 @@ light:
 
 
 automation:
+  - alias: Sync state
+    trigger:
+      platform: homeassistant
+      event: start
+    action:
+      - service: mqtt.publish
+        data:
+          topic: "cmnd/sonoffs/power1"
+          payload: ""
+
   - alias: Sync state of bathroom mirror light with bathroom light (ON)
     initial_state: true
     trigger:
@@ -95,5 +108,13 @@ automation:
     action:
       service: switch.turn_on
       entity_id: sonoff.kitchen_hood
+
+
+homeassistant:
+  customize:
+    switch.sonoff_fan:
+      icon: mdi:fan
+    switch.sonoff_kitchen_hood:
+      icon: mdi:weather-windy
 
 # vim: set filetype=yaml et sw=2 ts=2 :
