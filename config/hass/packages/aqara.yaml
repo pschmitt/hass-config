@@ -191,9 +191,6 @@ automation:
         entity_id: binary_sensor.wall_switch_bedroom_left
         click_type: single
     action:
-      - service: notify.zanzito_tts
-        data:
-          message: "left"
       - service: script.bedtime
 
   - alias: React to single (right) button press on bedroom aqara wall switch
@@ -205,11 +202,8 @@ automation:
         entity_id: binary_sensor.wall_switch_bedroom_right
         click_type: single
     action:
-      - service: notify.zanzito_tts
-        data:
-          message: "right"
       # - service: script.all_off
-      # - service: script.lock_door
+      - service: script.lock_door
 
   - alias: React to single (both) button press on bedroom aqara wall switch
     initial_state: true
@@ -220,9 +214,6 @@ automation:
         entity_id: binary_sensor.wall_switch_bedroom_both
         click_type: both
     action:
-      - service: notify.zanzito_tts
-        data:
-          message: "both"
       - service: script.all_off
       - service: script.lock_door
 
