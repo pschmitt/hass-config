@@ -18,7 +18,7 @@ script:
   bedtime:
     alias: Bedtime
     sequence:
-      - service: notify.zanzito_tts
+      - service: script.zanzito_tts_say
         data:
           message: "Night."
       - service: scene.turn_on

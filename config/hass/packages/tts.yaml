@@ -42,4 +42,13 @@ script:
       - service: automation.turn_on
         entity_id: automation.switch_back_to_aux_in_when_tts_message_has_finished_playing
 
+  zanzito_tts_say:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.dnd
+        state: 'off'
+      - service: notify.zanzito_tts
+        data_template:
+          message: "{{ message }}"
+
 # vim: set filetype=yaml et sw=2 ts=2 :
