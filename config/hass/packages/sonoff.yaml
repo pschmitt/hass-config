@@ -2,41 +2,38 @@ switch:
   - platform: mqtt
     name: "Sonoff: Bathroom"
     availability_topic: "tele/bathroom_mirror_light/LWT"
-    state_topic: "stat/bathroom_mirror_light/RESULT"
+    state_topic: "stat/bathroom_mirror_light/POWER"
     command_topic: "cmnd/bathroom_mirror_light/POWER"
-    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
     qos: 1
-    retain: true
+    retain: false
 
   - platform: mqtt
     name: "Sonoff: Fan"
     availability_topic: "tele/fan/LWT"
-    state_topic: "stat/fan/RESULT"
+    state_topic: "stat/fan/POWER"
     command_topic: "cmnd/fan/POWER"
-    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
     qos: 1
-    retain: true
+    retain: false
 
   - platform: mqtt
     name: "Sonoff: Kitchen Hood"
     availability_topic: "tele/kitchen_hood/LWT"
-    state_topic: "stat/kitchen_hood/RESULT"
+    state_topic: "stat/kitchen_hood/POWER"
     command_topic: "cmnd/kitchen_hood/POWER"
-    value_template: '{{ value_json["POWER"] }}'
     payload_on: "ON"
     payload_off: "OFF"
     payload_available: "Online"
     payload_not_available: "Offline"
     qos: 1
-    retain: true
+    retain: false
 
 
 binary_sensor:
