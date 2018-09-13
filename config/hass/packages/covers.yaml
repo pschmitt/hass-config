@@ -3,6 +3,7 @@ cover:
     covers:
       all_covers:
         friendly_name: "All covers"
+        position_template: 50
         open_cover:
           service: script.open_all_covers
         close_cover:
@@ -118,11 +119,11 @@ script:
   cover_movie_smoke_break:
     alias: "Cover: Movie Smoke Break"
     sequence:
-      - service: cover.stop_cover
-        entity_id: cover.living_room_table
       - service: cover.open_cover
         entity_id: cover.living_room_door
-      - delay: '00:00:10'
+      - service: cover.stop_cover
+        entity_id: cover.living_room_table
+      - delay: '00:00:30'
       - service: cover.stop_cover
         entity_id: cover.living_room_table
 
@@ -267,7 +268,14 @@ script:
     alias: 'Stop all covers'
     sequence:
       - service: cover.stop_cover
-        entity_id: group.all_covers
+        entity_id:
+          - cover.bedroom_door
+          - cover.bedroom_window
+          - cover.kitchen
+          - cover.living_room_door
+          - cover.living_room_table
+          - cover.living_room_tv
+          - cover.office
 
 
 homeassistant:
