@@ -3,6 +3,8 @@
 
 import os
 import re
+import random
+import string
 import yaml
 
 BASEDIR = os.path.realpath(os.path.dirname(__file__))
@@ -15,6 +17,9 @@ TRAVIS_FLOAT = 0.0
 TRAVIS_INT = 0
 TRAVIS_STR = 'travis_secret_16'
 TRAVIS_FILE = './config/hass/.travis/file'
+TRAVIS_IP_ADDR = '127.0.0.1'
+TRAVIS_MAC_ADDR = '00:01:02:03:04:05'
+TRAVIS_URL = 'http://localhost:8080/index.html'
 
 with open(HASS_SECRETS_FILE, 'r') as stream:
     HASS_CONFIG = yaml.load(stream)
@@ -26,6 +31,11 @@ IP_ADDR_RE = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
 URL_RE = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|'
                     r'[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
 
+
+def generate_random_token(length, token='trav1ss3cr3t'):
+    return (token * (int(length / len(token)) + 1))[:length]
+
+
 for k, v in HASS_CONFIG.items():
     t = type(v)
     if t == float:
@@ -36,11 +46,13 @@ for k, v in HASS_CONFIG.items():
         if v.startswith('/'):
             travis_val = TRAVIS_FILE
         elif re.match(MAC_ADDR_RE, v):
-            travis_val = '00:01:02:03:04:05'
+            travis_val = TRAVIS_MAC_ADDR
         elif re.match(IP_ADDR_RE, v):
-            travis_val = '127.0.0.1'
+            travis_val = TRAVIS_IP_ADDR
         elif re.match(URL_RE, v):
-            travis_val = 'http://localhost:8080/index.html'
+            travis_val = TRAVIS_URL
+        elif 'token' in k:
+            travis_val = generate_random_token(len(v))
         else:
             travis_val = TRAVIS_STR
     TRAVIS_CONFIG[k] = travis_val
