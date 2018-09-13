@@ -22,8 +22,10 @@ cloud:
         - script.buzz_door_open_multiple
         - script.cover_movie_smoke_break
         - script.cover_privacy
+        - script.play_pause_living_room_tv
         - script.watch_m6
         - script.watch_tf1
+        - switch.ac
         - switch.alarm
         - switch.front_door_lock
         - switch.roomba
@@ -161,6 +163,17 @@ cloud:
           - "terrace motion detector"
           - "détecteur de mouvement de la terrasse"
         room: Terrace
+
+      light.bathroom_ceiling:
+        name: "Bathroom ceiling Light"
+        aliases:
+          - Bathroom ceiling light
+          - Shower light
+          - lumière de la douche
+          - lumière plafond de la salle de bain
+          - lumière du plafond de la salle de bain
+          - lumière au plafond de la salle de bain
+        room: Bathroom
 
       light.hue_kitchen:
         name: "Kitchen light"
@@ -359,6 +372,18 @@ cloud:
           - la putain d'alarme
         room: void
 
+      switch.ac:
+        name: "AC"
+        aliases:
+          - AC
+          - the fucking AC
+          - la clim
+          - la putain de clim
+          - la climatisation
+          - le climatiseur
+          - le putain de climatiseur
+        room: Bedroom
+
       script.cover_movie_smoke_break:
         name: "Cover scene: Movie smoke break"
         aliases:
@@ -375,6 +400,9 @@ cloud:
           - give me some privacy
           - incognito mode
           - mode privé
+          - mode branlette
+          - wank mode
+          - mode incognito
           - baisses les volets
         room: Living Room
 
@@ -387,6 +415,21 @@ cloud:
           - mets la 1
           - mets la un
           - mets la une
+        room: Living Room
+
+      script.play_pause_living_room_tv:
+        name: "Play/Pause Living Room TV"
+        aliases:
+          - "Play/Pause Living Room TV"
+          - "reprends la lecture"
+          - "remets"
+          - "remets la vidéo"
+          - "remets la télé"
+          - "reprends la lecture"
+          - "mets en pause"
+          - "mets pause"
+          - "mets play"
+          - "pause pisse"
         room: Living Room
 
       script.watch_m6:
