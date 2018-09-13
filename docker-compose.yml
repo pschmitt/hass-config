@@ -111,6 +111,28 @@ services:
       - "traefik.frontend.rule=Host:nodered.home.comreset.io"
       - "traefik.port=1880"
 
+  # facebox:
+  #   image: machinebox/facebox
+  #   restart: unless-stopped
+  #   ports:
+  #     - 8890:8080
+  #   env_file:
+  #     - facebox.env
+
+  # autoheal:
+  #   restart: unless-stopped
+  #   image: willfarrell/autoheal
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+  tasmoadmin:
+    restart: unless-stopped
+    image: raymondmm/tasmoadmin
+    ports:
+      - 9541:80
+    volumes:
+      - ./data/tasmoadmin:/data
+
 
 networks:
   backend:
