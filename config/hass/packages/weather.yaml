@@ -62,6 +62,21 @@ sensor:
       - apparent_temperature_low
       - precip_intensity_max
 
+  - platform: openweathermap
+    api_key: !secret openweathermap_api_key
+    language: en
+    forecast: true
+    monitored_conditions:
+      - weather
+      - temperature
+      - wind_speed
+      - wind_bearing
+      - humidity
+      - pressure
+      - clouds
+      - rain
+      - snow
+
 
 group:
   weather:
