@@ -47,7 +47,6 @@ group:
     icon: mdi:cellphone-android
     entities:
       - group.pschmitt_location
-      - group.mbiver_location
 
   pschmitt_location:
     name: "pschmitt location"
@@ -57,21 +56,12 @@ group:
       - group.ph1
       # - group.g4p
 
-  mbiver_location:
-    name: "mbiver location"
-    view: no
-    icon: mdi:cellphone-android
-    entities:
-      - device_tracker.google_maps_105543397094537443482
-      - group.op3t
-      # - group.macbook
-
   ph1:
     name: "ph1"
     view: no
     icon: mdi:cellphone-android
     entities:
-      - device_tracker.ph1_arp
+      # - device_tracker.ph1_arp
       # - device_tracker.ph1_ping
       - device_tracker.ph1_zanzito
 
@@ -84,21 +74,6 @@ group:
       - device_tracker.g4p_ping
       - device_tracker.g4p_zanzito
 
-  op3t:
-    name: "op3t"
-    view: no
-    icon: mdi:cellphone-android
-    entities:
-      # - device_tracker.op3t_arp
-      - device_tracker.op3t_ping
-
-  macbook:
-    name: "macbook"
-    view: no
-    icon: mdi:cellphone-android
-    entities:
-      - device_tracker.macbook_arp
-      - device_tracker.macbook_ping
 
 
 sensor:
