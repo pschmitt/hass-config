@@ -5,19 +5,13 @@ zone:
     elevation: !secret work_elevation
     icon: mdi:worker
 
-  - name: Work (hers)
-    latitude: !secret mbiver_work_latitude
-    longitude: !secret mbiver_work_longitude
-    elevation: !secret mbiver_work_elevation
-    icon: mdi:worker
-
 
 proximity:
   home:
     ignored_zones:
       - Work
     devices:
-      - device_tracker.g4p_zanzito
+      - device_tracker.ph1_zanzito
     tolerance: 10
     unit_of_measurement: m
 
