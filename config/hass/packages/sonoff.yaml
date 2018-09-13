@@ -35,6 +35,18 @@ switch:
     qos: 1
     retain: false
 
+  - platform: mqtt
+    name: "Sonoff POW: Extension cord"
+    availability_topic: "tele/sonoff-pow/LWT"
+    state_topic: "stat/sonoff-pow/POWER"
+    command_topic: "cmnd/sonoff-pow/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+    retain: false
+
 
 binary_sensor:
   - platform: ping
@@ -42,6 +54,17 @@ binary_sensor:
     host: sonoff-bathrom-mirror.lan
     count: 2
     scan_interval: 15
+
+
+sensor:
+  - platform: mqtt
+    name: Sonoff POW Power
+    state_topic: tele/sonoff-pow/SENSOR
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    availability_topic: "tele/sonoff-pow/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    unit_of_measurement: 'W'
 
 
 light:
