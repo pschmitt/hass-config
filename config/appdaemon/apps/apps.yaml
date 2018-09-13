@@ -63,4 +63,5 @@ motion_lights:
         - binary_sensor.bathroom_presence
       lights:
         - light.bathroom_mirror
+        - light.bathroom_ceiling
       duration: 900
