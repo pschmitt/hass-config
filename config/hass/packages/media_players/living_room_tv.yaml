@@ -94,6 +94,15 @@ switch:
 
 
 script:
+  play_pause_living_room_tv:
+    alias: "Play/Pause Living Room TV"
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.harmony_hub
+          device: !secret harmony_hub_device_living_room_tv
+          command: "Pause"
+
   turn_off_media_players:
     alias: Turn off media players
     sequence:
@@ -121,6 +130,9 @@ script:
   select_tv_source:
     alias: Set the living room TV source
     sequence:
+      - service: script.harmony_set_living_room_tv_input
+        data_template:
+          source: "{{ source }}"
       # Wait 2 seconds in case the TV just turned on
       - delay:
           seconds: 2
@@ -136,6 +148,9 @@ script:
   tv_activity_shield_tv:
     alias: "TV activity: Nvidia Shield TV"
     sequence:
+      - service: script.select_tv_source
+        data:
+          source: 'Nvidia Shield TV'
       - service: script.harmony_turn_on_nvidia_shield_tv
       - service: script.turn_on_living_room_tv
       - service: script.select_tv_source
@@ -151,6 +166,9 @@ script:
   tv_activity_watch_tv:
     alias: "TV activity: Watch TV"
     sequence:
+      - service: script.select_tv_source
+        data:
+          source: 'Orange Livebox Play'
       # Set the channel right at the start in case the TV is already on
       - service: script.livebox_play_tv_set_start_chanel
         data_template:
@@ -267,6 +285,36 @@ automation:
     action:
       - service: media_player.turn_off
         entity_id: media_player.livebox_play
+
+  - alias: Turn on Nvidia Shield TV if input selected but not on
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.tv_displaying_nvidia_shield_tv
+      to: 'on'
+      for:
+        seconds: 5
+    condition:
+      condition: state
+      entity_id: media_player.cast_nvidia_shield_tv
+      state: 'off'
+    action:
+      service: script.turn_on_nvidia_shield_tv
+
+  - alias: Turn on Livebox TV if input selected but not on
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: binary_sensor.tv_displaying_liveboxplay
+      to: 'on'
+      for:
+        seconds: 5
+    condition:
+      condition: state
+      entity_id: media_player.livebox_play
+      state: 'off'
+    action:
+      service: script.turn_on_livebox_play
 
   - alias: Turn off Nvidia shield TV if is it not currently displayed
     initial_state: true
