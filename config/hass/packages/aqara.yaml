@@ -4,6 +4,33 @@ xiaomi_aqara:
     - mac: !secret mi_gw_mac
       key: !secret mi_gw_api_key
 
+remote:
+  - platform: xiaomi_miio
+    host: !secret miio_ir_hostname
+    token: !secret miio_ir_token
+    commands:
+      ac_toggle:
+        command:
+          - raw:Z6VHADACAACbBgAAxggAAIERAAAaIwAAOCMAACigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1AAAAAAAAAAAAEBAQEBAQEAAAEAAAAAAAEBAAEBAQEBBgJAA=
+      ac_mode:
+        command:
+          - raw:Z6VHAC8CAACiBgAA6wgAAKsRAAAOIwAAKKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAEBAQEBAQEAAAAAAAAAAAEBAQEBAQEBBQJAA=
+      ac_temp_up:
+        command:
+          - raw:Z6VHADICAACXBgAAqwgAAIURAAA1IwAAKKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAEBAQEBAQEBAAEAAAAAAAABAAEBAQEBBQJAA=
+      ac_temp_down:
+        command:
+          - raw:Z6VHACgCAABaAgAAqAYAAOsIAACrEQAADiMAACigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFEAAAEAAAEAAAICAgICAgIAAgIAAAEAAAIAAQICAgICBgNQA=
+      ac_fan_speed:
+        command:
+          - raw:Z6VHAAoCAABaAgAAvwYAAOcIAADCEQAA+SIAACigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFEBAQEBAQEBAQICAgICAgICAgIBAQEBAQEBAQICAgICBgNQA=
+      ac_sleep:
+        command:
+          - raw:Z6VHACkCAACyBgAA5QgAAKoRAAAPIwAAKKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAEBAQEBAQEBAQAAAAAAAAAAAQEBAQEBBQJAA=
+      ac_timer:
+        command:
+          - raw:Z6VHAA0CAABWAgAAuwYAAO0IAACsEQAADCMAACigAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFEBAQEBAQEBAQICAgICAgICAQEBAQEBAQECAgICAgICBgNQA=
+
 
 script:
   aqara_add_device:
@@ -268,13 +295,13 @@ automation:
   #     - service: light.toggle
   #       entity_id: light.bathroom_light
 
-  - alias: Toggle bathroom lights when pressing bathroom switch (R)
-    initial_state: True
-    trigger:
-      platform: state
-      entity_id: switch.wall_switch_bathroom_right
-    action:
-      - service: script.bedtime
+  # - alias: Toggle bathroom lights when pressing bathroom switch (R)
+  #   initial_state: True
+  #   trigger:
+  #     platform: state
+  #     entity_id: switch.wall_switch_bathroom_right
+  #   action:
+  #     - service: script.bedtime
       # - service: light.toggle
       #   entity_id: light.bathroom_lights
 
@@ -348,6 +375,20 @@ automation:
       - service: notify.html5
         data:
           message: "SHAKE"
+          data:
+            tag: "aqara-cube"
+
+  - alias: Cube event rotate
+    trigger:
+      platform: event
+      event_type: cube_action
+      event_data:
+        entity_id: binary_sensor.aqara_cube
+        action_type: rotate
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Rotate: {{ trigger.event.data.action_value }}"
           data:
             tag: "aqara-cube"
 
