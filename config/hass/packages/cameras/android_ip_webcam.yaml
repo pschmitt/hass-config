@@ -1,0 +1,28 @@
+android_ip_webcam:
+  - host: !secret android_ip_cam_g4p_hostname
+    name: g4p
+    username: !secret android_ip_cam_g4p_username
+    password: !secret android_ip_cam_g4p_password
+    sensors:
+      - audio_connections
+      - battery_level
+      - battery_temp
+      - battery_voltage
+      - light
+      - motion
+      - pressure
+      - proximity
+      - sound
+      - video_connections
+    switches:
+      - exposure_lock
+      - ffc
+      - focus
+      # - gps_active
+      # - night_vision
+      # - overlay
+      - torch
+      # - whitebalance_lock
+      # - video_recording
+
+# vim: set filetype=yaml et sw=2 ts=2
