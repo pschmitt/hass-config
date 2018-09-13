@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   hass:
@@ -21,12 +21,17 @@ services:
       - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
     healthcheck:
       test: "curl -Lf http://localhost:8123"
+      start_period: 5m
+      timeout: 5s
+      interval: 30s
+      retries: 2
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
       - "traefik.enable=true"
       - "traefik.backend=home-assistant"
       - "traefik.frontend.rule=Host:home.comreset.io"
       - "traefik.port=8123"
+      - "autoheal=true"
 
   database:
     image: postgres:9
