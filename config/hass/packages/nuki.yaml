@@ -8,12 +8,17 @@ script:
   lock_door:
     alias: Lock door
     sequence:
-      - condition: state
-        entity_id: binary_sensor.door_window_sensor_front_door
-        state: 'off'
       - service: lock.lock
         data:
           entity_id: lock.front_door
+
+  lock_door_if_not_open:
+    alias: Lock door
+    sequence:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_front_door
+        state: 'off'
+      - service: script.lock_door
 
   unlock_door:
     alias: Unlock door
@@ -40,7 +45,7 @@ automation:
       for:
         minutes: 10
     action:
-      - service: script.lock_door
+      - service: script.lock_door_if_not_open
 
   - alias: "HTML5 notification: Close door"
     initial_state: true
