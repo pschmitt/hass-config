@@ -286,25 +286,6 @@ automation:
     action:
       - service: script.turn_on_bathroom_light_switch
 
-  # - alias: Toggle bathroom light when pressing bathroom switch (L)
-  #   initial_state: True
-  #   trigger:
-  #     platform: state
-  #     entity_id: switch.wall_switch_bathroom_left
-  #   action:
-  #     - service: light.toggle
-  #       entity_id: light.bathroom_light
-
-  # - alias: Toggle bathroom lights when pressing bathroom switch (R)
-  #   initial_state: True
-  #   trigger:
-  #     platform: state
-  #     entity_id: switch.wall_switch_bathroom_right
-  #   action:
-  #     - service: script.bedtime
-      # - service: light.toggle
-      #   entity_id: light.bathroom_lights
-
   - alias: Cube event flip90
     initial_state: True
     trigger:
