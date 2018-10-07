@@ -60,11 +60,11 @@ group:
     entities:
       - binary_sensor.door_window_sensor_fridge_door
       - sensor.temperature_fridge
-      - sensor.temperature_freezer
+      - sensor.temperature_fridge_crisper
       - sensor.humidity_fridge
-      - sensor.humidity_freezer
+      - sensor.humidity_fridge_crisper
       - sensor.pressure_fridge
-      - sensor.pressure_freezer
+      - sensor.pressure_fridge_crisper
 
   terrace_doors:
     name: Terrace Doors
@@ -142,18 +142,18 @@ automation:
           data:
             tag: 'fridge-temp-high'
 
-  - alias: Alert when freezer temperature is above -10C
+  - alias: Alert when fridge crisper temperature is above 10C
     initial_state: true
     trigger:
       - platform: numeric_state
-        entity_id: sensor.temperature_freezer
-        above: -10
+        entity_id: sensor.temperature_fridge_crisper
+        above: 10
     action:
       - service: notify.html5
         data_template:
-          message: 'The freezer temperature is at {{ trigger.to_state.state }}C!'
+          message: 'The fridge crisper temperature is at {{ trigger.to_state.state }}C!'
           data:
-            tag: 'freezer-temp-high'
+            tag: 'fridge-crisper-temp-high'
 
   - alias: Alert when water leak detected
     initial_state: true
@@ -461,7 +461,7 @@ homeassistant:
       battery_friendly_name: "Office wall switch"
     sensor.humidity_fridge:
       friendly_name: Fridge Humidity
-      icon: water-percent
+      icon: mdi:water-percent
       battery_ignore: true
     sensor.pressure_fridge:
       friendly_name: Fridge Pressure
@@ -469,16 +469,16 @@ homeassistant:
       battery_ignore: true
     sensor.temperature_fridge:
       friendly_name: Fridge Temperature
-    sensor.humidity_freezer:
-      friendly_name: Freezer Humidity
+    sensor.humidity_fridge_crisper:
+      friendly_name: Fridge Crisper Humidity
       icon: mdi:water-percent
       battery_ignore: true
-    sensor.pressure_freezer:
-      friendly_name: Freezer Pressure
+    sensor.pressure_fridge_crisper:
+      friendly_name: Fridige Crisper Pressure
       icon: mdi:arrow-collapse-all
       battery_ignore: true
-    sensor.temperature_freezer:
-      friendly_name: Freezer Temperature
+    sensor.temperature_fridge_crisper:
+      friendly_name: Fridge Crisper Temperature
     sensor.humidity_terrace:
       friendly_name: Terrace Humidity
       icon: mdi:water-percent
