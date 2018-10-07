@@ -49,6 +49,13 @@ light:
           service: switch.turn_off
           entity_id: switch.shelly_bathroom_ceiling
 
+  - platform: mqtt
+    name: "Shelly: Bathroom Ceiling (MQTT)"
+    state_topic: 'shellies/shelly1-9F5D2D/relay/0'
+    command_topic: 'shellies/shelly1-9F5D2D/relay/0/command'
+    payload_on: 'on'
+    payload_off: 'off'
+
 
 automation:
   - alias: Sync state of bathroom ceiling light with bathroom light (ON)
