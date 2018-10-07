@@ -20,7 +20,7 @@ sensor:
   - platform: google_travel_time
     name: Travel time to Home
     api_key: !secret google_maps_api_key
-    origin: device_tracker.ph1_zanzito
+    origin: device_tracker.google_maps_111748235994603810778
     destination: zone.home
     options:
       mode: walking
