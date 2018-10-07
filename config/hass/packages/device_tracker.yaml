@@ -53,7 +53,8 @@ group:
     view: no
     icon: mdi:cellphone-android
     entities:
-      - group.ph1
+      - device_tracker.google_maps_111748235994603810778
+      # - group.ph1
       # - group.g4p
 
   ph1:

@@ -170,7 +170,8 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: device_tracker.ph1_zanzito
+        # entity_id: device_tracker.google_maps_111748235994603810778
+        entity_id: group.pschmitt_location
         to: home
     condition:
       - condition: template
