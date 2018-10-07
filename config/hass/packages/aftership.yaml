@@ -1,0 +1,5 @@
+sensor:
+  platform: aftership
+  api_key: !secret aftership_api_key
+
+# vim: set filetype=yaml et sw=2 ts=2 :

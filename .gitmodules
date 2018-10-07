@@ -1,0 +1,18 @@
+[submodule "config/hass/custom_components/custom_updater"]
+	path = config/hass/custom_components/custom_updater
+	url = https://github.com/custom-components/custom_updater
+[submodule "config/hass/www/cards/custom-lovelace"]
+	path = config/hass/www/cards/custom-lovelace
+	url = https://github.com/ciotlosm/custom-lovelace
+[submodule "config/hass/www/cards/mini-graph-card"]
+	path = config/hass/www/cards/mini-graph-card
+	url = https://github.com/kalkih/mini-graph-card
+[submodule "config/hass/www/cards/mini-media-player"]
+	path = config/hass/www/cards/mini-media-player
+	url = https://github.com/kalkih/mini-media-player.git
+[submodule "config/hass/www/cards/tracker-card"]
+	path = config/hass/www/cards/tracker-card
+	url = https://github.com/custom-cards/tracker-card
+[submodule "config/hass/custom_components/sensor.aftership"]
+	path = config/hass/custom_components/sensor.aftership
+	url = https://github.com/custom-components/sensor.aftership

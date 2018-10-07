@@ -3,7 +3,6 @@ known_devices.yaml*
 trusted_networks.yaml*
 phue-*.conf
 deps/
-www/
 zwave/
 OZW_Log.txt
 home-assistant_v2.db

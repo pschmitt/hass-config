@@ -1,8 +1,14 @@
 resources:
-  - url: /local/plan-coordinates.js?v=0
+  - url: /local/cards/custom-lovelace/plan-coordinates/plan-coordinates.js?v=0.1.0
     type: js
-  - url: /local/monster-card.js?v=0
+  - url: /local/cards/custom-lovelace/monster-card/monster-card.js?v=0.2.3
     type: js
+  - url: /local/cards/tracker-card/tracker-card.js?v=0.1.5
+    type: js
+  - url: /local/cards/mini-graph-card/mini-graph-card.js?v=0.0.1
+    type: module
+  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.3
+    type: module
 
 
 name: Home Assistant
@@ -11,67 +17,44 @@ views:
     id: home
     icon: mdi:home-modern
     cards:
-      - type: map
-        aspect_ratio: 62.5%
-        entities:
-          - entity: device_tracker.ph1_zanzito
-          - entity: device_tracker.google_maps_105543397094537443482
-          # - zone.home
-          - zone.work
-          - zone.work_hers
-
       - type: vertical-stack
         cards:
           - type: glance
             show_name: false
+            column_width: calc(100% / 4)
             entities:
               - sensor.home_temperature
               - sensor.smappee_home_active_power
               - alarm_control_panel.ha_alarm_mqtt
               - entity: lock.front_door
                 tap_action: toggle
-              - entity: script.buzz_door_open_multiple
-                service: script.buzz_door_open_multiple
-                tap_action: call-service
+
           - type: glance
             show_name: false
             show_state: false
+            column_width: calc(100% / 7)
             entities:
+              - entity: script.all_off
+                service: script.all_off
+                tap_action: call-service
+                style: {color: red}
+              - entity: script.buzz_door_open_multiple
+                service: script.buzz_door_open_multiple
+                tap_action: call-service
+              - entity: script.let_me_in
+                service: script.let_me_in
+                icon: mdi:account-key
+                tap_action: call-service
               - entity: script.cover_privacy
                 service: script.cover_privacy
                 tap_action: call-service
               - entity: script.cover_movie_smoke_break
                 service: script.cover_movie_smoke_break
                 tap_action: call-service
-              - entity: script.all_off
-                service: script.all_off
-                tap_action: call-service
-              - entity: cover.all_covers
+              # - entity: cover.all_covers
+              - entity: group.all_covers
               - entity: group.all_lights
                 tap_action: toggle
-
-          - type: glance
-            show_name: false
-            show_state: false
-            entities:
-              - entity: switch.sonoff_fan
-                tap_action: toggle
-              - entity: switch.sonoff_kitchen_hood
-                tap_action: toggle
-              - entity: switch.wemo_insight__washing_machine
-                tap_action: toggle
-              - entity: vacuum.nimbus
-                tap_action: toggle
-              - entity: switch.3d_printer_psu
-                tap_action: toggle
-              - entity: switch.ac
-                tap_action: toggle
-              - entity: group.fridge
-
-      - type: vertical-stack
-        cards:
-          - type: weather-forecast
-            entity: weather.darksky
 
           - type: picture-glance
             camera_image: camera.c1
@@ -82,16 +65,31 @@ views:
               - light.hue_living_room_table
               - light.hue_living_room_tv
 
+
       - type: vertical-stack
         cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:mini-graph-card"
+                entity: sensor.home_temperature
+                name: Home Temperature
+                line_color: '#3498db'
+                line_width: 8
+              - type: "custom:mini-graph-card"
+                entity: sensor.smappee_home_active_power
+                name: Power Consumption
+                accuracy: 8
+                line_width: 8
+
           - type: entity-filter
             # title: Activity
             entities:
               # Users
-              - entity: device_tracker.google_maps_105543397094537443482
-                name: mbiver
-              - entity: device_tracker.ph1_zanzito
+              - entity: device_tracker.google_maps_111748235994603810778
                 name: pschmitt
+              - entity: device_tracker.sherlock_5666480997793792
+                icon: mdi:bike
+                name: RM Birdy
               # Appliances
               - entity: binary_sensor.octoprint_printing
                 name: 3D Printer
@@ -167,17 +165,51 @@ views:
               title: Activity
               show_state: false
 
-          - type: history-graph
-            hours_to_show: 240
-            refresh_interval: 60
+          - type: glance
+            show_name: false
+            show_state: false
+            column_width: calc(100% / 7)
             entities:
-              - sensor.home_temperature
+              - entity: switch.sonoff_fan
+                tap_action: toggle
+              - entity: switch.sonoff_kitchen_hood
+                tap_action: toggle
+              - entity: switch.wemo_insight__washing_machine
+                tap_action: toggle
+              - entity: vacuum.nimbus
+                tap_action: toggle
+              - entity: switch.3d_printer_psu
+                tap_action: toggle
+              - entity: switch.ac
+                tap_action: toggle
+              - entity: group.fridge
 
-          - type: history-graph
-            hours_to_show: 240
-            refresh_interval: 60
+      - type: vertical-stack
+        cards:
+          - type: map
+            aspect_ratio: 46.5%
             entities:
-              - sensor.smappee_home_active_power
+              # - device_tracker.ph1_zanzito
+              - device_tracker.google_maps_111748235994603810778
+              - device_tracker.sherlock_5666480997793792
+              - zone.home
+              - zone.work
+              - zone.work_hers
+
+          - type: weather-forecast
+            entity: weather.darksky
+          # - type: history-graph
+          #   hours_to_show: 240
+          #   refresh_interval: 60
+          #   entities:
+          #     - sensor.home_temperature
+          #     - sensor.smappee_home_active_power
+
+
+          # - type: history-graph
+          #   hours_to_show: 240
+          #   refresh_interval: 60
+          #   entities:
 
   - title: CCTV
     id: cctv
@@ -351,6 +383,8 @@ views:
                 style:
                   top: 50%
                   left: 52%
+                  --iron-icon-height: 80px
+                  --iron-icon-width: 80px
 
               - type: icon
                 icon: mdi:menu-up
@@ -364,6 +398,8 @@ views:
                 style:
                   top: 25%
                   left: 52%
+                  --iron-icon-height: 80px
+                  --iron-icon-width: 80px
 
               - type: icon
                 icon: mdi:menu-down
@@ -377,6 +413,8 @@ views:
                 style:
                   top: 75%
                   left: 52%
+                  --iron-icon-height: 80px
+                  --iron-icon-width: 80px
 
               - type: icon
                 icon: mdi:menu-left
@@ -390,6 +428,8 @@ views:
                 style:
                   top: 50%
                   left: 34%
+                  --iron-icon-height: 80px
+                  --iron-icon-width: 80px
 
               - type: icon
                 icon: mdi:menu-right
@@ -403,6 +443,8 @@ views:
                 style:
                   top: 50%
                   left: 72%
+                  --iron-icon-height: 80px
+                  --iron-icon-width: 80px
 
               - type: icon
                 icon: mdi:skip-previous
@@ -507,14 +549,74 @@ views:
             card:
               type: media-control
               entity: media_player.livebox_play
-          - type: media-control
+
+          # - type: media-control
+          #   entity: media_player.living_room_tv
+
+      - type: entities
+        # title: Media
+        entities:
+          - type: custom:mini-media-player
+            entity: media_player.cast_home_group
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - type: custom:mini-media-player
             entity: media_player.living_room_tv
-      - type: vertical-stack
-        cards:
-          - type: media-control
-            entity: media_player.office_tv
-          - type: media-control
-            entity: media_player.office_speaker
+            name: Living Room TV
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - type: custom:mini-media-player
+            entity: media_player.living_room_speaker
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - type: custom:mini-media-player
+            entity: media_player.living_room_assistant
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_assistant
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - entity: media_player.office_tv
+            type: "custom:mini-media-player"
+            group: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - entity: media_player.office_speaker
+            type: "custom:mini-media-player"
+            group: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - entity: media_player.office_assistant
+            type: "custom:mini-media-player"
+            group: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
+          - type: custom:mini-media-player
+            entity: media_player.bathroom_assistant
+            group: true
+            artwork_border: true
+            hide_power: false
+            hide_volume: false
+            show_source: true
 
   - title: Plants
     id: plants
@@ -599,14 +701,17 @@ views:
             - sensor.temperature_bedroom
             - sensor.temperature_office
             - sensor.temperature_terrace
+            - type: divider
             # Hue
             - sensor.hue_bathroom_temperature
             - sensor.hue_hallway_temperature
             - sensor.hue_kitchen_temperature
             - sensor.hue_toilet_temperature
-            # Aqarsa
-            - sensor.temperature_freezer
+            - type: divider
+            # Aqara
             - sensor.temperature_fridge
+            - sensor.temperature_fridge_crisper
+            - type: divider
             # Plants
             - sensor.pilea_temperature
             - sensor.ficus_temperature
@@ -634,6 +739,7 @@ views:
       - type: entities
         title: Debug
         entities:
+          - sensor.hx711_value
           - switch.shelly_project_nothing
           - light.bathroom_ceiling
           - sensor.sonoff_pow_power
@@ -641,6 +747,7 @@ views:
           - sensor.motion_sensor_illumination_front_door
           - input_boolean.motion_light_front_door
           - light.hue_front_door
+          - light.shelly_bathroom_ceiling_mqtt
 
       # - type: picture-elements
       #   image: /local/ac-remote.png
@@ -666,12 +773,17 @@ views:
             - entity_id: group.*
             - entity_id: cover.*
 
+      - type: custom:tracker-card
+        title:
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
 
       - type: glance
         # title: Master groups
         show_state: false
         show_name: false
-        column_width: '20%'
+        column_width: calc(100% / 8)
         entities:
           - group.all_battery_devices
           - group.low_battery_devices
