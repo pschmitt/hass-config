@@ -52,8 +52,8 @@ sensor:
       - sensor.temperature_living_room
       - sensor.temperature_bedroom
       - sensor.temperature_office
-      - sensor.pilea_temperature
-      - sensor.ficus_temperature
+      # - sensor.pilea_temperature
+      # - sensor.ficus_temperature
 
 
 rest_command:
