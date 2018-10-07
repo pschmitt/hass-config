@@ -132,7 +132,7 @@ cloud:
           - "détecteur de mouvement de la porte d'entrée"
           - "détecteur de présence de l'entrée"
           - "détecteur de présence de la porte d'entrée"
-        room: Front Door
+        room: void
 
       input_boolean.motion_light_office:
         name: "Motion sensor: Office light"
@@ -144,7 +144,7 @@ cloud:
           - "détecteur de mouvement du bureau"
           - "détecteur de présence de la chambre d'amis"
           - "détecteur de présence du bureau"
-        room: Office
+        room: void
 
       input_boolean.motion_light_living_room:
         name: "Motion sensor: Living room light"
@@ -154,7 +154,7 @@ cloud:
           - "living room motion sensor"
           - "détecteur de mouvement du salon"
           - "détecteur de présence du salon"
-        room: Living Room
+        room: void
 
       input_boolean.motion_light_terrace:
         name: "Motion sensor: Terrace light"
@@ -162,7 +162,7 @@ cloud:
           - "Motion sensor: Terrace light"
           - "terrace motion detector"
           - "détecteur de mouvement de la terrasse"
-        room: Terrace
+        room: void
 
       light.bathroom_ceiling:
         name: "Bathroom ceiling Light"
