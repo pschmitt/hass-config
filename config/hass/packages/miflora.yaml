@@ -32,6 +32,15 @@ automation:
           message: "Miflora battery is low on {{ trigger.to_state.attributes.friendly_name }}"
 
 
+notify:
+  - platform: group
+    name: html5_plant_alert
+    services:
+      - service: html5
+        data:
+          data:
+            tag: miflora-outdated
+
 
 alert:
   plant_data_outdated:
@@ -43,7 +52,7 @@ alert:
     can_acknowledge: True
     skip_first: False
     notifiers:
-      - html5
+      - html5_plant_alert
 
 
 binary_sensor:
