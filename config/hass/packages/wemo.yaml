@@ -47,6 +47,18 @@ automation:
       - delay: '01:00:00'
       - service: script.turn_off_washing_maching_if_not_running
 
+  - alias: "Turn washing machine wemo back on after 10 minutes of it being off"
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: switch.wemo_insight__washing_machine
+        to: 'off'
+        for:
+          minutes: 10
+    action:
+      service: switch.turn_on
+      entity_id: switch.wemo_insight__washing_machine
+
 
 script:
   turn_off_washing_maching_if_not_running:
