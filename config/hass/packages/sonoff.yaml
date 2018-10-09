@@ -36,6 +36,18 @@ switch:
     retain: false
 
   - platform: mqtt
+    name: "Sonoff: Shoe Cabinet"
+    availability_topic: "tele/shoe_cabinet/LWT"
+    state_topic: "stat/shoe_cabinet/POWER"
+    command_topic: "cmnd/shoe_cabinet/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+    retain: false
+
+  - platform: mqtt
     name: "Sonoff POW: Extension cord"
     availability_topic: "tele/sonoff-pow/LWT"
     state_topic: "stat/sonoff-pow/POWER"
