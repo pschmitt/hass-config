@@ -21,11 +21,12 @@ views:
         cards:
           - type: glance
             show_name: false
-            column_width: calc(100% / 4)
+            column_width: calc(100% / 5)
             entities:
               - sensor.home_temperature
               - sensor.smappee_home_active_power
               - alarm_control_panel.ha_alarm_mqtt
+              - alarm_control_panel.arlomio
               - entity: lock.front_door
                 tap_action: toggle
 
@@ -75,11 +76,15 @@ views:
                 name: Home Temperature
                 line_color: '#3498db'
                 line_width: 8
+                hours_to_show: 6
+                height: 75
               - type: "custom:mini-graph-card"
                 entity: sensor.smappee_home_active_power
                 name: Power Consumption
                 accuracy: 8
                 line_width: 8
+                hours_to_show: 6
+                height: 75
 
           - type: entity-filter
             # title: Activity
@@ -736,18 +741,59 @@ views:
     cards:
       - type: custom:plan-coordinates
 
-      - type: entities
-        title: Debug
-        entities:
-          - sensor.hx711_value
-          - switch.shelly_project_nothing
-          - light.bathroom_ceiling
-          - sensor.sonoff_pow_power
-          - switch.sonoff_pow_extension_cord
-          - sensor.motion_sensor_illumination_front_door
-          - input_boolean.motion_light_front_door
-          - light.hue_front_door
-          - light.shelly_bathroom_ceiling_mqtt
+      - type: vertical-stack
+        cards:
+          - type: glance
+            # title: Master groups
+            show_state: false
+            show_name: false
+            column_width: calc(100% / 8)
+            entities:
+              - group.all_battery_devices
+              - group.low_battery_devices
+              - group.all_covers
+              - group.all_devices
+              - group.all_lights
+              - group.all_plants
+              - group.all_scripts
+              - group.all_switches
+
+          - type: entities
+            title: Debug
+            entities:
+              - switch.shelly_project_nothing
+              - light.shelly_bathroom_ceiling_mqtt
+              - light.bathroom_ceiling
+              - type: divider
+              - sensor.motion_sensor_illumination_front_door
+              - input_boolean.motion_light_front_door
+              - light.hue_front_door
+
+      - type: vertical-stack
+        cards:
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: HX711
+            filter:
+              include:
+                - entity_id: "*bed_scale_pro*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: Sonoff
+            filter:
+              include:
+                - entity_id: "*sonoff*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: Shellies
+            filter:
+              include:
+                - entity_id: "*shelly*"
 
       # - type: picture-elements
       #   image: /local/ac-remote.png
@@ -762,37 +808,25 @@ views:
       #         entity_id: remote.xiaomi_miio_10_7_0_203
       #         command: ac_toggle
 
-      - type: custom:monster-card
-        card:
-          type: entities
-          title: Things that are broken
-        filter:
-          include:
-            - state: "unknown"
-          exclude:
-            - entity_id: group.*
-            - entity_id: cover.*
+      - type: vertical-stack
+        cards:
+          - type: custom:tracker-card
+            title:
+            trackers:
+              - sensor.custom_card_tracker
+              - sensor.custom_component_tracker
 
-      - type: custom:tracker-card
-        title:
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: Things that are broken
+            filter:
+              include:
+                - state: "unknown"
+              exclude:
+                - entity_id: group.*
+                - entity_id: cover.*
 
-      - type: glance
-        # title: Master groups
-        show_state: false
-        show_name: false
-        column_width: calc(100% / 8)
-        entities:
-          - group.all_battery_devices
-          - group.low_battery_devices
-          - group.all_covers
-          - group.all_devices
-          - group.all_lights
-          - group.all_plants
-          - group.all_scripts
-          - group.all_switches
 
   - title: Settings
     id: settings
