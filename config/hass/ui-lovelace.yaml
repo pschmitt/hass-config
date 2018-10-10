@@ -782,7 +782,31 @@ views:
           - type: custom:monster-card
             card:
               type: entities
-              title: Sonoff
+              title: "Sonoff: p0"
+            filter:
+              include:
+                - entity_id: "*sonoff*p0*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: "Sonoff: Shoe Cabinet"
+            filter:
+              include:
+                - entity_id: "*sonoff*shoe*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: "Sonoff: Kitchen Hood"
+            filter:
+              include:
+                - entity_id: "*sonoff*kitchen*hood*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: Sonoffs
             filter:
               include:
                 - entity_id: "*sonoff*"
