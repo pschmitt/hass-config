@@ -7,7 +7,7 @@ resources:
     type: js
   - url: /local/cards/mini-graph-card/mini-graph-card.js?v=0.0.1
     type: module
-  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.3
+  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.4
     type: module
 
 
