@@ -1,114 +1,18 @@
-switch:
-  - platform: mqtt
-    name: "Sonoff: Bathroom"
-    availability_topic: "tele/bathroom_mirror_light/LWT"
-    state_topic: "stat/bathroom_mirror_light/POWER"
-    command_topic: "cmnd/bathroom_mirror_light/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    retain: false
-
-  - platform: mqtt
-    name: "Sonoff: Fan"
-    availability_topic: "tele/fan/LWT"
-    state_topic: "stat/fan/POWER"
-    command_topic: "cmnd/fan/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    retain: false
-
-  - platform: mqtt
-    name: "Sonoff: Kitchen Hood"
-    availability_topic: "tele/kitchen_hood/LWT"
-    state_topic: "stat/kitchen_hood/POWER"
-    command_topic: "cmnd/kitchen_hood/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    retain: false
-
-  - platform: mqtt
-    name: "Sonoff: Shoe Cabinet"
-    availability_topic: "tele/shoe_cabinet/LWT"
-    state_topic: "stat/shoe_cabinet/POWER"
-    command_topic: "cmnd/shoe_cabinet/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    retain: false
-
-  - platform: mqtt
-    name: "Sonoff POW: Extension cord"
-    availability_topic: "tele/sonoff-pow/LWT"
-    state_topic: "stat/sonoff-pow/POWER"
-    command_topic: "cmnd/sonoff-pow/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
-    retain: false
-
-
-binary_sensor:
-  - platform: ping
-    name: sonoff_bathroom
-    host: sonoff-bathrom-mirror.lan
-    count: 2
-    scan_interval: 15
-
-
-sensor:
-  - platform: mqtt
-    name: Sonoff POW Power
-    state_topic: tele/sonoff-pow/SENSOR
-    value_template: '{{ value_json["ENERGY"]["Power"] }}'
-    availability_topic: "tele/sonoff-pow/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    unit_of_measurement: 'W'
-
-
 light:
   - platform: template
     lights:
       bathroom_mirror:
         friendly_name: "Bathroom Mirror Light"
-        value_template: >
-          {% if is_state('binary_sensor.sonoff_bathroom', 'off') %}
-            off
-          {% else %}
-            {{ states('switch.sonoff_bathroom') }}
-          {% endif %}
+        value_template: '{{ states("switch.sonoff_bathroom_mirror_light_relay") }}'
         turn_on:
           service: switch.turn_on
-          entity_id: switch.sonoff_bathroom
+          entity_id: switch.sonoff_bathroom_mirror_light_relay
         turn_off:
           service: switch.turn_off
-          entity_id: switch.sonoff_bathroom
+          entity_id: switch.sonoff_bathroom_mirror_light_relay
 
 
 automation:
-  - alias: Sync state
-    trigger:
-      platform: homeassistant
-      event: start
-    action:
-      - service: mqtt.publish
-        data:
-          topic: "cmnd/sonoffs/power1"
-          payload: ""
-
   - alias: Sync state of bathroom mirror light with bathroom light (ON)
     initial_state: true
     trigger:
@@ -133,20 +37,12 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: switch.sonoff_kitchen_hood
+        entity_id: switch.sonoff_kitchen_hood_relay
         to: 'off'
         for:
           minutes: 1
     action:
       service: switch.turn_on
-      entity_id: switch.sonoff_kitchen_hood
-
-
-homeassistant:
-  customize:
-    switch.sonoff_fan:
-      icon: mdi:fan
-    switch.sonoff_kitchen_hood:
-      icon: mdi:weather-windy
+      entity_id: switch.sonoff_kitchen_hood_relay
 
 # vim: set filetype=yaml et sw=2 ts=2 :

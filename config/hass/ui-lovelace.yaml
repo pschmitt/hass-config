@@ -177,7 +177,7 @@ views:
             entities:
               - entity: switch.sonoff_fan
                 tap_action: toggle
-              - entity: switch.sonoff_kitchen_hood
+              - entity: switch.sonoff_kitchen_hood_relay
                 tap_action: toggle
               - entity: switch.wemo_insight__washing_machine
                 tap_action: toggle
@@ -782,6 +782,22 @@ views:
           - type: custom:monster-card
             card:
               type: entities
+              title: "Sonoff Fan"
+            filter:
+              include:
+                - entity_id: "*sonoff*fan*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: "Sonoff POW R1"
+            filter:
+              include:
+                - entity_id: "*sonoff*pow*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
               title: "Sonoff: p0"
             filter:
               include:
@@ -802,6 +818,15 @@ views:
             filter:
               include:
                 - entity_id: "*sonoff*kitchen*hood*"
+
+          - type: custom:monster-card
+            card:
+              type: entities
+              title: "Sonoff: Bathroom Mirror"
+            filter:
+              include:
+                - entity_id: "*sonoff*bathroom*"
+                - entity_id: "light.bathroom_mirror"
 
           - type: custom:monster-card
             card:
