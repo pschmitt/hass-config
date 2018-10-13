@@ -71,14 +71,14 @@ views:
         cards:
           - type: horizontal-stack
             cards:
-              - type: "custom:mini-graph-card"
+              - type: sensor
                 entity: sensor.home_temperature
                 name: Home Temperature
                 line_color: '#3498db'
                 line_width: 8
                 hours_to_show: 6
                 height: 75
-              - type: "custom:mini-graph-card"
+              - type: sensor
                 entity: sensor.smappee_home_active_power
                 name: Power Consumption
                 accuracy: 8

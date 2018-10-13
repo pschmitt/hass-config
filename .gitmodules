@@ -4,9 +4,6 @@
 [submodule "config/hass/www/cards/custom-lovelace"]
 	path = config/hass/www/cards/custom-lovelace
 	url = https://github.com/ciotlosm/custom-lovelace
-[submodule "config/hass/www/cards/mini-graph-card"]
-	path = config/hass/www/cards/mini-graph-card
-	url = https://github.com/kalkih/mini-graph-card
 [submodule "config/hass/www/cards/mini-media-player"]
 	path = config/hass/www/cards/mini-media-player
 	url = https://github.com/kalkih/mini-media-player.git
