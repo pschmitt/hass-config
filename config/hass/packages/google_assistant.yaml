@@ -30,6 +30,7 @@ cloud:
         - switch.front_door_lock
         - switch.roomba
         - switch.sonoff_fan
+        - switch.sonoff_kitchen_hood_relay
       exclude_entities:
         - cover.automated_covers
         - cover.living_room_main
@@ -350,7 +351,7 @@ cloud:
           - le putain de ventilo
         room: void
 
-      switch.sonoff_kitchen_hood:
+      switch.sonoff_kitchen_hood_relay:
         name: "Sonoff kitchen hood"
         aliases:
           - Sonoff kichen hood
