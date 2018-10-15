@@ -41,6 +41,10 @@ automation:
 sensor:
   - platform: time_date
 
+  - platform: uptime
+    name: "Home Assistant Uptime"
+    unit_of_measurement: minutes
+
   - platform: min_max
     name: 'Home Temperature'
     type: mean
