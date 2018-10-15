@@ -5,9 +5,7 @@ resources:
     type: js
   - url: /local/cards/tracker-card/tracker-card.js?v=0.1.5
     type: js
-  - url: /local/cards/mini-graph-card/mini-graph-card.js?v=0.0.1
-    type: module
-  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.4
+  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.6
     type: module
 
 
