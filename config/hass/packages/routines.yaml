@@ -264,6 +264,36 @@ automation:
     action:
       - service: script.bedtime_reminder
 
+  - alias: "Turn off terrace video capture when I get up"
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id:
+        - binary_sensor.bathroom_presence
+        - binary_sensor.hallway_presence
+        - binary_sensor.toilet_presence
+        - binary_sensor.motion_sensor_office
+      to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.arlomio
+          state: 'Night'
+        - condition: time
+          after: '05:00:00'
+          before: '11:30:00'
+        - condition: state
+          entity_id: group.pschmitt_location
+          state: 'home'
+    action:
+      - service: notify.html5
+        data:
+          message: "Good morning: I deactivated Arlo motion capture on terrace. JK: not yet. Let's test this first..."
+          data:
+            tag: 'morning-motion-sensing-off'
+      - service: script.arlo_disarm
+
 
 script:
   let_me_in:
