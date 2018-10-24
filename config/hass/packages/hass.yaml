@@ -39,25 +39,9 @@ automation:
 
 
 sensor:
-  - platform: time_date
-
   - platform: uptime
     name: "Home Assistant Uptime"
     unit_of_measurement: minutes
-
-  - platform: min_max
-    name: 'Home Temperature'
-    type: mean
-    entity_ids:
-      - sensor.hue_bathroom_temperature
-      - sensor.hue_hallway_temperature
-      - sensor.hue_kitchen_temperature
-      - sensor.hue_toilet_temperature
-      - sensor.temperature_living_room
-      - sensor.temperature_bedroom
-      - sensor.temperature_office
-      # - sensor.pilea_temperature
-      # - sensor.ficus_temperature
 
 
 rest_command:
