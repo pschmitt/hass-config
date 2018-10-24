@@ -21,10 +21,10 @@ services:
       - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
     healthcheck:
       test: "curl -Lf http://localhost:8123"
-      start_period: 5m
-      timeout: 5s
+      start_period: 6m
+      timeout: 15s
       interval: 30s
-      retries: 2
+      retries: 3
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
       - "traefik.enable=true"
@@ -119,11 +119,11 @@ services:
   #   env_file:
   #     - facebox.env
 
-  # autoheal:
-  #   restart: unless-stopped
-  #   image: willfarrell/autoheal
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  autoheal:
+    restart: unless-stopped
+    image: willfarrell/autoheal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   tasmoadmin:
     restart: unless-stopped
