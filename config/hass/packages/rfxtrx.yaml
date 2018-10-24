@@ -38,6 +38,30 @@ switch:
 #             unit_code: "3"
 
 
+sensor:
+  - platform: mqtt
+    name: "Freezer Temperature"
+    state_topic: "hassistant/states/sensor/telldus_ft007th_temperature/state"
+    device_class: temperature
+
+  - platform: mqtt
+    name: "Freezer Temperature - last updated"
+    state_topic: "hassistant/states/sensor/telldus_ft007th_humidity/last_updated"
+
+  - platform: mqtt
+    name: "Freezer Temperature - last changed"
+    state_topic: "hassistant/states/sensor/telldus_ft007th_humidity/last_changed"
+
+  - platform: mqtt
+    name: "Freezer Humidity"
+    state_topic: "hassistant/states/sensor/telldus_ft007th_humidity/state"
+    device_class: humidity
+
+  - platform: mqtt
+    name: "Freezer Battery"
+    state_topic: "hassistant/states/sensor/telldus_ft007th_temperature/Battery numeric"
+    device_class: battery
+
 # script:
 #   toggle_pollin_switch:
 #     alias: 'Turn a pollin switch on or off'
