@@ -170,4 +170,5 @@ homeassistant:
   customize:
     binary_sensor.octoprint_printing:
       icon: mdi:printer-3d
+
 # vim: set filetype=yaml et sw=2 ts=2 :
