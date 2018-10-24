@@ -37,14 +37,20 @@ shell_command:
 script:
   arlo_arm:
     sequence:
-      service: shell_command.arlo_mode
-      data:
-        mode: armed
+      - service: ifttt.trigger
+        data:
+          event: arlo_arm
+      - service: shell_command.arlo_mode
+        data:
+          mode: armed
   arlo_disarm:
     sequence:
-      service: shell_command.arlo_mode
-      data:
-        mode: disarmed
+      - service: ifttt.trigger
+        data:
+          event: arlo_disarm
+      - service: shell_command.arlo_mode
+        data:
+          mode: disarmed
   arlo_home:
     sequence:
       service: shell_command.arlo_mode
