@@ -19,7 +19,6 @@ services:
       - ./scripts:/scripts:ro
       - /etc/localtime:/etc/localtime:ro
       - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
-      - ./override/pyarlo__init__.py:/usr/local/lib/python3.6/site-packages/pyarlo/__init__.py:ro
     healthcheck:
       test: "curl -Lf http://localhost:8123"
       start_period: 6m
