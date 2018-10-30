@@ -1,0 +1,38 @@
+sensor:
+  - platform: time_date
+
+  - platform: min_max
+    name: 'Home Temperature'
+    type: mean
+    round_digits: 2
+    entity_ids:
+      - sensor.hue_bathroom_temperature
+      - sensor.hue_hallway_temperature
+      - sensor.hue_kitchen_temperature
+      - sensor.hue_toilet_temperature
+      - sensor.temperature_living_room
+      - sensor.temperature_bedroom
+      - sensor.temperature_office
+      # - sensor.pilea_temperature
+      # - sensor.ficus_temperature
+
+  # - platform: template
+  #   sensors:
+  #     home_temperature_manual:
+  #       friendly_name: "Home Temperature (manual)"
+  #       unit_of_measurement: '°C'
+  #       value_template: >-
+  #         {{ ((float(states.sensor.temperature_living_room.state) +
+  #              float(states.sensor.temperature_bedroom.state) +
+  #              float(states.sensor.temperature_office.state)) / 3) | round(2) }}
+
+
+  # - platform: filter
+  #   name: "Home Temperature - Filtered"
+  #   entity_id: sensor.home_temperature
+  #   filters:
+  #     - filter: lowpass
+  #       time_constant: 10
+  #       precision: 2
+
+# vim: set filetype=yaml et sw=2 ts=2 :
