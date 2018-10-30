@@ -23,3 +23,4 @@ __pycache__/
 .storage/
 options.xml
 www/her.jpg
+ip_bans.yaml
