@@ -180,7 +180,7 @@ script:
     alias: 'Open living room covers'
     sequence:
       - service: cover.open_cover
-        entity_id: cover.living_room_covers
+        entity_id: cover.living_room
 
   open_bedroom_covers:
     alias: 'Open bedroom covers'
@@ -242,7 +242,7 @@ script:
     alias: 'Close living room covers'
     sequence:
       - service: cover.close_cover
-        entity_id: cover.living_room_covers
+        entity_id: cover.living_room
 
   close_bedroom_covers:
     alias: 'Close bedroom covers'
