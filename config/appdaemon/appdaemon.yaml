@@ -1,13 +1,17 @@
 appdaemon:
-  disable_apps: 1
-  logfile: STDOUT
-  errorfile: STDERR
+  # disable_apps: 1
   threads: 10
   plugins:
     HASS:
       type: hass
       ha_url: !secret ha_url
-      ha_key: !secret ha_key
+      token: !secret ha_token
+      cert_verify: false
+  logs:
+    logfile: STDOUT
+    errorfile: STDERR
+
+secret: /config/secrets.yaml
 
 hadashboard:
   dash_url: !secret dash_url

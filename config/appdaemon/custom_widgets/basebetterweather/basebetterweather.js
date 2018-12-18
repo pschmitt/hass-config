@@ -41,8 +41,8 @@ function basebetterweather(widget_id, url, skin, parameters) {
         // {"entity": "sensor.dark_sky_pressure", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         // {"entity": "sensor.dark_sky_wind_bearing", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
-        {"entity": "sensor.dark_sky_daytime_high_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
-        {"entity": "sensor.dark_sky_overnight_low_apparent_temperature", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
+        {"entity": "sensor.dark_sky_daytime_high_apparent_temperature_0", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
+        {"entity": "sensor.dark_sky_overnight_low_apparent_temperature_0", "initial": self.OnStateAvailable, "update": self.OnStateUpdate},
         {"entity": "sensor.dark_sky_icon", "initial": self.OnStateAvailable, "update": self.OnStateUpdate}
     ]
 
