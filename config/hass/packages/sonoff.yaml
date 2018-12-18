@@ -17,7 +17,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: light.bathroom_light
+        entity_id: light.hue_bathroom
         to: 'on'
     action:
       service: light.turn_on
@@ -27,7 +27,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: light.bathroom_light
+        entity_id: light.hue_bathroom
         to: 'off'
     action:
       service: light.turn_off

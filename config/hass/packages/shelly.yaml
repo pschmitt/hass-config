@@ -1,60 +1,33 @@
-# switch:
-#   - platform: shelly
-#     switches:
-#       shelly_switch:
-#         # path: /relay/0
-#         host: 10.7.0.101
-#         username: !secret shelly_username
-#         password: !secret shelly_password
-
-
-switch:
-  - platform: rest
-    name: "Shelly: Bathroom Ceiling"
-    resource: !secret shelly_bathroom_ceiling_resource
-    method: post
-    scan_interval: 3
-    body_on: 'turn=on'
-    body_off: 'turn=off'
-    is_on_template: '{{ value_json.ison == true }}'
-    username: !secret shelly_bathroom_ceiling_username
-    password: !secret shelly_bathroom_ceiling_password
-    headers:
-      Content-Type: application/x-www-form-urlencoded
-
-  - platform: rest
-    name: "Shelly: Project Nothing"
-    resource: !secret shelly_project_nothing_resource
-    method: post
-    scan_interval: 3
-    body_on: 'turn=on'
-    body_off: 'turn=off'
-    is_on_template: '{{ value_json.ison == true }}'
-    username: !secret shelly_project_nothing_username
-    password: !secret shelly_project_nothing_password
-    headers:
-      Content-Type: application/x-www-form-urlencoded
-
-
 light:
   - platform: template
     lights:
       bathroom_ceiling:
-        friendly_name: "Bathroom Ceiling Light"
-        value_template: "{{ is_state('switch.shelly_bathroom_ceiling', 'on') }}"
+        friendly_name: "Bathroom Ceiling"
+        value_template: "{{ is_state('switch.shelly_bathroom_ceiling_light', 'on') }}"
         turn_on:
           service: switch.turn_on
-          entity_id: switch.shelly_bathroom_ceiling
+          entity_id: switch.shelly_bathroom_ceiling_light
         turn_off:
           service: switch.turn_off
-          entity_id: switch.shelly_bathroom_ceiling
+          entity_id: switch.shelly_bathroom_ceiling_light
 
   - platform: mqtt
-    name: "Shelly: Bathroom Ceiling (MQTT)"
-    state_topic: 'shellies/shelly1-9F5D2D/relay/0'
-    command_topic: 'shellies/shelly1-9F5D2D/relay/0/command'
+    name: "Bathroom Ceiling MQTT"
+    state_topic: 'shellies/shelly1-9F5CC0/relay/0'
+    command_topic: 'shellies/shelly1-9F5CC0/relay/0/command'
     payload_on: 'on'
     payload_off: 'off'
+
+
+switch:
+  - platform: mqtt
+    name: "Shelly Bathroom Ceiling Light"
+    state_topic: 'shellies/shelly1-9F5CC0/relay/0'
+    command_topic: 'shellies/shelly1-9F5CC0/relay/0/command'
+    payload_on: "on"
+    payload_off: "off"
+    state_on: "on"
+    state_off: "off"
 
 
 automation:
@@ -62,7 +35,7 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: light.bathroom_light
+        entity_id: light.hue_bathroom
         to: 'on'
     action:
       service: light.turn_on
@@ -72,23 +45,16 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: light.bathroom_light
+        entity_id: light.hue_bathroom
         to: 'off'
     action:
       service: light.turn_off
       entity_id: light.bathroom_ceiling
 
 
-  - alias: "DEBUG: Shelly p0 notify when status changes"
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: switch.shelly_project_nothing
-    action:
-      - service: notify.html5
-        data_template:
-          message: "Shelly project nothing: {{ trigger.to_state.state }}"
-          data:
-            tag: "shelly-project-nothing"
+homeassistant:
+  customize:
+    light.bathroom_ceiling:
+      icon: mdi:ceiling-light
 
 # vim: set filetype=yaml et sw=2 ts=2 :
