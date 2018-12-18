@@ -163,10 +163,8 @@ function basebetteralarm(widget_id, url, skin, parameters) {
         var mstate = self.map_state(self, state.state)
         self.set_field(self, "state", mstate)
         if (mstate === "Disarmed") {
-            console.log("Remove class")
             $('#' + widget_id + ' > .value').removeClass("armed")
         } else {
-            console.log("Add class")
             $('#' + widget_id + ' > .value').addClass("armed")
         }
     }
@@ -175,10 +173,8 @@ function basebetteralarm(widget_id, url, skin, parameters) {
         var mstate = self.map_state(self, state.state)
         self.set_field(self, "state", mstate)
         if (mstate === "Disarmed") {
-            console.log("Remove class")
             $('#' + widget_id + ' > .value').removeClass("armed")
         } else {
-            console.log("Add class")
             $('#' + widget_id + ' > .value').addClass("armed")
         }
     }
