@@ -6,10 +6,12 @@ sensor:
     type: mean
     round_digits: 2
     entity_ids:
-      - sensor.hue_bathroom_temperature
-      - sensor.hue_hallway_temperature
-      - sensor.hue_kitchen_temperature
-      - sensor.hue_toilet_temperature
+      # Hue
+      - sensor.temperature_bathroom
+      - sensor.temperature_hallway
+      - sensor.temperature_kitchen
+      - sensor.temperature_toilet
+      # Aqara
       - sensor.temperature_living_room
       - sensor.temperature_bedroom
       - sensor.temperature_office

@@ -11,6 +11,19 @@ weather:
 
 
 sensor:
+  - platform: meteo_france
+    postal_code: !secret postal_code
+    monitored_conditions:
+      - temperature
+      - weather
+      - wind_speed
+      - uv
+      - next_rain
+      - freeze_chance
+      - rain_chance
+      - snow_chance
+      - thunder_chance
+
   - platform: yr
     monitored_conditions:
       - symbol
@@ -34,34 +47,35 @@ sensor:
     api_key: !secret darksky_api_key
     update_interval: '00:03:00'
     forecast:
+      - 0
       - 1
       - 2
     monitored_conditions:
-      - summary
-      - icon
-      - nearest_storm_distance
-      - nearest_storm_bearing
-      - precip_type
-      - precip_intensity
-      - precip_probability
-      - temperature
+      # - nearest_storm_bearing
+      # - nearest_storm_distance
+      # - ozone
+      # - pressure
+      # - visibility
+      # - wind_bearing
       - apparent_temperature
-      - dew_point
-      - wind_speed
-      - wind_bearing
-      - cloud_cover
-      - humidity
-      - pressure
-      - visibility
-      - ozone
-      - minutely_summary
-      - hourly_summary
-      - daily_summary
-      - temperature_high
-      - temperature_low
       - apparent_temperature_high
       - apparent_temperature_low
+      - cloud_cover
+      - daily_summary
+      - dew_point
+      - hourly_summary
+      - humidity
+      - icon
+      - minutely_summary
+      - precip_intensity
       - precip_intensity_max
+      - precip_probability
+      - precip_type
+      - summary
+      - temperature
+      - temperature_high
+      - temperature_low
+      - wind_speed
 
   - platform: openweathermap
     api_key: !secret openweathermap_api_key
