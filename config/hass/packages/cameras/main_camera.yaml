@@ -97,10 +97,10 @@ group:
     view: no
     icon: mdi:camera-enhance
     entities:
-      - binary_sensor.bathroom_presence
-      - binary_sensor.hallway_presence
-      - binary_sensor.kitchen_presence
-      - binary_sensor.toilet_presence
+      - sensor.bathroom_motion_motion_sensor
+      - sensor.hallway_motion_motion_sensor
+      - sensor.kitchen_motion_motion_sensor
+      - sensor.toilet_motion_motion_sensor
       - group.c1
       - group.c2
       - group.raspicam_doorpi
@@ -111,10 +111,10 @@ group:
   modect:
     name: Motion detection
     entities:
-      - binary_sensor.bathroom_presence
-      - binary_sensor.hallway_presence
-      - binary_sensor.kitchen_presence
-      - binary_sensor.toilet_presence
+      - sensor.bathroom_motion_motion_sensor
+      - sensor.hallway_motion_motion_sensor
+      - sensor.kitchen_motion_motion_sensor
+      - sensor.toilet_motion_motion_sensor
       - switch.foscam_c1_state
       - switch.foscam_c2_state
       - switch.doorpi_state
