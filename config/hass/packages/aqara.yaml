@@ -175,7 +175,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_office_left
         click_type: single
@@ -187,7 +187,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_office_right
         click_type: single
@@ -199,7 +199,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_office_both
         click_type: both
@@ -213,7 +213,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_bedroom_left
         click_type: single
@@ -224,7 +224,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_bedroom_right
         click_type: single
@@ -236,7 +236,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.wall_switch_bedroom_both
         click_type: both
@@ -249,7 +249,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bedroom_switch
         click_type: single
@@ -260,7 +260,7 @@ automation:
     initial_state: true
     trigger:
       platform: event
-      event_type: click
+      event_type: xiaomi_aqara.click
       event_data:
         entity_id: binary_sensor.bedroom_switch
         click_type: double
@@ -281,7 +281,8 @@ automation:
     initial_state: True
     trigger:
       platform: state
-      entity_id: binary_sensor.bathroom_presence
+      # entity_id: binary_sensor.bathroom_presence
+      entity_id: sensor.bathroom_motion_motion_sensor
       to: 'on'
     action:
       - service: script.turn_on_bathroom_light_switch
@@ -290,7 +291,7 @@ automation:
     initial_state: True
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: flip90
@@ -305,7 +306,7 @@ automation:
     initial_state: True
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: flip180
@@ -320,7 +321,7 @@ automation:
     initial_state: True
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: move
@@ -334,7 +335,7 @@ automation:
   - alias: Cube event tap_twice
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: tap_twice
@@ -348,7 +349,7 @@ automation:
   - alias: Cube event shake_air
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: shake_air
@@ -362,7 +363,7 @@ automation:
   - alias: Cube event rotate
     trigger:
       platform: event
-      event_type: cube_action
+      event_type: xiaomi_aqara.cube_action
       event_data:
         entity_id: binary_sensor.aqara_cube
         action_type: rotate
