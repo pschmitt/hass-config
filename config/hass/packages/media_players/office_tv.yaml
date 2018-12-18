@@ -36,23 +36,23 @@ media_player:
     attributes:
       is_volume_muted: media_player.office_speaker|is_volume_muted
       # state: media_player.cast_office_tv
-      state: switch.office_tv
+      state: switch.office_monitor
       volume_level: media_player.office_speaker|volume_level
       source: media_player.office_speaker|source
       source_list: media_player.office_speaker|source_list
 
 
-switch:
-  - platform: mqtt
-    name: Office TV
-    state_topic: "hassistant/states/switch/office_tv/state"
-    value_template: '{{ value == "on" }}'
-    command_topic: "hassistant/states/switch/office_tv/command"
-    payload_on: "ON"
-    payload_off: "OFF"
-    assumed_state: true
-    optimistic: true
-    qos: 2
+# switch:
+#   - platform: mqtt
+#     name: Office TV
+#     state_topic: "hassistant/states/switch/office_tv/state"
+#     value_template: '{{ value == "on" }}'
+#     command_topic: "hassistant/states/switch/office_tv/command"
+#     payload_on: "ON"
+#     payload_off: "OFF"
+#     assumed_state: true
+#     optimistic: true
+#     qos: 2
 
 
 script:
@@ -78,21 +78,21 @@ script:
     sequence:
       - service: switch.turn_on
         data:
-          entity_id: switch.office_tv
+          entity_id: switch.office_monitor
 
   turn_off_office_tv:
     alias: "Turn off the office TV"
     sequence:
       - service: switch.turn_off
         data:
-          entity_id: switch.office_tv
+          entity_id: switch.office_monitor
 
   toggle_office_tv:
     alias: "Toggle the office TV"
     sequence:
       service: switch.toggle
       data:
-        entity_id: switch.office_tv
+        entity_id: switch.office_monitor
 
 
 automation:
