@@ -57,10 +57,10 @@ automation:
     trigger:
       - platform: state
         entity_id:
-          - binary_sensor.toilet_presence
-          - binary_sensor.hallway_presence
-          - binary_sensor.kitchen_presence
-          - binary_sensor.bathroom_presence
+          - sensor.bathroom_motion_motion_sensor
+          - sensor.hallway_motion_motion_sensor
+          - sensor.kitchen_motion_motion_sensor
+          - sensor.toilet_motion_motion_sensor
           - binary_sensor.motion_sensor_front_door
           - binary_sensor.motion_sensor_terrace
           - binary_sensor.motion_sensor_office
