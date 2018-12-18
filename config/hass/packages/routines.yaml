@@ -112,11 +112,11 @@ automation:
     action:
       - service: script.open_auto_covers
 
-  - alias: Open bedroom covers at 10:00
+  - alias: Open bedroom covers at 14:00
     initial_state: true
     trigger:
       platform: time
-      at: "10:00:00"
+      at: "14:00:00"
     condition:
       condition: state
       entity_id: group.main_mobile_devices
@@ -269,10 +269,10 @@ automation:
     trigger:
       platform: state
       entity_id:
-        - binary_sensor.bathroom_presence
-        - binary_sensor.hallway_presence
-        - binary_sensor.toilet_presence
-        - binary_sensor.motion_sensor_office
+        - sensor.bathroom_motion_motion_sensor
+        - sensor.hallway_motion_motion_sensor
+        - sensor.kitchen_motion_motion_sensor
+        - sensor.toilet_motion_motion_sensor
       to: 'on'
     condition:
       condition: and
@@ -287,11 +287,6 @@ automation:
           entity_id: group.pschmitt_location
           state: 'home'
     action:
-      - service: notify.html5
-        data:
-          message: "Good morning: I deactivated Arlo motion capture on terrace. JK: not yet. Let's test this first..."
-          data:
-            tag: 'morning-motion-sensing-off'
       - service: script.arlo_disarm
 
 
