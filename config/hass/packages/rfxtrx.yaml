@@ -10,8 +10,8 @@ switch:
       {"command": "off", "system_code": "4", "unit_code": "3" }
 
   - platform: mqtt
-    name: "AC"
-    icon: mdi:ice-cream
+    name: "Office Monitor"
+    icon: mdi:monitor
     # state_topic: hassistant/states/switch/pollin_s4u4/state
     command_topic: hassistant/remote/switch/pollin
     payload_on: >-
@@ -43,6 +43,7 @@ sensor:
     name: "Freezer Temperature"
     state_topic: "hassistant/states/sensor/telldus_ft007th_temperature/state"
     device_class: temperature
+    unit_of_measurement: "°C"
 
   - platform: mqtt
     name: "Freezer Temperature - last updated"
@@ -56,11 +57,13 @@ sensor:
     name: "Freezer Humidity"
     state_topic: "hassistant/states/sensor/telldus_ft007th_humidity/state"
     device_class: humidity
+    unit_of_measurement: "%"
 
   - platform: mqtt
     name: "Freezer Battery"
     state_topic: "hassistant/states/sensor/telldus_ft007th_temperature/Battery numeric"
     device_class: battery
+    unit_of_measurement: "%"
 
 # script:
 #   toggle_pollin_switch:
