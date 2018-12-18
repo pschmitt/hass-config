@@ -15,127 +15,158 @@ input_number:
 
 
 sensor:
-  - platform: command_line
-    name: 'Hue Toilet Battery'
-    command: /scripts/zhue.sh battery toilet
-    value_template: '{{ value_json.config.battery }}'
-    unit_of_measurement: '%'
-    scan_interval: 3600
+  - platform: hue
+    ip_address: !secret hue_bridge
+    token: !secret hue_token
 
-  - platform: command_line
-    name: 'Hue Toilet Lux'
-    command: /scripts/zhue.sh lux toilet
-    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
-    unit_of_measurement: klx
-    scan_interval: 600
+  - platform: template
+    sensors:
+      temperature_bathroom:
+        friendly_name: 'Bathroom Temperature'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+        icon_template: 'mdi:thermometer'
+        value_template: '{{ states.sensor.bathroom_motion_motion_sensor.attributes.temperature }}'
+      temperature_hallway:
+        friendly_name: 'Hallway Temperature'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+        icon_template: 'mdi:thermometer'
+        value_template: '{{ states.sensor.hallway_motion_motion_sensor.attributes.temperature }}'
+      temperature_kitchen:
+        friendly_name: 'Kitchen Temperature'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+        icon_template: 'mdi:thermometer'
+        value_template: '{{ states.sensor.kitchen_motion_motion_sensor.attributes.temperature }}'
+      temperature_toilet:
+        friendly_name: 'Kitchen Temperature'
+        device_class: 'temperature'
+        unit_of_measurement: '°C'
+        icon_template: 'mdi:thermometer'
+        value_template: '{{ states.sensor.toilet_motion_motion_sensor.attributes.temperature }}'
 
-  - platform: command_line
-    name: 'Hue Toilet Temperature'
-    command: /scripts/zhue.sh temperature toilet
-    value_template: '{{ value_json.state.temperature | float / 100 }}'
-    unit_of_measurement: °C
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Hallway Battery'
-    command: /scripts/zhue.sh battery hallway
-    value_template: '{{ value_json.config.battery }}'
-    unit_of_measurement: '%'
-    scan_interval: 3600
-
-  - platform: command_line
-    name: 'Hue Hallway Lux'
-    command: /scripts/zhue.sh lux hallway
-    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
-    unit_of_measurement: klx
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Hallway Temperature'
-    command: /scripts/zhue.sh temperature hallway
-    value_template: '{{ value_json.state.temperature | float / 100 }}'
-    unit_of_measurement: °C
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Kitchen Battery'
-    command: /scripts/zhue.sh battery kitchen
-    value_template: '{{ value_json.config.battery }}'
-    unit_of_measurement: '%'
-    scan_interval: 3600
-
-  - platform: command_line
-    name: 'Hue Kitchen Lux'
-    command: /scripts/zhue.sh lux kitchen
-    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
-    unit_of_measurement: klx
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Kitchen Temperature'
-    command: /scripts/zhue.sh temperature kitchen
-    value_template: '{{ value_json.state.temperature | float / 100 }}'
-    unit_of_measurement: °C
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Bathroom Battery'
-    command: /scripts/zhue.sh battery bathroom
-    value_template: '{{ value_json.config.battery }}'
-    unit_of_measurement: '%'
-    scan_interval: 3600
-
-  - platform: command_line
-    name: 'Hue Bathroom Lux'
-    command: /scripts/zhue.sh lux bathroom
-    value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
-    unit_of_measurement: klx
-    scan_interval: 600
-
-  - platform: command_line
-    name: 'Hue Bathroom Temperature'
-    command: /scripts/zhue.sh temperature bathroom
-    value_template: '{{ value_json.state.temperature | float / 100 }}'
-    unit_of_measurement: °C
-    scan_interval: 600
-
-
-binary_sensor:
-  - platform: command_line
-    name: 'Toilet Presence'
-    device_class: motion
-    command: /scripts/zhue.sh presence toilet
-    value_template: '{{ value_json.state.presence }}'
-    payload_on: "True"
-    payload_off: "False"
-    scan_interval: 1
-
-  - platform: command_line
-    name: 'Hallway Presence'
-    device_class: motion
-    command: /scripts/zhue.sh presence hallway
-    value_template: '{{ value_json.state.presence }}'
-    payload_on: "True"
-    payload_off: "False"
-    scan_interval: 1
-
-  - platform: command_line
-    name: 'Kitchen Presence'
-    device_class: motion
-    command: /scripts/zhue.sh presence kitchen
-    value_template: '{{ value_json.state.presence }}'
-    payload_on: "True"
-    payload_off: "False"
-    scan_interval: 1
-
-  - platform: command_line
-    name: 'Bathroom Presence'
-    device_class: motion
-    command: /scripts/zhue.sh presence bathroom
-    value_template: '{{ value_json.state.presence }}'
-    payload_on: "True"
-    payload_off: "False"
-    scan_interval: 1
+#   - platform: command_line
+#     name: 'Hue Toilet Battery'
+#     command: /scripts/zhue.sh battery toilet
+#     value_template: '{{ value_json.config.battery }}'
+#     unit_of_measurement: '%'
+#     # scan_interval: 3600
+#
+#   - platform: command_line
+#     name: 'Hue Toilet Lux'
+#     command: /scripts/zhue.sh lux toilet
+#     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+#     unit_of_measurement: klx
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Toilet Temperature'
+#     command: /scripts/zhue.sh temperature toilet
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Hallway Battery'
+#     command: /scripts/zhue.sh battery hallway
+#     value_template: '{{ value_json.config.battery }}'
+#     unit_of_measurement: '%'
+#     # scan_interval: 3600
+#
+#   - platform: command_line
+#     name: 'Hue Hallway Lux'
+#     command: /scripts/zhue.sh lux hallway
+#     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+#     unit_of_measurement: klx
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Hallway Temperature'
+#     command: /scripts/zhue.sh temperature hallway
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Kitchen Battery'
+#     command: /scripts/zhue.sh battery kitchen
+#     value_template: '{{ value_json.config.battery }}'
+#     unit_of_measurement: '%'
+#     # scan_interval: 3600
+#
+#   - platform: command_line
+#     name: 'Hue Kitchen Lux'
+#     command: /scripts/zhue.sh lux kitchen
+#     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+#     unit_of_measurement: klx
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Kitchen Temperature'
+#     command: /scripts/zhue.sh temperature kitchen
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Bathroom Battery'
+#     command: /scripts/zhue.sh battery bathroom
+#     value_template: '{{ value_json.config.battery }}'
+#     unit_of_measurement: '%'
+#     # scan_interval: 3600
+#
+#   - platform: command_line
+#     name: 'Hue Bathroom Lux'
+#     command: /scripts/zhue.sh lux bathroom
+#     value_template: '{{ value_json.state.lightlevel | float / 1000 }}'
+#     unit_of_measurement: klx
+#     # scan_interval: 600
+#
+#   - platform: command_line
+#     name: 'Hue Bathroom Temperature'
+#     command: /scripts/zhue.sh temperature bathroom
+#     value_template: '{{ value_json.state.temperature | float / 100 }}'
+#     unit_of_measurement: °C
+#     # scan_interval: 600
+#
+#
+# binary_sensor:
+#   - platform: command_line
+#     name: 'Toilet Presence'
+#     device_class: motion
+#     command: /scripts/zhue.sh presence toilet
+#     value_template: '{{ value_json.state.presence }}'
+#     payload_on: "True"
+#     payload_off: "False"
+#     scan_interval: 1
+#
+#   - platform: command_line
+#     name: 'Hallway Presence'
+#     device_class: motion
+#     command: /scripts/zhue.sh presence hallway
+#     value_template: '{{ value_json.state.presence }}'
+#     payload_on: "True"
+#     payload_off: "False"
+#     scan_interval: 1
+#
+#   - platform: command_line
+#     name: 'Kitchen Presence'
+#     device_class: motion
+#     command: /scripts/zhue.sh presence kitchen
+#     value_template: '{{ value_json.state.presence }}'
+#     payload_on: "True"
+#     payload_off: "False"
+#     scan_interval: 1
+#
+#   - platform: command_line
+#     name: 'Bathroom Presence'
+#     device_class: motion
+#     command: /scripts/zhue.sh presence bathroom
+#     value_template: '{{ value_json.state.presence }}'
+#     payload_on: "True"
+#     payload_off: "False"
+#     scan_interval: 1
 
 
 group:
@@ -219,27 +250,6 @@ scene:
 
 
 script:
-  hue_master_switch_on:
-    alias: 'Hue Master Dimmer Switch ON pressed'
-    sequence:
-      - service: script.open_all_covers
-      - service: script.watch_tv
-
-  hue_master_switch_off:
-    alias: 'Hue Master Dimmer Switch OFF pressed'
-    sequence:
-      - service: script.all_off
-
-  hue_living_room_switch_long_on:
-    alias: 'Hue Living room Dimmer Switch ON pressed'
-    sequence:
-      - service: script.open_living_room_covers
-
-  hue_living_room_switch_long_off:
-    alias: 'Hue Living room Dimmer Switch OFF pressed'
-    sequence:
-      - service: script.close_living_room_covers
-
   flash_office_lights:
     alias: Flash Office Lights
     sequence:
@@ -314,53 +324,54 @@ automation:
       - service: light.turn_off
         entity_id: light.hue_front_door
 
-  - alias: Hue Master Switch OFF pressed
-    initial_state: true
-    trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Master dimmer switch"
-          button_name: "off"
-          click_type: long_released
-    action:
-      - service: script.hue_master_switch_off
-
   - alias: Hue Master Switch ON pressed
     initial_state: true
     trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Master dimmer switch"
-          button_name: "on"
-          click_type: long_released
+      - platform: state
+        entity_id: sensor.master_dimmer_switch
+        to: 1_hold
+      - platform: state
+        entity_id: sensor.master_dimmer_switch
+        to: 1_hold_up
     action:
-      - service: script.hue_master_switch_on
+      - service: script.open_all_covers
+      - service: script.watch_tv
+
+  - alias: Hue Master Switch OFF pressed
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.master_dimmer_switch
+        to: 4_hold
+      - platform: state
+        entity_id: sensor.master_dimmer_switch
+        to: 4_hold_up
+    action:
+      - service: script.all_off
 
   - alias: Hue Living Room Switch ON long pressed
     initial_state: true
     trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Living room dimmer switch"
-          button_name: "on"
-          click_type: long_released
+      - platform: state
+        entity_id: sensor.living_room_dimmer_switch
+        to: 1_hold
+      - platform: state
+        entity_id: sensor.living_room_dimmer_switch
+        to: 1_hold_up
     action:
-      - service: script.hue_living_room_switch_long_on
+      - service: script.open_living_room_covers
 
   - alias: Hue Living Room Switch OFF long pressed
     initial_state: true
     trigger:
-      - platform: event
-        event_type: hue_dimmer_switch_pressed
-        event_data:
-          switch_name: "Living room dimmer switch"
-          button_name: "off"
-          click_type: long_released
+      - platform: state
+        entity_id: sensor.living_room_dimmer_switch
+        to: 4_hold
+      - platform: state
+        entity_id: sensor.living_room_dimmer_switch
+        to: 4_hold_up
     action:
-      - service: script.hue_living_room_switch_long_off
+      - service: script.close_living_room_covers
 
 
 homeassistant:
@@ -393,10 +404,6 @@ homeassistant:
     scene.living_room_dim:
       icon: mdi:brightness-2
     # Scripts
-    script.hue_master_switch_on:
-      icon: mdi:grid
-    script.hue_master_switch_off:
-      icon: mdi:grid-off
     script.flash_living_room_lights:
       icon: mdi:spotlight
     script.smoke_break:
