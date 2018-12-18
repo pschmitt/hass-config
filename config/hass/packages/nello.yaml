@@ -1,7 +1,7 @@
-lock:
-  - platform: nello
-    username: !secret nello_username
-    password: !secret nello_password
+# lock:
+#   - platform: nello
+#     username: !secret nello_username
+#     password: !secret nello_password
 
 
 automation:
