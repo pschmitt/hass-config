@@ -40,10 +40,13 @@ buzz:
 home_temperature:
   widget_type: sensor
   entity: sensor.home_temperature
+  precision: 1
 
 reload:
   widget_type: reload
   title: Reload
+  icon_active: fa-sync
+  icon_inactive: fa-sync
 
 # covers:
 #   widget_type: cover
@@ -52,16 +55,16 @@ reload:
 cover_open:
   widget_type: script
   entity: script.open_all_covers
-  icon_on: fa-arrow-circle-o-up
-  icon_off: fa-arrow-circle-o-up
+  icon_on: fa-arrow-alt-circle-up
+  icon_off: fa-arrow-alt-circle-up
   icon_style_active: "color: $green"
   # icon_style_inactive: "color: $green"
 
 cover_close:
   widget_type: script
   entity: script.close_all_covers
-  icon_on: fa-arrow-circle-o-down
-  icon_off: fa-arrow-circle-o-down
+  icon_on: fa-arrow-alt-circle-down
+  icon_off: fa-arrow-alt-circle-down
   icon_style_active: "color: $red"
   # icon_style_inactive: "color: $red"
 
