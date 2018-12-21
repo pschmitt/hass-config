@@ -1,0 +1,43 @@
+input_boolean:
+  ac_off_the_window:
+    name: "AC hanging off the window"
+    icon: mdi:ice-cream
+
+  dnd:
+    name: DND Mode
+    icon: mdi:volume-off
+
+  sleepover:
+    name: Having friends sleeping on the couch
+    icon: mdi:account-box-outline
+
+  vacation:
+    name: Vacation Mode
+    icon: mdi:airplane-takeoff
+
+
+input_datetime:
+  bedtime:
+    name: Bedtime
+    has_date: false
+    has_time: true
+    initial: '21:50'
+
+
+automation:
+  - alias: "Disable DND mode at 07:00"
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '07:00:00'
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.dnd
+
+
+homeassistant:
+  customize:
+    input_number.battery_alert_threshold_max:
+      friendly_name: "Battery alert level"
+
+# vim: set filetype=yaml et sw=2 ts=2 :
