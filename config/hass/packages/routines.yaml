@@ -1,17 +1,3 @@
-input_boolean:
-  sleepover:
-    name: Having friends sleeping on the couch
-    icon: mdi:account-box-outline
-
-
-input_datetime:
-  bedtime:
-    name: Bedtime
-    has_date: false
-    has_time: true
-    initial: '21:50'
-
-
 automation:
   - alias: React to our homecoming
     initial_state: false
