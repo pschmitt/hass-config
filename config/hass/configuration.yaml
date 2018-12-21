@@ -283,8 +283,9 @@ downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
 history:
 logbook:
+lovelace:
+  mode: yaml
 map:
-prometheus:
 recorder:
   purge_interval: 1
   purge_keep_days: 2
@@ -292,9 +293,5 @@ recorder:
 sensor: !include sensor.yaml
 sun:
 updater:
-
-# DIRTYFIX: Why can't apiai be in the package dir?
-dialogflow:
-intent_script: !include intent_script.yaml
 
 # vim: set filetype=yaml et sw=2 ts=2 :
