@@ -5,7 +5,7 @@ resources:
     type: js
   - url: /local/cards/tracker-card/tracker-card.js?v=0.1.5
     type: js
-  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.8.6
+  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.9.7
     type: module
 
 
@@ -13,47 +13,59 @@ name: Home Assistant
 views:
   - title: Home
     id: home
+    path: home
     icon: mdi:home-modern
     cards:
       - type: vertical-stack
         cards:
           - type: glance
             show_name: false
-            column_width: calc(100% / 5)
+            columns: 5
             entities:
               - sensor.home_temperature
               - sensor.smappee_home_active_power
               - alarm_control_panel.ha_alarm_mqtt
               - alarm_control_panel.arlomio
               - entity: lock.front_door
-                tap_action: toggle
+                tap_action:
+                  action: toggle
 
           - type: glance
             show_name: false
             show_state: false
-            column_width: calc(100% / 7)
+            columns: 7
             entities:
               - entity: script.all_off
                 service: script.all_off
-                tap_action: call-service
-                style: {color: red}
+                tap_action:
+                  action: call-service
+                  service: script.cover_privacy
               - entity: script.buzz_door_open_multiple
                 service: script.buzz_door_open_multiple
-                tap_action: call-service
+                tap_action:
+                  action: call-service
+                  service: script.buzz_door_open_multiple
               - entity: script.let_me_in
                 service: script.let_me_in
                 icon: mdi:account-key
-                tap_action: call-service
+                tap_action:
+                  action: call-service
+                  service: script.let_me_in
               - entity: script.cover_privacy
                 service: script.cover_privacy
-                tap_action: call-service
+                tap_action:
+                  action: call-service
+                  service: script.cover_privacy
               - entity: script.cover_movie_smoke_break
                 service: script.cover_movie_smoke_break
-                tap_action: call-service
+                tap_action:
+                  action: call-service
+                  service: script.cover_movie_smoke_break
               # - entity: cover.all_covers
               - entity: group.all_covers
               - entity: group.all_lights
-                tap_action: toggle
+                tap_action:
+                  action: toggle
 
           - type: picture-glance
             camera_image: camera.c1
@@ -64,6 +76,14 @@ views:
               - light.hue_living_room_table
               - light.hue_living_room_tv
 
+          - type: picture-glance
+            camera_image: camera.doorpi
+            title: Entrance
+            entities:
+              - camera.doorpi
+              - light.hue_front_door
+              - light.hue_kitchen
+              - light.living_room
 
       - type: vertical-stack
         cards:
@@ -90,6 +110,12 @@ views:
               # Users
               - entity: device_tracker.google_maps_111748235994603810778
                 name: pschmitt
+              - entity: device_tracker.pschmitt_ph1
+                name: pschmitt
+              - entity: device_tracker.ph1_arp
+                name: pschmitt (arp)
+              - entity: device_tracker.ph1_ping
+                name: pschmitt (ping)
               - entity: device_tracker.sherlock_5666480997793792
                 icon: mdi:bike
                 name: RM Birdy
@@ -118,45 +144,65 @@ views:
               - binary_sensor.motion_sensor_office
               - binary_sensor.motion_sensor_terrace
               - entity: light.3d_printer_led
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.aqara_gateway_light
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.bathroom
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.bathroom_ceiling
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.bathroom_mirror
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_bathroom
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_bedroom
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_front_door
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_hallway
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_kitchen
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_living_room_table
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_living_room_tv
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_office
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_terrace
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.hue_toilet
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.living_room
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.office
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: light.yeelight_office
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: lock.front_door
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: vacuum.nimbus
-                tap_action: toggle
+                tap_action:
+                  action: toggle
             state_filter:
               - 'on'
               - 'unlocked'
@@ -171,51 +217,65 @@ views:
           - type: glance
             show_name: false
             show_state: false
-            column_width: calc(100% / 7)
+            columns: 4
             entities:
-              - entity: switch.sonoff_fan
-                tap_action: toggle
+              - entity: light.living_room
+                tap_action:
+                  action: toggle
+              - entity: light.hue_front_door
+                tap_action:
+                  action: toggle
+              - entity: light.hue_living_room_table
+                tap_action:
+                  action: toggle
+              - entity: light.hue_living_room_tv
+                tap_action:
+                  action: toggle
+
+          - type: glance
+            show_name: false
+            show_state: false
+            columns: 7
+            entities:
+              - entity: switch.sonoff_fan_relay
+                tap_action:
+                  action: toggle
               - entity: switch.sonoff_kitchen_hood_relay
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: switch.wemo_insight__washing_machine
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: vacuum.nimbus
-                tap_action: toggle
+                tap_action:
+                  action: toggle
               - entity: switch.3d_printer_psu
-                tap_action: toggle
-              - entity: switch.ac
-                tap_action: toggle
+                tap_action:
+                  action: toggle
+              - entity: switch.office_monitor
+                tap_action:
+                  action: toggle
               - entity: group.fridge
 
       - type: vertical-stack
         cards:
           - type: map
-            aspect_ratio: 46.5%
+            aspect_ratio: 0.46
             entities:
               # - device_tracker.ph1_zanzito
               - device_tracker.google_maps_111748235994603810778
               - device_tracker.sherlock_5666480997793792
+              - device_tracker.pschmitt_ph1
               - zone.home
               - zone.work
               - zone.work_hers
 
           - type: weather-forecast
             entity: weather.darksky
-          # - type: history-graph
-          #   hours_to_show: 240
-          #   refresh_interval: 60
-          #   entities:
-          #     - sensor.home_temperature
-          #     - sensor.smappee_home_active_power
-
-
-          # - type: history-graph
-          #   hours_to_show: 240
-          #   refresh_interval: 60
-          #   entities:
 
   - title: CCTV
     id: cctv
+    path: cctv
     icon: mdi:cctv
     cards:
       - type: vertical-stack
@@ -300,15 +360,9 @@ views:
 
   - title: Media
     id: media
+    path: media
     icon: mdi:play-box-outline
     cards:
-      # - type: vertical-stack
-      #   cards:
-      #     - type: entities
-      #       title: Living Room
-      #       entities:
-      #         - input_select.tv_activity
-
       - type: vertical-stack
         cards:
           - type: custom:plan-coordinates
@@ -324,12 +378,13 @@ views:
               - type: icon
                 icon: mdi:power
                 title: "Power Toggle"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "PowerToggle"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "PowerToggle"
                 style:
                   top: 10%
                   left: 10%
@@ -338,12 +393,13 @@ views:
               - type: icon
                 icon: mdi:home
                 title: "Home"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "40563742"
-                  command: "Home"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "40563742"
+                    command: "Home"
                 style:
                   top: 10%
                   left: 20%
@@ -351,12 +407,13 @@ views:
               - type: icon
                 icon: mdi:play-pause
                 title: "Pause"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "Pause"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "Pause"
                 style:
                   top: 70%
                   left: 10%
@@ -364,12 +421,13 @@ views:
               - type: icon
                 icon: mdi:subdirectory-arrow-left
                 title: "Back"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "Back"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "Back"
                 style:
                   top: 90%
                   left: 10%
@@ -377,12 +435,13 @@ views:
               - type: icon
                 icon: mdi:checkbox-blank-circle
                 title: "OK"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "OK"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "OK"
                 style:
                   top: 50%
                   left: 52%
@@ -392,12 +451,13 @@ views:
               - type: icon
                 icon: mdi:menu-up
                 title: "Up"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "DirectionUp"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "DirectionUp"
                 style:
                   top: 25%
                   left: 52%
@@ -407,12 +467,13 @@ views:
               - type: icon
                 icon: mdi:menu-down
                 title: "Down"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "DirectionDown"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "DirectionDown"
                 style:
                   top: 75%
                   left: 52%
@@ -422,12 +483,13 @@ views:
               - type: icon
                 icon: mdi:menu-left
                 title: "Left"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "DirectionLeft"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "DirectionLeft"
                 style:
                   top: 50%
                   left: 34%
@@ -437,12 +499,13 @@ views:
               - type: icon
                 icon: mdi:menu-right
                 title: "Right"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "DirectionRight"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "DirectionRight"
                 style:
                   top: 50%
                   left: 72%
@@ -452,12 +515,13 @@ views:
               - type: icon
                 icon: mdi:skip-previous
                 title: "Previous"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "40565609"
-                  command: "ChannelDown"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "40565609"
+                    command: "ChannelDown"
                 style:
                   top: 37.5%
                   left: 10%
@@ -465,12 +529,13 @@ views:
               - type: icon
                 icon: mdi:skip-next
                 title: "Next"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "40565609"
-                  command: "ChannelUp"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "40565609"
+                    command: "ChannelUp"
                 style:
                   top: 37.5%
                   left: 20%
@@ -478,12 +543,13 @@ views:
               - type: icon
                 icon: mdi:volume-off
                 title: "Mute"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "Mute"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "Mute"
                 style:
                   top: 70%
                   left: 90%
@@ -491,12 +557,13 @@ views:
               - type: icon
                 icon: mdi:volume-plus
                 title: "Volume Up"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "VolumeUp"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "VolumeUp"
                 style:
                   top: 30%
                   left: 95%
@@ -504,12 +571,13 @@ views:
               - type: icon
                 icon: mdi:volume-plus
                 title: "Volume Up"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "40563742"
-                  command: "VolumeUp"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "40563742"
+                    command: "VolumeUp"
                 style:
                   top: 30%
                   left: 85%
@@ -518,12 +586,13 @@ views:
               - type: icon
                 icon: mdi:volume-minus
                 title: "Volume Down"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "42046341"
-                  command: "VolumeDown"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "42046341"
+                    command: "VolumeDown"
                 style:
                   top: 50%
                   left: 95%
@@ -531,12 +600,13 @@ views:
               - type: icon
                 icon: mdi:volume-minus
                 title: "Volume Down"
-                tap_action: call-service
-                service: remote.send_command
-                service_data:
-                  entity_id: remote.harmony_hub
-                  device: "40563742"
-                  command: "VolumeDown"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    device: "40563742"
+                    command: "VolumeDown"
                 style:
                   top: 50%
                   left: 85%
@@ -621,73 +691,9 @@ views:
             hide_volume: false
             show_source: true
 
-  - title: Plants
-    id: plants
-    icon: mdi:flower
-    cards:
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.capsicum_annuum
-          - type: entity-filter
-            entities:
-              - binary_sensor.capsicum_annuum_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.croton
-          - type: entity-filter
-            entities:
-              - binary_sensor.croton_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.citrus_mitis_calamondin
-          - type: entity-filter
-            entities:
-              - binary_sensor.citrus_mitis_calamondin_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.ficus_microcarpa
-          - type: entity-filter
-            entities:
-              - binary_sensor.ficus_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.lemon_tree
-          - type: entity-filter
-            entities:
-              - binary_sensor.lemon_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-      - type: vertical-stack
-        cards:
-          - type: plant-status
-            entity: plant.pilea
-          - type: entity-filter
-            entities:
-              - binary_sensor.pilea_data_outdated
-            state_filter:
-              - 'on'
-            show_empty: false
-
   - title: Data
     id: data
+    path: data
     icon: mdi:chart-bar-stacked
     cards:
       - type: vertical-stack
@@ -699,6 +705,7 @@ views:
 
         - type: entities
           title: Detail
+          show_header_toggle: false
           entities:
             - sensor.temperature_living_room
             - sensor.temperature_bedroom
@@ -706,19 +713,18 @@ views:
             - sensor.temperature_terrace
             - type: divider
             # Hue
-            - sensor.hue_bathroom_temperature
-            - sensor.hue_hallway_temperature
-            - sensor.hue_kitchen_temperature
-            - sensor.hue_toilet_temperature
+            - sensor.temperature_bathroom
+            - sensor.temperature_hallway
+            - sensor.temperature_kitchen
+            - sensor.temperature_toilet
             - type: divider
             # Aqara
             - sensor.temperature_fridge
+            # rfxtrx
             - sensor.temperature_fridge_crisper
             - type: divider
             # Plants
-            - sensor.pilea_temperature
-            - sensor.ficus_temperature
-            - sensor.fridge_temperature
+            - sensor.temperature_fridge
             - sensor.freezer_temperature
 
       - type: vertical-stack
@@ -735,6 +741,7 @@ views:
 
   - title: DEBUG
     id: debug
+    path: debug
     icon: mdi:bug
     cards:
       - type: custom:plan-coordinates
@@ -742,25 +749,24 @@ views:
       - type: vertical-stack
         cards:
           - type: glance
-            # title: Master groups
             show_state: false
             show_name: false
-            column_width: calc(100% / 8)
+            columns: 7
             entities:
               - group.all_battery_devices
               - group.low_battery_devices
               - group.all_covers
               - group.all_devices
               - group.all_lights
-              - group.all_plants
+              # - group.all_plants
               - group.all_scripts
               - group.all_switches
 
           - type: entities
             title: Debug
+            show_header_toggle: false
             entities:
-              - switch.shelly_project_nothing
-              - light.shelly_bathroom_ceiling_mqtt
+              - sensor.home_assistant_uptime
               - light.bathroom_ceiling
               - type: divider
               - sensor.motion_sensor_illumination_front_door
@@ -770,25 +776,35 @@ views:
       - type: vertical-stack
         cards:
           - type: custom:monster-card
+            show_header_toggle: false
             card:
               type: entities
               title: HX711
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*bed_scale_pro*"
+            when:
+              entity: binary_sensor.bed_scale_pro_status
+              state: 'on'
 
           - type: custom:monster-card
             card:
               type: entities
               title: "Sonoff Fan"
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*fan*"
+            when:
+              entity: binary_sensor.sonoff_fan_status
+              state: 'on'
 
           - type: custom:monster-card
             card:
               type: entities
               title: "Sonoff POW R1"
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*pow*"
@@ -796,40 +812,45 @@ views:
           - type: custom:monster-card
             card:
               type: entities
-              title: "Sonoff: p0"
-            filter:
-              include:
-                - entity_id: "*sonoff*p0*"
-
-          - type: custom:monster-card
-            card:
-              type: entities
               title: "Sonoff: Shoe Cabinet"
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*shoe*"
+            when:
+              entity: binary_sensor.sonoff_shoe_cabinet_status
+              state: 'on'
 
           - type: custom:monster-card
             card:
               type: entities
               title: "Sonoff: Kitchen Hood"
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*kitchen*hood*"
+            when:
+              entity: binary_sensor.sonoff_kitchen_hood_status
+              state: 'on'
 
           - type: custom:monster-card
             card:
               type: entities
               title: "Sonoff: Bathroom Mirror"
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*bathroom*"
-                - entity_id: "light.bathroom_mirror"
+                - entity_id: "light.*bathroom_mirror*"
+            when:
+              entity: binary_sensor.sonoff_bathroom_mirror_light_status
+              state: 'on'
 
           - type: custom:monster-card
             card:
               type: entities
               title: Sonoffs
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*sonoff*"
@@ -838,6 +859,7 @@ views:
             card:
               type: entities
               title: Shellies
+              show_header_toggle: false
             filter:
               include:
                 - entity_id: "*shelly*"
@@ -867,6 +889,7 @@ views:
             card:
               type: entities
               title: Things that are broken
+              show_header_toggle: false
             filter:
               include:
                 - state: "unknown"
@@ -877,11 +900,13 @@ views:
 
   - title: Settings
     id: settings
+    path: settings
     icon: mdi:settings
-    # panel: true
+    panel: true
     cards:
       - type: entities
         title: Settings
+        show_header_toggle: false
         entities:
           - input_boolean.dnd
           - input_boolean.vacation
@@ -895,7 +920,4 @@ views:
           - input_datetime.roomba_autostart_time
           - input_number.smoke_break_duration
 
-
-  # - title: Batteries
-  #   cards:
-  #     - type:
+# vim: set filetype=yaml et sw=2 ts=2 :
