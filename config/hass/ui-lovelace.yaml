@@ -5,7 +5,7 @@ resources:
     type: js
   - url: /local/cards/tracker-card/tracker-card.js?v=0.1.5
     type: js
-  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.9.7
+  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.9.8
     type: module
 
 
@@ -770,6 +770,19 @@ views:
 
       - type: vertical-stack
         cards:
+          - type: custom:monster-card
+            show_header_toggle: false
+            card:
+              type: entities
+              title: "BT Presence"
+              show_header_toggle: false
+            filter:
+              include:
+                - entity_id: "*bt_presence*"
+            # when:
+            #   entity: binary_sensor.bed_scale_pro_status
+            #   state: 'on'
+
           - type: custom:monster-card
             show_header_toggle: false
             card:
