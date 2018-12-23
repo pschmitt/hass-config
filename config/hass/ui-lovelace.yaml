@@ -33,18 +33,13 @@ views:
           - type: glance
             show_name: false
             show_state: false
-            columns: 7
+            columns: 6
             entities:
               - entity: script.all_off
                 service: script.all_off
                 tap_action:
                   action: call-service
                   service: script.cover_privacy
-              - entity: script.buzz_door_open_multiple
-                service: script.buzz_door_open_multiple
-                tap_action:
-                  action: call-service
-                  service: script.buzz_door_open_multiple
               - entity: script.let_me_in
                 service: script.let_me_in
                 icon: mdi:account-key
