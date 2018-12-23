@@ -42,6 +42,7 @@ light:
     lights:
       3d_printer_led:
         friendly_name: "3D Printer LED"
+        icon_template: mdi:printer-3d
         turn_on:
           service: switch.turn_on
           data:

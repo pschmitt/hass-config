@@ -4,6 +4,7 @@ light:
       bathroom_mirror:
         friendly_name: "Bathroom Mirror Light"
         value_template: '{{ states("switch.sonoff_bathroom_mirror_light_relay") }}'
+        icon_template: mdi:spotlight
         turn_on:
           service: switch.turn_on
           entity_id: switch.sonoff_bathroom_mirror_light_relay

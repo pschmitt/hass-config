@@ -380,7 +380,27 @@ automation:
 
 homeassistant:
   customize:
+    light.hue_bedroom:
+      icon: mdi:hotel
+    light.hue_front_door:
+      icon: mdi:door-closed
+    light.hue_hallway:
+      icon: mdi:floor-plan
+    light.hue_kitchen:
+      icon: mdi:pot-mix
+    light.hue_living_room_table:
+      icon: mdi:seat-legroom-extra
+    light.hue_living_room_tv:
+      icon: mdi:television-box
+    light.hue_terrace:
+      icon: mdi:light-house
+    light.hue_toilet:
+      icon: mdi:human-male-female
     # Hue sensors
+    sensor.living_room_dimmer_switch:
+      icon: mdi:light-switch
+    sensor.master_dimmer_switch:
+      icon: mdi:light-switch
     sensor.hallway_lux:
       icon: mdi:white-balance-sunny
     sensor.toilet_lux:
@@ -391,14 +411,6 @@ homeassistant:
       icon: mdi:white-balance-sunny
     sensor.home_temperature:
       icon: mdi:temperature-celsius
-    sensor.hue_bathroom_battery:
-      battery_device: true
-    sensor.hue_hallway_battery:
-      battery_device: true
-    sensor.hue_kitchen_battery:
-      battery_device: true
-    sensor.hue_toilet_battery:
-      battery_device: true
     # Scenes
     scene.bedtime:
       icon: mdi:weather-night
