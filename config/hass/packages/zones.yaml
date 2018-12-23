@@ -11,7 +11,7 @@ proximity:
     ignored_zones:
       - Work
     devices:
-      - device_tracker.ph1_zanzito
+      - device_tracker.pschmitt_ph1
     tolerance: 10
     unit_of_measurement: m
 
@@ -20,7 +20,7 @@ sensor:
   - platform: google_travel_time
     name: Travel time to Home
     api_key: !secret google_maps_api_key
-    origin: device_tracker.google_maps_111748235994603810778
+    origin: device_tracker.pschmitt_ph1
     destination: zone.home
     options:
       mode: walking
