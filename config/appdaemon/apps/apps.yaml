@@ -28,7 +28,7 @@ motion_lights:
       sensors:
         - binary_sensor.motion_sensor_office
       lights:
-        # - light.office_light
+        - light.hue_office
         - light.yeelight_office
       constraints:
         # start: sunrise
@@ -60,7 +60,7 @@ motion_lights:
 
     - name: bathroom
       sensors:
-        - binary_sensor.bathroom_presence
+        - sensor.bathroom_motion_motion_sensor
       lights:
         - light.bathroom_mirror
         - light.bathroom_ceiling
