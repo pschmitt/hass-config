@@ -104,10 +104,10 @@ automation:
       - platform: state
         entity_id: binary_sensor.door_window_sensor_terrace_door
         to: 'on'
-    # condition:
-    #   condition: sun
-    #   after: sunset
-    #   before_offset: "-1:00:00"
+    condition:
+      condition: sun
+      after: sunset
+      before_offset: "-1:00:00"
     action:
       - service: script.smoke_break
       - service: cover.open_cover
