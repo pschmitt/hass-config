@@ -121,7 +121,7 @@ cloud:
           - "ne me dérange pas"
           - "ne me dérange plus"
           - "ne pas déranger"
-        room: void
+        room: Settings
 
       input_boolean.motion_light_front_door:
         name: "Motion sensor: Front door light"
@@ -134,7 +134,7 @@ cloud:
           - "détecteur de mouvement de la porte d'entrée"
           - "détecteur de présence de l'entrée"
           - "détecteur de présence de la porte d'entrée"
-        room: void
+        room: Settings
 
       input_boolean.motion_light_office:
         name: "Motion sensor: Office light"
@@ -146,7 +146,7 @@ cloud:
           - "détecteur de mouvement du bureau"
           - "détecteur de présence de la chambre d'amis"
           - "détecteur de présence du bureau"
-        room: void
+        room: Settings
 
       input_boolean.motion_light_living_room:
         name: "Motion sensor: Living room light"
@@ -156,7 +156,7 @@ cloud:
           - "living room motion sensor"
           - "détecteur de mouvement du salon"
           - "détecteur de présence du salon"
-        room: void
+        room: Settings
 
       input_boolean.motion_light_terrace:
         name: "Motion sensor: Terrace light"
@@ -164,7 +164,7 @@ cloud:
           - "Motion sensor: Terrace light"
           - "terrace motion detector"
           - "détecteur de mouvement de la terrasse"
-        room: void
+        room: Settings
 
       light.bathroom_ceiling:
         name: "Bathroom ceiling Light"
