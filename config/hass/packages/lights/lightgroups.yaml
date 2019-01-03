@@ -18,6 +18,21 @@ light:
       - light.bathroom_mirror
       - light.hue_bathroom
 
+  - platform: group
+    name: Sleeping area
+    entities:
+      - light.bedroom
+      - light.bathroom
+      - light.hue_hallway
+      - light.office
+      - light.hue_toilet
+
+  - platform: group
+    name: Cooking area
+    entities:
+      - light.hue_front_door
+      - light.hue_kitchen
+
   # - platform: group
   #   name: Terrace
   #   entities:
@@ -85,5 +100,9 @@ homeassistant:
       icon: mdi:anvil
     light.bathroom:
       icon: mdi:water-pump
+    light.cooking_area:
+      icon: mdi:alpha-c-box
+    light.sleeping_area:
+      icon: mdi:alpha-s-box
 
 # vim: set filetype=yaml et sw=2 ts=2 :
