@@ -32,6 +32,7 @@ cloud:
         - switch.sonoff_fan
         - switch.sonoff_kitchen_hood_relay
       exclude_entities:
+        - input_boolean.roomba_running
         - cover.automated_covers
         - cover.living_room_main
         - cover.main_covers
@@ -467,11 +468,20 @@ switch:
           service: script.lock_door
 
       roomba:
-        value_template: "{{ is_state('vacuum.nimbus', 'on') }}"
+        # value_template: "{{ is_state('vacuum.nimbus', 'on') }}"
+        value_template: >-
+          {% if states('vacuum.nimbus') != 'unknown' %}
+            {{ is_state('vacuum.nimbus', 'on') }}
+          {% else %}
+            {{ is_state('input_boolean.roomba_running', 'on') }}
+          {% endif %}
+        icon_template: "mdi:robot-vacuum"
         turn_on:
-          service: script.roomba_start
+          # service: script.roomba_start
+          service: script.ifttt_roomba_start
         turn_off:
-          service: script.roomba_stop
+          # service: script.roomba_stop
+          service: script.ifttt_roomba_stop
 
       alarm:
         value_template: "{{ not is_state('alarm_control_panel.ha_alarm_mqtt', 'disarmed') }}"

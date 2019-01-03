@@ -1,10 +1,16 @@
-vacuum:
-  - platform: roomba
-    name: Nimbus
-    host: !secret roomba_hostname
-    username: !secret roomba_username
-    password: !secret roomba_password
-    continuous: True
+# vacuum:
+#   - platform: roomba
+#     name: Nimbus
+#     host: !secret roomba_hostname
+#     username: !secret roomba_username
+#     password: !secret roomba_password
+#     continuous: True
+
+
+input_boolean:
+  roomba_running:
+    name: "Roomba is running"
+    icon: mdi:roomba
 
 
 input_datetime:
@@ -45,6 +51,30 @@ script:
       - service: vacuum.turn_off
         data:
           entity_id: vacuum.nimbus
+
+  ifttt_roomba_start:
+    alias: 'Start Roomba (IFTTT)'
+    sequence:
+      - service: ifttt.trigger
+        data:
+          event: roomba_start
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.roomba_running
+
+  ifttt_roomba_stop:
+    alias: 'Stop Roomba (IFTTT)'
+    sequence:
+      - service: ifttt.trigger
+        data:
+          event: roomba_stop
+
+  ifttt_roomba_dock:
+    alias: 'Dock Roomba (IFTTT)'
+    sequence:
+      - service: ifttt.trigger
+        data:
+          event: roomba_dock
 
 
 alert:
@@ -115,9 +145,7 @@ automation:
             entity_id: input_boolean.vacation
             state: 'off'
     action:
-      - service: vacuum.turn_on
-        data:
-          entity_id: vacuum.nimbus
+      - service: script.ifttt_roomba_start
 
   - alias: Ask whether to start cleaning if somebody is home at the programmed time
     initial_state: true
@@ -147,9 +175,7 @@ automation:
       event_data:
         action: roomba_force_start
     action:
-      - service: vacuum.turn_on
-        data:
-          entity_id: vacuum.nimbus
+      - service: script.ifttt_roomba_start
 
   - alias: "Stop cleaning procedure if any of us comes home"
     initial_state: true
@@ -162,9 +188,7 @@ automation:
         entity_id: vacuum.nimbus
         state: 'on'
     action:
-      - service: vacuum.return_to_base
-        data:
-          entity_id: vacuum.nimbus
+      - service: script.ifttt_roomba_stop
 
   - alias: "Notify when roomba is stuck and I'm coming home"
     initial_state: true
@@ -183,21 +207,22 @@ automation:
           data:
             tag: "nimbus-rescue"
 
-  - alias: "Notify when roomba finished a job"
+  - alias: "Notify when roomba finished a job (IFTTT)"
     initial_state: true
     trigger:
-      - platform: state
-        entity_id: sensor.nimbus_status
-        to: 'Charging'
-    condition:
-      condition: template
-      value_template: '{{ trigger.from_state.state != "" }}'
+      - platform: event
+        event_type: ifttt_webhook_received
+        event_data:
+          action: roomba_mission_ended
     action:
       - service: notify.html5
         data_template:
-          message: 'Nimbus has finished a job. He cleaned {{ trigger.from_state.attributes.cleaned_area }}m2 in {{ trigger.from_state.attributes.cleaning_time }}.'
+          message: 'Nimbus has finished a job. He cleaned {{ (trigger.event.data.square_footage * 10.764) | round(1) }}m2'
           data:
             tag: 'nimbus-finished-job'
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.roomba_running
 
 
 notify:
