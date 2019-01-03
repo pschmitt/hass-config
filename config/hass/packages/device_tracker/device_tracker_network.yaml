@@ -1,0 +1,37 @@
+device_tracker:
+  - platform: google_maps
+    username: !secret google_maps_username
+    password: !secret google_maps_password
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+
+  # - platform: luci
+  #   host: 10.7.0.1
+  #   username: !secret owrt_username
+  #   password: !secret owrt_password
+  #   consider_home: 60
+  #   new_device_defaults:
+  #     track_new_devices: false
+  #     hide_if_away: false
+
+  # - platform: ubus
+  #   host: 10.7.0.3
+  #   username: !secret turris_username
+  #   password: !secret turris_password
+  #   consider_home: 60
+  #   new_device_defaults:
+  #     track_new_devices: false
+  #     hide_if_away: false
+
+  - platform: ping
+    count: 3
+    hosts:
+      g4p_ping: g4p.lan
+      ph1_ping: ph1.lan
+
+  # - platform: nmap_tracker
+  #   hosts: oneplus_3t.lan
+  #   home_interval: 3
+
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,32 @@
+device_tracker:
+  # Bathroom Assistant
+  - platform: googlehome
+    host: !secret google_home_bathroom
+    rssi_threshold: -60
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+
+  # Kitchen Assistant
+  - platform: googlehome
+    host: !secret google_home_kitchen
+    rssi_threshold: -60
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+
+  # Living Room Assistant
+  - platform: googlehome
+    host: !secret google_home_living_room
+    rssi_threshold: -60
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+
+  # Office Assistant
+  - platform: googlehome
+    host: !secret google_home_office
+    rssi_threshold: -60
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false

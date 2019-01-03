@@ -1,0 +1,45 @@
+group:
+  main_mobile_devices:
+    name: Main Devices
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - group.pschmitt_location
+
+  pschmitt_location:
+    name: "pschmitt location"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      # - device_tracker.google_maps_111748235994603810778
+      - group.ph1
+      # - group.g4p
+
+  ph1:
+    name: "ph1"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.pschmitt_ph1
+      - device_tracker.ph1_arp
+      - device_tracker.ph1_ping
+      # - device_tracker.ph1_zanzito
+
+  g4p:
+    name: "g4p"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.g4p_arp
+      - device_tracker.g4p_ping
+      - device_tracker.g4p_zanzito
+
+  anika:
+    name: "Anika"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.anika_iphone
+      - device_tracker.anika_tablet
+
+# vim: set filetype=yaml et sw=2 ts=2 :
