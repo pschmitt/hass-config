@@ -4,4 +4,10 @@ light:
       "yeelight-office.lan":
         name: YeeLight Office
 
+
+homeassistant:
+  customize:
+    light.yeelight_office:
+      icon: mdi:deak-lamp
+
 # vim: set filetype=yaml et sw=2 ts=2 :
