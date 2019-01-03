@@ -71,7 +71,7 @@ automation:
       condition: and
       conditions:
         - condition: time
-          after: '07:30:00'  # else: go to next automation
+          after: '08:30:00'  # else: go to next automation
         - condition: state
           entity_id: input_boolean.sleepover
           state: 'off'
@@ -85,7 +85,7 @@ automation:
     initial_state: true
     trigger:
       platform: time
-      at: '07:30:00'
+      at: '08:30:00'
     condition:
       condition: and
       conditions:
@@ -119,22 +119,16 @@ automation:
     action:
       - service: script.close_main_covers
 
-  - alias: Talk to my wife when she gets home
-    initial_state: false
-    trigger:
-      - platform: state
-        entity_id: device_tracker.op3t_arp
-        from: not_home
-        to: home
-    action:
-      - service: script.she_is_home
-
   - alias: "Ask to buzz door open when approaching home"
     initial_state: false
     trigger:
       - platform: numeric_state
         entity_id: proximity.home
         below: 60
+    condition:
+      condition: state
+      entity_id: group.pschmitt_location
+      state: not_home
     action:
       - service: notify.html5
         data:
@@ -157,7 +151,7 @@ automation:
     action:
       - service: script.buzz_door_open_multiple
       - service: script.unlock_door
-      - service: script.turn_on_homecoming_lights
+      - service: script.homecoming_lights
       - service: script.alarm_disarm
       - service: script.open_all_covers_if_sun_is_up
       - service: cover.open_cover
@@ -282,7 +276,7 @@ script:
     sequence:
       - service: script.buzz_door_open_multiple
       - service: script.unlock_door
-      - service: script.turn_on_homecoming_lights
+      - service: script.homecoming_lights
       - service: script.alarm_disarm
       - service: script.open_all_covers_if_sun_is_up
       - service: cover.open_cover
