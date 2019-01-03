@@ -14,10 +14,12 @@ input_number:
     max: 480
 
 
+device_tracker:
+  - platform: hue
+
+
 sensor:
   - platform: hue
-    ip_address: !secret hue_bridge
-    token: !secret hue_token
 
   - platform: template
     sensors:
@@ -392,8 +394,10 @@ homeassistant:
       icon: mdi:seat-legroom-extra
     light.hue_living_room_tv:
       icon: mdi:television-box
+    light.hue_office:
+      icon: mdi:alpha-o-box
     light.hue_terrace:
-      icon: mdi:light-house
+      icon: mdi:alpha-t-box
     light.hue_toilet:
       icon: mdi:human-male-female
     # Hue sensors
