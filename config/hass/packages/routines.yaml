@@ -249,10 +249,10 @@ automation:
     trigger:
       platform: state
       entity_id:
-        - sensor.bathroom_motion_motion_sensor
-        - sensor.hallway_motion_motion_sensor
-        - sensor.kitchen_motion_motion_sensor
-        - sensor.toilet_motion_motion_sensor
+        - binary_sensor.bathroom_motion_motion_sensor
+        - binary_sensor.hallway_motion_motion_sensor
+        - binary_sensor.kitchen_motion_motion_sensor
+        - binary_sensor.toilet_motion_motion_sensor
       to: 'on'
     condition:
       condition: and

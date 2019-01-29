@@ -16,3 +16,6 @@
 [submodule "config/hass/custom_components/Hue-sensors-HASS"]
 	path = config/hass/custom_components/Hue-sensors-HASS
 	url = https://github.com/robmarkcole/Hue-sensors-HASS
+[submodule "config/hass/custom_components/appdaemon-motion-lights"]
+	path = config/hass/custom_components/appdaemon-motion-lights
+	url = https://github.com/danobot/appdaemon-motion-lights

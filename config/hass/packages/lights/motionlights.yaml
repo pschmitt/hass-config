@@ -1,19 +1,78 @@
 input_boolean:
   motion_light_terrace:
-    name: "Motion Light: Terrace"
+    name: "Motion Light: Terrace (Disable)"
     icon: mdi:run-fast
 
   motion_light_living_room:
-    name: "Motion Light: Living room"
+    name: "Motion Light: Living room (Disable)"
     icon: mdi:run-fast
 
   motion_light_office:
-    name: "Motion Light: Office"
+    name: "Motion Light: Office (Disable)"
     icon: mdi:run-fast
 
   motion_light_front_door:
-    name: "Motion Light: Front door"
+    name: "Motion Light: Front door (Disable)"
     icon: mdi:run-fast
+
+
+lightingsm:
+    motion_light_bathroom:
+      sensor: binary_sensor.bathroom_motion_motion_sensor
+      entities:
+        - light.bathroom_mirror
+        - light.bathroom_ceiling
+      delay: 900
+      service_data:
+        brightness: 100
+
+    motion_light_front_door:
+      sensor: binary_sensor.motion_sensor_front_door
+      entities:
+        - light.hue_front_door
+      delay: 300
+      service_data:
+        brightness: 100
+      overrides:
+        - input_boolean.motion_light_front_door
+
+    motion_light_living_room:
+      sensor: binary_sensor.motion_sensor_living_room
+      # sensor_type_duration: True
+      entities:
+        - light.living_room
+      delay: 1200
+      service_data:
+        brightness: 100
+      night_mode:
+        delay: 1200
+        service_data:
+          brightness: 60
+        start_time: '20:00:00'
+        end_time: '06:00:00'
+      overrides:
+        - input_boolean.motion_light_living_room
+
+    motion_light_office:
+      sensor: binary_sensor.motion_sensor_office
+      entities:
+        - light.hue_office
+        - light.yeelight_office
+      delay: 300
+      service_data:
+        brightness: 100
+      overrides:
+        - input_boolean.motion_light_office
+
+    motion_light_terrace:
+      sensor: binary_sensor.motion_sensor_terrace
+      entity: light.hue_terrace
+      delay: 300
+      service_data:
+        brightness: 100
+      overrides:
+        - input_boolean.motion_light_terrace
+
 
 
 automation:
@@ -24,13 +83,13 @@ automation:
       event: sunset
       offset: "-00:15:00"
     action:
-      # - service: homeassistant.turn_on
-      #   entity_id: input_boolean.motion_light_front_door
-      - service: homeassistant.turn_on
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.motion_light_front_door
+      - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_living_room
-      - service: homeassistant.turn_on
+      - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_terrace
-      - service: homeassistant.turn_on
+      - service: homeassistant.turn_off
         entity_id: input_boolean.motion_light_office
 
   - alias: Disable light motion sensors during day
@@ -40,33 +99,33 @@ automation:
       event: sunrise
       offset: "+00:00:00"
     action:
-      # - service: homeassistant.turn_off
+      # - service: homeassistant.turn_on
       #   entity_id: input_boolean.motion_light_front_door
-      - service: homeassistant.turn_off
+      - service: homeassistant.turn_on
         entity_id: input_boolean.motion_light_living_room
-      - service: homeassistant.turn_off
+      - service: homeassistant.turn_on
         entity_id: input_boolean.motion_light_terrace
-      - service: homeassistant.turn_off
+      - service: homeassistant.turn_on
         entity_id: input_boolean.motion_light_office
 
-  - alias: Enable front door motion light if lux level is low
-    initial_state: true
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.motion_sensor_illumination_front_door
-      below: 5.0
-    action:
-      - service: homeassistant.turn_on
-        entity_id: input_boolean.motion_light_front_door
+  # - alias: Enable front door motion light if lux level is low
+  #   initial_state: true
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.motion_sensor_illumination_front_door
+  #     below: 5.0
+  #   action:
+  #     - service: homeassistant.turn_off
+  #       entity_id: input_boolean.motion_light_front_door
 
-  - alias: Disable front door motion light if lux level is high
-    initial_state: true
-    trigger:
-      platform: numeric_state
-      entity_id: sensor.motion_sensor_illumination_front_door
-      above: 5.0
-    action:
-      - service: homeassistant.turn_off
-        entity_id: input_boolean.motion_light_front_door
+  # - alias: Disable front door motion light if lux level is high
+  #   initial_state: true
+  #   trigger:
+  #     platform: numeric_state
+  #     entity_id: sensor.motion_sensor_illumination_front_door
+  #     above: 5.0
+  #   action:
+  #     - service: homeassistant.turn_on
+  #       entity_id: input_boolean.motion_light_front_door
 
 # vim: set filetype=yaml et sw=2 ts=2 :

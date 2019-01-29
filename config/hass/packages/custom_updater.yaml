@@ -9,6 +9,7 @@ custom_updater:
     - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
   component_urls:
     - https://raw.githubusercontent.com/robmarkcole/Hue-sensors-HASS/master/custom_updater.json
+    - https://raw.githubusercontent.com/danobot/appdaemon-motion-lights/master/tracker.json
   # python_script_urls:
   #   -
 

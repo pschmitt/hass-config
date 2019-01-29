@@ -282,7 +282,7 @@ automation:
     trigger:
       platform: state
       # entity_id: binary_sensor.bathroom_presence
-      entity_id: sensor.bathroom_motion_motion_sensor
+      entity_id: binary_sensor.bathroom_motion_motion_sensor
       to: 'on'
     action:
       - service: script.turn_on_bathroom_light_switch
