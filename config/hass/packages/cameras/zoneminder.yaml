@@ -2,7 +2,7 @@ zoneminder:
   host: !secret zm_hostname
   path: /zm
   ssl: true
-  # verify_ssl: true
+  verify_ssl: false
   username: !secret zm_username
   password: !secret zm_password
 
