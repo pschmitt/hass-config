@@ -3,7 +3,7 @@ resources:
     type: js
   - url: /local/cards/custom-lovelace/monster-card/monster-card.js?v=0.2.3
     type: js
-  - url: /local/cards/tracker-card/tracker-card.js?v=0.1.5
+  - url: /local/cards/tracker-card/tracker-card.js?v=0.3.0
     type: js
   - url: /local/cards/mini-media-player/mini-media-player.js?v=0.9.8
     type: module
