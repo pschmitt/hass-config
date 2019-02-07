@@ -34,6 +34,39 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.dnd
 
+  - alias: Coming home with vacation mode on
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: group.pschmitt_location
+        to: home
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation
+        state: 'on'
+    action:
+      - service: notify.html5
+        data_template:
+          message: "You are home and the vacation mode is on."
+          data:
+            tag: "homecoming-vacation-mode-on"
+            actions:
+              - action: disable_vacation_mode
+                # mdi:airplane-landing
+                icon: https://materialdesignicons.com/api/download/icon/png/634EE7E8-8280-4CF1-B642-0921E740B6DB/48
+                title: Disable vacation mode
+
+  - alias: "HTML5 Notification: Requested turning off of vacation mode"
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: html5_notification.clicked
+      event_data:
+        action: disable_vacation_mode
+    action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.vacation
+
 
 homeassistant:
   customize:
