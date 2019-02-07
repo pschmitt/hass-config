@@ -18,6 +18,10 @@ device_tracker:
   - platform: hue
 
 
+binary_sensor:
+  - platform: hue
+
+
 sensor:
   - platform: hue
 
@@ -28,29 +32,29 @@ sensor:
         device_class: 'temperature'
         unit_of_measurement: '°C'
         icon_template: 'mdi:thermometer'
-        value_template: '{{ states.sensor.bathroom_motion_motion_sensor.attributes.temperature }}'
-        entity_id: sensor.bathroom_motion_motion_sensor
+        value_template: '{{ states.binary_sensor.bathroom_motion_motion_sensor.attributes.temperature }}'
+        entity_id: binary_sensor.bathroom_motion_motion_sensor
       temperature_hallway:
         friendly_name: 'Hallway Temperature'
         device_class: 'temperature'
         unit_of_measurement: '°C'
         icon_template: 'mdi:thermometer'
-        value_template: '{{ states.sensor.hallway_motion_motion_sensor.attributes.temperature }}'
-        entity_id: sensor.hallway_motion_motion_sensor
+        value_template: '{{ states.binary_sensor.hallway_motion_motion_sensor.attributes.temperature }}'
+        entity_id: binary_sensor.hallway_motion_motion_sensor
       temperature_kitchen:
         friendly_name: 'Kitchen Temperature'
         device_class: 'temperature'
         unit_of_measurement: '°C'
         icon_template: 'mdi:thermometer'
-        value_template: '{{ states.sensor.kitchen_motion_motion_sensor.attributes.temperature }}'
-        entity_id: sensor.kitchen_motion_motion_sensor
+        value_template: '{{ states.binary_sensor.kitchen_motion_motion_sensor.attributes.temperature }}'
+        entity_id: binary_sensor.kitchen_motion_motion_sensor
       temperature_toilet:
         friendly_name: 'Toilet Temperature'
         device_class: 'temperature'
         unit_of_measurement: '°C'
         icon_template: 'mdi:thermometer'
-        value_template: '{{ states.sensor.toilet_motion_motion_sensor.attributes.temperature }}'
-        entity_id: sensor.toilet_motion_motion_sensor
+        value_template: '{{ states.binary_sensor.toilet_motion_motion_sensor.attributes.temperature }}'
+        entity_id: binary_sensor.toilet_motion_motion_sensor
 
 #   - platform: command_line
 #     name: 'Hue Toilet Battery'
