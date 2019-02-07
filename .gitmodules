@@ -10,9 +10,6 @@
 [submodule "config/hass/www/cards/tracker-card"]
 	path = config/hass/www/cards/tracker-card
 	url = https://github.com/custom-cards/tracker-card
-[submodule "config/hass/custom_components/sensor.aftership"]
-	path = config/hass/custom_components/sensor.aftership
-	url = https://github.com/custom-components/sensor.aftership
 [submodule "config/hass/custom_components/Hue-sensors-HASS"]
 	path = config/hass/custom_components/Hue-sensors-HASS
 	url = https://github.com/robmarkcole/Hue-sensors-HASS
