@@ -293,6 +293,7 @@ recorder:
   db_url: !secret db_url
 sensor: !include sensor.yaml
 sun:
+system_health:
 updater:
 
 # vim: set filetype=yaml et sw=2 ts=2 :
