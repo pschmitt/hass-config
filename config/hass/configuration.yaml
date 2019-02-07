@@ -19,6 +19,7 @@ http:
   trusted_proxies:
     # Traefik
     - 127.0.0.1
+    - 10.7.0.1
   trusted_networks:
     # - 10.7.0.0/24 minus 10.7.0.1
     - 10.7.0.2
