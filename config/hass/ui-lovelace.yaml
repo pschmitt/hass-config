@@ -36,23 +36,19 @@ views:
             columns: 6
             entities:
               - entity: script.all_off
-                service: script.all_off
                 tap_action:
                   action: call-service
-                  service: script.cover_privacy
+                  service: script.all_off
               - entity: script.let_me_in
-                service: script.let_me_in
                 icon: mdi:account-key
                 tap_action:
                   action: call-service
                   service: script.let_me_in
               - entity: script.cover_privacy
-                service: script.cover_privacy
                 tap_action:
                   action: call-service
                   service: script.cover_privacy
               - entity: script.cover_movie_smoke_break
-                service: script.cover_movie_smoke_break
                 tap_action:
                   action: call-service
                   service: script.cover_movie_smoke_break
@@ -87,17 +83,13 @@ views:
               - type: sensor
                 entity: sensor.home_temperature
                 name: Home Temperature
-                line_color: '#3498db'
-                line_width: 8
+                graph: line
                 hours_to_show: 6
-                height: 75
               - type: sensor
                 entity: sensor.smappee_home_active_power
                 name: Power Consumption
-                accuracy: 8
-                line_width: 8
+                graph: line
                 hours_to_show: 6
-                height: 75
 
           - type: entity-filter
             # title: Activity
@@ -106,14 +98,22 @@ views:
               - entity: device_tracker.google_maps_111748235994603810778
                 name: pschmitt
               - entity: device_tracker.pschmitt_ph1
-                name: pschmitt
+                name: ph1 (mqtt)
               - entity: device_tracker.ph1_arp
-                name: pschmitt (arp)
+                name: ph1 (arp)
+                icon: mdi:wifi
               - entity: device_tracker.ph1_ping
-                name: pschmitt (ping)
+                name: ph1 (ping)
+                icon: mdi:ip-network
+              - entity: device_tracker.ph1_bluetooth_office
+                icon: mdi:bluetooth-connect
+                name: ph1 (bt)
+              - entity: device_tracker.1070140_10cdb60375cc
+                icon: mdi:bluetooth-connect
+                name: ph1 (bt@LivingRoom)
               - entity: device_tracker.sherlock_5666480997793792
                 icon: mdi:bike
-                name: RM Birdy
+                name: Sherlock
               # Appliances
               - entity: binary_sensor.octoprint_printing
                 name: 3D Printer
@@ -130,14 +130,20 @@ views:
               - binary_sensor.door_window_sensor_office_window_large
               - binary_sensor.door_window_sensor_office_window_small
               - binary_sensor.door_window_sensor_terrace_door
-              - binary_sensor.bathroom_presence
-              - binary_sensor.hallway_presence
-              - binary_sensor.kitchen_presence
-              - binary_sensor.toilet_presence
+              # - binary_sensor.bathroom_presence
+              # - binary_sensor.hallway_presence
+              # - binary_sensor.kitchen_presence
+              # - binary_sensor.toilet_presence
               - binary_sensor.motion_sensor_front_door
               - binary_sensor.motion_sensor_living_room
               - binary_sensor.motion_sensor_office
               - binary_sensor.motion_sensor_terrace
+              - entity: light.living_room
+                tap_action:
+                  action: toggle
+              - entity: light.office
+                tap_action:
+                  action: toggle
               - entity: light.3d_printer_led
                 tap_action:
                   action: toggle
@@ -183,12 +189,6 @@ views:
               - entity: light.hue_toilet
                 tap_action:
                   action: toggle
-              - entity: light.living_room
-                tap_action:
-                  action: toggle
-              - entity: light.office
-                tap_action:
-                  action: toggle
               - entity: light.yeelight_office
                 tap_action:
                   action: toggle
@@ -214,6 +214,15 @@ views:
             show_state: false
             columns: 4
             entities:
+              - entity: light.cooking_area
+                tap_action:
+                  action: toggle
+              - entity: light.sleeping_area
+                tap_action:
+                  action: toggle
+              - entity: light.hue_terrace
+                tap_action:
+                  action: toggle
               - entity: light.living_room
                 tap_action:
                   action: toggle
@@ -238,12 +247,16 @@ views:
               - entity: switch.sonoff_kitchen_hood_relay
                 tap_action:
                   action: toggle
-              - entity: switch.wemo_insight__washing_machine
+              - entity: switch.wemo_insight_washing_machine
                 tap_action:
                   action: toggle
-              - entity: vacuum.nimbus
+              - entity: switch.roomba
+              # - entity: vacuum.nimbus
+                # icon: mdi:roomba
                 tap_action:
-                  action: toggle
+                  action: turn-on
+                hold_action:
+                  action: turn-off
               - entity: switch.3d_printer_psu
                 tap_action:
                   action: toggle
@@ -761,15 +774,62 @@ views:
             title: Debug
             show_header_toggle: false
             entities:
+              - input_boolean.roomba_running
+              - input_boolean.motion_light_living_room
+              - binary_sensor.motion_sensor_living_room
+              - light.living_room
+              - type: divider
+              - input_boolean.motion_light_front_door
+              - binary_sensor.motion_sensor_front_door
+              - light.hue_front_door
+
+          - type: entities
+            title: Debug
+            show_header_toggle: false
+            entities:
               - sensor.home_assistant_uptime
-              - light.bathroom_ceiling
+              - type: divider
+              - device_tracker.1070140_10cdb60375cc
+              - device_tracker.ph1_bluetooth_office
               - type: divider
               - sensor.motion_sensor_illumination_front_door
               - input_boolean.motion_light_front_door
               - light.hue_front_door
+              - type: divider
+              - input_boolean.roomba_running
+              - type: divider
+              - group.main_mobile_devices
+              - group.pschmitt_location
+              - group.ph1
+              - group.anika
 
       - type: vertical-stack
         cards:
+          - type: entities
+            title: Philips Hue Sensors
+            show_header_toggle: false
+            entities:
+              - sensor.master_dimmer_switch
+              - sensor.living_room_dimmer_switch
+              - type: divider
+              - binary_sensor.bathroom_motion_motion_sensor
+              - binary_sensor.kitchen_motion_motion_sensor
+              - binary_sensor.hallway_motion_motion_sensor
+              - binary_sensor.toilet_motion_motion_sensor
+
+          - type: custom:monster-card
+            show_header_toggle: false
+            card:
+              type: entities
+              title: "Devices @Home"
+              show_header_toggle: false
+            filter:
+              include:
+                - domain: "device_tracker"
+              exclude:
+                - state: 'away'
+                - state: 'not_home'
+
           - type: custom:monster-card
             show_header_toggle: false
             card:
@@ -779,9 +839,6 @@ views:
             filter:
               include:
                 - entity_id: "*bt_presence*"
-            # when:
-            #   entity: binary_sensor.bed_scale_pro_status
-            #   state: 'on'
 
           - type: custom:monster-card
             show_header_toggle: false

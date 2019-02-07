@@ -102,7 +102,10 @@ automation:
     initial_state: true
     trigger:
       platform: time
-      at: "14:00:00"
+      at: '14:00:00'
+    # trigger:
+    #   platform: template
+    #   value_template: '{{ states.sensor.time.state == (states.input_datetime.bedroom_covers.attributes.timestamp | int | timestamp_custom("%H:%M", False)) }}'
     condition:
       condition: state
       entity_id: group.main_mobile_devices
@@ -128,6 +131,7 @@ automation:
     condition:
       condition: state
       entity_id: group.pschmitt_location
+      # entity_id: device_tracker.ph1_ping
       state: not_home
     action:
       - service: notify.html5
@@ -194,7 +198,7 @@ automation:
   - alias: Train reminder
     initial_state: true
     trigger:
-      - platform: time
+      - platform: time_pattern
         hours: 16
         minutes: 25
         seconds: 0
@@ -220,7 +224,7 @@ automation:
   - alias: Time to go to bed
     initial_state: true
     trigger:
-      # - platform: time
+      # - platform: time_pattern
       #   hours: 21
       #   minutes: 50
       #   seconds: 0

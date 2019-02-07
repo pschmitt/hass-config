@@ -12,7 +12,7 @@ binary_sensor:
         delay_off:
           minutes: 2
         device_class: power
-        value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.state_detail == "on" }}'
+        value_template: '{{ states.switch.wemo_insight_washing_machine.attributes.state_detail == "on" }}'
 
 
 sensor:
@@ -21,14 +21,14 @@ sensor:
       power_consumption_washing_machine:
         friendly_name: Washing Machine Power Consumption
         unit_of_measurement: W
-        value_template: '{{ states.switch.wemo_insight__washing_machine.attributes.current_power_w }}'
+        value_template: '{{ states.switch.wemo_insight_washing_machine.attributes.current_power_w }}'
 
   - platform: template
     sensors:
       power_consumption_nasteanas:
         friendly_name: NAS Power Consumption
         unit_of_measurement: W
-        value_template: '{{ states.switch.wemo_insight__nasteanas.attributes.current_power_w }}'
+        value_template: '{{ states.switch.wemo_insight_nasteanas.attributes.current_power_w }}'
         icon_template: mdi:flash
 
 
@@ -51,13 +51,13 @@ automation:
     initial_state: true
     trigger:
       - platform: state
-        entity_id: switch.wemo_insight__washing_machine
+        entity_id: switch.wemo_insight_washing_machine
         to: 'off'
         for:
           minutes: 10
     action:
       service: switch.turn_on
-      entity_id: switch.wemo_insight__washing_machine
+      entity_id: switch.wemo_insight_washing_machine
 
 
 script:
@@ -68,16 +68,16 @@ script:
         entity_id: binary_sensor.washing_machine
         state: "off"
       - service: switch.turn_off
-        entity_id: switch.wemo_insight__washing_machine
+        entity_id: switch.wemo_insight_washing_machine
 
 
 homeassistant:
   customize:
     binary_sensor.washing_machine:
       icon: mdi:washing-machine
-    switch.wemo_insight__nasteanas:
+    switch.wemo_insight_nasteanas:
       icon: mdi:server-network
-    switch.wemo_insight__washing_machine:
+    switch.wemo_insight_washing_machine:
       icon: mdi:washing-machine
 
 # vim: set filetype=yaml et sw=2 ts=2 :

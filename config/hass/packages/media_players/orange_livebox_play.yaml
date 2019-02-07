@@ -33,7 +33,7 @@ automation:
   - alias: Daily reboot of the Livebox Play TV
     initial_state: true
     trigger:
-      - platform: time
+      - platform: time_pattern
         hours: 4
         minutes: 35
         seconds: 12

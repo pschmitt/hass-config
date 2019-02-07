@@ -13,7 +13,7 @@ media_player:
   - platform: universal
     name: Living room TV
     children:
-      - media_player.emby__emby_for_chromecast__nvidia_shield_tv
+      - media_player.emby_emby_for_chromecast_nvidia_shield_tv
       - media_player.kodi
       - media_player.cast_nvidia_shield_tv
       - media_player.livebox_play

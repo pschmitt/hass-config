@@ -38,8 +38,8 @@ cloud:
         - cover.main_covers
         - light.aqara_gateway
         - light.yeelight_rgb_34ce00824709
-        - switch.wemo_insight__nasteanas
-        - switch.wemo_insight__washing_machine
+        - switch.wemo_insight_nasteanas
+        - switch.wemo_insight_washing_machine
     entity_config:
       cover.all_covers:
         name: "All covers"
