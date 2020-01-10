@@ -5,9 +5,9 @@ switch:
     # state_topic: hassistant/states/switch/pollin_s4u3/state
     command_topic: hassistant/remote/switch/pollin
     payload_on: >-
-      {"command": "on", "system_code": "4", "unit_code": "3" }
+      {"command": "on", "system_code": "4", "unit_code": "4" }
     payload_off: >-
-      {"command": "off", "system_code": "4", "unit_code": "3" }
+      {"command": "off", "system_code": "4", "unit_code": "4" }
 
   - platform: mqtt
     name: "Office Monitor"
@@ -15,9 +15,9 @@ switch:
     # state_topic: hassistant/states/switch/pollin_s4u4/state
     command_topic: hassistant/remote/switch/pollin
     payload_on: >-
-      {"command": "on", "system_code": "4", "unit_code": "4" }
+      {"command": "on", "system_code": "4", "unit_code": "3" }
     payload_off: >-
-      {"command": "off", "system_code": "4", "unit_code": "4" }
+      {"command": "off", "system_code": "4", "unit_code": "3" }
 
 
 #   - platform: template
