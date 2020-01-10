@@ -1,11 +1,13 @@
 resources:
   - url: /local/cards/custom-lovelace/plan-coordinates/plan-coordinates.js?v=0.1.0
     type: js
-  - url: /local/cards/custom-lovelace/monster-card/monster-card.js?v=0.2.3
-    type: js
-  - url: /local/cards/tracker-card/tracker-card.js?v=0.3.0
-    type: js
-  - url: /local/cards/mini-media-player/mini-media-player.js?v=0.9.8
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: module
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js?v=1.5.2
+    type: module
+  - url: /community_plugin/custom-header/custom-header.js
+    type: module
+  - url: /community_plugin/lovelace-hass-aarlo/hass-aarlo.js
     type: module
 
 
@@ -25,7 +27,7 @@ views:
               - sensor.home_temperature
               - sensor.smappee_home_active_power
               - alarm_control_panel.ha_alarm_mqtt
-              - alarm_control_panel.arlomio
+              - alarm_control_panel.aarlo_arlomio
               - entity: lock.front_door
                 tap_action:
                   action: toggle
@@ -61,6 +63,7 @@ views:
           - type: picture-glance
             camera_image: camera.c1
             title: Living Room
+            camera_view: live
             entities:
               - camera.c1
               - cover.living_room
@@ -75,6 +78,9 @@ views:
               - light.hue_front_door
               - light.hue_kitchen
               - light.living_room
+
+          - type: shopping-list
+            title: TODO
 
       - type: vertical-stack
         cards:
@@ -97,20 +103,26 @@ views:
               # Users
               - entity: device_tracker.google_maps_111748235994603810778
                 name: pschmitt
-              - entity: device_tracker.pschmitt_ph1
-                name: ph1 (mqtt)
-              - entity: device_tracker.ph1_arp
-                name: ph1 (arp)
-                icon: mdi:wifi
-              - entity: device_tracker.ph1_ping
-                name: ph1 (ping)
-                icon: mdi:ip-network
-              - entity: device_tracker.ph1_bluetooth_office
-                icon: mdi:bluetooth-connect
-                name: ph1 (bt)
-              - entity: device_tracker.1070140_10cdb60375cc
-                icon: mdi:bluetooth-connect
-                name: ph1 (bt@LivingRoom)
+              - entity: device_tracker.tile_b6eae4895e3347b4
+                name: KeySmart Pro
+              - entity: device_tracker.m2s_arp
+                name: m2s (arp)
+              - entity: device_tracker.m2s_ping
+                name: m2s (ping)
+              # - entity: device_tracker.pschmitt_ph1
+              #   name: ph1 (mqtt)
+              # - entity: device_tracker.ph1_arp
+              #   name: ph1 (arp)
+              #   icon: mdi:wifi
+              # - entity: device_tracker.ph1_ping
+              #   name: ph1 (ping)
+              #   icon: mdi:ip-network
+              # - entity: device_tracker.ph1_bluetooth_office
+              #   icon: mdi:bluetooth-connect
+              #   name: ph1 (bt)
+              # - entity: device_tracker.1070140_10cdb60375cc
+              #   icon: mdi:bluetooth-connect
+              #   name: ph1 (bt@LivingRoom)
               - entity: device_tracker.sherlock_5666480997793792
                 icon: mdi:bike
                 name: Sherlock
@@ -239,11 +251,11 @@ views:
           - type: glance
             show_name: false
             show_state: false
-            columns: 7
+            columns: 6
             entities:
-              - entity: switch.sonoff_fan_relay
-                tap_action:
-                  action: toggle
+              # - entity: switch.sonoff_fan_relay
+              #   tap_action:
+              #     action: toggle
               - entity: switch.sonoff_kitchen_hood_relay
                 tap_action:
                   action: toggle
@@ -270,16 +282,59 @@ views:
           - type: map
             aspect_ratio: 0.46
             entities:
-              # - device_tracker.ph1_zanzito
-              - device_tracker.google_maps_111748235994603810778
-              - device_tracker.sherlock_5666480997793792
-              - device_tracker.pschmitt_ph1
+              # - device_tracker.google_maps_111748235994603810778
+              # - device_tracker.sherlock_5666480997793792
+              # - device_tracker.pschmitt_ph1
+              - device_tracker.mi_mix_2s
+              - device_tracker.m2s_arp
+              - device_tracker.tile_b6eae4895e3347b4
               - zone.home
               - zone.work
               - zone.work_hers
 
           - type: weather-forecast
             entity: weather.darksky
+
+  - title: Lights
+    id: lights
+    path: lights
+    icon: mdi:lightbulb
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.living_room
+              - type: light
+                entity: light.hue_living_room_table
+                name: Table
+              - type: light
+                entity: light.hue_living_room_tv
+                name: TV
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.hue_front_door
+                name: Front door
+              - type: light
+                entity: light.hue_terrace
+                name: Terrace
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.hue_bedroom
+                name: Bedroom
+              - type: light
+                entity: light.hue_bathroom
+                name: Bathroom
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.yeelight_office
+              - type: light
+                entity: light.hue_office
+                name: Office
 
   - title: CCTV
     id: cctv
@@ -288,19 +343,37 @@ views:
     cards:
       - type: vertical-stack
         cards:
-          - type: picture-glance
-            camera_image: camera.front_door
-            title: Front Door
-            entities:
-              - camera.front_door
-              - light.hue_front_door
+          # - type: picture-glance
+          #   camera_image: camera.aarlo_front_door
+          #   title: Front Door
+          #   entities:
+          #     - camera.aarlo_front_door
+          #     - light.hue_front_door
 
-          - type: picture-glance
-            camera_image: camera.doorpi
-            title: Entrance
-            entities:
-              - camera.doorpi
-              - light.hue_front_door
+          - type: 'custom:aarlo-glance'
+            entity: camera.aarlo_front_door
+            name: Front Door
+            show:
+              - motion
+              # - sound
+              - snapshot
+              - battery_level
+              # - signal_strength
+              - captured_today
+              # - image_date
+            top_title: false
+            top_status: false
+            top_date: false
+            image_click: play
+            door: binary_sensor.door_window_sensor_front_door
+            door_lock: lock.front_door
+
+          # - type: picture-glance
+          #   camera_image: camera.doorpi
+          #   title: Entrance
+          #   entities:
+          #     - camera.doorpi
+          #     - light.hue_front_door
 
       - type: vertical-stack
         cards:
@@ -313,20 +386,34 @@ views:
               - light.hue_living_room_tv
               - cover.living_room
 
-          - type: picture-glance
-            camera_image: camera.terrace
-            title: Terrace
-            entities:
-              - camera.terrace
-              - light.hue_terrace
-              - cover.bedroom
+          # - type: picture-glance
+          #   camera_image: camera.aarlo_terrace
+          #   title: Terrace
+          #   entities:
+          #     - camera.aarlo_terrace
+          #     - light.hue_terrace
+          #     - cover.bedroom
 
-          - type: picture-glance
-            camera_image: camera.winpi
-            title: Winpi
-            entities:
-              - camera.winpi
-              - cover.living_room_door
+          - type: 'custom:aarlo-glance'
+            entity: camera.aarlo_terrace
+            name: Terrace
+            show:
+              - motion
+              - snapshot
+              - battery_level
+              - captured_today
+            top_title: false
+            top_status: false
+            top_date: false
+            image_click: play
+            door: binary_sensor.door_window_sensor_terrace_door
+
+          # - type: picture-glance
+          #   camera_image: camera.winpi
+          #   title: Winpi
+          #   entities:
+          #     - camera.winpi
+          #     - cover.living_room_door
 
       - type: vertical-stack
         cards:
@@ -339,30 +426,44 @@ views:
               - light.hue_kitchen
               - switch.sonoff_kitchen_hood
 
-          - type: picture-glance
-            camera_image: camera.g4p
-            title: Office (g4p)
-            entities:
-              - camera.g4p
-              - light.yeelight_office
-              - light.hue_office
-              - cover.office
+          # - type: picture-glance
+          #   camera_image: camera.g4p
+          #   title: Office (g4p)
+          #   entities:
+          #     - camera.g4p
+          #     - light.yeelight_office
+          #     - light.hue_office
+          #     - cover.office
+          #
+          # - type: picture-glance
+          #   camera_image: camera.hassistant_lq
+          #   title: Office
+          #   entities:
+          #     - camera.hassistant
+          #     - light.yeelight_office
+          #     - light.hue_office
+          #     - cover.office
 
-          - type: picture-glance
-            camera_image: camera.hassistant_lq
-            title: Office
-            entities:
-              - camera.hassistant
-              - light.yeelight_office
-              - light.hue_office
-              - cover.office
+          # - type: picture-glance
+          #   camera_image: camera.aarlo_hallway
+          #   title: Hallway
+          #   entities:
+          #     - camera.aarlo_hallway
+          #     - light.hue_hallway
 
-          - type: picture-glance
-            camera_image: camera.hallway
-            title: Hallway
-            entities:
-              - camera.hallway
-              - light.hue_hallway
+          - type: 'custom:aarlo-glance'
+            entity: camera.aarlo_hallway
+            name: Hallway
+            show:
+              - motion
+              - snapshot
+              - battery_level
+              - captured_today
+            top_title: false
+            top_status: false
+            top_date: false
+            image_click: play
+            # door: binary_sensor.door_window_sensor_terrace_door
 
 
 
@@ -679,6 +780,14 @@ views:
             hide_power: false
             hide_volume: false
             show_source: true
+            name: Office TV (universal)
+          - entity: media_player.cast_office_tv
+            type: "custom:mini-media-player"
+            group: true
+            name: Office TV (cast)
+            hide_power: false
+            hide_volume: false
+            show_source: true
           - entity: media_player.office_speaker
             type: "custom:mini-media-player"
             group: true
@@ -706,10 +815,15 @@ views:
     cards:
       - type: vertical-stack
         cards:
-        - type: entities
-          entities:
-            # Total
-            - sensor.home_temperature
+        - type: gauge
+          title: Detail
+          entity: sensor.home_temperature
+          unit: '°C'
+          max: 30
+          severty:
+            green: 0
+            yellow: 22
+            red: 25
 
         - type: entities
           title: Detail
@@ -726,13 +840,9 @@ views:
             - sensor.temperature_kitchen
             - sensor.temperature_toilet
             - type: divider
-            # Aqara
+            # Fridge
             - sensor.temperature_fridge
-            # rfxtrx
             - sensor.temperature_fridge_crisper
-            - type: divider
-            # Plants
-            - sensor.temperature_fridge
             - sensor.freezer_temperature
 
       - type: vertical-stack
@@ -817,8 +927,7 @@ views:
               - binary_sensor.hallway_motion_motion_sensor
               - binary_sensor.toilet_motion_motion_sensor
 
-          - type: custom:monster-card
-            show_header_toggle: false
+          - type: custom:auto-entities
             card:
               type: entities
               title: "Devices @Home"
@@ -830,63 +939,63 @@ views:
                 - state: 'away'
                 - state: 'not_home'
 
-          - type: custom:monster-card
-            show_header_toggle: false
-            card:
-              type: entities
-              title: "BT Presence"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "*bt_presence*"
+          # - type: custom:auto-entities
+          #   show_header_toggle: false
+          #   card:
+          #     type: entities
+          #     title: "BT Presence"
+          #     show_header_toggle: false
+          #   filter:
+          #     include:
+          #       - entity_id: "*bt_presence*"
+          #
+          # - type: custom:auto-entities
+          #   show_header_toggle: false
+          #   card:
+          #     type: entities
+          #     title: HX711
+          #     show_header_toggle: false
+          #   filter:
+          #     include:
+          #       - entity_id: "*bed_scale_pro*"
+          #   when:
+          #     entity: binary_sensor.bed_scale_pro_status
+          #     state: 'on'
+          #
+          # - type: custom:auto-entities
+          #   card:
+          #     type: entities
+          #     title: "Sonoff Fan"
+          #     show_header_toggle: false
+          #   filter:
+          #     include:
+          #       - entity_id: "*sonoff*fan*"
+          #   when:
+          #     entity: binary_sensor.sonoff_fan_status
+          #     state: 'on'
+          #
+          # - type: custom:auto-entities
+          #   card:
+          #     type: entities
+          #     title: "Sonoff POW R1"
+          #     show_header_toggle: false
+          #   filter:
+          #     include:
+          #       - entity_id: "*sonoff*pow*"
+          #
+          # - type: custom:auto-entities
+          #   card:
+          #     type: entities
+          #     title: "Sonoff: Shoe Cabinet"
+          #     show_header_toggle: false
+          #   filter:
+          #     include:
+          #       - entity_id: "*sonoff*shoe*"
+          #   when:
+          #     entity: binary_sensor.sonoff_shoe_cabinet_status
+          #     state: 'on'
 
-          - type: custom:monster-card
-            show_header_toggle: false
-            card:
-              type: entities
-              title: HX711
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "*bed_scale_pro*"
-            when:
-              entity: binary_sensor.bed_scale_pro_status
-              state: 'on'
-
-          - type: custom:monster-card
-            card:
-              type: entities
-              title: "Sonoff Fan"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "*sonoff*fan*"
-            when:
-              entity: binary_sensor.sonoff_fan_status
-              state: 'on'
-
-          - type: custom:monster-card
-            card:
-              type: entities
-              title: "Sonoff POW R1"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "*sonoff*pow*"
-
-          - type: custom:monster-card
-            card:
-              type: entities
-              title: "Sonoff: Shoe Cabinet"
-              show_header_toggle: false
-            filter:
-              include:
-                - entity_id: "*sonoff*shoe*"
-            when:
-              entity: binary_sensor.sonoff_shoe_cabinet_status
-              state: 'on'
-
-          - type: custom:monster-card
+          - type: custom:auto-entities
             card:
               type: entities
               title: "Sonoff: Kitchen Hood"
@@ -898,7 +1007,7 @@ views:
               entity: binary_sensor.sonoff_kitchen_hood_status
               state: 'on'
 
-          - type: custom:monster-card
+          - type: custom:auto-entities
             card:
               type: entities
               title: "Sonoff: Bathroom Mirror"
@@ -911,7 +1020,7 @@ views:
               entity: binary_sensor.sonoff_bathroom_mirror_light_status
               state: 'on'
 
-          - type: custom:monster-card
+          - type: custom:auto-entities
             card:
               type: entities
               title: Sonoffs
@@ -920,7 +1029,7 @@ views:
               include:
                 - entity_id: "*sonoff*"
 
-          - type: custom:monster-card
+          - type: custom:auto-entities
             card:
               type: entities
               title: Shellies
@@ -944,13 +1053,7 @@ views:
 
       - type: vertical-stack
         cards:
-          - type: custom:tracker-card
-            title:
-            trackers:
-              - sensor.custom_card_tracker
-              - sensor.custom_component_tracker
-
-          - type: custom:monster-card
+          - type: custom:auto-entities
             card:
               type: entities
               title: Things that are broken
@@ -961,13 +1064,24 @@ views:
               exclude:
                 - entity_id: group.*
                 - entity_id: cover.*
+          - type: custom:auto-entities
+            card:
+              type: entities
+              title: Low battery devices
+              show_header_toggle: false
+            filter:
+              include:
+                - attributes:
+                    battery: "<= 20"
+                - attributes:
+                    battery_level: "<= 20"
 
 
   - title: Settings
     id: settings
     path: settings
     icon: mdi:settings
-    panel: true
+    # panel: true
     cards:
       - type: entities
         title: Settings

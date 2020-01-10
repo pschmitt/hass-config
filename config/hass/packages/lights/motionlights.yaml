@@ -16,7 +16,7 @@ input_boolean:
     icon: mdi:run-fast
 
 
-lightingsm:
+entity_controller:
     motion_light_bathroom:
       sensor: binary_sensor.bathroom_motion_motion_sensor
       entities:
@@ -47,7 +47,7 @@ lightingsm:
       night_mode:
         delay: 1200
         service_data:
-          brightness: 60
+          brightness: 75
         start_time: '20:00:00'
         end_time: '06:00:00'
       overrides:

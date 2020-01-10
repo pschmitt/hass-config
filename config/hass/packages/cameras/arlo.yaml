@@ -1,80 +1,93 @@
-arlo:
+aarlo:
   username: !secret arlo_username
   password: !secret arlo_password
-
-
-alarm_control_panel:
-  platform: arlo
-  home_mode_name: Home
-  # scan_interval: 120
-
-
-ffmpeg:
-  ffmpeg_bin: /usr/bin/ffmpeg
+  db_motion_time: 30
+  db_ding_time: 10
+  recent_time: 10
+  last_format: '%m-%d %H:%M'
+  refresh_devices_every: 2
 
 
 camera:
-  platform: arlo
-  ffmpeg_arguments: '-pred 1 -q:v 2'
-  scan_interval: 120
+  - platform: aarlo
+    ffmpeg_arguments: '-pred 1 -q:v 2'
 
+
+alarm_control_panel:
+  - platform: aarlo
+    home_mode_name: night
+    away_mode_name: armed
+    trigger_time: 30
+    alarm_volume: 8
+
+
+binary_sensor:
+  - platform: aarlo
+    monitored_conditions:
+    - motion
+    - sound
+    - ding
 
 sensor:
-  platform: arlo
-  monitored_conditions:
-    - captured_today
+  - platform: aarlo
+    monitored_conditions:
     - last_capture
     - total_cameras
     - battery_level
+    - captured_today
     - signal_strength
-  scan_interval: 360
 
 
-shell_command:
-  arlo_mode: '/scripts/arlo-mode.py "{{ mode }}"'
+light:
+  - platform: aarlo
 
 
-script:
-  arlo_arm:
-    sequence:
-      - service: ifttt.trigger
+media_player:
+  - platform: aarlo
+
+
+switch:
+  - platform: aarlo
+    siren: True
+    all_sirens: True
+    snapshot: True
+    siren_volume: 1
+    siren_duration: 10
+
+
+automation:
+  - alias: Update Arlo Camera snapshot every 4h
+    initial_state: true
+    trigger:
+      - platform: time_pattern
+        hours: 4
+    action:
+      - service: camera.aarlo_request_snapshot
         data:
-          event: arlo_arm
-      - service: shell_command.arlo_mode
+          entity_id: camera.aarlo_front_door
+      - service: camera.aarlo_request_snapshot
         data:
-          mode: armed
-  arlo_disarm:
-    sequence:
-      - service: ifttt.trigger
+          entity_id: camera.aarlo_hallway
+      - service: camera.aarlo_request_snapshot
         data:
-          event: arlo_disarm
-      - service: shell_command.arlo_mode
-        data:
-          mode: disarmed
-  arlo_home:
-    sequence:
-      service: shell_command.arlo_mode
-      data:
-        mode: Home
-  arlo_roomba:
-    sequence:
-      service: shell_command.arlo_mode
-      data:
-        mode: Roomba
-  arlo_night:
-    sequence:
-      service: shell_command.arlo_mode
-      data:
-        mode: Night
+          entity_id: camera.aarlo_terrace
 
-
-homeassistant:
-  customize:
-    camera.front_door:
-      battery_friendly_name: Arlo - Front Door
-    camera.terrace:
-      battery_friendly_name: Arlo - Terrace
-    camera.hallway:
-      battery_friendly_name: Arlo - Hallway
+  - alias: Update Arlo Camera snapshot every 3s when recording
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: camera.aarlo_hallway, camera.aarlo_front_door, camera.aarlo_terrace
+        from: 'idle'
+        to: 'recording'
+        for: 00:00:03
+      - platform: state
+        entity_id: camera.aarlo_hallway, camera.aarlo_front_door, camera.aarlo_terrace
+        from: 'recently active'
+        to: 'recording'
+        for: 00:00:03
+    action:
+      - service: camera.aarlo_request_snapshot
+        data_template:
+          entity_id: "{{ trigger.entity_id }}"
 
 # vim: set filetype=yaml et sw=2 ts=2 :

@@ -24,3 +24,7 @@ __pycache__/
 options.xml
 www/her.jpg
 ip_bans.yaml
+.google_maps_location_sharing.cookies*
+*.tile.conf
+.aarlo
+.shopping_list.json

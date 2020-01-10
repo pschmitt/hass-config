@@ -1,0 +1,7 @@
+hacs:
+  token: 402fe88bb400f9514eb5a91fd95a600c7cef9458
+  appdaemon: true
+  sidepanel_title: HACS
+  sidepanel_icon: "mdi:alpha-c-box"
+
+# vim: set ft=yaml et ts=2 sw=2 :

@@ -257,12 +257,12 @@ script:
           payload: ARM_AWAY
           retain: True
       # Ensure Arlo base station is in armed mode
-      - service: script.arlo_arm
+      # - service: script.arlo_arm
       - service: homeassistant.turn_on
         data:
           entity_id: group.modect
       - service: alarm_control_panel.alarm_arm_away
-        entity_id: alarm_control_panel.arlomio
+        entity_id: alarm_control_panel.aarlo_arlomio
       - service: notify.html5
         data:
           message: "Alarm armed (away)"
@@ -278,7 +278,7 @@ script:
           payload: DISARM
           retain: True
       # Ensure Arlo base station is disarmed
-      - service: script.arlo_disarm
+      # - service: script.arlo_disarm
       - service: homeassistant.turn_off
         data:
           entity_id: group.modect
@@ -288,7 +288,7 @@ script:
           data:
             tag: 'alarm-disarmed'
       - service: alarm_control_panel.alarm_disarm
-        entity_id: alarm_control_panel.arlomio
+        entity_id: alarm_control_panel.aarlo_arlomio
 
   alarm_triggered:
     alias: 'Alarm triggered'
@@ -307,20 +307,6 @@ script:
           name: Alarm
           message: has been triggered
           domain: alarm
-
-  send_snapshot:
-    alias: Send a picture of a camera to zanzito
-    sequence:
-      - service: camera.snapshot
-        data_template:
-          entity_id: 'camera.{{ camera }}'
-          filename: '/tmp/snap_{{ camera }}.jpg'
-      - service: notify.zanzito
-        data_template:
-          message: 'Movement detected on {{ camera }}'
-          data:
-            photo:
-              - file: '/tmp/snap_{{ camera }}.jpg'
 
 
 homeassistant:

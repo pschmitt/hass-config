@@ -1,1 +1,0 @@
-./appdaemon-motion-lights/custom_components/lightingsm.py

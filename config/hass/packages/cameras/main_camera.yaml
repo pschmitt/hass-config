@@ -1,3 +1,5 @@
+stream:
+
 switch:
   platform: template
   switches:
