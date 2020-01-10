@@ -12,8 +12,9 @@ group:
     icon: mdi:cellphone-android
     entities:
       # - device_tracker.google_maps_111748235994603810778
-      - group.ph1
       # - group.g4p
+      # - group.ph1
+      - group.m2s
 
   ph1:
     name: "ph1"
@@ -23,7 +24,22 @@ group:
       - device_tracker.pschmitt_ph1
       - device_tracker.ph1_arp
       - device_tracker.ph1_ping
-      # - device_tracker.ph1_zanzito
+
+  n5x:
+    name: "n5x"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.n5x_arp
+      - device_tracker.n5x_ping
+
+  m2s:
+    name: "m2s"
+    view: no
+    icon: mdi:cellphone-android
+    entities:
+      - device_tracker.m2s_arp
+      - device_tracker.m2s_ping
 
   g4p:
     name: "g4p"
@@ -32,7 +48,6 @@ group:
     entities:
       - device_tracker.g4p_arp
       - device_tracker.g4p_ping
-      - device_tracker.g4p_zanzito
 
   anika:
     name: "Anika"
