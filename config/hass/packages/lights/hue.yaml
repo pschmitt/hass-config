@@ -14,16 +14,16 @@ input_number:
     max: 480
 
 
-device_tracker:
-  - platform: hue
+# device_tracker:
+#   - platform: huesensor
 
 
 binary_sensor:
-  - platform: hue
+  - platform: huesensor
 
 
 sensor:
-  - platform: hue
+  - platform: huesensor
 
   - platform: template
     sensors:
