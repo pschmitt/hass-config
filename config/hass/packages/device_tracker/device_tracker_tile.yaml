@@ -1,0 +1,10 @@
+device_tracker:
+  - platform: tile
+    username: !secret tile_username
+    password: !secret tile_password
+    monitored_variables:
+      - TILE
+      - PHONE
+    show_inactive: false
+
+# vim: set filetype=yaml et sw=2 ts=2 :

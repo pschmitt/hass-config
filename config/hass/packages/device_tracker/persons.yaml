@@ -1,0 +1,16 @@
+person:
+  - name: "Philipp Schmitt"
+    id: pschmitt
+    user_id: 2617648edec543ae9f964dedbee648bb
+    device_trackers:
+      - device_tracker.mi_mix_2s
+      - device_tracker.m2s_arp
+      - device_tracker.m2s_ping
+
+  # - name: "Anika Bergmann"
+  #   id: abergmann
+  #   device_trackers:
+  #     - device_tracker.anika_iphone
+  #     - device_tracker.anika_tablet
+
+# vim: set filetype=yaml et sw=2 ts=2 :
