@@ -1,11 +1,4 @@
 sensor:
-  - platform: transmission
-    host: nasteanas.lan
-    monitored_variables:
-      - 'download_speed'
-      # - 'current_status'
-      # - 'upload_speed'
-
   - platform: command_line
     name: Torrent IP
     command: "/scripts/get_torrent_ip.py nasteanas.lan"
@@ -21,5 +14,9 @@ binary_sensor:
           - sensor.torrent_ip
           - sensor.myipopendnscom
         device_class: problem
+
+
+transmission:
+  host: 10.7.0.216
 
 # vim: set filetype=yaml et sw=2 ts=2 :
