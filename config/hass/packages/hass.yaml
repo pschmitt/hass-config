@@ -15,12 +15,6 @@ automation:
       - service: frontend.set_theme
         data:
           name: dark_theme
-      # Request zanzito update
-      - service: mqtt.publish
-        data:
-          topic: zanzito/ph1/cmd/send_heartbeat
-          qos: 0
-          retain: 0
       - delay: 00:05:00
       - service: script.enable_annoying_automations
       # Purge DB
