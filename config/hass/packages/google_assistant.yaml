@@ -21,6 +21,8 @@ cloud:
         - script.bedtime
         - script.cover_movie_smoke_break
         - script.cover_privacy
+        - script.exercising
+        - script.stop_exercising
         - script.play_pause_living_room_tv
         - script.watch_m6
         - script.watch_tf1
@@ -308,6 +310,22 @@ cloud:
           - tout
           - everything
         room: void
+
+      script.exercising:
+        name: "Exercising"
+        aliases:
+          - "Sport"
+          - "faire du sport"
+          - "faire du vélo"
+          - "let's exercise"
+        room: office
+
+      script.stop_exercising:
+        name: "Stop Exercising"
+        aliases:
+          - "on arrête de faire du sport"
+          - "j'ai fini mon sport"
+        room: office
 
       switch.front_door_lock:
         name: "Front door lock"

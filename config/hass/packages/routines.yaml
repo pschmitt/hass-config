@@ -326,6 +326,28 @@ script:
               icon: https://materialdesignicons.com/api/download/28F85724-265B-4C24-9975-DDDF788A99E5/000000/1/FFFFFF/0/48
               title: Postpone
 
+  exercising:
+    sequence:
+      - service: cover.open_cover
+        entity_id: cover.office
+      - service: media_player.turn_on
+        entity_id: media_player.office_tv
+      - service: light.turn_on
+        entity_id:
+          - light.hue_office
+          - light.yeelight_office
+
+  stop_exercising:
+    sequence:
+      - service: cover.close_cover
+        entity_id: cover.office
+      - service: media_player.turn_off
+        entity_id: media_player.office_tv
+      - service: light.turn_off
+        entity_id:
+          - light.hue_office
+          - light.yeelight_office
+
 
 scene:
   - name: Homecoming lights
