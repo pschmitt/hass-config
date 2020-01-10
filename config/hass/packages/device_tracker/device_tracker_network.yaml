@@ -28,6 +28,8 @@ device_tracker:
     hosts:
       g4p_ping: g4p.lan
       ph1_ping: ph1.lan
+      n5x_ping: 10.7.0.168
+      m2s_ping: m2s.lan
 
   # - platform: nmap_tracker
   #   hosts: oneplus_3t.lan
