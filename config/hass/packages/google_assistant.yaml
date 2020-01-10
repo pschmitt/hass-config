@@ -19,7 +19,6 @@ cloud:
         # - script.alarm_disarm
         - script.all_off
         - script.bedtime
-        - script.buzz_door_open_multiple
         - script.cover_movie_smoke_break
         - script.cover_privacy
         - script.play_pause_living_room_tv
@@ -301,16 +300,6 @@ cloud:
           - "la TV du bureau"
           - "la télé du bureau"
         room: Office
-
-      script.buzz_door_open_multiple:
-        name: Buzz open
-        aliases:
-          - Appartement door (Nuki)
-          - Appartement door
-          - outside door
-          - en bas
-          - "porte d'en bas"
-        room: void
 
       script.all_off:
         name: "All off"
