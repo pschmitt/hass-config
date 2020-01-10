@@ -1,5 +1,5 @@
 tts:
-  - platform: google
+  - platform: google_translate
     cache_dir: /tmp/tts.cache
     time_memory: 900
     language: 'fr'
