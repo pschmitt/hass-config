@@ -1,20 +1,6 @@
 device_tracker:
-  # Zanzito devices
-  - platform: mqtt_json
-    devices:
-      g4p_zanzito: zanzito/g4play/location
-      ph1_zanzito: zanzito/ph1/location
-
   - platform: mqtt
     devices:
       ph1_bluetooth_office: hassistant/states/device_tracker/essential_phone/state
-
-
-homeassistant:
-  customize:
-    device_tracker.g4p_zanzito:
-      battery_friendly_name: Moto G4 Play
-    device_tracker.ph1_zanzito:
-      battery_friendly_name: Essential PH-1
 
 # vim: set filetype=yaml et sw=2 ts=2 :
