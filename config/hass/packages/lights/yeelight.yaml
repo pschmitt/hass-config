@@ -1,8 +1,7 @@
-light:
-  - platform: yeelight
-    devices:
-      "yeelight-office.lan":
-        name: YeeLight Office
+yeelight:
+  devices:
+    "yeelight-office.lan":
+      name: YeeLight Office
 
 
 homeassistant:
