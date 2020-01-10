@@ -122,7 +122,7 @@ automation:
     action:
       - service: script.close_main_covers
 
-  - alias: "Ask to buzz door open when approaching home"
+  - alias: "Ask to let me in when approaching home"
     initial_state: false
     trigger:
       - platform: numeric_state
@@ -136,30 +136,24 @@ automation:
     action:
       - service: notify.html5
         data:
-          message: "You are approaching home. Wanna make me buzz you in?"
+          message: "You are approaching home. Are you going home?"
           data:
-            tag: 'buzz-open-query'
+            tag: 'let-me-in-query'
             renotify: true
             actions:
-              - action: buzz_open
+              - action: let_me_in
                 icon: https://materialdesignicons.com/api/download/icon/png/E357D5CD-7E42-463B-899A-7D7B038A3E31/48
-                title: "Buzz Open"
+                title: "Let me in"
 
-  - alias: "HTML5 notification: Buzz open"
+  - alias: "HTML5 notification: Let me in"
     initial_state: true
     trigger:
       platform: event
       event_type: html5_notification.clicked
       event_data:
-        action: buzz_open
+        action: let_me_in
     action:
-      - service: script.buzz_door_open_multiple
-      - service: script.unlock_door
-      - service: script.homecoming_lights
-      - service: script.alarm_disarm
-      - service: script.open_all_covers_if_sun_is_up
-      - service: cover.open_cover
-        entity_id: cover.living_room_door
+      - service: script.let_me_in
 
   - alias: "HTML5 notification: Bedtime - all off"
     initial_state: true
@@ -278,7 +272,6 @@ script:
   let_me_in:
     alias: 'Let me in!'
     sequence:
-      - service: script.buzz_door_open_multiple
       - service: script.unlock_door
       - service: script.homecoming_lights
       - service: script.alarm_disarm
@@ -319,9 +312,6 @@ script:
       - service: script.tts_say
         data:
           message: "C'est l'heure!"
-      - service: notify.zanzito_tts
-        data:
-          message: "It's time!"
       - service: script.flash_lights
 
   train_reminder:
