@@ -1,3 +1,16 @@
+meteo_france:
+  - city: !secret postal_code
+    monitored_conditions:
+      - rain_chance
+      - freeze_chance
+      - thunder_chance
+      - snow_chance
+      - weather
+      - next_rain
+      - wind_speed
+      - temperature
+      - uv
+
 weather:
   - platform: darksky
     name: darksky
@@ -11,19 +24,6 @@ weather:
 
 
 sensor:
-  - platform: meteo_france
-    postal_code: !secret postal_code
-    monitored_conditions:
-      - temperature
-      - weather
-      - wind_speed
-      - uv
-      - next_rain
-      - freeze_chance
-      - rain_chance
-      - snow_chance
-      - thunder_chance
-
   - platform: yr
     monitored_conditions:
       - symbol
@@ -45,7 +45,7 @@ sensor:
 
   - platform: darksky
     api_key: !secret darksky_api_key
-    update_interval: '00:03:00'
+    scan_interval: '00:05:00'
     forecast:
       - 0
       - 1

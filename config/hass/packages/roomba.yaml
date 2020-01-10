@@ -94,7 +94,8 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: vacuum.nimbus
+      # entity_id: vacuum.nimbus
+      entity_id: input_boolean.roomba_running
       to: "on"
     action:
       - service: script.arlo_roomba
@@ -106,7 +107,8 @@ automation:
     initial_state: true
     trigger:
       platform: state
-      entity_id: vacuum.nimbus
+      # entity_id: vacuum.nimbus
+      entity_id: input_boolean.roomba_running
       to: "off"
     action:
       - service: script.turn_off_lights_if_we_are_away
