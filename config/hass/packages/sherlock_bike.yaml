@@ -1,7 +1,0 @@
-device_tracker:
-  - platform: sherlock_bike
-    username: !secret sherlock_bike_username
-    password: !secret sherlock_bike_password
-
-
-# vim: set filetype=yaml et sw=2 ts=2 :
