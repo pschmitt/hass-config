@@ -11,14 +11,14 @@ sensor:
     sensors:
       ip_location_short:
         friendly_name: WAN IP
-        value_template: '{{ states.sensor.myipopendnscom.state }} ({{ states.sensor.ip_location.state }})'
+        value_template: '{{ states.sensor.myip.state }} ({{ states.sensor.ip_location.state }})'
 
 
 binary_sensor:
   - platform: template
     sensors:
       vpn_state:
-        value_template: '{{ states.sensor.ip_location.state == "Switzerland" }}'
+        value_template: '{{ states.sensor.ip_location.state != "France" }}'
         friendly_name: 'VPN State'
 
 
