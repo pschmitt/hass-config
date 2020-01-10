@@ -1,7 +1,10 @@
 media_player:
   - platform: webostv
     host: lgwebostv.lan
-    mac: !secret lg_tv_mac_addr
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret lg_tv_mac_addr
     name: LG living room TV
     customize:
       sources:
