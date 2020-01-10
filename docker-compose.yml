@@ -157,14 +157,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
-  tasmoadmin:
-    restart: unless-stopped
-    image: raymondmm/tasmoadmin
-    ports:
-      - 9541:80
-    volumes:
-      - ./data/tasmoadmin:/data
-
 
 networks:
   backend:
