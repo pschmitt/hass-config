@@ -96,7 +96,7 @@ automation:
       condition: template
       value_template: "{{ not is_state('sensor.octoprint_current_state', 'Paused') }}"
     action:
-      - service: notify.zanzito_tts
+      - service: notify.html5
         data:
           message: "3D Print finished"
           data:
@@ -120,9 +120,6 @@ automation:
           message: "Woops! The 3D print has failed..."
           data:
             tag: "3d_print_failed"
-      - service: notify.zanzito_tts
-        data:
-          message: "Awww jeez the 3D print has failed"
 
   - alias: Turn on lights if the sun goes down and there is an ongoing print
     initial_state: true
@@ -162,9 +159,6 @@ automation:
           message: "3D printing timelapse rendering has ended"
           data:
             tag: "3d_print_timelapse_rendered"
-      - service: notify.zanzito_tts
-        data:
-          message: "Timelapse rendered"
 
 
 homeassistant:
