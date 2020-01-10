@@ -12,6 +12,7 @@ services:
       - NET_ADMIN  # Required for adding new routes
     extra_hosts:
       - "hass-db:172.92.92.92"
+      - "mqtt:172.92.92.95"
     volumes:
       - ./certs:/certs:ro
       - ./config/hass:/config
@@ -79,14 +80,34 @@ services:
       - "traefik.frontend.rule=Host:graphs.home.comreset.io"
       - "traefik.port=3000"
 
-  mqtt-proxy:
-    image: pschmitt/stunnel
-    container_name: mqtt-proxy
-    restart: unless-stopped
+  lego:
+    image: xenolf/lego
+    environment:
+      - CF_API_EMAIL=philipp@schmitt.co
+      - CF_API_KEY=***REMOVED***
+    volumes:
+      - ./data/lego:/data
+    command: >
+      --path /data
+      --accept-tos
+      --email="philipp@schmitt.co"
+      --domains="mqtt.comreset.io"
+      --dns="cloudflare"
+      renew --days 30
+
+  mqtt:
+    image: eclipse-mosquitto
+    container_name: mqtt
+    volumes:
+      - ./config/mqtt:/mosquitto/config:ro
+      - ./data/mqtt:/mosquitto/data
+      - ./data/lego/certificates:/certs:ro
     ports:
       - 1883:1883
-    volumes:
-      - ./config/stunnel:/config:ro
+      - 8883:8883
+    networks:
+      backend:
+        ipv4_address: 172.92.92.95
 
   appdaemon:
     image: acockburn/appdaemon
