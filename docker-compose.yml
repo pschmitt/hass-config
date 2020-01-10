@@ -27,11 +27,22 @@ services:
       interval: 30s
       retries: 3
     labels:
-      - "com.centurylinklabs.watchtower.enable=false"
+      # Traefik v2
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.hass-http.entrypoints=http"
+      # - "traefik.http.routers.hass-http.rule=Host(`home.comreset.io`)"
+      # - "traefik.http.routers.hass-http.middlewares=tls-redirect@file"
+      # - "traefik.http.routers.hass-https.entrypoints=https"
+      # - "traefik.http.routers.hass-https.rule=Host(`home.comreset.io`)"
+      # - "traefik.http.routers.hass-https.tls=true"
+      # - "traefik.http.routers.hass-https.tls.certresolver=le"
+      # - "traefik.http.routers.hass-https.service=hass"
+      # - "traefik.http.services.hass.loadbalancer.server.port=8123"
       - "traefik.enable=true"
       - "traefik.backend=home-assistant"
-      - "traefik.frontend.rule=Host:home.comreset.io"
+      - "traefik.frontend.rule=Host:home.comreset.io,heimat.dev,hass.heimat.dev"
       - "traefik.port=8123"
+      - "com.centurylinklabs.watchtower.enable=false"
       - "autoheal=true"
 
   database:
