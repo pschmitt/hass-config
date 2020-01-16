@@ -86,7 +86,7 @@ cards:
           - camera.c2
           - cover.kitchen
           - light.hue_kitchen
-          - switch.sonoff_kitchen_hood
+          - switch.sonoff_kitchen_hood_relay
 
       # - type: picture-glance
       #   camera_image: camera.g4p
