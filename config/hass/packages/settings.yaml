@@ -21,7 +21,6 @@ input_datetime:
     name: Bedtime
     has_date: false
     has_time: true
-    initial: '21:50'
 
 
 automation:
