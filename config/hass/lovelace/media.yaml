@@ -1,0 +1,342 @@
+title: Media
+id: media
+path: media
+icon: mdi:play-box-outline
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:plan-coordinates
+      - type: picture-elements
+        image: /local/remote-background.png
+        elements:
+          - type: state-icon
+            entity: input_select.tv_activity
+            style:
+              top: 90%
+              left: 90%
+
+          - type: icon
+            icon: mdi:power
+            title: "Power Toggle"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "PowerToggle"
+            style:
+              top: 10%
+              left: 10%
+              color: red
+
+          - type: icon
+            icon: mdi:home
+            title: "Home"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "40563742"
+                command: "Home"
+            style:
+              top: 10%
+              left: 20%
+
+          - type: icon
+            icon: mdi:play-pause
+            title: "Pause"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "Pause"
+            style:
+              top: 70%
+              left: 10%
+
+          - type: icon
+            icon: mdi:subdirectory-arrow-left
+            title: "Back"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "Back"
+            style:
+              top: 90%
+              left: 10%
+
+          - type: icon
+            icon: mdi:checkbox-blank-circle
+            title: "OK"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "OK"
+            style:
+              top: 50%
+              left: 52%
+              --iron-icon-height: 80px
+              --iron-icon-width: 80px
+
+          - type: icon
+            icon: mdi:menu-up
+            title: "Up"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "DirectionUp"
+            style:
+              top: 25%
+              left: 52%
+              --iron-icon-height: 80px
+              --iron-icon-width: 80px
+
+          - type: icon
+            icon: mdi:menu-down
+            title: "Down"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "DirectionDown"
+            style:
+              top: 75%
+              left: 52%
+              --iron-icon-height: 80px
+              --iron-icon-width: 80px
+
+          - type: icon
+            icon: mdi:menu-left
+            title: "Left"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "DirectionLeft"
+            style:
+              top: 50%
+              left: 34%
+              --iron-icon-height: 80px
+              --iron-icon-width: 80px
+
+          - type: icon
+            icon: mdi:menu-right
+            title: "Right"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "DirectionRight"
+            style:
+              top: 50%
+              left: 72%
+              --iron-icon-height: 80px
+              --iron-icon-width: 80px
+
+          - type: icon
+            icon: mdi:skip-previous
+            title: "Previous"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "40565609"
+                command: "ChannelDown"
+            style:
+              top: 37.5%
+              left: 10%
+
+          - type: icon
+            icon: mdi:skip-next
+            title: "Next"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "40565609"
+                command: "ChannelUp"
+            style:
+              top: 37.5%
+              left: 20%
+
+          - type: icon
+            icon: mdi:volume-off
+            title: "Mute"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "Mute"
+            style:
+              top: 70%
+              left: 90%
+
+          - type: icon
+            icon: mdi:volume-plus
+            title: "Volume Up"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "VolumeUp"
+            style:
+              top: 30%
+              left: 95%
+
+          - type: icon
+            icon: mdi:volume-plus
+            title: "Volume Up"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "40563742"
+                command: "VolumeUp"
+            style:
+              top: 30%
+              left: 85%
+              color: cyan
+
+          - type: icon
+            icon: mdi:volume-minus
+            title: "Volume Down"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "42046341"
+                command: "VolumeDown"
+            style:
+              top: 50%
+              left: 95%
+
+          - type: icon
+            icon: mdi:volume-minus
+            title: "Volume Down"
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.harmony_hub
+                device: "40563742"
+                command: "VolumeDown"
+            style:
+              top: 50%
+              left: 85%
+              color: cyan
+
+      - type: entity-filter
+        entities:
+          - media_player.livebox_play
+        state_filter:
+          - 'playing'
+          - 'on'
+        show_empty: false
+        card:
+          type: media-control
+          entity: media_player.livebox_play
+
+      # - type: media-control
+      #   entity: media_player.living_room_tv
+
+  - type: entities
+    # title: Media
+    entities:
+      - type: custom:mini-media-player
+        entity: media_player.cast_home_group
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.living_room_tv
+        name: Living Room TV
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.living_room_speaker
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.living_room_assistant
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.kitchen_assistant
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - entity: media_player.office_tv
+        type: "custom:mini-media-player"
+        group: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+        name: Office TV (universal)
+      - entity: media_player.cast_office_tv
+        type: "custom:mini-media-player"
+        group: true
+        name: Office TV (cast)
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - entity: media_player.office_speaker
+        type: "custom:mini-media-player"
+        group: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - entity: media_player.office_assistant
+        type: "custom:mini-media-player"
+        group: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+      - type: custom:mini-media-player
+        entity: media_player.bathroom_assistant
+        group: true
+        artwork_border: true
+        hide_power: false
+        hide_volume: false
+        show_source: true
+
+# vim: set filetype=yaml et sw=2 ts=2 :

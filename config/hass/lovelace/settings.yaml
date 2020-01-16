@@ -1,0 +1,23 @@
+title: Settings
+id: settings
+path: settings
+icon: mdi:settings
+panel: true
+cards:
+  - type: entities
+    title: Settings
+    show_header_toggle: false
+    entities:
+      - input_boolean.dnd
+      - input_boolean.vacation
+      - input_boolean.ac_off_the_window
+      - input_boolean.sleepover
+      - input_boolean.motion_light_front_door
+      - input_boolean.motion_light_office
+      - input_boolean.motion_light_living_room
+      - input_boolean.motion_light_terrace
+      - input_datetime.bedtime
+      - input_datetime.roomba_autostart_time
+      - input_number.smoke_break_duration
+
+# vim: set filetype=yaml et sw=2 ts=2 :

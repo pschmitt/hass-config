@@ -1,0 +1,285 @@
+title: Home
+id: home
+path: home
+icon: mdi:home-modern
+cards:
+  - type: vertical-stack
+    cards:
+      - type: glance
+        show_name: false
+        columns: 5
+        entities:
+          - sensor.home_temperature
+          - sensor.smappee_home_active_power
+          - alarm_control_panel.ha_alarm_mqtt
+          - alarm_control_panel.aarlo_arlomio
+          - entity: lock.front_door
+            tap_action:
+              action: toggle
+
+      - type: glance
+        show_name: false
+        show_state: false
+        columns: 6
+        entities:
+          - entity: script.all_off
+            tap_action:
+              action: call-service
+              service: script.all_off
+          - entity: script.let_me_in
+            icon: mdi:account-key
+            tap_action:
+              action: call-service
+              service: script.let_me_in
+          - entity: script.cover_privacy
+            tap_action:
+              action: call-service
+              service: script.cover_privacy
+          - entity: script.cover_movie_smoke_break
+            tap_action:
+              action: call-service
+              service: script.cover_movie_smoke_break
+          # - entity: cover.all_covers
+          - entity: group.all_covers
+          - entity: group.all_lights
+            tap_action:
+              action: toggle
+
+      - type: picture-glance
+        camera_image: camera.c1
+        title: Living Room
+        camera_view: live
+        entities:
+          - camera.c1
+          - cover.living_room
+          - light.hue_living_room_table
+          - light.hue_living_room_tv
+
+      - type: picture-glance
+        camera_image: camera.doorpi
+        title: Entrance
+        entities:
+          - camera.doorpi
+          - light.hue_front_door
+          - light.hue_kitchen
+          - light.living_room
+
+      - type: shopping-list
+        title: TODO
+
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            entity: sensor.home_temperature
+            name: Home Temperature
+            graph: line
+            hours_to_show: 6
+          - type: sensor
+            entity: sensor.smappee_home_active_power
+            name: Power Consumption
+            graph: line
+            hours_to_show: 6
+
+      - type: entity-filter
+        # title: Activity
+        entities:
+          # Users
+          - entity: device_tracker.google_maps_111748235994603810778
+            name: pschmitt
+          - entity: device_tracker.tile_b6eae4895e3347b4
+            name: KeySmart Pro
+          - entity: device_tracker.m2s_arp
+            name: m2s (arp)
+          - entity: device_tracker.m2s_ping
+            name: m2s (ping)
+          # - entity: device_tracker.pschmitt_ph1
+          #   name: ph1 (mqtt)
+          # - entity: device_tracker.ph1_arp
+          #   name: ph1 (arp)
+          #   icon: mdi:wifi
+          # - entity: device_tracker.ph1_ping
+          #   name: ph1 (ping)
+          #   icon: mdi:ip-network
+          # - entity: device_tracker.ph1_bluetooth_office
+          #   icon: mdi:bluetooth-connect
+          #   name: ph1 (bt)
+          # - entity: device_tracker.1070140_10cdb60375cc
+          #   icon: mdi:bluetooth-connect
+          #   name: ph1 (bt@LivingRoom)
+          - entity: device_tracker.sherlock_5666480997793792
+            icon: mdi:bike
+            name: Sherlock
+          # Appliances
+          - entity: binary_sensor.octoprint_printing
+            name: 3D Printer
+          - binary_sensor.washing_machine
+          - media_player.living_room_tv
+          - media_player.office_tv
+          - media_player.livebox_play
+          - binary_sensor.door_window_sensor_bedroom_door
+          - binary_sensor.door_window_sensor_bedroom_terrace_door
+          - binary_sensor.door_window_sensor_bedroom_window
+          - binary_sensor.door_window_sensor_front_door
+          - binary_sensor.door_window_sensor_kitchen_window
+          - binary_sensor.door_window_sensor_living_room_window
+          - binary_sensor.door_window_sensor_office_window_large
+          - binary_sensor.door_window_sensor_office_window_small
+          - binary_sensor.door_window_sensor_terrace_door
+          # - binary_sensor.bathroom_presence
+          # - binary_sensor.hallway_presence
+          # - binary_sensor.kitchen_presence
+          # - binary_sensor.toilet_presence
+          - binary_sensor.motion_sensor_front_door
+          - binary_sensor.motion_sensor_living_room
+          - binary_sensor.motion_sensor_office
+          - binary_sensor.motion_sensor_terrace
+          - media_player.living_room_tv
+          - entity: light.living_room
+            tap_action:
+              action: toggle
+          - entity: light.office
+            tap_action:
+              action: toggle
+          - entity: light.3d_printer_led
+            tap_action:
+              action: toggle
+          - entity: light.aqara_gateway_light
+            tap_action:
+              action: toggle
+          - entity: light.bathroom
+            tap_action:
+              action: toggle
+          - entity: light.bathroom_ceiling
+            tap_action:
+              action: toggle
+          - entity: light.bathroom_mirror
+            tap_action:
+              action: toggle
+          - entity: light.hue_bathroom
+            tap_action:
+              action: toggle
+          - entity: light.hue_bedroom
+            tap_action:
+              action: toggle
+          - entity: light.hue_front_door
+            tap_action:
+              action: toggle
+          - entity: light.hue_hallway
+            tap_action:
+              action: toggle
+          - entity: light.hue_kitchen
+            tap_action:
+              action: toggle
+          - entity: light.hue_living_room_table
+            tap_action:
+              action: toggle
+          - entity: light.hue_living_room_tv
+            tap_action:
+              action: toggle
+          - entity: light.hue_office
+            tap_action:
+              action: toggle
+          - entity: light.hue_terrace
+            tap_action:
+              action: toggle
+          - entity: light.hue_toilet
+            tap_action:
+              action: toggle
+          - entity: light.yeelight_office
+            tap_action:
+              action: toggle
+          - entity: lock.front_door
+            tap_action:
+              action: toggle
+          - entity: vacuum.nimbus
+            tap_action:
+              action: toggle
+        state_filter:
+          - 'on'
+          - 'unlocked'
+          - 'home'
+          - 'playing'
+        show_empty: false
+        card:
+          type: glance
+          title: Activity
+          show_state: false
+
+      - type: glance
+        show_name: false
+        show_state: false
+        columns: 4
+        entities:
+          - entity: light.cooking_area
+            tap_action:
+              action: toggle
+          - entity: light.sleeping_area
+            tap_action:
+              action: toggle
+          - entity: light.hue_terrace
+            tap_action:
+              action: toggle
+          - entity: light.living_room
+            tap_action:
+              action: toggle
+          - entity: light.hue_front_door
+            tap_action:
+              action: toggle
+          - entity: light.hue_living_room_table
+            tap_action:
+              action: toggle
+          - entity: light.hue_living_room_tv
+            tap_action:
+              action: toggle
+
+      - type: glance
+        show_name: false
+        show_state: false
+        # columns: 6
+        entities:
+          # - entity: switch.sonoff_fan_relay
+          #   tap_action:
+          #     action: toggle
+          - entity: switch.sonoff_kitchen_hood_relay
+            tap_action:
+              action: toggle
+          - entity: switch.wemo_insight_washing_machine
+            tap_action:
+              action: toggle
+          - entity: switch.roomba
+          # - entity: vacuum.nimbus
+            # icon: mdi:roomba
+            tap_action:
+              action: turn-on
+            hold_action:
+              action: turn-off
+          - entity: switch.3d_printer_psu
+            tap_action:
+              action: toggle
+          - entity: switch.office_monitor
+            tap_action:
+              action: toggle
+          - entity: group.fridge
+          - entity: switch.dishwasher
+
+  - type: vertical-stack
+    cards:
+      - type: map
+        aspect_ratio: 0.46
+        entities:
+          # - device_tracker.google_maps_111748235994603810778
+          # - device_tracker.sherlock_5666480997793792
+          # - device_tracker.pschmitt_ph1
+          - device_tracker.mi_mix_2s
+          - device_tracker.m2s_arp
+          - device_tracker.tile_b6eae4895e3347b4
+          - zone.home
+          - zone.work
+          - zone.work_hers
+
+      - type: weather-forecast
+        entity: weather.darksky
+
+# vim: set filetype=yaml et sw=2 ts=2 :

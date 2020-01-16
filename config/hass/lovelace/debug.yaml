@@ -1,0 +1,194 @@
+title: DEBUG
+id: debug
+path: debug
+icon: mdi:bug
+cards:
+  - type: custom:plan-coordinates
+
+  - type: vertical-stack
+    cards:
+      - type: glance
+        show_state: false
+        show_name: false
+        columns: 7
+        entities:
+          - group.all_battery_devices
+          - group.low_battery_devices
+          - group.all_covers
+
+      - type: entities
+        title: Debug
+        show_header_toggle: false
+        entities:
+          - sensor.home_assistant_uptime
+          - binary_sensor.bed_occupied
+          - type: divider
+          - group.main_mobile_devices
+          - group.pschmitt_location
+          - group.m2s
+          - group.anika
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        title: Philips Hue Sensors
+        show_header_toggle: false
+        entities:
+          - sensor.master_dimmer_switch
+          - sensor.living_room_dimmer_switch
+          - type: divider
+          - binary_sensor.bathroom_motion_motion_sensor
+          - binary_sensor.kitchen_motion_motion_sensor
+          - binary_sensor.hallway_motion_motion_sensor
+          - binary_sensor.toilet_motion_motion_sensor
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Devices @Home"
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: "device_tracker"
+          exclude:
+            - state: 'away'
+            - state: 'not_home'
+
+      # - type: custom:auto-entities
+      #   show_header_toggle: false
+      #   card:
+      #     type: entities
+      #     title: "BT Presence"
+      #     show_header_toggle: false
+      #   filter:
+      #     include:
+      #       - entity_id: "*bt_presence*"
+      #
+      # - type: custom:auto-entities
+      #   show_header_toggle: false
+      #   card:
+      #     type: entities
+      #     title: HX711
+      #     show_header_toggle: false
+      #   filter:
+      #     include:
+      #       - entity_id: "*bed_scale_pro*"
+      #   when:
+      #     entity: binary_sensor.bed_scale_pro_status
+      #     state: 'on'
+      #
+      # - type: custom:auto-entities
+      #   card:
+      #     type: entities
+      #     title: "Sonoff Fan"
+      #     show_header_toggle: false
+      #   filter:
+      #     include:
+      #       - entity_id: "*sonoff*fan*"
+      #   when:
+      #     entity: binary_sensor.sonoff_fan_status
+      #     state: 'on'
+      #
+      # - type: custom:auto-entities
+      #   card:
+      #     type: entities
+      #     title: "Sonoff POW R1"
+      #     show_header_toggle: false
+      #   filter:
+      #     include:
+      #       - entity_id: "*sonoff*pow*"
+      #
+      # - type: custom:auto-entities
+      #   card:
+      #     type: entities
+      #     title: "Sonoff: Shoe Cabinet"
+      #     show_header_toggle: false
+      #   filter:
+      #     include:
+      #       - entity_id: "*sonoff*shoe*"
+      #   when:
+      #     entity: binary_sensor.sonoff_shoe_cabinet_status
+      #     state: 'on'
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Sonoff: Kitchen Hood"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*sonoff*kitchen*hood*"
+        when:
+          entity: binary_sensor.sonoff_kitchen_hood_status
+          state: 'on'
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Sonoff: Bathroom Mirror"
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*sonoff*bathroom*"
+            - entity_id: "light.*bathroom_mirror*"
+        when:
+          entity: binary_sensor.sonoff_bathroom_mirror_light_status
+          state: 'on'
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Sonoffs
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*sonoff*"
+
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Shellies
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*shelly*"
+
+  # - type: picture-elements
+  #   image: /local/ac-remote.png
+  #   elements:
+  #     - type: service-button
+  #       title: Toogle AC
+  #       style:
+  #         top: 10%
+  #         left: 50%
+  #       service: remote.send_command
+  #       service_data:
+  #         entity_id: remote.xiaomi_miio_10_7_0_203
+  #         command: ac_toggle
+
+  - type: vertical-stack
+    cards:
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Things that are broken
+          show_header_toggle: false
+        filter:
+          include:
+            - state: "unknown"
+          exclude:
+            - entity_id: group.*
+            - entity_id: cover.*
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: Low battery devices
+          show_header_toggle: false
+        filter:
+          include:
+            - attributes:
+                battery: "<= 15"
+            - attributes:
+                battery_level: "<= 15"
+
+# vim: set filetype=yaml et sw=2 ts=2 :

@@ -1,0 +1,42 @@
+title: Lights
+id: lights
+path: lights
+icon: mdi:lightbulb
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.living_room
+          - type: light
+            entity: light.hue_living_room_table
+            name: Table
+          - type: light
+            entity: light.hue_living_room_tv
+            name: TV
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.hue_front_door
+            name: Front door
+          - type: light
+            entity: light.hue_terrace
+            name: Terrace
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.hue_bedroom
+            name: Bedroom
+          - type: light
+            entity: light.hue_bathroom
+            name: Bathroom
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.yeelight_office
+          - type: light
+            entity: light.hue_office
+            name: Office
+
+# vim: set filetype=yaml et sw=2 ts=2 :

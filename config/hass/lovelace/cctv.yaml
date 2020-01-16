@@ -1,0 +1,130 @@
+title: CCTV
+id: cctv
+path: cctv
+icon: mdi:cctv
+cards:
+  - type: vertical-stack
+    cards:
+      # - type: picture-glance
+      #   camera_image: camera.aarlo_front_door
+      #   title: Front Door
+      #   entities:
+      #     - camera.aarlo_front_door
+      #     - light.hue_front_door
+
+      - type: 'custom:aarlo-glance'
+        entity: camera.aarlo_front_door
+        name: Front Door
+        show:
+          - motion
+          # - sound
+          - snapshot
+          - battery_level
+          # - signal_strength
+          - captured_today
+          # - image_date
+        top_title: false
+        top_status: false
+        top_date: false
+        image_click: play
+        door: binary_sensor.door_window_sensor_front_door
+        door_lock: lock.front_door
+
+      # - type: picture-glance
+      #   camera_image: camera.doorpi
+      #   title: Entrance
+      #   entities:
+      #     - camera.doorpi
+      #     - light.hue_front_door
+
+  - type: vertical-stack
+    cards:
+      - type: picture-glance
+        camera_image: camera.c1
+        title: Living Room
+        entities:
+          - camera.c1
+          - light.hue_living_room_table
+          - light.hue_living_room_tv
+          - cover.living_room
+
+      # - type: picture-glance
+      #   camera_image: camera.aarlo_terrace
+      #   title: Terrace
+      #   entities:
+      #     - camera.aarlo_terrace
+      #     - light.hue_terrace
+      #     - cover.bedroom
+
+      - type: 'custom:aarlo-glance'
+        entity: camera.aarlo_terrace
+        name: Terrace
+        show:
+          - motion
+          - snapshot
+          - battery_level
+          - captured_today
+        top_title: false
+        top_status: false
+        top_date: false
+        image_click: play
+        door: binary_sensor.door_window_sensor_terrace_door
+
+      # - type: picture-glance
+      #   camera_image: camera.winpi
+      #   title: Winpi
+      #   entities:
+      #     - camera.winpi
+      #     - cover.living_room_door
+
+  - type: vertical-stack
+    cards:
+      - type: picture-glance
+        camera_image: camera.c2
+        title: Kitchen
+        entities:
+          - camera.c2
+          - cover.kitchen
+          - light.hue_kitchen
+          - switch.sonoff_kitchen_hood
+
+      # - type: picture-glance
+      #   camera_image: camera.g4p
+      #   title: Office (g4p)
+      #   entities:
+      #     - camera.g4p
+      #     - light.yeelight_office
+      #     - light.hue_office
+      #     - cover.office
+      #
+      # - type: picture-glance
+      #   camera_image: camera.hassistant_lq
+      #   title: Office
+      #   entities:
+      #     - camera.hassistant
+      #     - light.yeelight_office
+      #     - light.hue_office
+      #     - cover.office
+
+      # - type: picture-glance
+      #   camera_image: camera.aarlo_hallway
+      #   title: Hallway
+      #   entities:
+      #     - camera.aarlo_hallway
+      #     - light.hue_hallway
+
+      - type: 'custom:aarlo-glance'
+        entity: camera.aarlo_hallway
+        name: Hallway
+        show:
+          - motion
+          - snapshot
+          - battery_level
+          - captured_today
+        top_title: false
+        top_status: false
+        top_date: false
+        image_click: play
+        # door: binary_sensor.door_window_sensor_terrace_door
+
+# vim: set filetype=yaml et sw=2 ts=2 :

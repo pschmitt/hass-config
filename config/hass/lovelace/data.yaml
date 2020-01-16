@@ -1,0 +1,49 @@
+title: Data
+id: data
+path: data
+icon: mdi:chart-bar-stacked
+cards:
+  - type: vertical-stack
+    cards:
+    - type: gauge
+      title: Detail
+      entity: sensor.home_temperature
+      unit: '°C'
+      max: 30
+      severty:
+        green: 0
+        yellow: 22
+        red: 25
+
+    - type: entities
+      title: Detail
+      show_header_toggle: false
+      entities:
+        - sensor.temperature_living_room
+        - sensor.temperature_bedroom
+        - sensor.temperature_office
+        - sensor.temperature_terrace
+        - type: divider
+        # Hue
+        - sensor.temperature_bathroom
+        - sensor.temperature_hallway
+        - sensor.temperature_kitchen
+        - sensor.temperature_toilet
+        - type: divider
+        # Fridge
+        - sensor.temperature_fridge
+        - sensor.temperature_fridge_crisper
+        - sensor.freezer_temperature
+
+  - type: vertical-stack
+    cards:
+      - type: weather-forecast
+        entity: weather.darksky
+
+      - type: weather-forecast
+        entity: weather.openweathermap
+
+      - type: weather-forecast
+        entity: weather.yweather
+
+# vim: set filetype=yaml et sw=2 ts=2 :
