@@ -1,0 +1,38 @@
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_consumer_secret
+  profiles:
+    - Philipp_Schmitt
+
+automation:
+  - alias: "Notify when in bed"
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: ifttt_webhook_received
+        event_data:
+          component: "withings"
+          event: "in_bed"
+    action:
+      - service: notify.html5
+        data_template:
+          message: '{{ trigger.event.data.user }} is in bed'
+          data:
+            tag: 'withings-in-bed'
+
+  - alias: "Notify when out of bed"
+    initial_state: true
+    trigger:
+      - platform: event
+        event_type: ifttt_webhook_received
+        event_data:
+          component: "withings"
+          event: "out_of_bed"
+    action:
+      - service: notify.html5
+        data_template:
+          message: '{{ trigger.event.data.user }} got out of bed'
+          data:
+            tag: 'withings-out-of-bed'
+
+# vim: set ft=yaml et ts=2 sw=2 :
