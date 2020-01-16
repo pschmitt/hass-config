@@ -19,6 +19,14 @@ automation:
           message: '{{ trigger.event.data.user }} is in bed'
           data:
             tag: 'withings-in-bed'
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.bed_occupied
+      # - service: device_tracker.see
+      #   data_template:
+      #     host_name: 'withings_sleep'
+      #     dev_id: 'withings_sleep'
+      #     mac: '{{ trigger.event.data.user }}'
+      #     location_name: 'bed'
 
   - alias: "Notify when out of bed"
     initial_state: true
@@ -34,5 +42,20 @@ automation:
           message: '{{ trigger.event.data.user }} got out of bed'
           data:
             tag: 'withings-out-of-bed'
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.bed_occupied
+      # - service: device_tracker.see
+      #   data_template:
+      #     host_name: 'withings_sleep'
+      #     dev_id: 'withings_sleep'
+      #     mac: '{{ trigger.event.data.user }}'
+      #     location_name: 'bed'
+
+# TODO: Bed presence sensor! template device tracker?
+
+input_boolean:
+  bed_occupied:
+    name: Bed occupied
+    icon: mdi:bed
 
 # vim: set ft=yaml et ts=2 sw=2 :
