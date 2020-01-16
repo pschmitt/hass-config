@@ -34,7 +34,7 @@ script:
   tts_say:
     sequence:
       - service: script.reset_tts_volume
-      - service: tts.google_say
+      - service: tts.google_translate_say
         data_template:
           entity_id: media_player.cast_home_group
           message: '{{ message }}'
