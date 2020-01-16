@@ -1,6 +1,3 @@
-media_player:
-  - platform: cast
-    ignore_cec:
-      - BrightCast
+cast:
 
 # vim: set filetype=yaml et sw=2 ts=2 :
