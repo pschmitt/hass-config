@@ -14,7 +14,7 @@ automation:
             renotify: True
       - service: frontend.set_theme
         data:
-          name: dark_theme
+          name: blue_night
       - delay: 00:05:00
       - service: script.enable_annoying_automations
       # Purge DB
@@ -81,39 +81,6 @@ homeassistant:
       order: 1
     group.zwave:
       order: 3
-    # Master groups
-    group.all:
-      hidden: false
-    group.all_automations:
-      hidden: false
-      order: 99
-    group.all_covers:
-      icon: mdi:window-open
-      order: 2
-      hidden: false
-      friendly_name: All covers
-    group.all_devices:
-      icon: mdi:cellphone-android
-      order: 2
-      hidden: false
-      friendly_name: All devices
-    group.all_lights:
-      hidden: false
-      icon: mdi:lightbulb
-      friendly_name: All lights
-      order: 2
-    group.all_scripts:
-      control: hidden
-      order: 1
-      hidden: false
-      friendly_name: All scripts
-      icon: mdi:script
-    group.all_switches:
-      control: hidden
-      hidden: false
-      friendly_name: All switches
-      order: 4
-      icon: mdi:toggle-switch
     # Scripts
     script.ha_reload_config:
       icon: mdi:refresh
