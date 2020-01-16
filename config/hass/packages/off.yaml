@@ -4,7 +4,7 @@ script:
     sequence:
       - service: light.turn_off
         data:
-          entity_id: group.all_lights
+          entity_id: all
       - service: script.close_all_covers
       - service: script.lock_door
       - service: script.turn_off_media_players
@@ -41,7 +41,7 @@ script:
         state: "not_home"
       - service: light.turn_off
         data:
-          entity_id: group.all_lights
+          entity_id: all
 
 
 shell_command:

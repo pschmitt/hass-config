@@ -55,6 +55,12 @@ light:
 
 
 group:
+  all_lights:
+    name: All lights
+    view: no
+    entities:
+      - group.main_lights
+
   misc_lights:
     name: Misc Lights
     view: no
@@ -104,5 +110,7 @@ homeassistant:
       icon: mdi:alpha-c-box
     light.sleeping_area:
       icon: mdi:alpha-s-box
+    group.all_lights:
+      icon: mdi:lightbulb-group
 
 # vim: set filetype=yaml et sw=2 ts=2 :

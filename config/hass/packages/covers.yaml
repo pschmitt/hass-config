@@ -15,68 +15,58 @@ cover:
     name: "Living Room Table"
     command_topic: "hassistant/remote/cover/living_room_table"
     state_topic: "hassistant/states/cover/living_room_table/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Living Room TV"
     command_topic: "hassistant/remote/cover/living_room_tv"
     state_topic: "hassistant/states/cover/living_room_tv/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Living Room Door"
     command_topic: "hassistant/remote/cover/living_room_door"
     state_topic: "hassistant/states/cover/living_room_door/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Kitchen"
     command_topic: "hassistant/remote/cover/kitchen"
     state_topic: "hassistant/states/cover/kitchen/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Bedroom window"
     command_topic: "hassistant/remote/cover/bedroom"
     state_topic: "hassistant/states/cover/bedroom/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Bedroom door"
     command_topic: "hassistant/remote/cover/bedroom_door"
     state_topic: "hassistant/states/cover/bedroom_door/state"
-    optimistic: true
     qos: 2
 
   - platform: mqtt
     name: "Office"
     command_topic: "hassistant/remote/cover/office"
     state_topic: "hassistant/states/cover/office/state"
-    optimistic: true
     qos: 2
 
   - platform: group
     name: Bedroom
-    optimistic: true
     entities:
       - cover.bedroom_window
       - cover.bedroom_door
 
   - platform: group
     name: Living Room Main
-    optimistic: true
     entities:
       - cover.living_room_table
       - cover.living_room_tv
 
   - platform: group
     name: Living Room
-    optimistic: true
     entities:
       - cover.living_room_table
       - cover.living_room_door
@@ -84,7 +74,6 @@ cover:
 
   - platform: group
     name: Main Covers
-    optimistic: true
     entities:
       - cover.bedroom
       # group.living_room_covers is voluntarily omitted here, since we do not
@@ -96,11 +85,24 @@ cover:
 
   - platform: group
     name: Automated Covers
-    optimistic: true
     entities:
       - cover.living_room
       - cover.office
       - cover.kitchen
+
+
+group:
+  all_covers:
+    name: All covers
+    view: no
+    control: hidden
+    entities:
+      - cover.bedroom_door
+      - cover.bedroom_window
+      - cover.kitchen
+      - cover.living_room_table
+      - cover.living_room_tv
+      - cover.office
 
 
 script:
@@ -286,5 +288,9 @@ homeassistant:
     script.cover_movie_smoke_break:
       can_cancel: False
       icon: mdi:smoking
+    group.all_covers:
+      icon: mdi:window-open
+      order: 2
+      hidden: false
 
 # vim: set filetype=yaml et sw=2 ts=2 :

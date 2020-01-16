@@ -150,6 +150,7 @@ views:
               - binary_sensor.motion_sensor_living_room
               - binary_sensor.motion_sensor_office
               - binary_sensor.motion_sensor_terrace
+              - media_player.living_room_tv
               - entity: light.living_room
                 tap_action:
                   action: toggle
@@ -874,16 +875,12 @@ views:
               - group.all_battery_devices
               - group.low_battery_devices
               - group.all_covers
-              - group.all_devices
-              - group.all_lights
-              # - group.all_plants
-              - group.all_scripts
-              - group.all_switches
 
           - type: entities
             title: Debug
             show_header_toggle: false
             entities:
+              - input_boolean.bed_occupied
               - input_boolean.roomba_running
               - input_boolean.motion_light_living_room
               - binary_sensor.motion_sensor_living_room
