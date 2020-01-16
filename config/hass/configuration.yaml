@@ -33,6 +33,7 @@ discovery:
 downloader: !include downloader.yaml
 group: !include_dir_merge_named groups
 history:
+local_ip:
 logbook:
 lovelace:
   mode: yaml
