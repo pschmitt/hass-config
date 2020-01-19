@@ -100,6 +100,7 @@ group:
       - cover.bedroom_door
       - cover.bedroom_window
       - cover.kitchen
+      - cover.living_room_door
       - cover.living_room_table
       - cover.living_room_tv
       - cover.office
@@ -156,13 +157,7 @@ script:
     sequence:
       - service: cover.open_cover
         entity_id:
-          - cover.bedroom_door
-          - cover.bedroom_window
-          - cover.kitchen
-          - cover.living_room_door
-          - cover.living_room_table
-          - cover.living_room_tv
-          - cover.office
+          - group.all_covers
 
   open_all_covers_if_sun_is_up:
     alias: 'Open all covers (only if the sun is up)'
@@ -271,13 +266,7 @@ script:
     sequence:
       - service: cover.stop_cover
         entity_id:
-          - cover.bedroom_door
-          - cover.bedroom_window
-          - cover.kitchen
-          - cover.living_room_door
-          - cover.living_room_table
-          - cover.living_room_tv
-          - cover.office
+          - group.all_covers
 
 
 homeassistant:
