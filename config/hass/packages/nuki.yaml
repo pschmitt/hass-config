@@ -57,6 +57,25 @@ automation:
     action:
       - service: script.lock_door
 
+  - alias: "Nuki Webhook"
+    initial_state: true
+    trigger:
+      - platform: webhook
+        webhook_id: !secret nuki_webhook
+    action:
+      - service: notify.html5
+        data_template:
+          message: "Nuki webhook: {{ trigger.json }}"
+          data:
+            tag: "nuki-webhook"
+      - service: python_script.set_state
+        data_template:
+          entity_attr:
+            nuki_id: '{{ trigger.json.nukiId }}'
+          state: '{{ trigger.json.stateName }}'
+          # Attributes
+          battery_critical: '{{ trigger.json.batteryCritical }}'
+          updated_by: python_script.set_state
 
 alert:
   door_open:
