@@ -1,8 +1,6 @@
 logger:
   default: info
   logs:
-    homeassistant.components.http: debug
-    homeassistant.components.vacuum.roomba: critical
-    homeassistant.components.notify.facebook: debug
+    homeassistant.components.python_script: debug
 
 # vim: set filetype=yaml et sw=2 ts=2 :
