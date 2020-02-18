@@ -20,30 +20,29 @@ services:
       - ./scripts:/scripts:ro
       - /etc/localtime:/etc/localtime:ro
       - /home/pschmitt/.ssh/id_rsa:/root/.ssh/id_rsa:ro
+      - /home/pschmitt/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
     healthcheck:
       test: "curl -Lf http://localhost:8123"
       start_period: 6m
       timeout: 15s
       interval: 30s
       retries: 3
-    labels:
+    # labels:
       # Traefik v2
       # - "traefik.enable=true"
-      # - "traefik.http.routers.hass-http.entrypoints=http"
-      # - "traefik.http.routers.hass-http.rule=Host(`home.comreset.io`)"
-      # - "traefik.http.routers.hass-http.middlewares=tls-redirect@file"
-      # - "traefik.http.routers.hass-https.entrypoints=https"
-      # - "traefik.http.routers.hass-https.rule=Host(`home.comreset.io`)"
-      # - "traefik.http.routers.hass-https.tls=true"
-      # - "traefik.http.routers.hass-https.tls.certresolver=le"
-      # - "traefik.http.routers.hass-https.service=hass"
-      # - "traefik.http.services.hass.loadbalancer.server.port=8123"
-      - "traefik.enable=true"
-      - "traefik.backend=home-assistant"
-      - "traefik.frontend.rule=Host:home.comreset.io,heimat.dev,hass.heimat.dev"
-      - "traefik.port=8123"
-      - "com.centurylinklabs.watchtower.enable=false"
-      - "autoheal=true"
+      # - "traefik.http.routers.home-assistant.entrypoints=https"
+      # - "traefik.http.routers.home-assistant.rule=Host(`hass.heimat.dev`, `home.comreset.io`)"
+      # - "traefik.http.routers.home-assistant.tls=true"
+      # - "traefik.http.routers.home-assistant.tls.certresolver=le"
+      # - "traefik.http.routers.home-assistant.service=home-assistant"
+      # - "traefik.http.services.home-assistant.loadbalancer.server.port=8123"
+      # Traefik v1.7
+      # - "traefik.enable=true"
+      # - "traefik.backend=home-assistant"
+      # - "traefik.frontend.rule=Host:home.comreset.io,heimat.dev,hass.heimat.dev"
+      # - "traefik.port=8123"
+      # - "com.centurylinklabs.watchtower.enable=false"
+      # - "autoheal=true"
 
   database:
     image: postgres:9
@@ -88,14 +87,13 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend=grafana"
-      - "traefik.frontend.rule=Host:graphs.home.comreset.io"
+      - "traefik.frontend.rule=Host:graphs.heimat.dev"
       - "traefik.port=3000"
 
   lego:
     image: xenolf/lego
-    environment:
-      - CF_API_EMAIL=philipp@schmitt.co
-      - CF_API_KEY=***REMOVED***
+    env_file:
+      cloudflare.env
     volumes:
       - ./data/lego:/data
     command: >
@@ -138,9 +136,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ./data/nodered:/data
     labels:
-      - "traefik.enable=true"
+      - "traefik.enable=false"
       - "traefik.backend=nodered"
-      - "traefik.frontend.rule=Host:nodered.home.comreset.io"
+      - "traefik.frontend.rule=Host:nodered.home.comreset.io,nodered.heimat.dev"
       - "traefik.port=1880"
 
   # facebox:
@@ -150,6 +148,14 @@ services:
   #     - 8890:8080
   #   env_file:
   #     - facebox.env
+
+  assistant-relay:
+    image: apipa169/amd64-hassio-assistant_relay
+    restart: unless-stopped
+    ports:
+      - 3002:3000
+    volumes:
+      - ./data/assistant-relay:/data
 
   autoheal:
     restart: unless-stopped
